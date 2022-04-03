@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Security
+import SwiftKeychainWrapper
 
 class EnterPinView: UIView {
     
@@ -39,7 +39,7 @@ class EnterPinView: UIView {
         return textField
     }()
     
-    private let goButton: GoButton = {
+    lazy var goButton: GoButton = {
         let button = GoButton(buttonSize: 50)
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
@@ -47,8 +47,10 @@ class EnterPinView: UIView {
     
     @objc func buttonPressed() {
         print(pinTextField.text ?? "")
-//        KeychainWrapper.standard.set(secret.text, forKey: "SecretMessage")
-//        .resignFirstResponder()
+//        let saveSuccessful: Bool = KeychainWrapper.standard.set("firstTry", forKey: "SecretMessage")
+//        let retrievedString: String? = KeychainWrapper.standard.string(forKey: "SecretMessage")
+//        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "SecretMessage")
+
     }
     
     init() {

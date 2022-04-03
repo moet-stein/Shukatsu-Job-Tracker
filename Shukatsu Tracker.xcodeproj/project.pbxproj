@@ -20,9 +20,11 @@
 		6051048027F733FD00AB9DEC /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6051047F27F733FD00AB9DEC /* Lato-Black.ttf */; };
 		6051048227F9D7CA00AB9DEC /* PinTextFieldBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048127F9D7CA00AB9DEC /* PinTextFieldBox.swift */; };
 		6051048427F9DADB00AB9DEC /* GoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048327F9DADB00AB9DEC /* GoButton.swift */; };
+		6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shukatsu_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6051045927F72E0000AB9DEC /* Shukatsu Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6051045C27F72E0000AB9DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6051045E27F72E0000AB9DEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +40,8 @@
 		6051047F27F733FD00AB9DEC /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		6051048127F9D7CA00AB9DEC /* PinTextFieldBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTextFieldBox.swift; sourceTree = "<group>"; };
 		6051048327F9DADB00AB9DEC /* GoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoButton.swift; sourceTree = "<group>"; };
+		89BE5B31226051AC8560A03B /* Pods-Shukatsu Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		DEC286EBCDACB6706F13477E /* Pods-Shukatsu Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.release.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,17 +49,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EA1569D205A9774046C8712 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E28C81884B3F4A76A058A4B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				89BE5B31226051AC8560A03B /* Pods-Shukatsu Tracker.debug.xcconfig */,
+				DEC286EBCDACB6706F13477E /* Pods-Shukatsu Tracker.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6051045027F72E0000AB9DEC = {
 			isa = PBXGroup;
 			children = (
 				6051045B27F72E0000AB9DEC /* Shukatsu Tracker */,
 				6051045A27F72E0000AB9DEC /* Products */,
+				4E28C81884B3F4A76A058A4B /* Pods */,
+				2EA1569D205A9774046C8712 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,9 +152,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6051047027F72E0200AB9DEC /* Build configuration list for PBXNativeTarget "Shukatsu Tracker" */;
 			buildPhases = (
+				4485C88C89FB726695C79F75 /* [CP] Check Pods Manifest.lock */,
 				6051045527F72E0000AB9DEC /* Sources */,
 				6051045627F72E0000AB9DEC /* Frameworks */,
 				6051045727F72E0000AB9DEC /* Resources */,
+				5674867220A1E43F9E8D04EF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,6 +215,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4485C88C89FB726695C79F75 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shukatsu Tracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5674867220A1E43F9E8D04EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6051045527F72E0000AB9DEC /* Sources */ = {
@@ -334,6 +403,7 @@
 		};
 		6051047127F72E0200AB9DEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89BE5B31226051AC8560A03B /* Pods-Shukatsu Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -361,6 +431,7 @@
 		};
 		6051047227F72E0200AB9DEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEC286EBCDACB6706F13477E /* Pods-Shukatsu Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
