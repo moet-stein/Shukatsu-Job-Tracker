@@ -9,23 +9,35 @@
 /* Begin PBXBuildFile section */
 		6051045D27F72E0000AB9DEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051045C27F72E0000AB9DEC /* AppDelegate.swift */; };
 		6051045F27F72E0000AB9DEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051045E27F72E0000AB9DEC /* SceneDelegate.swift */; };
-		6051046127F72E0000AB9DEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051046027F72E0000AB9DEC /* ViewController.swift */; };
-		6051046427F72E0000AB9DEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6051046227F72E0000AB9DEC /* Main.storyboard */; };
+		6051046127F72E0000AB9DEC /* EnterPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051046027F72E0000AB9DEC /* EnterPinViewController.swift */; };
 		6051046727F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6051046527F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld */; };
 		6051046927F72E0200AB9DEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6051046827F72E0200AB9DEC /* Assets.xcassets */; };
 		6051046C27F72E0200AB9DEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */; };
+		6051047627F72F1900AB9DEC /* EnterPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051047527F72F1900AB9DEC /* EnterPinView.swift */; };
+		6051047A27F733BC00AB9DEC /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6051047927F733BC00AB9DEC /* Lato-Light.ttf */; };
+		6051047C27F733C400AB9DEC /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6051047B27F733C400AB9DEC /* Lato-Regular.ttf */; };
+		6051047E27F733ED00AB9DEC /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6051047D27F733ED00AB9DEC /* Lato-Bold.ttf */; };
+		6051048027F733FD00AB9DEC /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6051047F27F733FD00AB9DEC /* Lato-Black.ttf */; };
+		6051048227F9D7CA00AB9DEC /* PinTextFieldBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048127F9D7CA00AB9DEC /* PinTextFieldBox.swift */; };
+		6051048427F9DADB00AB9DEC /* GoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048327F9DADB00AB9DEC /* GoButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6051045927F72E0000AB9DEC /* Shukatsu Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shukatsu Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6051045C27F72E0000AB9DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6051045E27F72E0000AB9DEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6051046027F72E0000AB9DEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6051046327F72E0000AB9DEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6051046027F72E0000AB9DEC /* EnterPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPinViewController.swift; sourceTree = "<group>"; };
 		6051046627F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shukatsu_Tracker.xcdatamodel; sourceTree = "<group>"; };
 		6051046827F72E0200AB9DEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6051046B27F72E0200AB9DEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6051046D27F72E0200AB9DEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6051047527F72F1900AB9DEC /* EnterPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPinView.swift; sourceTree = "<group>"; };
+		6051047927F733BC00AB9DEC /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		6051047B27F733C400AB9DEC /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		6051047D27F733ED00AB9DEC /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		6051047F27F733FD00AB9DEC /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
+		6051048127F9D7CA00AB9DEC /* PinTextFieldBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinTextFieldBox.swift; sourceTree = "<group>"; };
+		6051048327F9DADB00AB9DEC /* GoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +70,54 @@
 		6051045B27F72E0000AB9DEC /* Shukatsu Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				6051047727F7338F00AB9DEC /* Fonts */,
+				6051047427F72EDE00AB9DEC /* View */,
+				6051047327F72EC900AB9DEC /* Controller */,
 				6051045C27F72E0000AB9DEC /* AppDelegate.swift */,
 				6051045E27F72E0000AB9DEC /* SceneDelegate.swift */,
-				6051046027F72E0000AB9DEC /* ViewController.swift */,
-				6051046227F72E0000AB9DEC /* Main.storyboard */,
 				6051046827F72E0200AB9DEC /* Assets.xcassets */,
-				6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */,
 				6051046D27F72E0200AB9DEC /* Info.plist */,
 				6051046527F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld */,
 			);
 			path = "Shukatsu Tracker";
+			sourceTree = "<group>";
+		};
+		6051047327F72EC900AB9DEC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6051046027F72E0000AB9DEC /* EnterPinViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6051047427F72EDE00AB9DEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */,
+				6051047527F72F1900AB9DEC /* EnterPinView.swift */,
+				6051048127F9D7CA00AB9DEC /* PinTextFieldBox.swift */,
+				6051048327F9DADB00AB9DEC /* GoButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6051047727F7338F00AB9DEC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6051047827F7339B00AB9DEC /* Lato */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		6051047827F7339B00AB9DEC /* Lato */ = {
+			isa = PBXGroup;
+			children = (
+				6051047927F733BC00AB9DEC /* Lato-Light.ttf */,
+				6051047B27F733C400AB9DEC /* Lato-Regular.ttf */,
+				6051047D27F733ED00AB9DEC /* Lato-Bold.ttf */,
+				6051047F27F733FD00AB9DEC /* Lato-Black.ttf */,
+			);
+			path = Lato;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,9 +178,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6051047A27F733BC00AB9DEC /* Lato-Light.ttf in Resources */,
+				6051047E27F733ED00AB9DEC /* Lato-Bold.ttf in Resources */,
 				6051046C27F72E0200AB9DEC /* LaunchScreen.storyboard in Resources */,
 				6051046927F72E0200AB9DEC /* Assets.xcassets in Resources */,
-				6051046427F72E0000AB9DEC /* Main.storyboard in Resources */,
+				6051048027F733FD00AB9DEC /* Lato-Black.ttf in Resources */,
+				6051047C27F733C400AB9DEC /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,8 +194,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6051048427F9DADB00AB9DEC /* GoButton.swift in Sources */,
+				6051047627F72F1900AB9DEC /* EnterPinView.swift in Sources */,
 				6051046727F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld in Sources */,
-				6051046127F72E0000AB9DEC /* ViewController.swift in Sources */,
+				6051046127F72E0000AB9DEC /* EnterPinViewController.swift in Sources */,
+				6051048227F9D7CA00AB9DEC /* PinTextFieldBox.swift in Sources */,
 				6051045D27F72E0000AB9DEC /* AppDelegate.swift in Sources */,
 				6051045F27F72E0000AB9DEC /* SceneDelegate.swift in Sources */,
 			);
@@ -151,14 +207,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6051046227F72E0000AB9DEC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6051046327F72E0000AB9DEC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,7 +344,6 @@
 				INFOPLIST_FILE = "Shukatsu Tracker/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -324,7 +371,6 @@
 				INFOPLIST_FILE = "Shukatsu Tracker/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
