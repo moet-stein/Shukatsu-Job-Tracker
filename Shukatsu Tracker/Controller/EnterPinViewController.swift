@@ -31,8 +31,18 @@ extension EnterPinViewController: UITextFieldDelegate {
         
         // add their new text to the existing text
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-
-        // make sure the result is under 16 characters
-        return updatedText.count <= 4
+        
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        
+     
+        
+        // make sure the result is under 4 characters
+        return updatedText.count <= 4 && allowedCharacters.isSuperset(of: characterSet)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
 }
