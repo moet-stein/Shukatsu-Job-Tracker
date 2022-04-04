@@ -13,11 +13,13 @@ class HomeView: UIView {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Second View"
+        label.textAlignment = .center
         return label
     }()
     
     init() {
         super.init(frame: .zero)
+        backgroundColor = .systemOrange
         setUpUI()
     }
     
@@ -30,7 +32,8 @@ class HomeView: UIView {
         addSubview(testLabel)
         
         NSLayoutConstraint.activate([
-            testLabel.topAnchor.constraint(equalTo: topAnchor, constant: 300),
+            testLabel.topAnchor.constraint(equalTo: topAnchor),
+            testLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             testLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             testLabel.widthAnchor.constraint(equalToConstant: 200)
         ])

@@ -29,8 +29,14 @@ class EnterPinViewController: UIViewController {
             if KeychainWrapper.standard.string(forKey: "SecretPin") == nil {
                 let saveSuccessful: Bool = KeychainWrapper.standard.set(enteredPin, forKey: "SecretPin")
                 print("saveSuccessful: \(saveSuccessful)")
+                navigationController?.pushViewController(HomeViewController(), animated: true)
             } else {
-                enteredPin == KeychainWrapper.standard.string(forKey: "SecretPin") ? print("corrent pin \(enteredPin)") : print("wrong pin")
+                if enteredPin == KeychainWrapper.standard.string(forKey: "SecretPin") {
+                    print("corrent pin \(enteredPin)")
+                    navigationController?.pushViewController(HomeViewController(), animated: true)
+                } else {
+                    print("wrong pin")
+                }
             }
             pinTextField.text = ""
         }

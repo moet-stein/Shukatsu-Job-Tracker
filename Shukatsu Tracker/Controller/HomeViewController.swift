@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     override func loadView() {
         contentView = HomeView()
         view = contentView
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
     
 
