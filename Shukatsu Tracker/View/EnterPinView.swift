@@ -48,27 +48,15 @@ class EnterPinView: UIView {
         return textField
     }()
     
-    lazy var goButton: GoButton = {
-        let button = GoButton(buttonSize: 50)
-//        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    lazy var goButton: circleButton = {
+        let button = circleButton(
+            buttonSize: 50,
+            bgColor: UIColor(red: 0.64, green: 0.82, blue: 1.00, alpha: 1.00),
+            buttonText: "GO",
+            sfSymbolName: nil)
+        
         return button
     }()
-    
-//    @objc func buttonPressed() {
-//        if let enteredPin = pinTextField.text {
-//            if KeychainWrapper.standard.string(forKey: "SecretPin") == nil {
-//                let saveSuccessful: Bool = KeychainWrapper.standard.set(enteredPin, forKey: "SecretPin")
-//                print("saveSuccessful: \(saveSuccessful)")
-//            } else {
-//                enteredPin == KeychainWrapper.standard.string(forKey: "SecretPin") ? print("corrent pin \(enteredPin)") : print("wrong pin")
-//            }
-//            pinTextField.text = ""
-//        }
-////        let saveSuccessful: Bool = KeychainWrapper.standard.set("firstTry", forKey: "SecretPin")
-////        let retrievedString: String? = KeychainWrapper.standard.string(forKey: "SecretPin")
-////        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "SecretPin")
-//
-//    }
     
     init() {
         super.init(frame: .zero)
