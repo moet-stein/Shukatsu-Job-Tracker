@@ -11,10 +11,19 @@ class HomeViewController: UIViewController {
 
     private var contentView: HomeView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
     override func loadView() {
         contentView = HomeView()
         view = contentView
-        self.navigationItem.setHidesBackButton(true, animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationItem.setHidesBackButton(false, animated: true)
     }
     
 
