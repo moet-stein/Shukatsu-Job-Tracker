@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-        window.rootViewController = EnterPinViewController()
+        let navigationControlller = UINavigationController(rootViewController: EnterPinViewController())
+        window.rootViewController = navigationControlller
         self.window = window
     }
 

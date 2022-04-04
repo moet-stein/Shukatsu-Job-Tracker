@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class EnterPinViewController: UIViewController {
     private var contentView: EnterPinView!
     private var pinTextField: UITextField!
+    private var goButton: UIButton!
     
     override func loadView() {
         contentView = EnterPinView()
@@ -17,6 +19,25 @@ class EnterPinViewController: UIViewController {
         
         pinTextField = contentView.pinTextField
         pinTextField.delegate = self
+        
+        goButton = contentView.goButton
+        goButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    }
+    
+    @objc func buttonPressed() {
+        if let enteredPin = pinTextField.text {
+            if KeychainWrapper.standard.string(forKey: "SecretPin") == nil {
+                let saveSuccessful: Bool = KeychainWrapper.standard.set(enteredPin, forKey: "SecretPin")
+                print("saveSuccessful: \(saveSuccessful)")
+            } else {
+                enteredPin == KeychainWrapper.standard.string(forKey: "SecretPin") ? print("corrent pin \(enteredPin)") : print("wrong pin")
+            }
+            pinTextField.text = ""
+        }
+//        let saveSuccessful: Bool = KeychainWrapper.standard.set("firstTry", forKey: "SecretPin")
+//        let retrievedString: String? = KeychainWrapper.standard.string(forKey: "SecretPin")
+//        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "SecretPin")
+
     }
     
 }
