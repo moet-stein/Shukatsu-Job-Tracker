@@ -40,6 +40,8 @@ class EnterPinView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = " 4 digit PIN"
         textField.keyboardType = .asciiCapableNumberPad
+        textField.textAlignment = .center
+        textField.tintColor = UIColor(named: "viewOrange")
         textField.backgroundColor = UIColor(named: "bgOffwhite")
         textField.layer.cornerRadius = 10
         textField.widthAnchor.constraint(equalToConstant: 200).isActive = true
@@ -60,6 +62,7 @@ class EnterPinView: UIView {
             } else {
                 enteredPin == KeychainWrapper.standard.string(forKey: "SecretPin") ? print("corrent pin \(enteredPin)") : print("wrong pin")
             }
+            pinTextField.text = ""
         }
 //        let saveSuccessful: Bool = KeychainWrapper.standard.set("firstTry", forKey: "SecretPin")
 //        let retrievedString: String? = KeychainWrapper.standard.string(forKey: "SecretPin")
