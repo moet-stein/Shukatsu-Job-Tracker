@@ -9,6 +9,10 @@ import UIKit
 
 class StatusButton: UIButton {
     
+    var status: String
+    var textColor: String
+    var number: Int
+    
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -24,29 +28,30 @@ class StatusButton: UIButton {
         label.font = UIFont(name: "Lato-Regular", size: 22)
         return label
     }()
-
-    override init(frame: CGRect) {
+    
+    init(status: String, textColor: String, number: Int, frame: CGRect = .zero) {
+        self.status = status
+        self.textColor = textColor
+        self.number = number
         super.init(frame: frame)
-        setUpUI()
+        self.setUpUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(status: String, textColor: String, number: Int) {
-        self.init(frame: .zero)
+    private func setUpUI() {
+        translatesAutoresizingMaskIntoConstraints = false
+        
         statusLabel.text = status
         statusLabel.textColor = UIColor(named: textColor)
         numberLabel.text = String(number)
         numberLabel.textColor = UIColor(named: textColor)
-    }
-    
-    
-    private func setUpUI() {
-        translatesAutoresizingMaskIntoConstraints = false
+        
         layer.cornerRadius = 10
         backgroundColor = UIColor(named: "lightOrange")
+        isSelected = false
         widthAnchor.constraint(equalToConstant: 70).isActive = true
         heightAnchor.constraint(equalToConstant: 70).isActive = true
         
@@ -62,6 +67,24 @@ class StatusButton: UIButton {
             numberLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             numberLabel.widthAnchor.constraint(equalToConstant: 80)
         ])
+        
+        addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
-
+    
+    @objc func  buttonPressed(sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            statusLabel.textColor = .white
+            numberLabel.textColor = .white
+            backgroundColor = UIColor(named: textColor)
+            print(sender.isSelected)
+        } else {
+            statusLabel.textColor = UIColor(named: textColor)
+            numberLabel.textColor = UIColor(named: textColor)
+            backgroundColor = UIColor(named: "lightOrange")
+            print(sender.isSelected)
+        }
+    }
+    
 }
