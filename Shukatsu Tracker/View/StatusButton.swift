@@ -7,13 +7,13 @@
 
 import UIKit
 
-class StatusBoxView: UIView {
+class StatusButton: UIButton {
     
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Regular", size: 15)
+        label.font = UIFont(name: "Lato-Bold", size: 15)
         return label
     }()
     

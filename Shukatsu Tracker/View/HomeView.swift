@@ -65,24 +65,24 @@ class HomeView: UIView {
     }()
     
     
-    private let openBoxView: StatusBoxView = {
-       let view = StatusBoxView(status: "open", textColor: "skyBlue", number: 15)
-       return view
+    private let openBoxView: StatusButton = {
+       let button = StatusButton(status: "open", textColor: "skyBlue", number: 15)
+       return button
     }()
     
-    private let appliedBoxView: StatusBoxView = {
-        let view = StatusBoxView(status: "applied", textColor: "lightGreen", number: 15)
-        return view
+    private let appliedBoxView: StatusButton = {
+        let button = StatusButton(status: "applied", textColor: "lightGreen", number: 15)
+        return button
     }()
     
-    private let interviewBoxView: StatusBoxView = {
-        let view = StatusBoxView(status: "interview", textColor: "viewOrange", number: 3)
-        return view
+    private let interviewBoxView: StatusButton = {
+        let button = StatusButton(status: "interview", textColor: "viewOrange", number: 3)
+        return button
     }()
     
-    private let closedBoxView: StatusBoxView = {
-        let view = StatusBoxView(status: "closed", textColor: "blueGrey", number: 6)
-        return view
+    private let closedBoxView: StatusButton = {
+        let button = StatusButton(status: "closed", textColor: "blueGrey", number: 6)
+        return button
     }()
     
     // MARK: - companyTiles section
@@ -104,6 +104,9 @@ class HomeView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: -
+
     
     
     private func setUpUI() {
