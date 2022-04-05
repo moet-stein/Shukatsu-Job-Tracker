@@ -55,7 +55,14 @@ class HomeView: UIView {
     }()
     
     // MARK: - Status Section
-    
+    let statusStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 20
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
     
     
     private let openBoxView: StatusBoxView = {
@@ -78,6 +85,15 @@ class HomeView: UIView {
         return view
     }()
     
+    // MARK: - companyTiles section
+    
+    private let tilesView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "lightOrange")
+        view.layer.cornerRadius = 30
+        return view
+    }()
     
     init() {
         super.init(frame: .zero)
@@ -91,21 +107,24 @@ class HomeView: UIView {
     
     
     private func setUpUI() {
-        setOurterComponents()
+        addSubview(addButton)
+        addSubview(tilesView)
         setProfileSection()
         setStatusSection()
-    }
-    
-    private func setOurterComponents() {
-        addSubview(addButton)
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: topAnchor, constant: 50),
             addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             addButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 20),
+            tilesView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tilesView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tilesView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
+
     private func setProfileSection() {
         addSubview(profileImage)
         addSubview(greetLabel)
@@ -124,22 +143,11 @@ class HomeView: UIView {
     }
     
     private func setStatusSection() {
-        let statusStackView: UIStackView = {
-            let stackView = UIStackView()
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.axis = .horizontal
-            stackView.spacing = 20
-            stackView.distribution = .fillProportionally
-            return stackView
-        }()
-        
         addSubview(statusStackView)
 
         NSLayoutConstraint.activate([
             statusStackView.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
             statusStackView.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor),
-//            statusStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-//            statusStackView.heightAnchor.constraint(equalToConstant: 120)
         ])
         
         statusStackView.addArrangedSubview(openBoxView)
