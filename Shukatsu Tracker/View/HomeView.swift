@@ -95,6 +95,20 @@ class HomeView: UIView {
         return view
     }()
     
+    // MARK: - viewAll favoites toggle
+    
+    private let viewAllButton: FilterButton = {
+        let button = FilterButton(buttonText: "View All", colorName: "blueGrey", leftCorner: true)
+        return button
+    }()
+    
+    
+    private let viewFavoritesButton: FilterButton = {
+        let button = FilterButton(buttonText: "View Favorites", colorName: "viewOrange", leftCorner: false)
+        return button
+    }()
+
+    
     init() {
         super.init(frame: .zero)
         backgroundColor = UIColor(named: "bgOffwhite")
@@ -105,7 +119,6 @@ class HomeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: -
 
     
     
@@ -114,6 +127,7 @@ class HomeView: UIView {
         addSubview(tilesView)
         setProfileSection()
         setStatusSection()
+        setTilesViewSection()
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: topAnchor, constant: 50),
@@ -123,7 +137,7 @@ class HomeView: UIView {
             tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 20),
             tilesView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tilesView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tilesView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            tilesView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
     
@@ -158,6 +172,23 @@ class HomeView: UIView {
         statusStackView.addArrangedSubview(interviewBoxView)
         statusStackView.addArrangedSubview(closedBoxView)
         
+    }
+    
+    private func setTilesViewSection() {
+        tilesView.addSubview(viewAllButton)
+        tilesView.addSubview(viewFavoritesButton)
+        
+        NSLayoutConstraint.activate([
+            viewAllButton.topAnchor.constraint(equalTo: tilesView.topAnchor, constant: 20),
+            viewAllButton.trailingAnchor.constraint(equalTo: centerXAnchor),
+            viewAllButton.widthAnchor.constraint(equalToConstant: 130),
+            viewAllButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            viewFavoritesButton.topAnchor.constraint(equalTo: tilesView.topAnchor, constant: 20),
+            viewFavoritesButton.leadingAnchor.constraint(equalTo: centerXAnchor),
+            viewFavoritesButton.widthAnchor.constraint(equalToConstant: 130),
+            viewFavoritesButton.heightAnchor.constraint(equalToConstant: 30)
+        ])
     }
     
 }
