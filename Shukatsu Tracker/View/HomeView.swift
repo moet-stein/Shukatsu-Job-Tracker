@@ -56,31 +56,25 @@ class HomeView: UIView {
     
     // MARK: - Status Section
     
-    let statusStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        stackView.distribution = .fillProportionally
-        return stackView
-    }()
     
-    let openBoxView: StatusBoxView = {
+    
+    private let openBoxView: StatusBoxView = {
        let view = StatusBoxView(status: "open", textColor: "skyBlue", number: 15)
        return view
     }()
     
-    let appliedBoxView: StatusBoxView = {
-        let view = StatusBoxView(status: "applied", textColor: "viewOrange", number: 15)
+    private let appliedBoxView: StatusBoxView = {
+        let view = StatusBoxView(status: "applied", textColor: "lightGreen", number: 15)
         return view
     }()
     
-    let interviewBoxView: StatusBoxView = {
-        let view = StatusBoxView(status: "interview", textColor: "skyBlue", number: 3)
+    private let interviewBoxView: StatusBoxView = {
+        let view = StatusBoxView(status: "interview", textColor: "viewOrange", number: 3)
         return view
     }()
     
-    let closedBoxView: StatusBoxView = {
-        let view = StatusBoxView(status: "closed", textColor: "viewOrange", number: 6)
+    private let closedBoxView: StatusBoxView = {
+        let view = StatusBoxView(status: "closed", textColor: "blueGrey", number: 6)
         return view
     }()
     
@@ -99,6 +93,7 @@ class HomeView: UIView {
     private func setUpUI() {
         setOurterComponents()
         setProfileSection()
+        setStatusSection()
     }
     
     private func setOurterComponents() {
@@ -126,6 +121,32 @@ class HomeView: UIView {
             titleLabel.topAnchor.constraint(equalTo: greetLabel.bottomAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10)
         ])
+    }
+    
+    private func setStatusSection() {
+        let statusStackView: UIStackView = {
+            let stackView = UIStackView()
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .horizontal
+            stackView.spacing = 20
+            stackView.distribution = .fillProportionally
+            return stackView
+        }()
+        
+        addSubview(statusStackView)
+
+        NSLayoutConstraint.activate([
+            statusStackView.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
+            statusStackView.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor),
+//            statusStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+//            statusStackView.heightAnchor.constraint(equalToConstant: 120)
+        ])
+        
+        statusStackView.addArrangedSubview(openBoxView)
+        statusStackView.addArrangedSubview(appliedBoxView)
+        statusStackView.addArrangedSubview(interviewBoxView)
+        statusStackView.addArrangedSubview(closedBoxView)
+        
     }
     
 }

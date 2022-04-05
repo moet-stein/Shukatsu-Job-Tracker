@@ -13,7 +13,7 @@ class StatusBoxView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Regular", size: 20)
+        label.font = UIFont(name: "Lato-Regular", size: 15)
         return label
     }()
     
@@ -21,7 +21,7 @@ class StatusBoxView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Regular", size: 35)
+        label.font = UIFont(name: "Lato-Regular", size: 22)
         return label
     }()
 
@@ -45,10 +45,10 @@ class StatusBoxView: UIView {
     
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 30
-        backgroundColor = .lightGray
-        widthAnchor.constraint(equalToConstant: 100).isActive = true
-        heightAnchor.constraint(equalToConstant: 100).isActive = true
+        layer.cornerRadius = 10
+        backgroundColor = UIColor(named: "lightOrange")
+        widthAnchor.constraint(equalToConstant: 70).isActive = true
+        heightAnchor.constraint(equalToConstant: 70).isActive = true
         
         addSubview(statusLabel)
         addSubview(numberLabel)
