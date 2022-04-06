@@ -8,6 +8,12 @@
 import UIKit
 
 class HomeView: UIView {
+    private let scrollView: UIScrollView = {
+       let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = UIColor(named: "bgOffwhite")
+        return scrollView
+    }()
     
     private let addButton: circleButton = {
         let button = circleButton(
@@ -60,7 +66,7 @@ class HomeView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 20
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -117,9 +123,19 @@ class HomeView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = UIColor(named: "bgOffwhite")
+        addSubview(scrollView)
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
         setUpUI()
+        setTilesViewSection()
     }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -140,56 +156,49 @@ class HomeView: UIView {
     }
     
     
-    
     private func setUpUI() {
-        addSubview(addButton)
-        addSubview(tilesView)
-        setProfileSection()
-        setStatusSection()
-        setTilesViewSection()
-        
-        NSLayoutConstraint.activate([
-            addButton.topAnchor.constraint(equalTo: topAnchor, constant: 50),
-            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            addButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 20),
-            tilesView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tilesView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tilesView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
-    }
-    
-    
-    private func setProfileSection() {
-        addSubview(profileImage)
-        addSubview(greetLabel)
-        addSubview(titleLabel)
-        
-        NSLayoutConstraint.activate([
-            profileImage.topAnchor.constraint(equalTo: addButton.bottomAnchor),
-            profileImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            
-            greetLabel.topAnchor.constraint(equalTo: addButton.bottomAnchor),
-            greetLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 15),
-            
-            titleLabel.topAnchor.constraint(equalTo: greetLabel.bottomAnchor, constant: 5),
-            titleLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10)
-        ])
-    }
-    
-    private func setStatusSection() {
-        addSubview(statusStackView)
-        
-        NSLayoutConstraint.activate([
-            statusStackView.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
-            statusStackView.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor),
-        ])
-        
+        scrollView.addSubview(greetLabel)
+        scrollView.addSubview(profileImage)
+        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(addButton)
+        scrollView.addSubview(statusStackView)
+        scrollView.addSubview(tilesView)
+
         statusStackView.addArrangedSubview(openBoxView)
         statusStackView.addArrangedSubview(appliedBoxView)
         statusStackView.addArrangedSubview(interviewBoxView)
         statusStackView.addArrangedSubview(closedBoxView)
+        
+        NSLayoutConstraint.activate([
+            greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            greetLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+//            greetLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 15),
+            greetLabel.widthAnchor.constraint(equalToConstant: 200),
+            greetLabel.heightAnchor.constraint(equalToConstant: 25),
+            
+            profileImage.topAnchor.constraint(equalTo: greetLabel.topAnchor),
+            profileImage.trailingAnchor.constraint(equalTo: greetLabel.leadingAnchor, constant: -10),
+
+            titleLabel.topAnchor.constraint(equalTo: greetLabel.bottomAnchor, constant: 5),
+            titleLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10),
+            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            addButton.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            addButton.leadingAnchor.constraint(equalTo: greetLabel.trailingAnchor, constant: 40),
+            
+            statusStackView.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
+            statusStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            statusStackView.widthAnchor.constraint(equalToConstant: 320),
+            statusStackView.heightAnchor.constraint(equalToConstant: 70),
+            
+            tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 20),
+            tilesView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            tilesView.heightAnchor.constraint(equalToConstant: 700),
+            tilesView.widthAnchor.constraint(equalToConstant: 430),
+            tilesView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        ])
+        
+        
         
     }
     
@@ -198,13 +207,14 @@ class HomeView: UIView {
         tilesView.addSubview(viewFavoritesButton)
         
         NSLayoutConstraint.activate([
+
             viewAllButton.topAnchor.constraint(equalTo: tilesView.topAnchor, constant: 20),
-            viewAllButton.trailingAnchor.constraint(equalTo: centerXAnchor),
+            viewAllButton.trailingAnchor.constraint(equalTo: scrollView.centerXAnchor),
             viewAllButton.widthAnchor.constraint(equalToConstant: 130),
             viewAllButton.heightAnchor.constraint(equalToConstant: 30),
             
             viewFavoritesButton.topAnchor.constraint(equalTo: tilesView.topAnchor, constant: 20),
-            viewFavoritesButton.leadingAnchor.constraint(equalTo: centerXAnchor),
+            viewFavoritesButton.leadingAnchor.constraint(equalTo: scrollView.centerXAnchor),
             viewFavoritesButton.widthAnchor.constraint(equalToConstant: 130),
             viewFavoritesButton.heightAnchor.constraint(equalToConstant: 30)
         ])

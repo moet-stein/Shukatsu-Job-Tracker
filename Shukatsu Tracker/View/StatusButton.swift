@@ -52,8 +52,8 @@ class StatusButton: UIButton {
         layer.cornerRadius = 10
         backgroundColor = UIColor(named: "lightOrange")
         isSelected = false
-        widthAnchor.constraint(equalToConstant: 70).isActive = true
-        heightAnchor.constraint(equalToConstant: 70).isActive = true
+//        widthAnchor.constraint(equalToConstant: 70).isActive = true
+//        heightAnchor.constraint(equalToConstant: 70).isActive = true
         
         addSubview(statusLabel)
         addSubview(numberLabel)
