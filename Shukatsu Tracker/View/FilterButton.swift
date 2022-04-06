@@ -12,7 +12,6 @@ class FilterButton: UIButton {
     var buttonText: String
     var colorName: String
     var leftCorner: Bool
-
     
     init(buttonText: String, colorName: String, leftCorner: Bool, frame: CGRect = .zero) {
         self.buttonText = buttonText
@@ -45,24 +44,19 @@ class FilterButton: UIButton {
         layer.maskedCorners = leftCorner ? [.layerMinXMaxYCorner, .layerMinXMinYCorner] : [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         layer.borderWidth = 1
         layer.borderColor = UIColor(named: colorName)?.cgColor
-        addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+//        addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
     
-    @objc func  buttonPressed(sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        setColor(sender: sender)
-    }
+//    @objc func  buttonPressed(sender: UIButton) {
+//        sender.isSelected = !sender.isSelected
+//        if sender.isSelected {
+//            setTitleColor(.white, for: .normal)
+//            backgroundColor = UIColor(named: colorName)
+//
+//        } else {
+//            setTitleColor(UIColor(named: colorName), for: .normal)
+//            backgroundColor = UIColor(named: "lightOrange")
+//        }
+//    }
     
-    private func setColor(sender: UIButton) {
-        
-        if sender.isSelected {
-            setTitleColor(.white, for: .normal)
-            backgroundColor = UIColor(named: colorName)
-            print(sender.isSelected)
-        } else {
-            setTitleColor(UIColor(named: colorName), for: .normal)
-            backgroundColor = UIColor(named: "lightOrange")
-            print(sender.isSelected)
-        }
-    }
 }

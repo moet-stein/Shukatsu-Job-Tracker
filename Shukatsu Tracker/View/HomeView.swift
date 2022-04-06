@@ -22,7 +22,7 @@ class HomeView: UIView {
     // MARK: - Proifile Section
     
     private let profileImage: UIImageView = {
-       let uiImageView = UIImageView()
+        let uiImageView = UIImageView()
         uiImageView.translatesAutoresizingMaskIntoConstraints = false
         uiImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         uiImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -47,7 +47,7 @@ class HomeView: UIView {
     }()
     
     private let titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Future iOS Engineer"
         label.font = UIFont(name: "Lato-Regular", size: 15)
@@ -66,8 +66,8 @@ class HomeView: UIView {
     
     
     private let openBoxView: StatusButton = {
-       let button = StatusButton(status: "open", textColor: "skyBlue", number: 15)
-       return button
+        let button = StatusButton(status: "open", textColor: "skyBlue", number: 15)
+        return button
     }()
     
     private let appliedBoxView: StatusButton = {
@@ -88,7 +88,7 @@ class HomeView: UIView {
     // MARK: - companyTiles section
     
     private let tilesView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "lightOrange")
         view.layer.cornerRadius = 30
@@ -97,19 +97,23 @@ class HomeView: UIView {
     
     // MARK: - viewAll favoites toggle
     
-    private let viewAllButton: FilterButton = {
+    lazy var viewAllButton: FilterButton = {
         let button = FilterButton(buttonText: "View All", colorName: "blueGrey", leftCorner: true)
         button.isSelected = true
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.tag = 1
         return button
     }()
     
     
-    private let viewFavoritesButton: FilterButton = {
+    lazy var viewFavoritesButton: FilterButton = {
         let button = FilterButton(buttonText: "View Favorites", colorName: "viewOrange", leftCorner: false)
         button.isSelected = false
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        button.tag = 2
         return button
     }()
-
+    
     
     init() {
         super.init(frame: .zero)
@@ -121,7 +125,20 @@ class HomeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    @objc func  buttonPressed(sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        sender.setTitleColor(.white, for: .normal)
+        if sender.tag == 1 {
+            sender.backgroundColor = UIColor(named: "blueGrey")
+            viewFavoritesButton.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
+            viewFavoritesButton.backgroundColor = UIColor(named: "lightOrange")
+        } else {
+            sender.backgroundColor = UIColor(named: "viewOrange")
+            viewAllButton.setTitleColor(UIColor(named: "blueGrey"), for: .normal)
+            viewAllButton.backgroundColor = UIColor(named: "lightOrange")
+        }
+    }
+    
     
     
     private func setUpUI() {
@@ -143,7 +160,7 @@ class HomeView: UIView {
         ])
     }
     
-
+    
     private func setProfileSection() {
         addSubview(profileImage)
         addSubview(greetLabel)
@@ -163,7 +180,7 @@ class HomeView: UIView {
     
     private func setStatusSection() {
         addSubview(statusStackView)
-
+        
         NSLayoutConstraint.activate([
             statusStackView.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
             statusStackView.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor),
