@@ -99,12 +99,14 @@ class HomeView: UIView {
     
     private let viewAllButton: FilterButton = {
         let button = FilterButton(buttonText: "View All", colorName: "blueGrey", leftCorner: true)
+        button.isSelected = true
         return button
     }()
     
     
     private let viewFavoritesButton: FilterButton = {
         let button = FilterButton(buttonText: "View Favorites", colorName: "viewOrange", leftCorner: false)
+        button.isSelected = false
         return button
     }()
 

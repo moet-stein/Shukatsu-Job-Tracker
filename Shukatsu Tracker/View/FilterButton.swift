@@ -12,6 +12,7 @@ class FilterButton: UIButton {
     var buttonText: String
     var colorName: String
     var leftCorner: Bool
+
     
     init(buttonText: String, colorName: String, leftCorner: Bool, frame: CGRect = .zero) {
         self.buttonText = buttonText
@@ -26,10 +27,17 @@ class FilterButton: UIButton {
     }
     
     private func setUpUI() {
-        isSelected = false
+
+        if leftCorner {
+            setTitleColor(.white, for: .normal)
+            backgroundColor = UIColor(named: colorName)
+        } else {
+            setTitleColor(UIColor(named: colorName), for: .normal)
+            backgroundColor = UIColor(named: "lightOrange")
+        }
+        
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(buttonText, for: .normal)
-        setTitleColor(UIColor(named: colorName), for: .normal)
         titleLabel?.font = UIFont(name: "Lato-Bold", size: 15)
         
         clipsToBounds = true
@@ -42,6 +50,10 @@ class FilterButton: UIButton {
     
     @objc func  buttonPressed(sender: UIButton) {
         sender.isSelected = !sender.isSelected
+        setColor(sender: sender)
+    }
+    
+    private func setColor(sender: UIButton) {
         
         if sender.isSelected {
             setTitleColor(.white, for: .normal)
