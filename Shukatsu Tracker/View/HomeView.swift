@@ -120,6 +120,25 @@ class HomeView: UIView {
         return button
     }()
     
+    // MARK: - Collection View
+    lazy var jobsCollectionView: UICollectionView = {
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 180, height: 200)
+        
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        collectionView.layer.cornerRadius = 20
+        collectionView.backgroundColor = UIColor(named: "blueGrey")
+//        collectionView.register(WordsCollectionViewCell.self, forCellWithReuseIdentifier: WordsCollectionViewCell.identifier)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        return collectionView
+    }()
+    
     
     init() {
         super.init(frame: .zero)
@@ -205,6 +224,7 @@ class HomeView: UIView {
     private func setTilesViewSection() {
         tilesView.addSubview(viewAllButton)
         tilesView.addSubview(viewFavoritesButton)
+        tilesView.addSubview(jobsCollectionView)
         
         NSLayoutConstraint.activate([
 
@@ -216,7 +236,14 @@ class HomeView: UIView {
             viewFavoritesButton.topAnchor.constraint(equalTo: tilesView.topAnchor, constant: 20),
             viewFavoritesButton.leadingAnchor.constraint(equalTo: scrollView.centerXAnchor),
             viewFavoritesButton.widthAnchor.constraint(equalToConstant: 130),
-            viewFavoritesButton.heightAnchor.constraint(equalToConstant: 30)
+            viewFavoritesButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            jobsCollectionView.centerXAnchor.constraint(equalTo: tilesView.centerXAnchor),
+            jobsCollectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
+            jobsCollectionView.leadingAnchor.constraint(equalTo: tilesView.leadingAnchor),
+            jobsCollectionView.trailingAnchor.constraint(equalTo: tilesView.trailingAnchor),
+            jobsCollectionView.heightAnchor.constraint(equalToConstant: 400),
+            jobsCollectionView.bottomAnchor.constraint(equalTo: tilesView.bottomAnchor)
         ])
     }
     
