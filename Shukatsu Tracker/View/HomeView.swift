@@ -125,9 +125,9 @@ class HomeView: UIView {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 180, height: 200)
+        layout.itemSize = CGSize(width: 150, height: 150)
         
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -240,10 +240,10 @@ class HomeView: UIView {
             
             jobsCollectionView.centerXAnchor.constraint(equalTo: tilesView.centerXAnchor),
             jobsCollectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
-            jobsCollectionView.leadingAnchor.constraint(equalTo: tilesView.leadingAnchor),
-            jobsCollectionView.trailingAnchor.constraint(equalTo: tilesView.trailingAnchor),
-            jobsCollectionView.heightAnchor.constraint(equalToConstant: 400),
-            jobsCollectionView.bottomAnchor.constraint(equalTo: tilesView.bottomAnchor)
+            jobsCollectionView.leadingAnchor.constraint(equalTo: tilesView.leadingAnchor, constant: 20),
+            jobsCollectionView.trailingAnchor.constraint(equalTo: tilesView.trailingAnchor, constant: -20),
+            jobsCollectionView.heightAnchor.constraint(equalToConstant: 500),
+//            jobsCollectionView.bottomAnchor.constraint(equalTo: tilesView.bottomAnchor)
         ])
     }
     
