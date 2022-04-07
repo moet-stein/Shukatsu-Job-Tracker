@@ -172,7 +172,6 @@ class HomeView: UIView {
         NSLayoutConstraint.activate([
             greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
             greetLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            greetLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 15),
             greetLabel.widthAnchor.constraint(equalToConstant: 200),
             greetLabel.heightAnchor.constraint(equalToConstant: 25),
             
@@ -191,11 +190,12 @@ class HomeView: UIView {
             statusStackView.widthAnchor.constraint(equalToConstant: 320),
             statusStackView.heightAnchor.constraint(equalToConstant: 70),
             
-            tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 20),
+            tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 15),
             tilesView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            tilesView.heightAnchor.constraint(equalToConstant: 700),
-            tilesView.widthAnchor.constraint(equalToConstant: 430),
-            tilesView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            tilesView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            tilesView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            tilesView.heightAnchor.constraint(equalToConstant: 550),
+            tilesView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
         ])
         
         
