@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func loadView() {
@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationItem.setHidesBackButton(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }
 

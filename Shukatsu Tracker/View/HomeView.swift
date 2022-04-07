@@ -188,7 +188,7 @@ class HomeView: UIView {
         statusStackView.addArrangedSubview(closedBoxView)
         
         NSLayoutConstraint.activate([
-            greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor),
             greetLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             greetLabel.widthAnchor.constraint(equalToConstant: 200),
             greetLabel.heightAnchor.constraint(equalToConstant: 25),
@@ -203,12 +203,12 @@ class HomeView: UIView {
             addButton.topAnchor.constraint(equalTo: scrollView.topAnchor),
             addButton.leadingAnchor.constraint(equalTo: greetLabel.trailingAnchor, constant: 40),
             
-            statusStackView.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 10),
+            statusStackView.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20),
             statusStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             statusStackView.widthAnchor.constraint(equalToConstant: 320),
             statusStackView.heightAnchor.constraint(equalToConstant: 70),
             
-            tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 15),
+            tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 25),
             tilesView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             tilesView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             tilesView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
