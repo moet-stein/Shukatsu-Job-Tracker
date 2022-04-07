@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         
         jobsCollectionView = contentView.jobsCollectionView
         jobsCollectionView.dataSource = self
+        jobsCollectionView.delegate = self
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -39,8 +40,11 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .white
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JobsCollectionViewCell.identifier, for: indexPath) as? JobsCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let currentJob = jobs[indexPath.row]
+        cell.setupCellContent(companyName: currentJob.companyName, location: currentJob.location ?? "none", updatedDate: currentJob.lastUpdate, status: currentJob.status)
         return cell
     }
 }

@@ -127,14 +127,13 @@ class HomeView: UIView {
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 150, height: 150)
         
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 15, bottom: 40, right: 15)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.layer.cornerRadius = 20
-        collectionView.backgroundColor = UIColor(named: "blueGrey")
-//        collectionView.register(WordsCollectionViewCell.self, forCellWithReuseIdentifier: WordsCollectionViewCell.identifier)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor = UIColor.clear.withAlphaComponent(0)
+        collectionView.register(JobsCollectionViewCell.self, forCellWithReuseIdentifier: JobsCollectionViewCell.identifier)
         
         return collectionView
     }()
@@ -242,7 +241,7 @@ class HomeView: UIView {
             jobsCollectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
             jobsCollectionView.leadingAnchor.constraint(equalTo: tilesView.leadingAnchor, constant: 20),
             jobsCollectionView.trailingAnchor.constraint(equalTo: tilesView.trailingAnchor, constant: -20),
-            jobsCollectionView.heightAnchor.constraint(equalToConstant: 500),
+            jobsCollectionView.heightAnchor.constraint(equalToConstant: 470),
 //            jobsCollectionView.bottomAnchor.constraint(equalTo: tilesView.bottomAnchor)
         ])
     }
