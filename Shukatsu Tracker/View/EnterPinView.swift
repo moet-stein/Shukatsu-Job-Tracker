@@ -15,8 +15,6 @@ class EnterPinView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "viewOrange")
         view.layer.cornerRadius = 20
-        view.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        view.heightAnchor.constraint(equalToConstant: 200).isActive = true
         return view
     }()
     
@@ -72,8 +70,10 @@ class EnterPinView: UIView {
         addSubview(orangeRoundedView)
         
         NSLayoutConstraint.activate([
-            orangeRoundedView.topAnchor.constraint(equalTo: topAnchor, constant: 200),
             orangeRoundedView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            orangeRoundedView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            orangeRoundedView.widthAnchor.constraint(equalToConstant: 300),
+            orangeRoundedView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
         setUpInsideOrangeView()
