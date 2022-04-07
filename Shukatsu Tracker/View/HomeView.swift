@@ -65,7 +65,7 @@ class HomeView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 20
+        stackView.spacing = 17
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -188,7 +188,7 @@ class HomeView: UIView {
         statusStackView.addArrangedSubview(closedBoxView)
         
         NSLayoutConstraint.activate([
-            greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30),
             greetLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             greetLabel.widthAnchor.constraint(equalToConstant: 200),
             greetLabel.heightAnchor.constraint(equalToConstant: 25),
@@ -201,18 +201,18 @@ class HomeView: UIView {
             titleLabel.heightAnchor.constraint(equalToConstant: 20),
             
             addButton.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            addButton.leadingAnchor.constraint(equalTo: greetLabel.trailingAnchor, constant: 40),
+            addButton.leadingAnchor.constraint(equalTo: greetLabel.trailingAnchor, constant: 30),
             
             statusStackView.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 20),
             statusStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            statusStackView.widthAnchor.constraint(equalToConstant: 320),
+            statusStackView.widthAnchor.constraint(equalToConstant: 340),
             statusStackView.heightAnchor.constraint(equalToConstant: 70),
             
             tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 25),
             tilesView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             tilesView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             tilesView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            tilesView.heightAnchor.constraint(equalToConstant: 550),
+            tilesView.heightAnchor.constraint(equalToConstant: 580),
             tilesView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
         ])
         
@@ -241,7 +241,7 @@ class HomeView: UIView {
             jobsCollectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
             jobsCollectionView.leadingAnchor.constraint(equalTo: tilesView.leadingAnchor, constant: 20),
             jobsCollectionView.trailingAnchor.constraint(equalTo: tilesView.trailingAnchor, constant: -20),
-            jobsCollectionView.heightAnchor.constraint(equalToConstant: 470),
+            jobsCollectionView.heightAnchor.constraint(equalToConstant: 500),
 //            jobsCollectionView.bottomAnchor.constraint(equalTo: tilesView.bottomAnchor)
         ])
     }
