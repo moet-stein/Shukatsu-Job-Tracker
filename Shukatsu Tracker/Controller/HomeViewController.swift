@@ -8,7 +8,6 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-//    private var jobs = Jobs().jobs
     let jobs: Jobs
 
     private var contentView: HomeView!
@@ -37,15 +36,7 @@ class HomeViewController: UIViewController {
         jobsCollectionView.dataSource = self
         jobsCollectionView.delegate = self
     }
-//    override func loadView() {
-//        contentView = HomeView()
-//        view = contentView
-//
-//        jobsCollectionView = contentView.jobsCollectionView
-//        jobsCollectionView.dataSource = self
-//        jobsCollectionView.delegate = self
-//    }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -73,3 +64,4 @@ extension HomeViewController: UICollectionViewDelegate {
         print("\(jobs.jobs[indexPath.row].companyName)")
     }
 }
+

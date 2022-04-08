@@ -71,22 +71,22 @@ class HomeView: UIView {
     }()
     
     
-    private let openBoxView: StatusButton = {
+    private let openBoxButton: StatusButton = {
         let button = StatusButton(status: "open", textColor: "skyBlue", number: 15)
         return button
     }()
     
-    private let appliedBoxView: StatusButton = {
+    private let appliedBoxButton: StatusButton = {
         let button = StatusButton(status: "applied", textColor: "lightGreen", number: 15)
         return button
     }()
     
-    private let interviewBoxView: StatusButton = {
+    private let interviewBoxButton: StatusButton = {
         let button = StatusButton(status: "interview", textColor: "viewOrange", number: 3)
         return button
     }()
     
-    private let closedBoxView: StatusButton = {
+    private let closedBoxButton: StatusButton = {
         let button = StatusButton(status: "closed", textColor: "blueGrey", number: 6)
         return button
     }()
@@ -182,10 +182,10 @@ class HomeView: UIView {
         scrollView.addSubview(statusStackView)
         scrollView.addSubview(tilesView)
 
-        statusStackView.addArrangedSubview(openBoxView)
-        statusStackView.addArrangedSubview(appliedBoxView)
-        statusStackView.addArrangedSubview(interviewBoxView)
-        statusStackView.addArrangedSubview(closedBoxView)
+        statusStackView.addArrangedSubview(openBoxButton)
+        statusStackView.addArrangedSubview(appliedBoxButton)
+        statusStackView.addArrangedSubview(interviewBoxButton)
+        statusStackView.addArrangedSubview(closedBoxButton)
         
         NSLayoutConstraint.activate([
             greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30),
