@@ -8,7 +8,7 @@
 import Foundation
 
 class Jobs {
-    let jobs = [
+    var jobs = [
         Job(companyName: "PayPal", location: "Remote", status: "interview", favorite: true, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/04/02", lastUpdate: Date()),
         Job(companyName: "Intuit", location: "San Diego", status: "applied", favorite: true, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/04/12", lastUpdate: Date()),
         Job(companyName: "Apple", location: "New York", status: "applied", favorite: false, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/04/01", lastUpdate: Date()),

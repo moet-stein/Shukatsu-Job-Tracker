@@ -43,6 +43,8 @@ class StatusButton: UIButton {
     
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
+        setTitle(status, for: .normal)
+        setTitleColor(.clear, for: .normal)
         
         statusLabel.text = status
         statusLabel.textColor = UIColor(named: textColor)

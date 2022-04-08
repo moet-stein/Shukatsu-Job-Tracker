@@ -71,22 +71,22 @@ class HomeView: UIView {
     }()
     
     
-    private let openBoxButton: StatusButton = {
+    let openBoxButton: StatusButton = {
         let button = StatusButton(status: "open", textColor: "skyBlue", number: 15)
         return button
     }()
     
-    private let appliedBoxButton: StatusButton = {
+    let appliedBoxButton: StatusButton = {
         let button = StatusButton(status: "applied", textColor: "lightGreen", number: 15)
         return button
     }()
     
-    private let interviewBoxButton: StatusButton = {
+    let interviewBoxButton: StatusButton = {
         let button = StatusButton(status: "interview", textColor: "viewOrange", number: 3)
         return button
     }()
     
-    private let closedBoxButton: StatusButton = {
+    let closedBoxButton: StatusButton = {
         let button = StatusButton(status: "closed", textColor: "blueGrey", number: 6)
         return button
     }()
