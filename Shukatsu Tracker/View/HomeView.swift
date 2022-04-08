@@ -160,7 +160,9 @@ class HomeView: UIView {
     }
     
     @objc func  buttonPressed(sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        if sender.isSelected == false {
+            sender.isSelected = !sender.isSelected
+        }
         sender.setTitleColor(.white, for: .normal)
         if sender.tag == 1 {
             sender.backgroundColor = UIColor(named: "blueGrey")

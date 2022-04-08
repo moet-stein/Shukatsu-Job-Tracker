@@ -11,13 +11,19 @@ class HomeViewController: UIViewController {
     let jobs: Jobs
     var filteredJobs = [Job]()
     var checkedStatus = [String]()
+    var viewAll = true
     
     private var contentView: HomeView!
     private var jobsCollectionView: UICollectionView!
+    
     private var openBoxButton: StatusButton!
     private var appliedBoxButton: StatusButton!
     private var interviewBoxButton: StatusButton!
     private var closedBoxButton: StatusButton!
+    
+    private var viewAllButton: FilterButton!
+    private var viewFavoritesButton: FilterButton!
+    
     
     init(jobs: Jobs) {
         self.jobs = jobs
@@ -48,7 +54,11 @@ class HomeViewController: UIViewController {
         interviewBoxButton = contentView.interviewBoxButton
         closedBoxButton = contentView.closedBoxButton
         
-        addFunctionToButtons()
+        viewAllButton = contentView.viewAllButton
+        viewFavoritesButton = contentView.viewFavoritesButton
+        
+        addFunctionToStatusButtons()
+        addFunctionsToFilterButtons()
     }
     
 
@@ -57,15 +67,19 @@ class HomeViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    private func addFunctionToButtons() {
+    private func addFunctionToStatusButtons() {
         openBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         appliedBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         interviewBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         closedBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
     }
     
+    private func addFunctionsToFilterButtons() {
+        viewAllButton.addTarget(self, action: #selector(allOrFavoritesButtonPressed), for: .touchUpInside)
+        viewFavoritesButton.addTarget(self, action: #selector(allOrFavoritesButtonPressed), for: .touchUpInside)
+    }
     
-    @objc func  statusButtonPressed(sender: UIButton) {
+    @objc func statusButtonPressed(sender: UIButton) {
 
         let tappedCurrentTitle = sender.currentTitle ?? ""
         
@@ -76,9 +90,31 @@ class HomeViewController: UIViewController {
                 checkedStatus.remove(at: index)
             }
         }
-        filteredJobs = jobs.jobs.filter{checkedStatus.contains($0.status)}
+        
+        filteringJobs()
+    }
+    
+    @objc func allOrFavoritesButtonPressed(sender: UIButton) {
+        if sender.isSelected {
+            if sender.tag == 1 {
+                viewAll = true
+            } else {
+                viewAll = false
+            }
+        }
+       
+        filteringJobs()
+    }
+    
+    private func filteringJobs() {
+        if !viewAll {
+            filteredJobs = jobs.jobs.filter{$0.favorite && checkedStatus.contains($0.status)}
+        } else {
+            filteredJobs = jobs.jobs.filter{checkedStatus.contains($0.status)}
+        }
         jobsCollectionView.reloadData()
     }
+    
 }
 
 
