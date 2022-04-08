@@ -108,9 +108,17 @@ class HomeViewController: UIViewController {
     
     private func filteringJobs() {
         if !viewAll {
-            filteredJobs = jobs.jobs.filter{$0.favorite && checkedStatus.contains($0.status)}
+            if checkedStatus.isEmpty {
+                filteredJobs = jobs.jobs.filter{$0.favorite}
+            } else {
+                filteredJobs = jobs.jobs.filter{$0.favorite && checkedStatus.contains($0.status)}
+            }
         } else {
-            filteredJobs = jobs.jobs.filter{checkedStatus.contains($0.status)}
+            if checkedStatus.isEmpty {
+                filteredJobs = jobs.jobs
+            } else {
+                filteredJobs = jobs.jobs.filter{checkedStatus.contains($0.status)}
+            }
         }
         jobsCollectionView.reloadData()
     }
