@@ -13,6 +13,8 @@ class StatusButton: UIButton {
     var textColor: String
     var number: Int
     
+    var jobs = Jobs().jobs
+    
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +23,7 @@ class StatusButton: UIButton {
         return label
     }()
     
-    private let numberLabel: UILabel = {
+    let numberLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
@@ -48,14 +50,12 @@ class StatusButton: UIButton {
         
         statusLabel.text = status
         statusLabel.textColor = UIColor(named: textColor)
-        numberLabel.text = String(number)
+//        numberLabel.text = String(number)
         numberLabel.textColor = UIColor(named: textColor)
         
         layer.cornerRadius = 10
         backgroundColor = UIColor(named: "lightOrange")
         isSelected = false
-//        widthAnchor.constraint(equalToConstant: 70).isActive = true
-//        heightAnchor.constraint(equalToConstant: 70).isActive = true
         
         addSubview(statusLabel)
         addSubview(numberLabel)

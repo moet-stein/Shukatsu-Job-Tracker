@@ -68,6 +68,11 @@ class HomeViewController: UIViewController {
     }
     
     private func addFunctionToStatusButtons() {
+        openBoxButton.numberLabel.text = String(jobs.jobs.filter{$0.status == "open"}.count)
+        appliedBoxButton.numberLabel.text = String(jobs.jobs.filter{$0.status == "applied"}.count)
+        interviewBoxButton.numberLabel.text = String(jobs.jobs.filter{$0.status == "interview"}.count)
+        closedBoxButton.numberLabel.text = String(jobs.jobs.filter{$0.status == "closed"}.count)
+        
         openBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         appliedBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         interviewBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
