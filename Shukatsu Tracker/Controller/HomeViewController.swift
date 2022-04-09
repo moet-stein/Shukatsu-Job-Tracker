@@ -119,13 +119,16 @@ class HomeViewController: UIViewController {
             viewAll = true
             
             sender.backgroundColor = UIColor(named: "blueGrey")
+            sender.tintColor = .white
+            viewFavoritesButton.tintColor = UIColor(named: "viewOrange")
             viewFavoritesButton.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
             viewFavoritesButton.backgroundColor = UIColor(named: "lightOrange")
             
         } else {
             viewAll = false
-            
             sender.backgroundColor = UIColor(named: "viewOrange")
+            sender.tintColor = .white
+            viewAllButton.tintColor = UIColor(named: "blueGrey")
             viewAllButton.setTitleColor(UIColor(named: "blueGrey"), for: .normal)
             viewAllButton.backgroundColor = UIColor(named: "lightOrange")
         }

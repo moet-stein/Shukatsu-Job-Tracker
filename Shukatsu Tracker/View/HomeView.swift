@@ -104,7 +104,7 @@ class HomeView: UIView {
     // MARK: - viewAll favoites toggle
     
     lazy var viewAllButton: AllFavoritesButton = {
-        let button = AllFavoritesButton(buttonText: "View All", colorName: "blueGrey", leftCorner: true)
+        let button = AllFavoritesButton(buttonText: "All", colorName: "blueGrey", leftCorner: true, sfSymbol: "square.grid.2x2")
         button.isSelected = true
         button.tag = 1
         return button
@@ -112,7 +112,7 @@ class HomeView: UIView {
     
     
     lazy var viewFavoritesButton: AllFavoritesButton = {
-        let button = AllFavoritesButton(buttonText: "View Favorites", colorName: "viewOrange", leftCorner: false)
+        let button = AllFavoritesButton(buttonText: "Favorites", colorName: "viewOrange", leftCorner: false, sfSymbol: "heart")
         button.isSelected = false
         button.tag = 2
         return button
