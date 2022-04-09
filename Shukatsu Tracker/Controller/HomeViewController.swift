@@ -21,8 +21,8 @@ class HomeViewController: UIViewController {
     private var interviewBoxButton: StatusButton!
     private var closedBoxButton: StatusButton!
     
-    private var viewAllButton: FilterButton!
-    private var viewFavoritesButton: FilterButton!
+    private var viewAllButton: AllFavoritesButton!
+    private var viewFavoritesButton: AllFavoritesButton!
     
     
     init(jobs: Jobs) {

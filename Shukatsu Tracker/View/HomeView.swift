@@ -103,8 +103,8 @@ class HomeView: UIView {
     
     // MARK: - viewAll favoites toggle
     
-    lazy var viewAllButton: FilterButton = {
-        let button = FilterButton(buttonText: "View All", colorName: "blueGrey", leftCorner: true)
+    lazy var viewAllButton: AllFavoritesButton = {
+        let button = AllFavoritesButton(buttonText: "View All", colorName: "blueGrey", leftCorner: true)
         button.isSelected = true
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.tag = 1
@@ -112,8 +112,8 @@ class HomeView: UIView {
     }()
     
     
-    lazy var viewFavoritesButton: FilterButton = {
-        let button = FilterButton(buttonText: "View Favorites", colorName: "viewOrange", leftCorner: false)
+    lazy var viewFavoritesButton: AllFavoritesButton = {
+        let button = AllFavoritesButton(buttonText: "View Favorites", colorName: "viewOrange", leftCorner: false)
         button.isSelected = false
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.tag = 2

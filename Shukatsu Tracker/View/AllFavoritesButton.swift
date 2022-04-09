@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FilterButton: UIButton {
+class AllFavoritesButton: UIButton {
 
     var buttonText: String
     var colorName: String
