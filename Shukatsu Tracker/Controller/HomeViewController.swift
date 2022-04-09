@@ -61,7 +61,7 @@ class HomeViewController: UIViewController {
         addFunctionsToFilterButtons()
     }
     
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -80,7 +80,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func statusButtonPressed(sender: UIButton) {
-
+        
         let tappedCurrentTitle = sender.currentTitle ?? ""
         
         if sender.isSelected {
@@ -95,14 +95,26 @@ class HomeViewController: UIViewController {
     }
     
     @objc func allOrFavoritesButtonPressed(sender: UIButton) {
-        if sender.isSelected {
-            if sender.tag == 1 {
-                viewAll = true
-            } else {
-                viewAll = false
-            }
+        if !sender.isSelected {
+            sender.isSelected = !sender.isSelected
         }
-       
+        
+        sender.setTitleColor(.white, for: .normal)
+        if sender.tag == 1 {
+            viewAll = true
+            
+            sender.backgroundColor = UIColor(named: "blueGrey")
+            viewFavoritesButton.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
+            viewFavoritesButton.backgroundColor = UIColor(named: "lightOrange")
+            
+        } else {
+            viewAll = false
+            
+            sender.backgroundColor = UIColor(named: "viewOrange")
+            viewAllButton.setTitleColor(UIColor(named: "blueGrey"), for: .normal)
+            viewAllButton.backgroundColor = UIColor(named: "lightOrange")
+        }
+        
         filteringJobs()
     }
     

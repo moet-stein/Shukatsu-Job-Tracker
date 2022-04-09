@@ -106,7 +106,6 @@ class HomeView: UIView {
     lazy var viewAllButton: AllFavoritesButton = {
         let button = AllFavoritesButton(buttonText: "View All", colorName: "blueGrey", leftCorner: true)
         button.isSelected = true
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.tag = 1
         return button
     }()
@@ -115,7 +114,6 @@ class HomeView: UIView {
     lazy var viewFavoritesButton: AllFavoritesButton = {
         let button = AllFavoritesButton(buttonText: "View Favorites", colorName: "viewOrange", leftCorner: false)
         button.isSelected = false
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.tag = 2
         return button
     }()
@@ -158,23 +156,6 @@ class HomeView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    @objc func  buttonPressed(sender: UIButton) {
-        if sender.isSelected == false {
-            sender.isSelected = !sender.isSelected
-        }
-        sender.setTitleColor(.white, for: .normal)
-        if sender.tag == 1 {
-            sender.backgroundColor = UIColor(named: "blueGrey")
-            viewFavoritesButton.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
-            viewFavoritesButton.backgroundColor = UIColor(named: "lightOrange")
-        } else {
-            sender.backgroundColor = UIColor(named: "viewOrange")
-            viewAllButton.setTitleColor(UIColor(named: "blueGrey"), for: .normal)
-            viewAllButton.backgroundColor = UIColor(named: "lightOrange")
-        }
-    }
-    
     
     private func setUpUI() {
         scrollView.addSubview(greetLabel)
