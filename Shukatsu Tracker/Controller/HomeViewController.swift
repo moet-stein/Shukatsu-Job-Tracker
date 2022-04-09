@@ -85,17 +85,27 @@ class HomeViewController: UIViewController {
     }
     
     @objc func statusButtonPressed(sender: UIButton) {
-        
+        let button = sender as! StatusButton
+        sender.isSelected = !sender.isSelected
         let tappedCurrentTitle = sender.currentTitle ?? ""
         
         if sender.isSelected {
             checkedStatus.append(tappedCurrentTitle)
+            
+            let textColor = button.statusLabel.textColor
+            button.statusLabel.textColor = .white
+            button.numberLabel.textColor = .white
+            button.backgroundColor = textColor
         } else {
             if let index = checkedStatus.firstIndex(of: tappedCurrentTitle) {
                 checkedStatus.remove(at: index)
             }
+            let textColor = button.backgroundColor
+            button.statusLabel.textColor = textColor
+            button.numberLabel.textColor = textColor
+            button.backgroundColor = UIColor(named: "lightOrange")
         }
-        
+
         filteringJobs()
     }
     
