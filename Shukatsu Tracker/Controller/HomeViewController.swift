@@ -148,7 +148,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func addButtonPressed(sender: UIButton) {
-        print("create new job will be shown")
+        present(AddEditViewController(), animated: true, completion: nil)
     }
     
     private func filteringJobs() {
