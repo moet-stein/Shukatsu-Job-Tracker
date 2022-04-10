@@ -7,7 +7,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+protocol Presentable: AnyObject {
+    func presentViewController()
+}
+
+class HomeViewController: UIViewController, Presentable {
+    
     let jobs: Jobs
     var filteredJobs = [Job]()
     var checkedStatus = [String]()
@@ -26,6 +31,10 @@ class HomeViewController: UIViewController {
     private var viewAllButton: AllFavoritesButton!
     private var viewFavoritesButton: AllFavoritesButton!
     
+    
+    func presentViewController() {
+        present(AddEditViewController(), animated: true, completion: nil)
+    }
     
     init(jobs: Jobs) {
         self.jobs = jobs
@@ -148,7 +157,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func addButtonPressed(sender: UIButton) {
-        present(AddEditViewController(), animated: true, completion: nil)
+        presentViewController()
     }
     
     private func filteringJobs() {
