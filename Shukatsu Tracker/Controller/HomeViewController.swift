@@ -86,7 +86,9 @@ class HomeViewController: UIViewController {
     
     @objc func statusButtonPressed(sender: UIButton) {
         let button = sender as! StatusButton
+        
         sender.isSelected = !sender.isSelected
+        
         let tappedCurrentTitle = sender.currentTitle ?? ""
         
         if sender.isSelected {
