@@ -27,7 +27,7 @@ class HomeView: UIView {
     
     // MARK: - Proifile Section
     
-    private let profileImage: UIImageView = {
+    let profileImage: UIImageView = {
         let uiImageView = UIImageView()
         uiImageView.translatesAutoresizingMaskIntoConstraints = false
         uiImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true

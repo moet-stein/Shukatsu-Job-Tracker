@@ -23,6 +23,8 @@ class HomeViewController: UIViewController {
     
     private var addButton: circleButton!
     
+    private var profileImage: UIImageView!
+    
     private var openBoxButton: StatusButton!
     private var appliedBoxButton: StatusButton!
     private var interviewBoxButton: StatusButton!
@@ -58,6 +60,11 @@ class HomeViewController: UIViewController {
         jobsCollectionView.delegate = self
         
         addButton = contentView.addButton
+        
+        profileImage = contentView.profileImage
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(tapGestureRecognizer:)))
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tapGestureRecognizer)
         
         openBoxButton = contentView.openBoxButton
         appliedBoxButton = contentView.appliedBoxButton
@@ -98,6 +105,7 @@ class HomeViewController: UIViewController {
     private func addAddButtonFunction() {
         addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
     }
+    
     
     @objc func statusButtonPressed(sender: UIButton) {
         let button = sender as! StatusButton
@@ -155,6 +163,10 @@ class HomeViewController: UIViewController {
     
     @objc func addButtonPressed(sender: UIButton) {
         present(AddEditViewController(), animated: true, completion: nil)
+    }
+    
+    @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        present(ProfileSettingsViewController(), animated: true, completion: nil)
     }
     
     private func filteringJobs() {
