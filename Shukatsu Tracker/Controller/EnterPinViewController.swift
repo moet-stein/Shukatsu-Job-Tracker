@@ -6,12 +6,13 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
+import KeychainSwift
 
 class EnterPinViewController: UIViewController {
     private var contentView: EnterPinView!
     private var pinTextField: UITextField!
     private var goButton: UIButton!
+    let keychain = KeychainSwift()
     
     override func loadView() {
         contentView = EnterPinView()
@@ -26,12 +27,12 @@ class EnterPinViewController: UIViewController {
     
     @objc func buttonPressed() {
         if let enteredPin = pinTextField.text {
-            if KeychainWrapper.standard.string(forKey: "SecretPin") == nil {
-                let saveSuccessful: Bool = KeychainWrapper.standard.set(enteredPin, forKey: "SecretPin")
+            if keychain.get("ShukatsuPin") == nil {
+                let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
                 print("saveSuccessful: \(saveSuccessful)")
                 navigationController?.pushViewController(HomeViewController(jobs: Jobs()), animated: true)
             } else {
-                if enteredPin == KeychainWrapper.standard.string(forKey: "SecretPin") {
+                if enteredPin == keychain.get("ShukatsuPin") {
                     print("corrent pin \(enteredPin)")
                     navigationController?.pushViewController(HomeViewController(jobs: Jobs()), animated: true)
                 } else {
@@ -40,9 +41,6 @@ class EnterPinViewController: UIViewController {
             }
             pinTextField.text = ""
         }
-//        let saveSuccessful: Bool = KeychainWrapper.standard.set("firstTry", forKey: "SecretPin")
-//        let retrievedString: String? = KeychainWrapper.standard.string(forKey: "SecretPin")
-//        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "SecretPin")
 
     }
     

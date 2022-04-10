@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
+import KeychainSwift
 
 class EnterPinView: UIView {
     
@@ -21,8 +21,9 @@ class EnterPinView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        let keychain = KeychainSwift()
         label.text = {
-            if KeychainWrapper.standard.string(forKey: "SecretPin") == nil {
+            if keychain.get("ShukatsuPin") == nil {
                 return "Set a Pin"
             } else {
                 return "Enter Your Pin"

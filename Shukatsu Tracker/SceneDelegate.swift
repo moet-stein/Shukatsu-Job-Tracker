@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-//        let navigationControlller = UINavigationController(rootViewController: EnterPinViewController())
-        let navigationControlller = UINavigationController(rootViewController: HomeViewController(jobs: Jobs()))
+        let navigationControlller = UINavigationController(rootViewController: EnterPinViewController())
+//        let navigationControlller = UINavigationController(rootViewController: HomeViewController(jobs: Jobs()))
         window.rootViewController = navigationControlller
         self.window = window
     }
@@ -55,8 +55,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-//        let navigationControlller = UINavigationController(rootViewController: EnterPinViewController())
-        let navigationControlller = UINavigationController(rootViewController: HomeViewController(jobs: Jobs()))
+        let navigationControlller = UINavigationController(rootViewController: EnterPinViewController())
+//        let navigationControlller = UINavigationController(rootViewController: HomeViewController(jobs: Jobs()))
         window.rootViewController = navigationControlller
         self.window = window
 
