@@ -28,6 +28,8 @@
 		6051049727FF074300AB9DEC /* JobsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */; };
 		6051049F2803388C00AB9DEC /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049E2803388C00AB9DEC /* AddEditViewController.swift */; };
 		605104A1280338BC00AB9DEC /* AddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104A0280338BC00AB9DEC /* AddEditView.swift */; };
+		605104A328033CE800AB9DEC /* JobDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104A228033CE800AB9DEC /* JobDetailsViewController.swift */; };
+		605104A528033D0D00AB9DEC /* JobDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104A428033D0D00AB9DEC /* JobDetailsView.swift */; };
 		6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,8 @@
 		6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6051049E2803388C00AB9DEC /* AddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
 		605104A0280338BC00AB9DEC /* AddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditView.swift; sourceTree = "<group>"; };
+		605104A228033CE800AB9DEC /* JobDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsViewController.swift; sourceTree = "<group>"; };
+		605104A428033D0D00AB9DEC /* JobDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsView.swift; sourceTree = "<group>"; };
 		89BE5B31226051AC8560A03B /* Pods-Shukatsu Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		DEC286EBCDACB6706F13477E /* Pods-Shukatsu Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.release.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +133,7 @@
 				6051046027F72E0000AB9DEC /* EnterPinViewController.swift */,
 				6051048527FAF11800AB9DEC /* HomeViewController.swift */,
 				6051049E2803388C00AB9DEC /* AddEditViewController.swift */,
+				605104A228033CE800AB9DEC /* JobDetailsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 				6051048F27FC764200AB9DEC /* StatusButton.swift */,
 				6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */,
 				6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */,
+				605104A428033D0D00AB9DEC /* JobDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -303,6 +309,8 @@
 				6051049727FF074300AB9DEC /* JobsCollectionViewCell.swift in Sources */,
 				6051048627FAF11800AB9DEC /* HomeViewController.swift in Sources */,
 				6051046127F72E0000AB9DEC /* EnterPinViewController.swift in Sources */,
+				605104A328033CE800AB9DEC /* JobDetailsViewController.swift in Sources */,
+				605104A528033D0D00AB9DEC /* JobDetailsView.swift in Sources */,
 				6051049F2803388C00AB9DEC /* AddEditViewController.swift in Sources */,
 				6051048227F9D7CA00AB9DEC /* PinTextFieldBox.swift in Sources */,
 				6051045D27F72E0000AB9DEC /* AppDelegate.swift in Sources */,
