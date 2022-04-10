@@ -15,7 +15,7 @@ class HomeView: UIView {
         return scrollView
     }()
     
-    private let addButton: circleButton = {
+    let addButton: circleButton = {
         let button = circleButton(
             buttonSize: 50,
             bgColor: UIColor(named: "viewOrange") ?? .black,

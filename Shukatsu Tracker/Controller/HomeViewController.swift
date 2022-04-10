@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
     private var contentView: HomeView!
     private var jobsCollectionView: UICollectionView!
     
+    private var addButton: circleButton!
+    
     private var openBoxButton: StatusButton!
     private var appliedBoxButton: StatusButton!
     private var interviewBoxButton: StatusButton!
@@ -49,6 +51,8 @@ class HomeViewController: UIViewController {
         jobsCollectionView.dataSource = self
         jobsCollectionView.delegate = self
         
+        addButton = contentView.addButton
+        
         openBoxButton = contentView.openBoxButton
         appliedBoxButton = contentView.appliedBoxButton
         interviewBoxButton = contentView.interviewBoxButton
@@ -57,6 +61,7 @@ class HomeViewController: UIViewController {
         viewAllButton = contentView.viewAllButton
         viewFavoritesButton = contentView.viewFavoritesButton
         
+        addAddButtonFunction()
         addFunctionToStatusButtons()
         addFunctionsToFilterButtons()
     }
@@ -82,6 +87,10 @@ class HomeViewController: UIViewController {
     private func addFunctionsToFilterButtons() {
         viewAllButton.addTarget(self, action: #selector(allOrFavoritesButtonPressed), for: .touchUpInside)
         viewFavoritesButton.addTarget(self, action: #selector(allOrFavoritesButtonPressed), for: .touchUpInside)
+    }
+    
+    private func addAddButtonFunction() {
+        addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
     }
     
     @objc func statusButtonPressed(sender: UIButton) {
@@ -136,6 +145,10 @@ class HomeViewController: UIViewController {
         }
         
         filteringJobs()
+    }
+    
+    @objc func addButtonPressed(sender: UIButton) {
+        print("create new job will be shown")
     }
     
     private func filteringJobs() {
