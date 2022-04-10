@@ -145,12 +145,12 @@
 				6051047527F72F1900AB9DEC /* EnterPinView.swift */,
 				6051048727FAF12800AB9DEC /* HomeView.swift */,
 				605104A0280338BC00AB9DEC /* AddEditView.swift */,
+				605104A428033D0D00AB9DEC /* JobDetailsView.swift */,
 				6051048127F9D7CA00AB9DEC /* PinTextFieldBox.swift */,
 				6051048327F9DADB00AB9DEC /* circleButton.swift */,
 				6051048F27FC764200AB9DEC /* StatusButton.swift */,
 				6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */,
 				6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */,
-				605104A428033D0D00AB9DEC /* JobDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

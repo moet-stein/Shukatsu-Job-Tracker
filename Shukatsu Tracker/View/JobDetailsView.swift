@@ -8,6 +8,8 @@
 import UIKit
 
 class JobDetailsView: UIView {
+    
+    private var selectedJob: Job
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -19,16 +21,17 @@ class JobDetailsView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "job details View"
         label.textAlignment = .center
         label.font = UIFont(name: "Lato-Regular", size: 15)
         return label
     }()
     
-    init() {
+    init(selectedJob: Job) {
+        self.selectedJob = selectedJob
         super.init(frame: .zero)
         
         setUpUI()
+        fillJobInfo()
     }
     
     required init?(coder: NSCoder) {
@@ -46,11 +49,15 @@ class JobDetailsView: UIView {
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
-        
-        
+    }
+    
+    private func fillJobInfo() {
+        titleLabel.text = selectedJob.companyName
     }
 
 }

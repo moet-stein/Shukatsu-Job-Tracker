@@ -8,14 +8,24 @@
 import UIKit
 
 class JobDetailsViewController: UIViewController {
+    private var selectedJob: Job
 
     private var contentView: JobDetailsView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        contentView = JobDetailsView()
+        contentView = JobDetailsView(selectedJob: selectedJob)
         view = contentView
     }
-
+    
+    init(selectedJob: Job) {
+        self.selectedJob = selectedJob
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

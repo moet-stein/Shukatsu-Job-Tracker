@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol Presentable: AnyObject {
-    func presentViewController()
-}
+//protocol Presentable: AnyObject {
+//    func presentViewController(viewController: UIViewController)
+//}
 
-class HomeViewController: UIViewController, Presentable {
+class HomeViewController: UIViewController {
     
     let jobs: Jobs
     var filteredJobs = [Job]()
@@ -32,9 +32,6 @@ class HomeViewController: UIViewController, Presentable {
     private var viewFavoritesButton: AllFavoritesButton!
     
     
-    func presentViewController() {
-        present(AddEditViewController(), animated: true, completion: nil)
-    }
     
     init(jobs: Jobs) {
         self.jobs = jobs
@@ -125,7 +122,7 @@ class HomeViewController: UIViewController, Presentable {
             button.numberLabel.textColor = textColor
             button.backgroundColor = UIColor(named: "lightOrange")
         }
-
+        
         filteringJobs()
     }
     
@@ -157,7 +154,7 @@ class HomeViewController: UIViewController, Presentable {
     }
     
     @objc func addButtonPressed(sender: UIButton) {
-        presentViewController()
+        present(AddEditViewController(), animated: true, completion: nil)
     }
     
     private func filteringJobs() {
@@ -198,6 +195,7 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(filteredJobs[indexPath.row].companyName)")
+        present(JobDetailsViewController(selectedJob: filteredJobs[indexPath.row]), animated: true, completion: nil)
     }
 }
 
