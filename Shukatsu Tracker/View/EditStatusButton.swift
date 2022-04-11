@@ -9,7 +9,25 @@ import UIKit
 
 class EditStatusButton: UIButton {
     
-    override init(frame: CGRect = .zero) {
+    var status: String
+    
+    var bgColor: UIColor {
+        switch status {
+        case "open":
+            return UIColor(named: "skyBlue")!
+        case "applied":
+            return UIColor(named: "lightGreen")!
+        case "interview":
+            return UIColor(named: "viewOrange")!
+        case "closed":
+            return UIColor(named: "blueGrey")!
+        default:
+            return UIColor.brown
+        }
+    }
+    
+    init(status: String, frame: CGRect = .zero) {
+        self.status = status
         super.init(frame: frame)
         self.setUpUI()
     }
@@ -21,9 +39,6 @@ class EditStatusButton: UIButton {
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
-    }
-    
-    func addBgColor(bgColor: UIColor) {
         backgroundColor = bgColor
     }
 

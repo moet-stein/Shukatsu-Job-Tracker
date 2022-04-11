@@ -68,57 +68,57 @@ class AddEditView: UIView {
     }()
     
     let editOpenButton: EditStatusButtonView = {
-       let button = EditStatusButtonView(status: "open", selected: true)
+       let button = EditStatusButtonView(status: "open")
         button.statusButton.isSelected = true
         return button
     }()
     
     let editAppliedButton: EditStatusButtonView = {
-       let button = EditStatusButtonView(status: "applied", selected: false)
+       let button = EditStatusButtonView(status: "applied")
         return button
     }()
     
     let editInterviewButton: EditStatusButtonView = {
-       let button = EditStatusButtonView(status: "interview", selected: false)
+       let button = EditStatusButtonView(status: "interview")
         return button
     }()
     
     let editClosedButton: EditStatusButtonView = {
-       let button = EditStatusButtonView(status: "closed", selected: false)
+       let button = EditStatusButtonView(status: "closed")
         return button
     }()
     
-    private let companyField: LabelAndTextField = {
+    let companyField: LabelAndTextField = {
         let field = LabelAndTextField(labelText: "company")
         return field
     }()
     
-    private let roleField: LabelAndTextField = {
+    let roleField: LabelAndTextField = {
         let field = LabelAndTextField(labelText: "role")
         return field
     }()
     
-    private let teamField: LabelAndTextField = {
+    let teamField: LabelAndTextField = {
         let field = LabelAndTextField(labelText: "team - organization")
         return field
     }()
     
-    private let locationField: LabelAndTextField = {
+    let locationField: LabelAndTextField = {
         let field = LabelAndTextField(labelText: "location")
         return field
     }()
     
-    private let linkField: LabelAndTextField = {
+    let linkField: LabelAndTextField = {
         let field = LabelAndTextField(labelText: "link")
         return field
     }()
     
-    private let notesField: LabelAndTextField = {
+    let notesField: LabelAndTextField = {
         let field = LabelAndTextField(labelText: "notes")
         return field
     }()
     
-    private let appliedDateField: LabelAndTextField = {
+    let appliedDateField: LabelAndTextField = {
         let field = LabelAndTextField(labelText: "applied date")
         return field
     }()

@@ -11,22 +11,6 @@ class EditStatusButtonView: UIView {
     
     var status: String
     
-    var bgColor: UIColor {
-        switch status {
-        case "open":
-            return UIColor(named: "skyBlue")!
-        case "applied":
-            return UIColor(named: "lightGreen")!
-        case "interview":
-            return UIColor(named: "viewOrange")!
-        case "closed":
-            return UIColor(named: "blueGrey")!
-        default:
-            return UIColor.brown
-        }
-    }
-    var selected: Bool
-    
     private let vStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,8 +19,8 @@ class EditStatusButtonView: UIView {
         return stackView
     }()
     
-    let statusButton: EditStatusButton = {
-        let button = EditStatusButton()
+    lazy var statusButton: EditStatusButton = {
+        let button = EditStatusButton(status: status)
         return button
     }()
     
@@ -48,9 +32,8 @@ class EditStatusButtonView: UIView {
         return label
     }()
     
-    init(status: String, selected: Bool, frame: CGRect = .zero) {
+    init(status: String, frame: CGRect = .zero) {
         self.status = status
-        self.selected = selected
         super.init(frame: frame)
         self.setUpUI()
         self.setContent()
@@ -79,6 +62,5 @@ class EditStatusButtonView: UIView {
     
     private func setContent() {
         statusLabel.text = status
-        statusButton.addBgColor(bgColor: bgColor)
     }
 }
