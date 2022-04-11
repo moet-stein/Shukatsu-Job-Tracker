@@ -24,7 +24,7 @@ class AddEditViewController: UIViewController {
     private var teamField: LabelAndTextField!
     private var linkField: LabelAndTextField!
     private var notesField: LabelAndTextField!
-    private var appliedDateField: LabelAndTextField!
+//    private var appliedDateField: LabelAndTextField!
     
     private var saveButton: UIButton!
 
@@ -45,7 +45,7 @@ class AddEditViewController: UIViewController {
         teamField = contentView.teamField
         linkField = contentView.linkField
         notesField = contentView.notesField
-        appliedDateField = contentView.appliedDateField
+//        appliedDateField = contentView.appliedDateField
         
         saveButton = contentView.saveJobButton
         
@@ -87,7 +87,7 @@ class AddEditViewController: UIViewController {
             return
         }
 
-        let appliedDate = appliedDateField.textField.text ?? ""
+        let appliedDate = "anything"
         if appliedDate.isEmpty {
             print("emptyy applieddate")
             return

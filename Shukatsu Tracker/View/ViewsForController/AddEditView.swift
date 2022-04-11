@@ -16,14 +16,14 @@ class AddEditView: UIView {
     }()
     
     private let contentView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "lightOrange")
         return view
     }()
     
     let saveJobButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("SAVE", for: .normal)
         button.titleLabel?.font = UIFont(name: "Lato-Bold", size: 20)
@@ -35,8 +35,8 @@ class AddEditView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-//        stackView.distribution = .fillProportionally
-//        stackView.backgroundColor = .blue
+        //        stackView.distribution = .fillProportionally
+        //        stackView.backgroundColor = .blue
         stackView.spacing = 20
         return stackView
     }()
@@ -68,23 +68,23 @@ class AddEditView: UIView {
     }()
     
     let editOpenButton: EditStatusButtonView = {
-       let button = EditStatusButtonView(status: "open")
+        let button = EditStatusButtonView(status: "open")
         button.statusButton.isSelected = true
         return button
     }()
     
     let editAppliedButton: EditStatusButtonView = {
-       let button = EditStatusButtonView(status: "applied")
+        let button = EditStatusButtonView(status: "applied")
         return button
     }()
     
     let editInterviewButton: EditStatusButtonView = {
-       let button = EditStatusButtonView(status: "interview")
+        let button = EditStatusButtonView(status: "interview")
         return button
     }()
     
     let editClosedButton: EditStatusButtonView = {
-       let button = EditStatusButtonView(status: "closed")
+        let button = EditStatusButtonView(status: "closed")
         return button
     }()
     
@@ -118,9 +118,31 @@ class AddEditView: UIView {
         return field
     }()
     
-    let appliedDateField: LabelAndTextField = {
-        let field = LabelAndTextField(labelText: "applied date")
-        return field
+    private let appliedDateStackView: UIStackView = {
+       let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private let appliedDateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.text = "applied date"
+        label.font = UIFont(name: "Lato-Regular", size: 20)
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var appliedDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.timeZone = NSTimeZone.local
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.backgroundColor = .clear
+        datePicker.contentHorizontalAlignment = .left
+        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+        return datePicker
     }()
     
     init() {
@@ -128,10 +150,22 @@ class AddEditView: UIView {
         
         setUpUI()
         setStatusSection()
+        setAppliedDate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func datePickerChanged(_ sender: UIDatePicker) {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        // Apply date format
+        let selectedDate: String = dateFormatter.string(from: sender.date)
+        
+        print("Selected value \(selectedDate)")
+        
     }
     
     private func setUpUI() {
@@ -149,7 +183,7 @@ class AddEditView: UIView {
         outerVStackView.addArrangedSubview(locationField)
         outerVStackView.addArrangedSubview(linkField)
         outerVStackView.addArrangedSubview(notesField)
-        outerVStackView.addArrangedSubview(appliedDateField)
+        outerVStackView.addArrangedSubview(appliedDateStackView)
         
         let scrollFrameGuide = scrollView.frameLayoutGuide
         let scrollContentGuide = scrollView.contentLayoutGuide
@@ -167,7 +201,7 @@ class AddEditView: UIView {
             
             contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
-
+            
             saveJobButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             saveJobButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             saveJobButton.heightAnchor.constraint(equalToConstant: 50),
@@ -187,8 +221,8 @@ class AddEditView: UIView {
             locationField.heightAnchor.constraint(equalToConstant: 70),
             linkField.heightAnchor.constraint(equalToConstant: 70),
             notesField.heightAnchor.constraint(equalToConstant: 70),
-            appliedDateField.heightAnchor.constraint(equalToConstant: 70),
-
+            appliedDateStackView.heightAnchor.constraint(equalToConstant: 70)
+            
         ])
     }
     
@@ -197,6 +231,16 @@ class AddEditView: UIView {
         statusHStackView.addArrangedSubview(editAppliedButton)
         statusHStackView.addArrangedSubview(editInterviewButton)
         statusHStackView.addArrangedSubview(editClosedButton)
+    }
+    
+    private func setAppliedDate() {
+        appliedDateStackView.addArrangedSubview(appliedDateLabel)
+        appliedDateStackView.addArrangedSubview(appliedDatePicker)
+        
+        NSLayoutConstraint.activate([
+            appliedDateLabel.heightAnchor.constraint(equalToConstant: 20),
+            appliedDatePicker.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
     
 }
