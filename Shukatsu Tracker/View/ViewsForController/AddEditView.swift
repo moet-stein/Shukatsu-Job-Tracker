@@ -18,7 +18,7 @@ class AddEditView: UIView {
     private let contentView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "bgOffwhite")
+        view.backgroundColor = UIColor(named: "lightOrange")
         return view
     }()
     
@@ -26,7 +26,7 @@ class AddEditView: UIView {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("SAVE", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Lato-Regular", size: 20)
+        button.titleLabel?.font = UIFont(name: "Lato-Bold", size: 20)
         button.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
         return button
     }()
@@ -35,8 +35,9 @@ class AddEditView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+//        stackView.distribution = .fillProportionally
 //        stackView.backgroundColor = .blue
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -54,7 +55,7 @@ class AddEditView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "status"
         label.textColor = .black
-        label.font = UIFont(name: "Lato-Bold", size: 15)
+        label.font = UIFont(name: "Lato-Regular", size: 20)
         return label
     }()
     
@@ -62,8 +63,7 @@ class AddEditView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.backgroundColor = .brown
+        stackView.distribution = .fillProportionally
         return stackView
     }()
     
@@ -87,6 +87,41 @@ class AddEditView: UIView {
         return button
     }()
     
+    private let companyField: LabelAndTextField = {
+        let field = LabelAndTextField(labelText: "company")
+        return field
+    }()
+    
+    private let roleField: LabelAndTextField = {
+        let field = LabelAndTextField(labelText: "role")
+        return field
+    }()
+    
+    private let teamField: LabelAndTextField = {
+        let field = LabelAndTextField(labelText: "team - organization")
+        return field
+    }()
+    
+    private let locationField: LabelAndTextField = {
+        let field = LabelAndTextField(labelText: "location")
+        return field
+    }()
+    
+    private let linkField: LabelAndTextField = {
+        let field = LabelAndTextField(labelText: "link")
+        return field
+    }()
+    
+    private let notesField: LabelAndTextField = {
+        let field = LabelAndTextField(labelText: "notes")
+        return field
+    }()
+    
+    private let appliedDateField: LabelAndTextField = {
+        let field = LabelAndTextField(labelText: "applied date")
+        return field
+    }()
+    
     init() {
         super.init(frame: .zero)
         
@@ -106,6 +141,14 @@ class AddEditView: UIView {
         outerVStackView.addArrangedSubview(titleLabel)
         outerVStackView.addArrangedSubview(statusLabel)
         outerVStackView.addArrangedSubview(statusHStackView)
+        
+        outerVStackView.addArrangedSubview(companyField)
+        outerVStackView.addArrangedSubview(roleField)
+        outerVStackView.addArrangedSubview(teamField)
+        outerVStackView.addArrangedSubview(locationField)
+        outerVStackView.addArrangedSubview(linkField)
+        outerVStackView.addArrangedSubview(notesField)
+        outerVStackView.addArrangedSubview(appliedDateField)
         
         let scrollFrameGuide = scrollView.frameLayoutGuide
         let scrollContentGuide = scrollView.contentLayoutGuide
@@ -130,15 +173,21 @@ class AddEditView: UIView {
             saveJobButton.widthAnchor.constraint(equalToConstant: 100),
             
             outerVStackView.topAnchor.constraint(equalTo: saveJobButton.bottomAnchor, constant: 10),
-            outerVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            outerVStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            outerVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            outerVStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             outerVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40),
             
             titleLabel.heightAnchor.constraint(equalToConstant: 40),
             statusLabel.heightAnchor.constraint(equalToConstant: 20),
-            statusHStackView.heightAnchor.constraint(equalToConstant: 70)
+            statusHStackView.heightAnchor.constraint(equalToConstant: 70),
+            companyField.heightAnchor.constraint(equalToConstant: 70),
+            roleField.heightAnchor.constraint(equalToConstant: 70),
+            teamField.heightAnchor.constraint(equalToConstant: 70),
+            locationField.heightAnchor.constraint(equalToConstant: 70),
+            linkField.heightAnchor.constraint(equalToConstant: 70),
+            notesField.heightAnchor.constraint(equalToConstant: 70),
+            appliedDateField.heightAnchor.constraint(equalToConstant: 70),
 
-//            testView3.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
         ])
     }
     
@@ -148,4 +197,5 @@ class AddEditView: UIView {
         statusHStackView.addArrangedSubview(interviewButton)
         statusHStackView.addArrangedSubview(closedButton)
     }
+    
 }

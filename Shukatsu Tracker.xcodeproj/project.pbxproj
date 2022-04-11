@@ -33,6 +33,7 @@
 		605104A72803401000AB9DEC /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104A62803401000AB9DEC /* ProfileSettingsViewController.swift */; };
 		605104A92803402900AB9DEC /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104A82803402900AB9DEC /* ProfileSettingsView.swift */; };
 		605104AB2804148E00AB9DEC /* EditStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104AA2804148D00AB9DEC /* EditStatusButton.swift */; };
+		605104AD28041D9E00AB9DEC /* LabelAndTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104AC28041D9E00AB9DEC /* LabelAndTextField.swift */; };
 		6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		605104A62803401000AB9DEC /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		605104A82803402900AB9DEC /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 		605104AA2804148D00AB9DEC /* EditStatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStatusButton.swift; sourceTree = "<group>"; };
+		605104AC28041D9E00AB9DEC /* LabelAndTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndTextField.swift; sourceTree = "<group>"; };
 		89BE5B31226051AC8560A03B /* Pods-Shukatsu Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		DEC286EBCDACB6706F13477E /* Pods-Shukatsu Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.release.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,17 +151,14 @@
 			isa = PBXGroup;
 			children = (
 				6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */,
-				6051047527F72F1900AB9DEC /* EnterPinView.swift */,
-				6051048727FAF12800AB9DEC /* HomeView.swift */,
-				605104A0280338BC00AB9DEC /* AddEditView.swift */,
-				605104A428033D0D00AB9DEC /* JobDetailsView.swift */,
-				605104A82803402900AB9DEC /* ProfileSettingsView.swift */,
+				605104AE28041DB200AB9DEC /* ViewsForController */,
 				6051048127F9D7CA00AB9DEC /* PinTextFieldBox.swift */,
 				6051048327F9DADB00AB9DEC /* circleButton.swift */,
 				6051048F27FC764200AB9DEC /* StatusButton.swift */,
 				6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */,
 				6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */,
 				605104AA2804148D00AB9DEC /* EditStatusButton.swift */,
+				605104AC28041D9E00AB9DEC /* LabelAndTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +188,18 @@
 				6051049427FEEEE700AB9DEC /* Jobs.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		605104AE28041DB200AB9DEC /* ViewsForController */ = {
+			isa = PBXGroup;
+			children = (
+				6051047527F72F1900AB9DEC /* EnterPinView.swift */,
+				6051048727FAF12800AB9DEC /* HomeView.swift */,
+				605104A0280338BC00AB9DEC /* AddEditView.swift */,
+				605104A428033D0D00AB9DEC /* JobDetailsView.swift */,
+				605104A82803402900AB9DEC /* ProfileSettingsView.swift */,
+			);
+			path = ViewsForController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				6051046127F72E0000AB9DEC /* EnterPinViewController.swift in Sources */,
 				605104A328033CE800AB9DEC /* JobDetailsViewController.swift in Sources */,
 				605104AB2804148E00AB9DEC /* EditStatusButton.swift in Sources */,
+				605104AD28041D9E00AB9DEC /* LabelAndTextField.swift in Sources */,
 				605104A528033D0D00AB9DEC /* JobDetailsView.swift in Sources */,
 				6051049F2803388C00AB9DEC /* AddEditViewController.swift in Sources */,
 				6051048227F9D7CA00AB9DEC /* PinTextFieldBox.swift in Sources */,
