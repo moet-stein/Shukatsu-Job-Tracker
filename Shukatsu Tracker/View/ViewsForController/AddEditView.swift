@@ -67,23 +67,23 @@ class AddEditView: UIView {
         return stackView
     }()
     
-    private let openButton: EditStatusButton = {
-       let button = EditStatusButton(status: "open", selected: true)
+    let editOpenButton: EditStatusButtonView = {
+       let button = EditStatusButtonView(status: "open", selected: true)
         return button
     }()
     
-    private let appliedButton: EditStatusButton = {
-       let button = EditStatusButton(status: "applied", selected: false)
+    let editAppliedButton: EditStatusButtonView = {
+       let button = EditStatusButtonView(status: "applied", selected: false)
         return button
     }()
     
-    private let interviewButton: EditStatusButton = {
-       let button = EditStatusButton(status: "interview", selected: false)
+    let editInterviewButton: EditStatusButtonView = {
+       let button = EditStatusButtonView(status: "interview", selected: false)
         return button
     }()
     
-    private let closedButton: EditStatusButton = {
-       let button = EditStatusButton(status: "closed", selected: false)
+    let editClosedButton: EditStatusButtonView = {
+       let button = EditStatusButtonView(status: "closed", selected: false)
         return button
     }()
     
@@ -192,10 +192,10 @@ class AddEditView: UIView {
     }
     
     private func setStatusSection() {
-        statusHStackView.addArrangedSubview(openButton)
-        statusHStackView.addArrangedSubview(appliedButton)
-        statusHStackView.addArrangedSubview(interviewButton)
-        statusHStackView.addArrangedSubview(closedButton)
+        statusHStackView.addArrangedSubview(editOpenButton)
+        statusHStackView.addArrangedSubview(editAppliedButton)
+        statusHStackView.addArrangedSubview(editInterviewButton)
+        statusHStackView.addArrangedSubview(editClosedButton)
     }
     
 }
