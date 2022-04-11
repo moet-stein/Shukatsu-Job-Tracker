@@ -69,6 +69,7 @@ class AddEditView: UIView {
     
     let editOpenButton: EditStatusButtonView = {
        let button = EditStatusButtonView(status: "open", selected: true)
+        button.statusButton.isSelected = true
         return button
     }()
     
