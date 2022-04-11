@@ -11,16 +11,24 @@ class AddEditView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = UIColor(named: "bgOffwhite")
+        
         return scrollView
     }()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Add Edit View"
-        label.font = UIFont(name: "Lato-Regular", size: 15)
-        return label
+    private let contentView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "bgOffwhite")
+        return view
+    }()
+    
+    let saveJobButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("SAVE", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Lato-Regular", size: 20)
+        button.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
+        return button
     }()
     
     init() {
@@ -35,7 +43,10 @@ class AddEditView: UIView {
     
     private func setUpUI() {
         addSubview(scrollView)
-        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(saveJobButton)
+        
+        let scrollFrameGuide = scrollView.frameLayoutGuide
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
@@ -43,9 +54,14 @@ class AddEditView: UIView {
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+            contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 1200),
+
+            saveJobButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            saveJobButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            saveJobButton.heightAnchor.constraint(equalToConstant: 50),
+            saveJobButton.widthAnchor.constraint(equalToConstant: 100),
         ])
         
         
