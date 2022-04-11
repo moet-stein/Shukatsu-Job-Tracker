@@ -141,7 +141,6 @@ class AddEditView: UIView {
         datePicker.datePickerMode = UIDatePicker.Mode.date
         datePicker.backgroundColor = .clear
         datePicker.contentHorizontalAlignment = .left
-        datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
         return datePicker
     }()
     
@@ -156,17 +155,7 @@ class AddEditView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    @objc func datePickerChanged(_ sender: UIDatePicker) {
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
-        // Apply date format
-        let selectedDate: String = dateFormatter.string(from: sender.date)
-        
-        print("Selected value \(selectedDate)")
-        
-    }
+
     
     private func setUpUI() {
         addSubview(scrollView)

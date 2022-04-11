@@ -10,6 +10,7 @@ import UIKit
 class AddEditViewController: UIViewController {
     
     private var selectedStatus: EditStatusButton!
+    private var appliedDate: String = ""
     
     private var contentView: AddEditView!
     
@@ -24,6 +25,7 @@ class AddEditViewController: UIViewController {
     private var teamField: LabelAndTextField!
     private var linkField: LabelAndTextField!
     private var notesField: LabelAndTextField!
+    private var appliedDatePicker: UIDatePicker!
 //    private var appliedDateField: LabelAndTextField!
     
     private var saveButton: UIButton!
@@ -45,7 +47,7 @@ class AddEditViewController: UIViewController {
         teamField = contentView.teamField
         linkField = contentView.linkField
         notesField = contentView.notesField
-//        appliedDateField = contentView.appliedDateField
+        appliedDatePicker = contentView.appliedDatePicker
         
         saveButton = contentView.saveJobButton
         
@@ -54,6 +56,11 @@ class AddEditViewController: UIViewController {
         
         addStatusBtnsTarget()
         addSaveBtnTarget()
+        addDatePickerTarget()
+        
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        appliedDate = dateFormatter.string(from: Date())
         
     }
     
@@ -68,6 +75,10 @@ class AddEditViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(saveJob), for: .touchUpInside)
     }
     
+    private func addDatePickerTarget() {
+        appliedDatePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+    }
+    
     @objc func statusButtonPressed(sender: UIButton) {
         let button = sender as! EditStatusButton
         if selectedStatus != sender {
@@ -80,6 +91,14 @@ class AddEditViewController: UIViewController {
         }
     }
     
+    
+    @objc func datePickerChanged(_ sender: UIDatePicker) {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        appliedDate = dateFormatter.string(from: sender.date)
+        print(appliedDate)
+    }
+    
     @objc func saveJob(sender: UIButton) {
         let companyName = companyField.textField.text ?? ""
         if companyName.isEmpty {
@@ -87,7 +106,7 @@ class AddEditViewController: UIViewController {
             return
         }
 
-        let appliedDate = "anything"
+        let appliedDateString = appliedDate
         if appliedDate.isEmpty {
             print("emptyy applieddate")
             return
@@ -101,9 +120,9 @@ class AddEditViewController: UIViewController {
         let link = linkField.textField.text ?? nil
         let notes = notesField.textField.text ?? nil
         let updatedDate = Date()
-        let newJob = Job(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDateString: appliedDate, lastUpdate: updatedDate)
+        let newJob = Job(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDateString: appliedDateString, lastUpdate: updatedDate)
 
-        print("new job saved")
+        print(appliedDate)
         dismiss(animated: true)
     }
 
