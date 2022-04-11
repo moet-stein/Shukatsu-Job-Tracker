@@ -67,10 +67,31 @@ class AddEditView: UIView {
         return stackView
     }()
     
+    private let openButton: EditStatusButton = {
+       let button = EditStatusButton(status: "open", selected: true)
+        return button
+    }()
+    
+    private let appliedButton: EditStatusButton = {
+       let button = EditStatusButton(status: "applied", selected: false)
+        return button
+    }()
+    
+    private let interviewButton: EditStatusButton = {
+       let button = EditStatusButton(status: "interview", selected: false)
+        return button
+    }()
+    
+    private let closedButton: EditStatusButton = {
+       let button = EditStatusButton(status: "closed", selected: false)
+        return button
+    }()
+    
     init() {
         super.init(frame: .zero)
         
         setUpUI()
+        setStatusSection()
     }
     
     required init?(coder: NSCoder) {
@@ -119,7 +140,12 @@ class AddEditView: UIView {
 
 //            testView3.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
         ])
-        
-        
+    }
+    
+    private func setStatusSection() {
+        statusHStackView.addArrangedSubview(openButton)
+        statusHStackView.addArrangedSubview(appliedButton)
+        statusHStackView.addArrangedSubview(interviewButton)
+        statusHStackView.addArrangedSubview(closedButton)
     }
 }

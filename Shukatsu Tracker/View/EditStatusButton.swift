@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditStatusButto: UIView {
+class EditStatusButton: UIView {
     
     var status: String
     var selected: Bool
@@ -28,7 +28,7 @@ class EditStatusButto: UIView {
     }
     
     private let vStackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
@@ -41,12 +41,12 @@ class EditStatusButto: UIView {
         button.layer.cornerRadius = 10
         return button
     }()
-
+    
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Bold", size: 15)
+        label.font = UIFont(name: "Lato-Regular", size: 13)
         return label
     }()
     
@@ -61,7 +61,7 @@ class EditStatusButto: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -72,14 +72,22 @@ class EditStatusButto: UIView {
         NSLayoutConstraint.activate([
             vStackView.topAnchor.constraint(equalTo: topAnchor),
             vStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            vStackView.widthAnchor.constraint(equalToConstant: 80),
-            vStackView.heightAnchor.constraint(equalToConstant: 100)
+            vStackView.widthAnchor.constraint(equalToConstant: 55),
+            vStackView.heightAnchor.constraint(equalToConstant: 70),
+            
+            statusButton.heightAnchor.constraint(equalToConstant: 55)
         ])
     }
     
     private func setContent() {
-        statusButton.setTitle(status, for: .normal)
         statusButton.backgroundColor = bgColor
         statusLabel.text = status
+        
+        if selected {
+            let config = UIImage.SymbolConfiguration(pointSize: 40, weight: .regular, scale: .small)
+            let checkmark = UIImage(systemName: "checkmark.circle.fill", withConfiguration: config)
+            statusButton.tintColor = .white
+            statusButton.setImage(checkmark, for: .normal)
+        }
     }
 }
