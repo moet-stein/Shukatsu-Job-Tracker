@@ -13,7 +13,6 @@ class StatusButton: UIButton {
     var textColor: String
     var number: Int
     
-    var jobs = Jobs().jobs
     
     let statusLabel: UILabel = {
         let label = UILabel()

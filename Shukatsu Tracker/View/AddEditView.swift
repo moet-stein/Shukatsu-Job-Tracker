@@ -31,6 +31,42 @@ class AddEditView: UIView {
         return button
     }()
     
+    private let outerVStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+//        stackView.backgroundColor = .blue
+        return stackView
+    }()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Add a new job"
+        label.textColor = .black
+        label.font = UIFont(name: "Lato-Bold", size: 27)
+        return label
+    }()
+    
+    private let statusLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "status"
+        label.textColor = .black
+        label.font = UIFont(name: "Lato-Bold", size: 15)
+        return label
+    }()
+    
+    private let statusHStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.backgroundColor = .brown
+        return stackView
+    }()
+    
     init() {
         super.init(frame: .zero)
         
@@ -45,8 +81,13 @@ class AddEditView: UIView {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(saveJobButton)
+        contentView.addSubview(outerVStackView)
+        outerVStackView.addArrangedSubview(titleLabel)
+        outerVStackView.addArrangedSubview(statusLabel)
+        outerVStackView.addArrangedSubview(statusHStackView)
         
         let scrollFrameGuide = scrollView.frameLayoutGuide
+        let scrollContentGuide = scrollView.contentLayoutGuide
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
@@ -54,14 +95,29 @@ class AddEditView: UIView {
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
+            contentView.leadingAnchor.constraint(equalTo: scrollContentGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollContentGuide.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollContentGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollContentGuide.bottomAnchor),
+            
             contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 1200),
 
-            saveJobButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            saveJobButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             saveJobButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             saveJobButton.heightAnchor.constraint(equalToConstant: 50),
             saveJobButton.widthAnchor.constraint(equalToConstant: 100),
+            
+            outerVStackView.topAnchor.constraint(equalTo: saveJobButton.bottomAnchor, constant: 10),
+            outerVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            outerVStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            outerVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40),
+            
+            titleLabel.heightAnchor.constraint(equalToConstant: 40),
+            statusLabel.heightAnchor.constraint(equalToConstant: 20),
+            statusHStackView.heightAnchor.constraint(equalToConstant: 70)
+
+//            testView3.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
         ])
         
         
