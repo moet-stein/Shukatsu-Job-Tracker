@@ -25,13 +25,28 @@ class JobDetailsView: UIView {
         return view
     }()
     
-    private let favoriteButton: UIButton = {
+    private let buttonsHStackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        return view
+    }()
+    
+    let favoriteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .small)
         let heartSF = UIImage(systemName: "heart", withConfiguration: config)
         button.tintColor = UIColor(named: "viewOrange")
         button.setImage(heartSF, for: .normal)
+        return button
+    }()
+    
+    let detailViewEditButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Edit", for: .normal)
+        button.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Lato-Bold", size: 25)
         return button
     }()
     
@@ -52,7 +67,9 @@ class JobDetailsView: UIView {
     private func setUpUI() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(favoriteButton)
+        contentView.addSubview(buttonsHStackView)
+        buttonsHStackView.addArrangedSubview(favoriteButton)
+        buttonsHStackView.addArrangedSubview(detailViewEditButton)
         
         let scrollFrameGuide = scrollView.frameLayoutGuide
         let scrollContentGuide = scrollView.contentLayoutGuide
@@ -72,11 +89,13 @@ class JobDetailsView: UIView {
             contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
             
-            favoriteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -70),
+            buttonsHStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            buttonsHStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            buttonsHStackView.widthAnchor.constraint(equalToConstant: 130)
             
         ])
     }
+    
     
     private func fillJobInfo() {
         
