@@ -17,6 +17,7 @@ class JobDetailsViewController: UIViewController {
 
         contentView = JobDetailsView(selectedJob: selectedJob)
         view = contentView
+        print(selectedJob)
     }
     
     init(selectedJob: Job) {

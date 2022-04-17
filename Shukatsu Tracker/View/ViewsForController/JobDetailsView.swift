@@ -14,17 +14,28 @@ class JobDetailsView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = UIColor(named: "bgOffwhite")
+        scrollView.backgroundColor = UIColor(named: "lightOrange")
         return scrollView
     }()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Regular", size: 15)
-        return label
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "lightOrange")
+        return view
     }()
+    
+    private let favoriteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .small)
+        let heartSF = UIImage(systemName: "heart", withConfiguration: config)
+        button.tintColor = UIColor(named: "viewOrange")
+        button.setImage(heartSF, for: .normal)
+        return button
+    }()
+    
+
     
     init(selectedJob: Job) {
         self.selectedJob = selectedJob
@@ -40,7 +51,11 @@ class JobDetailsView: UIView {
     
     private func setUpUI() {
         addSubview(scrollView)
-        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(favoriteButton)
+        
+        let scrollFrameGuide = scrollView.frameLayoutGuide
+        let scrollContentGuide = scrollView.contentLayoutGuide
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
@@ -48,16 +63,23 @@ class JobDetailsView: UIView {
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            
+            contentView.leadingAnchor.constraint(equalTo: scrollContentGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollContentGuide.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollContentGuide.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollContentGuide.bottomAnchor),
+            
+            contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
+            
+            favoriteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -70),
+            
         ])
     }
     
     private func fillJobInfo() {
-        titleLabel.text = selectedJob.companyName
+        
     }
 
 }
