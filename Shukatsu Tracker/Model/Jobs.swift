@@ -33,12 +33,16 @@ struct Job {
     var team: String?
     var link: String?
     var notes: String?
-    var appliedDateString: String
+    var appliedDateString: String?
     var appliedDate: Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
         return formatter.date(from: "appliedDateString") ?? Date()
     }
     var lastUpdate: Date
+    var lastUpdateString: String {
+        let dateFormatter = DateFormatter()
+        return dateFormatter.string(from: lastUpdate)
+    }
     
 }

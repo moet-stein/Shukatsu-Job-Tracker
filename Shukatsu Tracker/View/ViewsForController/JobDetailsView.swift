@@ -56,11 +56,52 @@ class JobDetailsView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.spacing = 15
         return stackView
     }()
     
     let statusLabels: TitleContentLabelsView = {
-       let view = TitleContentLabelsView(titleText: "Status", boldText: true)
+       let view = TitleContentLabelsView(titleText: "status", boldText: true)
+        return view
+    }()
+    
+    let companyLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "company", boldText: true)
+        return view
+    }()
+    
+    let roleLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "role", boldText: true)
+        return view
+    }()
+    
+    let teamLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "team", boldText: true)
+        return view
+    }()
+    
+    let locationLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "location", boldText: true)
+        return view
+    }()
+    
+    let linkLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "link", boldText: false)
+        return view
+    }()
+    
+    let notesLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "notes", boldText: false)
+        return view
+    }()
+    
+    let appliedDateLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "applied date", boldText: false)
+        return view
+    }()
+    
+    let lastUpdatedLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "last updated", boldText: false)
         return view
     }()
     
@@ -87,8 +128,15 @@ class JobDetailsView: UIView {
         
         contentView.addSubview(contentVStackView)
         contentVStackView.addArrangedSubview(statusLabels)
+        contentVStackView.addArrangedSubview(companyLabels)
+        contentVStackView.addArrangedSubview(roleLabels)
+        contentVStackView.addArrangedSubview(teamLabels)
+        contentVStackView.addArrangedSubview(locationLabels)
+        contentVStackView.addArrangedSubview(linkLabels)
+        contentVStackView.addArrangedSubview(notesLabels)
+        contentVStackView.addArrangedSubview(appliedDateLabels)
+        contentVStackView.addArrangedSubview(lastUpdatedLabels)
     
-        
         let scrollFrameGuide = scrollView.frameLayoutGuide
         let scrollContentGuide = scrollView.contentLayoutGuide
         
@@ -112,8 +160,18 @@ class JobDetailsView: UIView {
             buttonsHStackView.widthAnchor.constraint(equalToConstant: 130),
             
             contentVStackView.topAnchor.constraint(equalTo: buttonsHStackView.bottomAnchor, constant: 30),
-            contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30)
-//            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            statusLabels.heightAnchor.constraint(equalToConstant: 70),
+            companyLabels.heightAnchor.constraint(equalToConstant: 70),
+            roleLabels.heightAnchor.constraint(equalToConstant: 70),
+            teamLabels.heightAnchor.constraint(equalToConstant: 70),
+            locationLabels.heightAnchor.constraint(equalToConstant: 70),
+            linkLabels.heightAnchor.constraint(equalToConstant: 70),
+            notesLabels.heightAnchor.constraint(equalToConstant: 70),
+            appliedDateLabels.heightAnchor.constraint(equalToConstant: 70),
+            lastUpdatedLabels.heightAnchor.constraint(equalToConstant: 70)
             
         ])
     }

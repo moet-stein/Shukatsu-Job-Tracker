@@ -70,7 +70,7 @@ class TitleContentLabelsView: UIView {
         if boldText {
             contentLabel.font = UIFont(name: "Lato-Bold", size: 30)
         } else {
-            contentLabel.font = UIFont(name: "Lato-Regular", size: 25)
+            contentLabel.font = UIFont(name: "Lato-Light", size: 20)
         }
         titleLabel.text = titleText
     }
