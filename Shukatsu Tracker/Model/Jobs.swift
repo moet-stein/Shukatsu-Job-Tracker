@@ -11,7 +11,7 @@ class Jobs {
     var jobs = [
         Job(companyName: "PayPal", location: "Remote", status: "interview", favorite: true, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/04/02", lastUpdate: Date()),
         Job(companyName: "Intuit", location: "San Diego", status: "applied", favorite: true, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/04/12", lastUpdate: Date()),
-        Job(companyName: "Apple", location: "New York", status: "applied", favorite: false, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/04/01", lastUpdate: Date()),
+        Job(companyName: "Apple", location: "New York", status: "applied", favorite: false, role: "iOS Developer", team: "Watch Health", link: "https://jobs.apple.com/de-de/search?search=iOS&sort=relevance", notes: "Team size is 20, good benefits", appliedDateString: "2022/04/01", lastUpdate: Date()),
         Job(companyName: "Nike", location: "Portland", status: "open", favorite: false, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/03/31", lastUpdate: Date()),
         Job(companyName: "Patreon", location: "San Francisco", status: "open", favorite: true, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/03/31", lastUpdate: Date()),
         Job(companyName: "VMWare", location: "Remote", status: "closed", favorite: false, role: nil, team: nil, link: nil, notes: nil, appliedDateString: "2022/04/01", lastUpdate: Date()),
