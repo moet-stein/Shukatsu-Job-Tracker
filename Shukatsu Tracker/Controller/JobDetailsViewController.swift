@@ -11,13 +11,19 @@ class JobDetailsViewController: UIViewController {
     private var selectedJob: Job
 
     private var contentView: JobDetailsView!
+    
+    private var statusLabels: TitleContentLabelsView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         contentView = JobDetailsView(selectedJob: selectedJob)
         view = contentView
+        
+        statusLabels = contentView.statusLabels
+        
         print(selectedJob)
+        setContentLabels()
     }
     
     init(selectedJob: Job) {
@@ -27,6 +33,10 @@ class JobDetailsViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setContentLabels() {
+        statusLabels.addStatusColor(status: selectedJob.status)
     }
     
 }

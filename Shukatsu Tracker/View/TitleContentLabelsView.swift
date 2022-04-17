@@ -10,7 +10,7 @@ import UIKit
 class TitleContentLabelsView: UIView {
 
     var titleText: String
-    var contentText: String
+    var boldText: Bool
     
     private let vStackView: UIStackView = {
         let stackView = UIStackView()
@@ -35,9 +35,9 @@ class TitleContentLabelsView: UIView {
     }()
     
     
-    init(titleText: String, contentText: String, frame: CGRect = .zero) {
+    init(titleText: String, boldText: Bool, frame: CGRect = .zero) {
         self.titleText = titleText
-        self.contentText = contentText
+        self.boldText = boldText
         super.init(frame: frame)
         self.setUpUI()
         self.setContent()
@@ -67,12 +67,49 @@ class TitleContentLabelsView: UIView {
     }
     
     private func setContent(){
+        if boldText {
+            contentLabel.font = UIFont(name: "Lato-Bold", size: 30)
+        } else {
+            contentLabel.font = UIFont(name: "Lato-Regular", size: 25)
+        }
         titleLabel.text = titleText
-        contentLabel.text = contentText
     }
     
-    func addStatusContent() {
+    
+    func addStatusColor(status: String) {
+        contentLabel.setText(status, prependedBySymbolNameed: "square.fill")
         
+        switch status {
+            case "open" :
+            contentLabel.textColor = UIColor(named: "skyBlue")
+        case "applied" :
+            contentLabel.textColor = UIColor(named: "lightGreen")
+        case "interview":
+            contentLabel.textColor = UIColor(named: "viewOrange")
+        case "closed":
+            contentLabel.textColor = UIColor(named: "blueGrey")
+        default:
+            contentLabel.textColor = UIColor(named: "blueGrey")
+        }
     }
+    
 
+}
+
+extension UILabel {
+    func setText(_ text: String, prependedBySymbolNameed symbolSystemName: String, font: UIFont? = nil) {
+        if #available(iOS 13.0, *) {
+            if let font = font { self.font = font }
+            let symbolConfiguration = UIImage.SymbolConfiguration(font: self.font)
+            let symbolImage = UIImage(systemName: symbolSystemName, withConfiguration: symbolConfiguration)?.withRenderingMode(.alwaysTemplate)
+            let symbolTextAttachment = NSTextAttachment()
+            symbolTextAttachment.image = symbolImage
+            let attributedText = NSMutableAttributedString()
+            attributedText.append(NSAttributedString(attachment: symbolTextAttachment))
+            attributedText.append(NSAttributedString(string: " " + text))
+            self.attributedText = attributedText
+        } else {
+            self.text = text // fallback
+        }
+    }
 }

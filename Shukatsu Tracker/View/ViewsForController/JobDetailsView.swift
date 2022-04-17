@@ -24,7 +24,7 @@ class JobDetailsView: UIView {
         view.backgroundColor = UIColor(named: "lightOrange")
         return view
     }()
-    
+    // MARK: - Buttons
     private let buttonsHStackView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +50,20 @@ class JobDetailsView: UIView {
         return button
     }()
     
+    // MARK: - Contents
+    
+    private let contentVStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    let statusLabels: TitleContentLabelsView = {
+       let view = TitleContentLabelsView(titleText: "Status", boldText: true)
+        return view
+    }()
+    
 
     
     init(selectedJob: Job) {
@@ -71,6 +85,10 @@ class JobDetailsView: UIView {
         buttonsHStackView.addArrangedSubview(favoriteButton)
         buttonsHStackView.addArrangedSubview(detailViewEditButton)
         
+        contentView.addSubview(contentVStackView)
+        contentVStackView.addArrangedSubview(statusLabels)
+    
+        
         let scrollFrameGuide = scrollView.frameLayoutGuide
         let scrollContentGuide = scrollView.contentLayoutGuide
         
@@ -91,7 +109,11 @@ class JobDetailsView: UIView {
             
             buttonsHStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             buttonsHStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-            buttonsHStackView.widthAnchor.constraint(equalToConstant: 130)
+            buttonsHStackView.widthAnchor.constraint(equalToConstant: 130),
+            
+            contentVStackView.topAnchor.constraint(equalTo: buttonsHStackView.bottomAnchor, constant: 30),
+            contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30)
+//            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
             
         ])
     }
