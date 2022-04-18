@@ -24,13 +24,15 @@ class TitleContentLabelsView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = UIFont(name: "Lato-Regular", size: 20)
-        label.textColor = .black
+        label.textColor = UIColor(named: "softBrown")
         return label
     }()
     
     let contentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
     
@@ -68,9 +70,9 @@ class TitleContentLabelsView: UIView {
     
     private func setContent(){
         if boldText {
-            contentLabel.font = UIFont(name: "Lato-Bold", size: 30)
+            contentLabel.font = UIFont(name: "Lato-Bold", size: 26)
         } else {
-            contentLabel.font = UIFont(name: "Lato-Light", size: 20)
+            contentLabel.font = UIFont(name: "Lato-Light", size: 18)
         }
         titleLabel.text = titleText
     }

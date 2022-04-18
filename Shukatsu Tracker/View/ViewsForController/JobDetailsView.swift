@@ -56,7 +56,7 @@ class JobDetailsView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 15
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -161,6 +161,7 @@ class JobDetailsView: UIView {
             
             contentVStackView.topAnchor.constraint(equalTo: buttonsHStackView.bottomAnchor, constant: 30),
             contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            contentVStackView.widthAnchor.constraint(equalToConstant: 320),
             contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             statusLabels.heightAnchor.constraint(equalToConstant: 70),

@@ -67,12 +67,12 @@ class JobDetailsViewController: UIViewController {
     private func setContentLabels() {
         statusLabels.addStatusColor(status: selectedJob.status)
         companyLabels.contentLabel.text = selectedJob.companyName
-        roleLabels.contentLabel.text = selectedJob.role ?? ""
-        teamLabels.contentLabel.text = selectedJob.team ?? ""
+        roleLabels.contentLabel.text = selectedJob.role ?? " - "
+        teamLabels.contentLabel.text = selectedJob.team ?? " - "
         locationLabels.contentLabel.text = selectedJob.location
-        linkLabels.contentLabel.text = selectedJob.link ?? ""
-        notesLabels.contentLabel.text = selectedJob.notes ?? ""
-        appliedDateLabels.contentLabel.text = selectedJob.appliedDateString ?? ""
+        linkLabels.contentLabel.text = selectedJob.link ?? " - "
+        notesLabels.contentLabel.text = selectedJob.notes ?? " - "
+        appliedDateLabels.contentLabel.text = selectedJob.appliedDateString ?? " - "
         lastUpdatedLabels.contentLabel.text = selectedJob.lastUpdateString
         
     }
