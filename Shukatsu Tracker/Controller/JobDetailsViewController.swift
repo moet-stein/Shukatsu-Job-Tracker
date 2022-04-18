@@ -13,6 +13,7 @@ class JobDetailsViewController: UIViewController {
     private var selectedJob: Job
 
     private var contentView: JobDetailsView!
+    private var detailViewEditButton: UIButton!
     
     private var statusLabels: TitleContentLabelsView!
     private var companyLabels: TitleContentLabelsView!
@@ -31,6 +32,8 @@ class JobDetailsViewController: UIViewController {
         contentView = JobDetailsView(selectedJob: selectedJob)
         view = contentView
         
+        detailViewEditButton = contentView.detailViewEditButton
+        
         statusLabels = contentView.statusLabels
         companyLabels = contentView.companyLabels
         roleLabels = contentView.roleLabels
@@ -45,6 +48,7 @@ class JobDetailsViewController: UIViewController {
         print(selectedJob)
         setContentLabels()
         addLinkTarget()
+        addDetailViewEditButtonTarget()
     }
     
     init(selectedJob: Job) {
@@ -61,12 +65,22 @@ class JobDetailsViewController: UIViewController {
         linkLabels.linkTextView.addGestureRecognizer(tapRecognizer)
     }
     
+    private func addDetailViewEditButtonTarget() {
+        detailViewEditButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+    }
+    
     @objc func linkTapped() {
         if let link = selectedJob.link {
             guard let url = URL(string: link) else {return}
             let vc = WebKitViewController(url: url)
             let navVC = UINavigationController(rootViewController: vc)
             present(navVC, animated: true)
+        }
+    }
+    
+    @objc func editButtonTapped() {
+        detailViewEditButton.showAnimation {
+            print("editButtonTapped")
         }
     }
     
@@ -83,4 +97,27 @@ class JobDetailsViewController: UIViewController {
         
     }
     
+}
+
+
+public extension UIView {
+    func showAnimation(_ completionBlock: @escaping () -> Void) {
+      isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.1,
+                       delay: 0,
+                       options: .curveLinear,
+                       animations: { [weak self] in
+                            self?.transform = CGAffineTransform.init(scaleX: 0.95, y: 0.95)
+        }) {  (done) in
+            UIView.animate(withDuration: 0.1,
+                           delay: 0,
+                           options: .curveLinear,
+                           animations: { [weak self] in
+                                self?.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            }) { [weak self] (_) in
+                self?.isUserInteractionEnabled = true
+                completionBlock()
+            }
+        }
+    }
 }
