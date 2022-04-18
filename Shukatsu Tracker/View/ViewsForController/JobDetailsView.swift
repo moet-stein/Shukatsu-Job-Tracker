@@ -85,8 +85,8 @@ class JobDetailsView: UIView {
         return view
     }()
     
-    let linkLabels: TitleContentLabelsView = {
-       let view = TitleContentLabelsView(titleText: "link", boldText: false)
+    let linkLabels: TitleLinkView = {
+       let view = TitleLinkView(titleText: "link")
         return view
     }()
     
@@ -112,7 +112,6 @@ class JobDetailsView: UIView {
         super.init(frame: .zero)
         
         setUpUI()
-        fillJobInfo()
     }
     
     required init?(coder: NSCoder) {
@@ -177,11 +176,6 @@ class JobDetailsView: UIView {
             lastUpdatedLabels.heightAnchor.constraint(equalToConstant: 70)
             
         ])
-    }
-    
-    
-    private func fillJobInfo() {
-        
     }
 
 }

@@ -95,7 +95,6 @@ class TitleContentLabelsView: UIView {
         }
     }
     
-
 }
 
 extension UILabel {
