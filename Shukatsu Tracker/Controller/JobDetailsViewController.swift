@@ -79,8 +79,8 @@ class JobDetailsViewController: UIViewController {
     }
     
     @objc func editButtonTapped() {
-        detailViewEditButton.showAnimation {
-            print("editButtonTapped")
+        detailViewEditButton.showAnimation { [weak self] in
+            self?.present(AddEditViewController(), animated: true, completion: nil)
         }
     }
     
