@@ -44,6 +44,7 @@ class JobDetailsViewController: UIViewController {
         
         print(selectedJob)
         setContentLabels()
+        addLinkTarget()
     }
     
     init(selectedJob: Job) {
@@ -53,6 +54,20 @@ class JobDetailsViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func addLinkTarget() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(linkTapped))
+        linkLabels.linkTextView.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func linkTapped() {
+        if let link = selectedJob.link {
+            guard let url = URL(string: link) else {return}
+            let vc = WebKitViewController(url: url)
+            let navVC = UINavigationController(rootViewController: vc)
+            present(navVC, animated: true)
+        }
     }
     
     private func setContentLabels() {

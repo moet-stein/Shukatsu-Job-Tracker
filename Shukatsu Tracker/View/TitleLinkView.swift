@@ -32,7 +32,7 @@ class TitleLinkView: UIView {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isSelectable = true
         textView.isEditable = false
-        textView.isUserInteractionEnabled = false
+        textView.isUserInteractionEnabled = true
         
         textView.tintColor = UIColor(named: "softBrown")
         
