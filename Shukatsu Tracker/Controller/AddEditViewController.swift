@@ -9,10 +9,14 @@ import UIKit
 
 class AddEditViewController: UIViewController {
     
+    private var fromDetailsView: Bool
+    
     private var selectedStatus: EditStatusButton!
     private var appliedDate: String = ""
     
     private var contentView: AddEditView!
+    
+    private var titleLabel: UILabel!
     
     private var editOpenButton: EditStatusButton!
     private var editAppliedButton: EditStatusButton!
@@ -29,7 +33,16 @@ class AddEditViewController: UIViewController {
 //    private var appliedDateField: LabelAndTextField!
     
     private var saveButton: UIButton!
-
+    
+    init(fromDetailsView: Bool) {
+        self.fromDetailsView = fromDetailsView
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,6 +53,8 @@ class AddEditViewController: UIViewController {
         editInterviewButton = contentView.editInterviewButton.statusButton
         editAppliedButton = contentView.editAppliedButton.statusButton
         editClosedButton = contentView.editClosedButton.statusButton
+        
+        titleLabel = contentView.titleLabel
         
         companyField = contentView.companyField
         locationField = contentView.locationField
@@ -54,6 +69,7 @@ class AddEditViewController: UIViewController {
         selectedStatus = editOpenButton
         selectedStatus.addRemoveCheckSymbol()
         
+        setContent()
         addStatusBtnsTarget()
         addSaveBtnTarget()
         addDatePickerTarget()
@@ -77,6 +93,10 @@ class AddEditViewController: UIViewController {
     
     private func addDatePickerTarget() {
         appliedDatePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+    }
+    
+    private func setContent() {
+        titleLabel.text = fromDetailsView ? "Edit job details" : "Add a new job"
     }
     
     @objc func statusButtonPressed(sender: UIButton) {

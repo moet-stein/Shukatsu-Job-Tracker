@@ -162,7 +162,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func addButtonPressed(sender: UIButton) {
-        present(AddEditViewController(), animated: true, completion: nil)
+        present(AddEditViewController(fromDetailsView: false), animated: true, completion: nil)
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {

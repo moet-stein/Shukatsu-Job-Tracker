@@ -8,6 +8,7 @@
 import UIKit
 
 class AddEditView: UIView {
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,10 +42,9 @@ class AddEditView: UIView {
         return stackView
     }()
     
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Add a new job"
         label.textColor = .black
         label.font = UIFont(name: "Lato-Bold", size: 27)
         return label
