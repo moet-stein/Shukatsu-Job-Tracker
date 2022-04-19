@@ -32,7 +32,7 @@ class AddEditViewController: UIViewController {
     private var linkField: LabelAndTextField!
     private var notesField: LabelAndTextField!
     private var appliedDatePicker: UIDatePicker!
-//    private var appliedDateField: LabelAndTextField!
+    private var appliedDateStackView: UIStackView!
     
     private var saveButton: UIButton!
     
@@ -67,6 +67,8 @@ class AddEditViewController: UIViewController {
         notesField = contentView.notesField
         appliedDatePicker = contentView.appliedDatePicker
         
+        appliedDateStackView = contentView.appliedDateStackView
+        
         saveButton = contentView.saveJobButton
         
         selectedStatus = editOpenButton
@@ -94,19 +96,18 @@ class AddEditViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
     }
     
-//    private func addDatePickerTarget() {
-//        appliedDatePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
-//    }
     
     private func setContent() {
         titleLabel.text = fromDetailsView ? "Edit job details" : "Add a new job"
         if let job = passedJob {
             companyField.textField.text = job.companyName
         }
+        toggleAppliedDataStackView()
     }
     
     @objc func statusButtonPressed(sender: UIButton) {
         let button = sender as! EditStatusButton
+        
         if selectedStatus != sender {
             selectedStatus.isSelected = false
             selectedStatus.addRemoveCheckSymbol()
@@ -114,6 +115,15 @@ class AddEditViewController: UIViewController {
             selectedStatus = button
             button.isSelected = true
             button.addRemoveCheckSymbol()
+        }
+        toggleAppliedDataStackView()
+    }
+
+    private func toggleAppliedDataStackView() {
+        if selectedStatus.status != "open" {
+            appliedDateStackView.isHidden = false
+        } else {
+            appliedDateStackView.isHidden = true
         }
     }
     
