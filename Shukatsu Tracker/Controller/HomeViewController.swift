@@ -59,21 +59,25 @@ class HomeViewController: UIViewController {
             filteredJobInfos = jobInfos
             DispatchQueue.main.async {
                 self.jobsCollectionView.reloadData()
-                self.openBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "open"}.count)
-                self.appliedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "applied"}.count)
-                self.interviewBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "interview"}.count)
-                self.closedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "closed"}.count)
+                self.updateStatusBoxes()
             }
         } catch {
             print("Failed")
         }
     }
     
+    private func updateStatusBoxes() {
+        openBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "open"}.count)
+        appliedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "applied"}.count)
+        interviewBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "interview"}.count)
+        closedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "closed"}.count)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         contentView = HomeView()
         view = contentView
-//        jobInfos = jobs.jobs
         
         jobsCollectionView = contentView.jobsCollectionView
         jobsCollectionView.dataSource = self
@@ -178,7 +182,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func addButtonPressed(sender: UIButton) {
-        present(AddEditViewController(fromDetailsView: false, passedJob: nil), animated: true, completion: nil)
+        present(AddEditViewController(fromDetailsView: false, passedJob: nil, addJobInfoDelegate: self), animated: true, completion: nil)
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -202,6 +206,7 @@ class HomeViewController: UIViewController {
         jobsCollectionView.reloadData()
         
         print(filteredJobInfos)
+        print("filtering job")
     }
     
 }
@@ -228,3 +233,11 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
+extension HomeViewController: AddJobInfoToHomeVC {
+    func addNewJobInfo(jobInfo: JobInfo) {
+        self.jobInfos.append(jobInfo)
+        self.filteringJobs()
+        self.updateStatusBoxes()
+        print("addnewjobinfo")
+    }
+}

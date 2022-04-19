@@ -8,15 +8,20 @@
 import UIKit
 import CoreData
 
+protocol AddJobInfoToHomeVC: AnyObject {
+    func addNewJobInfo(jobInfo: JobInfo)
+}
+
 class AddEditViewController: UIViewController {
+    weak var addJobInfoDelegate: AddJobInfoToHomeVC?
     
     private var fromDetailsView: Bool
     private var passedJob: JobInfo?
     
     private var selectedStatus: EditStatusButton!
     
-//    private var homeView: HomeView!
-//    private var jobsCollectionView: UICollectionView!
+    private var homeView: HomeView!
+    private var jobsCollectionView: UICollectionView!
     
     private var contentView: AddEditView!
     
@@ -38,9 +43,10 @@ class AddEditViewController: UIViewController {
     
     private var saveButton: UIButton!
     
-    init(fromDetailsView: Bool, passedJob: JobInfo?) {
+    init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: AddJobInfoToHomeVC?) {
         self.fromDetailsView = fromDetailsView
         self.passedJob = passedJob
+        self.addJobInfoDelegate = addJobInfoDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -181,9 +187,7 @@ class AddEditViewController: UIViewController {
         
         do {
             try managedContext.save()
-            print("saved")
-//            HomeViewController().filteredJobs.append(jobInfo)
-//            jobsCollectionView.reloadData()
+            addJobInfoDelegate?.addNewJobInfo(jobInfo: jobInfo as! JobInfo)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
