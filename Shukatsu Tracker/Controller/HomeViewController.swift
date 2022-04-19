@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 //protocol Presentable: AnyObject {
 //    func presentViewController(viewController: UIViewController)
@@ -47,6 +48,31 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+          guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+          let managedContext = appDelegate.persistentContainer.viewContext
+//
+//          let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "JobInfo")
+//
+//          do {
+//            let objects = try managedContext.fetch(fetchRequest)
+//              print(objects)
+//
+//          } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//          }
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "JobInfo")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try managedContext.fetch(request)
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "companyName") as! String)
+            }
+        } catch {
+            print("Failed")
+        }
+
     }
     
     override func viewDidLoad() {

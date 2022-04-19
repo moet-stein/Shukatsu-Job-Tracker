@@ -14,7 +14,9 @@ class AddEditViewController: UIViewController {
     private var passedJob: Job?
     
     private var selectedStatus: EditStatusButton!
-//    private var appliedDate: String = ""
+    
+//    private var homeView: HomeView!
+//    private var jobsCollectionView: UICollectionView!
     
     private var contentView: AddEditView!
     
@@ -52,6 +54,9 @@ class AddEditViewController: UIViewController {
         contentView = AddEditView()
         view = contentView
         
+//        homeView = HomeView()
+//        jobsCollectionView = homeView.jobsCollectionView
+        
         editOpenButton = contentView.editOpenButton.statusButton
         editInterviewButton = contentView.editInterviewButton.statusButton
         editAppliedButton = contentView.editAppliedButton.statusButton
@@ -77,12 +82,12 @@ class AddEditViewController: UIViewController {
         setContent()
         addStatusBtnsTarget()
         addSaveBtnTarget()
-//        addDatePickerTarget()
         
-//        let dateFormatter: DateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MM/dd/yyyy"
-//        appliedDate = dateFormatter.string(from: Date())
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("viewwilldisappear addeditVC")
+//        HomeViewController().filteredJobs.append()
     }
     
     private func addStatusBtnsTarget() {
@@ -126,14 +131,7 @@ class AddEditViewController: UIViewController {
             appliedDateStackView.isHidden = true
         }
     }
-    
-    
-//    @objc func datePickerChanged(_ sender: UIDatePicker) {
-//        let dateFormatter: DateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MM/dd/yyyy"
-//        appliedDate = dateFormatter.string(from: sender.date)
-//        print(appliedDate)
-//    }
+
     
     @objc func saveButtonPressed(sender: UIButton) {
         let companyName = companyField.textField.text ?? ""
@@ -156,8 +154,6 @@ class AddEditViewController: UIViewController {
         let team = teamField.textField.text ?? nil
         let link = linkField.textField.text ?? nil
         let notes = notesField.textField.text ?? nil
-        let updatedDate = Date()
-//        let newJob = Job(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDateString: appliedDateString, lastUpdate: updatedDate)
 
         saveJob(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
         dismiss(animated: true)
@@ -185,7 +181,9 @@ class AddEditViewController: UIViewController {
         
         do {
             try managedContext.save()
-            //            people.append(person)
+            print("saved")
+//            HomeViewController().filteredJobs.append(jobInfo)
+//            jobsCollectionView.reloadData()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
