@@ -135,13 +135,30 @@ class AddEditView: UIView {
         return label
     }()
     
+    private let appliedContentHStack: UIStackView = {
+       let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
     lazy var appliedDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.timeZone = NSTimeZone.local
         datePicker.datePickerMode = UIDatePicker.Mode.date
         datePicker.backgroundColor = .clear
-        datePicker.contentHorizontalAlignment = .left
+        datePicker.contentHorizontalAlignment = .center
         return datePicker
+    }()
+    
+    let notAppliedButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Not Applied", for: .normal)
+        button.backgroundColor = UIColor(white: 1, alpha: 0.6)
+        button.setTitleColor(UIColor.systemGray3, for: .normal)
+        button.layer.cornerRadius = 10
+        return button
     }()
     
     init() {
@@ -224,11 +241,14 @@ class AddEditView: UIView {
     
     private func setAppliedDate() {
         appliedDateStackView.addArrangedSubview(appliedDateLabel)
-        appliedDateStackView.addArrangedSubview(appliedDatePicker)
+        appliedContentHStack.addArrangedSubview(appliedDatePicker)
+        appliedContentHStack.addArrangedSubview(notAppliedButton)
+        appliedDateStackView.addArrangedSubview(appliedContentHStack)
         
         NSLayoutConstraint.activate([
             appliedDateLabel.heightAnchor.constraint(equalToConstant: 20),
-            appliedDatePicker.heightAnchor.constraint(equalToConstant: 50)
+            notAppliedButton.widthAnchor.constraint(equalToConstant: 100),
+            appliedContentHStack.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
