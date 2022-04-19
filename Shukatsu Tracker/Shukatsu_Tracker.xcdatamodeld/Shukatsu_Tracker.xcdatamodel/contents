@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="JobInfo" representedClassName="JobInfo" syncable="YES" codeGenerationType="class">
+    <entity name="JobInfo" representedClassName="JobInfo" syncable="YES">
         <attribute name="appliedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="appliedDateString" optional="YES" attributeType="String"/>
         <attribute name="companyName" optional="YES" attributeType="String"/>

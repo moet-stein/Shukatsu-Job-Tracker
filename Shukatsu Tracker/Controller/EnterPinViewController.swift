@@ -7,6 +7,7 @@
 
 import UIKit
 import KeychainSwift
+import CoreData
 
 class EnterPinViewController: UIViewController {
     private var contentView: EnterPinView!

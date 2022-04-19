@@ -13,7 +13,9 @@ import CoreData
 //}
 
 class HomeViewController: UIViewController {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var jobInfos = [JobInfo]()
     let jobs: Jobs
     var filteredJobs = [Job]()
     var checkedStatus = [String]()
@@ -49,30 +51,21 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
-          guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-          let managedContext = appDelegate.persistentContainer.viewContext
-//
-//          let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "JobInfo")
-//
-//          do {
-//            let objects = try managedContext.fetch(fetchRequest)
-//              print(objects)
-//
-//          } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//          }
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "JobInfo")
-        request.returnsObjectsAsFaults = false
+        fetchJonInfos()
+    }
+    
+    
+    private func fetchJonInfos() {
         do {
-            let result = try managedContext.fetch(request)
-            for data in result as! [NSManagedObject] {
-                print(data.value(forKey: "companyName") as! String)
+            jobInfos = try context.fetch(JobInfo.fetchRequest())
+            DispatchQueue.main.async {
+                self.jobsCollectionView.reloadData()
             }
         } catch {
             print("Failed")
         }
-
+        
+        print(jobInfos)
     }
     
     override func viewDidLoad() {

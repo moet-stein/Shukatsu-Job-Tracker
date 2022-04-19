@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,6 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
 //        let navigationControlller = UINavigationController(rootViewController: EnterPinViewController())
+        
+        
+        
         let navigationControlller = UINavigationController(rootViewController: HomeViewController(jobs: Jobs()))
         window.rootViewController = navigationControlller
         self.window = window
@@ -63,6 +67,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
+    
 
 
 }
