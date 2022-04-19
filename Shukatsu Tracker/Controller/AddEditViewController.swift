@@ -11,7 +11,7 @@ import CoreData
 class AddEditViewController: UIViewController {
     
     private var fromDetailsView: Bool
-    private var passedJob: Job?
+    private var passedJob: JobInfo?
     
     private var selectedStatus: EditStatusButton!
     
@@ -38,7 +38,7 @@ class AddEditViewController: UIViewController {
     
     private var saveButton: UIButton!
     
-    init(fromDetailsView: Bool, passedJob: Job?) {
+    init(fromDetailsView: Bool, passedJob: JobInfo?) {
         self.fromDetailsView = fromDetailsView
         self.passedJob = passedJob
         super.init(nibName: nil, bundle: nil)

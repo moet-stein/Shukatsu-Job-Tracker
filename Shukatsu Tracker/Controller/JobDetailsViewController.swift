@@ -10,7 +10,7 @@ import UIKit
 
 
 class JobDetailsViewController: UIViewController {
-    private var selectedJob: Job
+    private var selectedJob: JobInfo
 
     private var contentView: JobDetailsView!
     private var detailViewEditButton: UIButton!
@@ -51,7 +51,7 @@ class JobDetailsViewController: UIViewController {
         addDetailViewEditButtonTarget()
     }
     
-    init(selectedJob: Job) {
+    init(selectedJob: JobInfo) {
         self.selectedJob = selectedJob
         super.init(nibName: nil, bundle: nil)
     }
@@ -85,7 +85,7 @@ class JobDetailsViewController: UIViewController {
     }
     
     private func setContentLabels() {
-        statusLabels.addStatusColor(status: selectedJob.status)
+        statusLabels.addStatusColor(status: selectedJob.status ?? "open")
         companyLabels.contentLabel.text = selectedJob.companyName
         roleLabels.contentLabel.text = selectedJob.role ?? " - "
         teamLabels.contentLabel.text = selectedJob.team ?? " - "

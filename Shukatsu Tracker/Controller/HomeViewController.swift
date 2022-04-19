@@ -14,10 +14,9 @@ import CoreData
 
 class HomeViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+
     var jobInfos = [JobInfo]()
-    let jobs: Jobs
-    var filteredJobs = [Job]()
+    var filteredJobInfos = [JobInfo]()
     var checkedStatus = [String]()
     var viewAll = true
     
@@ -38,8 +37,7 @@ class HomeViewController: UIViewController {
     
     
     
-    init(jobs: Jobs) {
-        self.jobs = jobs
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,21 +56,24 @@ class HomeViewController: UIViewController {
     private func fetchJonInfos() {
         do {
             jobInfos = try context.fetch(JobInfo.fetchRequest())
+            filteredJobInfos = jobInfos
             DispatchQueue.main.async {
                 self.jobsCollectionView.reloadData()
+                self.openBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "open"}.count)
+                self.appliedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "applied"}.count)
+                self.interviewBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "interview"}.count)
+                self.closedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "closed"}.count)
             }
         } catch {
             print("Failed")
         }
-        
-        print(jobInfos)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView = HomeView()
         view = contentView
-        filteredJobs = jobs.jobs
+//        jobInfos = jobs.jobs
         
         jobsCollectionView = contentView.jobsCollectionView
         jobsCollectionView.dataSource = self
@@ -105,10 +106,6 @@ class HomeViewController: UIViewController {
     }
     
     private func addFunctionToStatusButtons() {
-        openBoxButton.numberLabel.text = String(jobs.jobs.filter{$0.status == "open"}.count)
-        appliedBoxButton.numberLabel.text = String(jobs.jobs.filter{$0.status == "applied"}.count)
-        interviewBoxButton.numberLabel.text = String(jobs.jobs.filter{$0.status == "interview"}.count)
-        closedBoxButton.numberLabel.text = String(jobs.jobs.filter{$0.status == "closed"}.count)
         
         openBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         appliedBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
@@ -191,18 +188,20 @@ class HomeViewController: UIViewController {
     private func filteringJobs() {
         if !viewAll {
             if checkedStatus.isEmpty {
-                filteredJobs = jobs.jobs.filter{$0.favorite}
+                filteredJobInfos = jobInfos.filter{$0.favorite}
             } else {
-                filteredJobs = jobs.jobs.filter{$0.favorite && checkedStatus.contains($0.status)}
+                filteredJobInfos = jobInfos.filter{$0.favorite && checkedStatus.contains($0.status!)}
             }
         } else {
             if checkedStatus.isEmpty {
-                filteredJobs = jobs.jobs
+                filteredJobInfos = jobInfos
             } else {
-                filteredJobs = jobs.jobs.filter{checkedStatus.contains($0.status)}
+                filteredJobInfos = jobInfos.filter{checkedStatus.contains($0.status!)}
             }
         }
         jobsCollectionView.reloadData()
+        
+        print(filteredJobInfos)
     }
     
 }
@@ -210,23 +209,22 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredJobs.count
+        return filteredJobInfos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JobsCollectionViewCell.identifier, for: indexPath) as? JobsCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let currentJob = filteredJobs[indexPath.row]
-        cell.setupCellContent(companyName: currentJob.companyName, location: currentJob.location ?? "none", updatedDate: currentJob.lastUpdate, status: currentJob.status)
+        let currentJob = filteredJobInfos[indexPath.row]
+        cell.setupCellContent(companyName: currentJob.companyName ?? "", location: currentJob.location ?? "none", updatedDate: currentJob.lastUpdate ?? Date(), status: currentJob.status ?? "open")
         return cell
     }
 }
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(filteredJobs[indexPath.row].companyName)")
-        present(JobDetailsViewController(selectedJob: filteredJobs[indexPath.row]), animated: true, completion: nil)
+        present(JobDetailsViewController(selectedJob: filteredJobInfos[indexPath.row]), animated: true, completion: nil)
     }
 }
 

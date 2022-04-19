@@ -9,7 +9,7 @@ import UIKit
 
 class JobDetailsView: UIView {
     
-    private var selectedJob: Job
+    private var selectedJob: JobInfo
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -107,7 +107,7 @@ class JobDetailsView: UIView {
     
 
     
-    init(selectedJob: Job) {
+    init(selectedJob: JobInfo) {
         self.selectedJob = selectedJob
         super.init(frame: .zero)
         

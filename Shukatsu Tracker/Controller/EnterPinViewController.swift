@@ -31,11 +31,11 @@ class EnterPinViewController: UIViewController {
             if keychain.get("ShukatsuPin") == nil {
                 let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
                 print("saveSuccessful: \(saveSuccessful)")
-                navigationController?.pushViewController(HomeViewController(jobs: Jobs()), animated: true)
+                navigationController?.pushViewController(HomeViewController(), animated: true)
             } else {
                 if enteredPin == keychain.get("ShukatsuPin") {
                     print("corrent pin \(enteredPin)")
-                    navigationController?.pushViewController(HomeViewController(jobs: Jobs()), animated: true)
+                    navigationController?.pushViewController(HomeViewController(), animated: true)
                 } else {
                     print("wrong pin")
                 }
