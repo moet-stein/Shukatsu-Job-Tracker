@@ -85,7 +85,6 @@ extension LabelAndTextField: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let arbitraryValue: Int = 5
         if let newPosition = textField.position(from: textField.beginningOfDocument, offset: arbitraryValue) {
-            print(newPosition)
             textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
         }
         

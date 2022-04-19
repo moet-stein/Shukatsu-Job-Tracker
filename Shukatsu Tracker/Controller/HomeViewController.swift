@@ -204,9 +204,6 @@ class HomeViewController: UIViewController {
             }
         }
         jobsCollectionView.reloadData()
-        
-        print(filteredJobInfos)
-        print("filtering job")
     }
     
 }
@@ -238,6 +235,5 @@ extension HomeViewController: AddJobInfoToHomeVC {
         self.jobInfos.append(jobInfo)
         self.filteringJobs()
         self.updateStatusBoxes()
-        print("addnewjobinfo")
     }
 }

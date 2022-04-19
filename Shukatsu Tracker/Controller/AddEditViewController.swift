@@ -13,6 +13,7 @@ protocol AddJobInfoToHomeVC: AnyObject {
 }
 
 class AddEditViewController: UIViewController {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var addJobInfoDelegate: AddJobInfoToHomeVC?
     
     private var fromDetailsView: Bool
@@ -60,9 +61,6 @@ class AddEditViewController: UIViewController {
         contentView = AddEditView()
         view = contentView
         
-//        homeView = HomeView()
-//        jobsCollectionView = homeView.jobsCollectionView
-        
         editOpenButton = contentView.editOpenButton.statusButton
         editInterviewButton = contentView.editInterviewButton.statusButton
         editAppliedButton = contentView.editAppliedButton.statusButton
@@ -89,11 +87,6 @@ class AddEditViewController: UIViewController {
         addStatusBtnsTarget()
         addSaveBtnTarget()
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        print("viewwilldisappear addeditVC")
-//        HomeViewController().filteredJobs.append()
     }
     
     private func addStatusBtnsTarget() {
@@ -166,13 +159,10 @@ class AddEditViewController: UIViewController {
     }
     
     private func saveJob(companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "JobInfo", in: context)!
         
-        let entity = NSEntityDescription.entity(forEntityName: "JobInfo", in: managedContext)!
-        
-        let jobInfo = NSManagedObject(entity: entity, insertInto: managedContext)
+        let jobInfo = NSManagedObject(entity: entity, insertInto: context)
         
         jobInfo.setValue(companyName, forKey: "companyName")
         jobInfo.setValue(location, forKey: "location")
@@ -186,7 +176,7 @@ class AddEditViewController: UIViewController {
         jobInfo.setValue(lastUpdate, forKey: "lastUpdate")
         
         do {
-            try managedContext.save()
+            try context.save()
             addJobInfoDelegate?.addNewJobInfo(jobInfo: jobInfo as! JobInfo)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
