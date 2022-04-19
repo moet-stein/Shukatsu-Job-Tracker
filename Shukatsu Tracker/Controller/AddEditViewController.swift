@@ -142,12 +142,13 @@ class AddEditViewController: UIViewController {
             return
         }
 
-//        let appliedDateString = appliedDate
-//        if appliedDate.isEmpty {
-//            print("emptyy applieddate")
-//            return
-//        }
-        let appliedDate = appliedDatePicker.date
+        let appliedDate: Date?
+        if appliedDateStackView.isHidden {
+            appliedDate = nil
+        } else {
+            appliedDate = appliedDatePicker.date
+        }
+        
         let location = locationField.textField.text ?? nil
         let status = selectedStatus.status
         let favorite = false
@@ -162,7 +163,7 @@ class AddEditViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    private func saveJob(companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date, lastUpdate: Date) {
+    private func saveJob(companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -172,6 +173,15 @@ class AddEditViewController: UIViewController {
         let jobInfo = NSManagedObject(entity: entity, insertInto: managedContext)
         
         jobInfo.setValue(companyName, forKey: "companyName")
+        jobInfo.setValue(location, forKey: "location")
+        jobInfo.setValue(status, forKey: "status")
+        jobInfo.setValue(favorite, forKey: "favorite")
+        jobInfo.setValue(role, forKey: "role")
+        jobInfo.setValue(team, forKey: "team")
+        jobInfo.setValue(link, forKey: "link")
+        jobInfo.setValue(notes, forKey: "notes")
+        jobInfo.setValue(appliedDate, forKey: "appliedDate")
+        jobInfo.setValue(lastUpdate, forKey: "lastUpdate")
         
         do {
             try managedContext.save()
