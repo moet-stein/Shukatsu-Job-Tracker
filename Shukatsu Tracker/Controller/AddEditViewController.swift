@@ -10,6 +10,7 @@ import UIKit
 class AddEditViewController: UIViewController {
     
     private var fromDetailsView: Bool
+    private var passedJob: Job?
     
     private var selectedStatus: EditStatusButton!
     private var appliedDate: String = ""
@@ -34,8 +35,9 @@ class AddEditViewController: UIViewController {
     
     private var saveButton: UIButton!
     
-    init(fromDetailsView: Bool) {
+    init(fromDetailsView: Bool, passedJob: Job?) {
         self.fromDetailsView = fromDetailsView
+        self.passedJob = passedJob
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -97,6 +99,9 @@ class AddEditViewController: UIViewController {
     
     private func setContent() {
         titleLabel.text = fromDetailsView ? "Edit job details" : "Add a new job"
+        if let job = passedJob {
+            companyField.textField.text = job.companyName
+        }
     }
     
     @objc func statusButtonPressed(sender: UIButton) {
