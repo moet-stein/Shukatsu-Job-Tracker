@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddEditViewController: UIViewController {
     
@@ -13,7 +14,7 @@ class AddEditViewController: UIViewController {
     private var passedJob: Job?
     
     private var selectedStatus: EditStatusButton!
-    private var appliedDate: String = ""
+//    private var appliedDate: String = ""
     
     private var contentView: AddEditView!
     
@@ -74,11 +75,11 @@ class AddEditViewController: UIViewController {
         setContent()
         addStatusBtnsTarget()
         addSaveBtnTarget()
-        addDatePickerTarget()
+//        addDatePickerTarget()
         
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        appliedDate = dateFormatter.string(from: Date())
+//        let dateFormatter: DateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MM/dd/yyyy"
+//        appliedDate = dateFormatter.string(from: Date())
         
     }
     
@@ -90,12 +91,12 @@ class AddEditViewController: UIViewController {
     }
     
     private func addSaveBtnTarget() {
-        saveButton.addTarget(self, action: #selector(saveJob), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
     }
     
-    private func addDatePickerTarget() {
-        appliedDatePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
-    }
+//    private func addDatePickerTarget() {
+//        appliedDatePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
+//    }
     
     private func setContent() {
         titleLabel.text = fromDetailsView ? "Edit job details" : "Add a new job"
@@ -117,26 +118,26 @@ class AddEditViewController: UIViewController {
     }
     
     
-    @objc func datePickerChanged(_ sender: UIDatePicker) {
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        appliedDate = dateFormatter.string(from: sender.date)
-        print(appliedDate)
-    }
+//    @objc func datePickerChanged(_ sender: UIDatePicker) {
+//        let dateFormatter: DateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "MM/dd/yyyy"
+//        appliedDate = dateFormatter.string(from: sender.date)
+//        print(appliedDate)
+//    }
     
-    @objc func saveJob(sender: UIButton) {
+    @objc func saveButtonPressed(sender: UIButton) {
         let companyName = companyField.textField.text ?? ""
         if companyName.isEmpty {
             print("emptyyy")
             return
         }
 
-        let appliedDateString = appliedDate
-        if appliedDate.isEmpty {
-            print("emptyy applieddate")
-            return
-        }
-        
+//        let appliedDateString = appliedDate
+//        if appliedDate.isEmpty {
+//            print("emptyy applieddate")
+//            return
+//        }
+        let appliedDate = appliedDatePicker.date
         let location = locationField.textField.text ?? nil
         let status = selectedStatus.status
         let favorite = false
@@ -145,10 +146,29 @@ class AddEditViewController: UIViewController {
         let link = linkField.textField.text ?? nil
         let notes = notesField.textField.text ?? nil
         let updatedDate = Date()
-        let newJob = Job(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDateString: appliedDateString, lastUpdate: updatedDate)
+//        let newJob = Job(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDateString: appliedDateString, lastUpdate: updatedDate)
 
-        print(appliedDate)
+        saveJob(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
         dismiss(animated: true)
+    }
+    
+    private func saveJob(companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date, lastUpdate: Date) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "JobInfo", in: managedContext)!
+        
+        let jobInfo = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        jobInfo.setValue(companyName, forKey: "companyName")
+        
+        do {
+            try managedContext.save()
+            //            people.append(person)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 
 }
