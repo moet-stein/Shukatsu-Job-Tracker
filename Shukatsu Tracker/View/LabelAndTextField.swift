@@ -28,22 +28,19 @@ class LabelAndTextField: UIView {
         return label
     }()
     
+    private let textFieldBGView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 7
+        return view
+    }()
+    
     let textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.tintColor = UIColor(named: "viewOrange")
-        textField.backgroundColor = .white
-        textField.layer.cornerRadius = 7
-        //OFFICE HOUR QUESTION?
-        if let selectedRange = textField.selectedTextRange {
-
-            // and only if the new position is valid
-            if let newPosition = textField.position(from: selectedRange.start, offset: -5) {
-
-                // set the new position
-                textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
-            }
-        }
+        textField.backgroundColor = .clear
         return textField
     }()
     
@@ -66,17 +63,21 @@ class LabelAndTextField: UIView {
         
         addSubview(vStackView)
         vStackView.addArrangedSubview(titleLabel)
-        vStackView.addArrangedSubview(textField)
+        vStackView.addArrangedSubview(textFieldBGView)
+        textFieldBGView.addSubview(textField)
         
         NSLayoutConstraint.activate([
             vStackView.topAnchor.constraint(equalTo: topAnchor),
             vStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             vStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            //            vStackView.widthAnchor.constraint(equalToConstant: 500),
-//            vStackView.heightAnchor.constraint(equalToConstant: 60),
             
             titleLabel.heightAnchor.constraint(equalToConstant: 30),
-            textField.heightAnchor.constraint(equalToConstant: 40),
+            textFieldBGView.heightAnchor.constraint(equalToConstant: 40),
+            
+            textField.topAnchor.constraint(equalTo: textFieldBGView.topAnchor),
+            textField.leadingAnchor.constraint(equalTo: textFieldBGView.leadingAnchor, constant: 20),
+            textField.trailingAnchor.constraint(equalTo: textFieldBGView.trailingAnchor),
+            textField.bottomAnchor.constraint(equalTo: textFieldBGView.bottomAnchor)
             
         ])
     }
