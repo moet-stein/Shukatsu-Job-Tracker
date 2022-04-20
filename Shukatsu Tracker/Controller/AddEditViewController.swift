@@ -43,6 +43,7 @@ class AddEditViewController: UIViewController {
     private var appliedDateStackView: UIStackView!
     
     private var saveButton: UIButton!
+    private var bottomSaveButton: UIButton!
     
     init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: AddJobInfoToHomeVC?) {
         self.fromDetailsView = fromDetailsView
@@ -79,6 +80,7 @@ class AddEditViewController: UIViewController {
         appliedDateStackView = contentView.appliedDateStackView
         
         saveButton = contentView.saveJobButton
+        bottomSaveButton = contentView.bottomSaveButton
         
         selectedStatus = editOpenButton
         selectedStatus.addRemoveCheckSymbol()
@@ -100,6 +102,7 @@ class AddEditViewController: UIViewController {
     
     private func addSaveBtnTarget() {
         saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+        bottomSaveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
     }
     
     
@@ -199,3 +202,5 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+
