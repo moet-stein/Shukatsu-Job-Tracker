@@ -34,8 +34,16 @@ class LabelAndTextField: UIView {
         textField.tintColor = UIColor(named: "viewOrange")
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 7
-//        let endPosition = textField.endOfDocument
-//        textField.selectedTextRange = textField.textRange(from: endPosition, to: endPosition)
+        //OFFICE HOUR QUESTION?
+        if let selectedRange = textField.selectedTextRange {
+
+            // and only if the new position is valid
+            if let newPosition = textField.position(from: selectedRange.start, offset: -5) {
+
+                // set the new position
+                textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
+            }
+        }
         return textField
     }()
     
