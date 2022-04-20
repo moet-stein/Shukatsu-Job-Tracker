@@ -180,6 +180,17 @@ class AddEditViewController: UIViewController {
         jobInfo.setValue(appliedDate, forKey: "appliedDate")
         jobInfo.setValue(lastUpdate, forKey: "lastUpdate")
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd, EEE"
+        
+        if let appliedDate = appliedDate {
+            let dateString = formatter.string(from: appliedDate)
+            jobInfo.setValue(dateString, forKey: "appliedDateString")
+        }
+        
+        let lastUpdateString = formatter.string(from: lastUpdate)
+        jobInfo.setValue(lastUpdateString, forKey: "lastUpdateString")
+        
         do {
             try context.save()
             addJobInfoDelegate?.addNewJobInfo(jobInfo: jobInfo as! JobInfo)

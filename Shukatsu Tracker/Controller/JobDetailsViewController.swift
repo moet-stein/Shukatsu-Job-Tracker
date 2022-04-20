@@ -85,6 +85,7 @@ class JobDetailsViewController: UIViewController {
     }
     
     private func setContentLabels() {
+        print(selectedJob)
         statusLabels.addStatusColor(status: selectedJob.status ?? "open")
         companyLabels.contentLabel.text = selectedJob.companyName
         roleLabels.contentLabel.text = selectedJob.role ?? " - "
