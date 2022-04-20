@@ -145,6 +145,17 @@ class AddEditView: UIView {
         return datePicker
     }()
     
+    let bottomSaveButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("SAVE", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Lato-Bold", size: 20)
+        button.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
+        button.backgroundColor = UIColor(white: 1, alpha: 0.6)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
     
     init() {
         super.init(frame: .zero)
@@ -175,6 +186,7 @@ class AddEditView: UIView {
         outerVStackView.addArrangedSubview(linkField)
         outerVStackView.addArrangedSubview(notesField)
         outerVStackView.addArrangedSubview(appliedDateStackView)
+        contentView.addSubview(bottomSaveButton)
         
         let scrollFrameGuide = scrollView.frameLayoutGuide
         let scrollContentGuide = scrollView.contentLayoutGuide
@@ -201,7 +213,7 @@ class AddEditView: UIView {
             outerVStackView.topAnchor.constraint(equalTo: saveJobButton.bottomAnchor, constant: 10),
             outerVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             outerVStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            outerVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40),
+            outerVStackView.bottomAnchor.constraint(equalTo: bottomSaveButton.topAnchor, constant: -50),
             
             titleLabel.heightAnchor.constraint(equalToConstant: 40),
             statusLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -212,7 +224,12 @@ class AddEditView: UIView {
             locationField.heightAnchor.constraint(equalToConstant: 70),
             linkField.heightAnchor.constraint(equalToConstant: 70),
             notesField.heightAnchor.constraint(equalToConstant: 70),
-            appliedDateStackView.heightAnchor.constraint(equalToConstant: 70)
+            appliedDateStackView.heightAnchor.constraint(equalToConstant: 70),
+            
+            bottomSaveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            bottomSaveButton.widthAnchor.constraint(equalToConstant: 150),
+            bottomSaveButton.heightAnchor.constraint(equalToConstant: 50),
+            bottomSaveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
             
         ])
     }
