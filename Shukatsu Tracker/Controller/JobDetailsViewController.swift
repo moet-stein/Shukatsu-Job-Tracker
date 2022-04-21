@@ -56,8 +56,9 @@ class JobDetailsViewController: UIViewController {
         addButtonsTarget()
     }
     
-    init(selectedJob: JobInfo) {
+    init(selectedJob: JobInfo, addJobInfoDelegate: AddJobInfoToHomeVC?) {
         self.selectedJob = selectedJob
+        self.addJobInfoDelegate = addJobInfoDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -93,7 +94,7 @@ class JobDetailsViewController: UIViewController {
     @objc func favoriteButtonTapped() {
         favoriteButton.showAnimation { [weak self] in
             self?.favoriteButton.isSelected.toggle()
-            self?.toggleFavoriteBtn()
+            self?.toggleFavoriteBtn(updateInfo: true)
             
         }
         
@@ -111,11 +112,11 @@ class JobDetailsViewController: UIViewController {
         appliedDateLabels.contentLabel.text = selectedJob.appliedDateString ?? " - "
         lastUpdatedLabels.contentLabel.text = selectedJob.lastUpdateString
         favoriteButton.isSelected = selectedJob.favorite
-        toggleFavoriteBtn()
+        toggleFavoriteBtn(updateInfo: false)
         
     }
     
-    private func toggleFavoriteBtn() {
+    private func toggleFavoriteBtn(updateInfo: Bool) {
         //UPDATE CORE DATA SELECTEDJOB.FAVORITE
         let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .small)
         
@@ -127,6 +128,19 @@ class JobDetailsViewController: UIViewController {
             let heartSF = UIImage(systemName: "heart", withConfiguration: config)
             favoriteButton.setImage(heartSF, for: .normal)
             print("isNOTselected")
+        }
+        
+        print(selectedJob.objectID)
+        
+        if updateInfo {
+            selectedJob.favorite = favoriteButton.isSelected
+            do {
+               try context.save()
+               addJobInfoDelegate?.updateJonInfoFavorite(jobInfo: selectedJob)
+            } catch {
+                print("Failed to save")
+            }
+            
         }
        
         

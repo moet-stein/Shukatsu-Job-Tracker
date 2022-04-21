@@ -10,6 +10,7 @@ import CoreData
 
 protocol AddJobInfoToHomeVC: AnyObject {
     func addNewJobInfo(jobInfo: JobInfo)
+    func updateJonInfoFavorite(jobInfo: JobInfo)
 }
 
 class AddEditViewController: UIViewController {

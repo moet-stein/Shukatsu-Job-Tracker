@@ -226,11 +226,17 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        present(JobDetailsViewController(selectedJob: filteredJobInfos[indexPath.row]), animated: true, completion: nil)
+        present(JobDetailsViewController(selectedJob: filteredJobInfos[indexPath.row], addJobInfoDelegate: self), animated: true, completion: nil)
     }
 }
 
 extension HomeViewController: AddJobInfoToHomeVC {
+    func updateJonInfoFavorite(jobInfo: JobInfo) {
+        //Find the job that has to be updated, and update
+        self.filteringJobs()
+//        self.updateStatusBoxes()
+    }
+    
     func addNewJobInfo(jobInfo: JobInfo) {
         self.jobInfos.append(jobInfo)
         self.filteringJobs()
