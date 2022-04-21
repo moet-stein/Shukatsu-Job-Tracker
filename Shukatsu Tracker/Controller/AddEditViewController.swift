@@ -83,8 +83,7 @@ class AddEditViewController: UIViewController {
         saveButton = contentView.saveJobButton
         bottomSaveButton = contentView.bottomSaveButton
         
-        selectedStatus = editOpenButton
-        selectedStatus.addRemoveCheckSymbol()
+        
         
         setContent()
         addStatusBtnsTarget()
@@ -111,7 +110,32 @@ class AddEditViewController: UIViewController {
         titleLabel.text = fromDetailsView ? "Edit job details" : "Add a new job"
         if let job = passedJob {
             companyField.textField.text = job.companyName
+            roleField.textField.text = job.role
+            teamField.textField.text = job.team
+            locationField.textField.text = job.location
+            linkField.textField.text = job.link
+            notesField.textField.text = job.notes
+            
+            switch job.status {
+            case "open":
+                selectedStatus = editOpenButton
+            case "applied":
+                selectedStatus = editAppliedButton
+            case "interview":
+                selectedStatus = editInterviewButton
+            case "closed":
+                selectedStatus = editClosedButton
+            default:
+                selectedStatus = editOpenButton
+            }
+            selectedStatus.isSelected = true
+            selectedStatus.addRemoveCheckSymbol()
+        } else {
+            selectedStatus = editOpenButton
+            selectedStatus.addRemoveCheckSymbol()
         }
+        
+        
         toggleAppliedDataStackView()
     }
     
@@ -205,7 +229,7 @@ class AddEditViewController: UIViewController {
 
 extension UIViewController {
     func dismissKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target:     self, action:    #selector(UIViewController.dismissKeyboardTouchOutside))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboardTouchOutside))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
