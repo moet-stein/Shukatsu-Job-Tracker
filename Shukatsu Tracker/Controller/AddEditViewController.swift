@@ -190,38 +190,77 @@ class AddEditViewController: UIViewController {
     
     private func saveJob(companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
         
-        let entity = NSEntityDescription.entity(forEntityName: "JobInfo", in: context)!
-        
-        let jobInfo = NSManagedObject(entity: entity, insertInto: context)
-        
-        jobInfo.setValue(companyName, forKey: "companyName")
-        jobInfo.setValue(location, forKey: "location")
-        jobInfo.setValue(status, forKey: "status")
-        jobInfo.setValue(favorite, forKey: "favorite")
-        jobInfo.setValue(role, forKey: "role")
-        jobInfo.setValue(team, forKey: "team")
-        jobInfo.setValue(link, forKey: "link")
-        jobInfo.setValue(notes, forKey: "notes")
-        jobInfo.setValue(appliedDate, forKey: "appliedDate")
-        jobInfo.setValue(lastUpdate, forKey: "lastUpdate")
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd, EEE"
         
-        if let appliedDate = appliedDate {
-            let dateString = formatter.string(from: appliedDate)
-            jobInfo.setValue(dateString, forKey: "appliedDateString")
+        if let passedJob = passedJob {
+            
+            passedJob.companyName = companyName
+            passedJob.location = location
+            passedJob.status = status
+            passedJob.role = role
+            passedJob.team = team
+            passedJob.link = link
+            passedJob.notes = notes
+            
+            if let appliedDate = appliedDate {
+                let dateString = formatter.string(from: appliedDate)
+                passedJob.appliedDateString = dateString
+            }
+            
+            let lastUpdateString = formatter.string(from: lastUpdate)
+            passedJob.lastUpdateString = lastUpdateString
+            
+            do {
+                try context.save()
+                addJobInfoDelegate?.updateJonInfoFavorite(jobInfo: passedJob)
+                
+            } catch let error as NSError {
+                print("Could not update. \(error), \(error.userInfo)")
+            }
+            
+        } else {
+            let entity = NSEntityDescription.entity(forEntityName: "JobInfo", in: context)!
+            let jobInfo = NSManagedObject(entity: entity, insertInto: context)
+            
+            jobInfo.setValue(companyName, forKey: "companyName")
+            jobInfo.setValue(location, forKey: "location")
+            jobInfo.setValue(status, forKey: "status")
+            jobInfo.setValue(favorite, forKey: "favorite")
+            jobInfo.setValue(role, forKey: "role")
+            jobInfo.setValue(team, forKey: "team")
+            jobInfo.setValue(link, forKey: "link")
+            jobInfo.setValue(notes, forKey: "notes")
+            jobInfo.setValue(appliedDate, forKey: "appliedDate")
+            jobInfo.setValue(lastUpdate, forKey: "lastUpdate")
+            
+            
+            if let appliedDate = appliedDate {
+                let dateString = formatter.string(from: appliedDate)
+                jobInfo.setValue(dateString, forKey: "appliedDateString")
+            }
+            
+            let lastUpdateString = formatter.string(from: lastUpdate)
+            jobInfo.setValue(lastUpdateString, forKey: "lastUpdateString")
+            
+            do {
+                try context.save()
+                addJobInfoDelegate?.addNewJobInfo(jobInfo: jobInfo as! JobInfo)
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
         }
         
-        let lastUpdateString = formatter.string(from: lastUpdate)
-        jobInfo.setValue(lastUpdateString, forKey: "lastUpdateString")
         
-        do {
-            try context.save()
-            addJobInfoDelegate?.addNewJobInfo(jobInfo: jobInfo as! JobInfo)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+        
+    }
+    
+    private func saveNewJob() {
+        
+    }
+    
+    private func saveUpdatedJob() {
+        
     }
 
 }
