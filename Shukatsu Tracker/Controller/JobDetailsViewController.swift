@@ -10,10 +10,14 @@ import UIKit
 
 
 class JobDetailsViewController: UIViewController {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    weak var addJobInfoDelegate: AddJobInfoToHomeVC?
+    
     private var selectedJob: JobInfo
 
     private var contentView: JobDetailsView!
     private var detailViewEditButton: UIButton!
+    private var favoriteButton: UIButton!
     
     private var statusLabels: TitleContentLabelsView!
     private var companyLabels: TitleContentLabelsView!
@@ -33,6 +37,7 @@ class JobDetailsViewController: UIViewController {
         view = contentView
         
         detailViewEditButton = contentView.detailViewEditButton
+        favoriteButton = contentView.favoriteButton
         
         statusLabels = contentView.statusLabels
         companyLabels = contentView.companyLabels
@@ -46,9 +51,9 @@ class JobDetailsViewController: UIViewController {
         
         
         print(selectedJob)
-        setContentLabels()
+        setContent()
         addLinkTarget()
-        addDetailViewEditButtonTarget()
+        addButtonsTarget()
     }
     
     init(selectedJob: JobInfo) {
@@ -65,8 +70,9 @@ class JobDetailsViewController: UIViewController {
         linkLabels.linkTextView.addGestureRecognizer(tapRecognizer)
     }
     
-    private func addDetailViewEditButtonTarget() {
+    private func addButtonsTarget() {
         detailViewEditButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+        favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
     }
     
     @objc func linkTapped() {
@@ -84,7 +90,16 @@ class JobDetailsViewController: UIViewController {
         }
     }
     
-    private func setContentLabels() {
+    @objc func favoriteButtonTapped() {
+        favoriteButton.showAnimation { [weak self] in
+            self?.favoriteButton.isSelected.toggle()
+            self?.toggleFavoriteBtn()
+            
+        }
+        
+    }
+    
+    private func setContent() {
         print(selectedJob)
         statusLabels.addStatusColor(status: selectedJob.status ?? "open")
         companyLabels.contentLabel.text = selectedJob.companyName
@@ -95,6 +110,25 @@ class JobDetailsViewController: UIViewController {
         notesLabels.contentLabel.text = selectedJob.notes ?? " - "
         appliedDateLabels.contentLabel.text = selectedJob.appliedDateString ?? " - "
         lastUpdatedLabels.contentLabel.text = selectedJob.lastUpdateString
+        favoriteButton.isSelected = selectedJob.favorite
+        toggleFavoriteBtn()
+        
+    }
+    
+    private func toggleFavoriteBtn() {
+        //UPDATE CORE DATA SELECTEDJOB.FAVORITE
+        let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .small)
+        
+        if favoriteButton.isSelected {
+            let heartSF = UIImage(systemName: "heart.fill", withConfiguration: config)
+            favoriteButton.setImage(heartSF, for: .selected)
+            print("isselected")
+        } else {
+            let heartSF = UIImage(systemName: "heart", withConfiguration: config)
+            favoriteButton.setImage(heartSF, for: .normal)
+            print("isNOTselected")
+        }
+       
         
     }
     
