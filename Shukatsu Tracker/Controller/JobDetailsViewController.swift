@@ -8,7 +8,6 @@
 import UIKit
 
 
-
 class JobDetailsViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var addJobInfoDelegate: AddJobInfoToHomeVC?
@@ -49,9 +48,7 @@ class JobDetailsViewController: UIViewController {
         appliedDateLabels = contentView.appliedDateLabels
         lastUpdatedLabels = contentView.lastUpdatedLabels
         
-        
-        print(selectedJob)
-        setContent()
+        setContent(job: selectedJob)
         addLinkTarget()
         addButtonsTarget()
     }
@@ -64,6 +61,10 @@ class JobDetailsViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        addJobInfoDelegate?.updateJobInfo(jobInfo: selectedJob)
     }
     
     private func addLinkTarget() {
@@ -87,7 +88,12 @@ class JobDetailsViewController: UIViewController {
     
     @objc func editButtonTapped() {
         detailViewEditButton.showAnimation { [weak self] in
-            self?.present(AddEditViewController(fromDetailsView: true, passedJob: self?.selectedJob, addJobInfoDelegate: HomeViewController()), animated: true, completion: nil)
+            self?.present(AddEditViewController(
+                fromDetailsView: true,
+                passedJob: self?.selectedJob,
+                addJobInfoDelegate: HomeViewController(),
+                updateJobInfoInDetailsVCDelegate: self),
+                          animated: true, completion: nil)
         }
     }
     
@@ -95,29 +101,25 @@ class JobDetailsViewController: UIViewController {
         favoriteButton.showAnimation { [weak self] in
             self?.favoriteButton.isSelected.toggle()
             self?.toggleFavoriteBtn(updateInfo: true)
-            
         }
-        
     }
     
-    private func setContent() {
-        print(selectedJob)
-        statusLabels.addStatusColor(status: selectedJob.status ?? "open")
-        companyLabels.contentLabel.text = selectedJob.companyName
-        roleLabels.contentLabel.text = selectedJob.role ?? " - "
-        teamLabels.contentLabel.text = selectedJob.team ?? " - "
-        locationLabels.contentLabel.text = selectedJob.location
-        linkLabels.addLink(link: selectedJob.link)
-        notesLabels.contentLabel.text = selectedJob.notes ?? " - "
-        appliedDateLabels.contentLabel.text = selectedJob.appliedDateString ?? " - "
-        lastUpdatedLabels.contentLabel.text = selectedJob.lastUpdateString
-        favoriteButton.isSelected = selectedJob.favorite
+    private func setContent(job: JobInfo) {
+        statusLabels.addStatusColor(status: job.status ?? "open")
+        companyLabels.contentLabel.text = job.companyName
+        roleLabels.contentLabel.text = job.role ?? " - "
+        teamLabels.contentLabel.text = job.team ?? " - "
+        locationLabels.contentLabel.text = job.location
+        linkLabels.addLink(link: job.link)
+        notesLabels.contentLabel.text = job.notes ?? " - "
+        appliedDateLabels.contentLabel.text = job.appliedDateString ?? " - "
+        lastUpdatedLabels.contentLabel.text = job.lastUpdateString
+        favoriteButton.isSelected = job.favorite
         toggleFavoriteBtn(updateInfo: false)
         
     }
     
     private func toggleFavoriteBtn(updateInfo: Bool) {
-        //UPDATE CORE DATA SELECTEDJOB.FAVORITE
         let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .small)
         
         if favoriteButton.isSelected {
@@ -130,7 +132,6 @@ class JobDetailsViewController: UIViewController {
             print("isNOTselected")
         }
         
-        print(selectedJob.objectID)
         
         if updateInfo {
             selectedJob.favorite = favoriteButton.isSelected
@@ -142,10 +143,14 @@ class JobDetailsViewController: UIViewController {
             }
             
         }
-       
-        
     }
     
+}
+
+extension JobDetailsViewController: UpdateJobInfoInDetailsVC {
+    func updateJobInfo(jobInfo: JobInfo) {
+        self.setContent(job: jobInfo)
+    }
 }
 
 

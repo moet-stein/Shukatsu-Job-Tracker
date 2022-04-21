@@ -8,10 +8,6 @@
 import UIKit
 import CoreData
 
-//protocol Presentable: AnyObject {
-//    func presentViewController(viewController: UIViewController)
-//}
-
 class HomeViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -82,6 +78,7 @@ class HomeViewController: UIViewController {
         jobsCollectionView = contentView.jobsCollectionView
         jobsCollectionView.dataSource = self
         jobsCollectionView.delegate = self
+        
         
         addButton = contentView.addButton
         
@@ -182,7 +179,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func addButtonPressed(sender: UIButton) {
-        present(AddEditViewController(fromDetailsView: false, passedJob: nil, addJobInfoDelegate: self), animated: true, completion: nil)
+        present(AddEditViewController(fromDetailsView: false, passedJob: nil, addJobInfoDelegate: self, updateJobInfoInDetailsVCDelegate: nil), animated: true, completion: nil)
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -218,8 +215,15 @@ extension HomeViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JobsCollectionViewCell.identifier, for: indexPath) as? JobsCollectionViewCell else {
             return UICollectionViewCell()
         }
+        
         let currentJob = filteredJobInfos[indexPath.row]
-        cell.setupCellContent(companyName: currentJob.companyName ?? "", location: currentJob.location ?? "none", updatedDate: currentJob.lastUpdate ?? Date(), status: currentJob.status ?? "open")
+        
+        cell.setupCellContent(
+            companyName: currentJob.companyName ?? "",
+            location: currentJob.location ?? "none",
+            updatedDate: currentJob.lastUpdate ?? Date(),
+            status: currentJob.status ?? "open")
+        
         return cell
     }
 }
@@ -232,9 +236,15 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: AddJobInfoToHomeVC {
     func updateJonInfoFavorite(jobInfo: JobInfo) {
-        //Find the job that has to be updated, and update
         self.filteringJobs()
-//        self.updateStatusBoxes()
+    }
+    
+    func updateJobInfo(jobInfo: JobInfo) {
+        if let index = self.filteredJobInfos.firstIndex(where: {$0.id == jobInfo.id}) {
+            self.filteredJobInfos[index] = jobInfo
+            self.filteringJobs()
+            self.updateStatusBoxes()
+        }
     }
     
     func addNewJobInfo(jobInfo: JobInfo) {

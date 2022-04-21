@@ -11,11 +11,17 @@ import CoreData
 protocol AddJobInfoToHomeVC: AnyObject {
     func addNewJobInfo(jobInfo: JobInfo)
     func updateJonInfoFavorite(jobInfo: JobInfo)
+    func updateJobInfo(jobInfo: JobInfo)
+}
+
+protocol UpdateJobInfoInDetailsVC: AnyObject {
+    func updateJobInfo(jobInfo: JobInfo)
 }
 
 class AddEditViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var addJobInfoDelegate: AddJobInfoToHomeVC?
+    weak var updateJobInfoInDetailsVCDelegate: UpdateJobInfoInDetailsVC?
     
     private var fromDetailsView: Bool
     private var passedJob: JobInfo?
@@ -46,10 +52,12 @@ class AddEditViewController: UIViewController {
     private var saveButton: UIButton!
     private var bottomSaveButton: UIButton!
     
-    init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: AddJobInfoToHomeVC?) {
+    init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: AddJobInfoToHomeVC?, updateJobInfoInDetailsVCDelegate: UpdateJobInfoInDetailsVC?) {
         self.fromDetailsView = fromDetailsView
         self.passedJob = passedJob
         self.addJobInfoDelegate = addJobInfoDelegate
+        self.updateJobInfoInDetailsVCDelegate = updateJobInfoInDetailsVCDelegate
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -77,13 +85,10 @@ class AddEditViewController: UIViewController {
         linkField = contentView.linkField
         notesField = contentView.notesField
         appliedDatePicker = contentView.appliedDatePicker
-        
         appliedDateStackView = contentView.appliedDateStackView
         
         saveButton = contentView.saveJobButton
         bottomSaveButton = contentView.bottomSaveButton
-        
-        
         
         setContent()
         addStatusBtnsTarget()
@@ -185,7 +190,7 @@ class AddEditViewController: UIViewController {
         let notes = notesField.textField.text ?? nil
 
         saveJob(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
-        dismiss(animated: true)
+        
     }
     
     private func saveJob(companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
@@ -193,27 +198,30 @@ class AddEditViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd, EEE"
         
-        if let passedJob = passedJob {
+        if let job = passedJob {
             
-            passedJob.companyName = companyName
-            passedJob.location = location
-            passedJob.status = status
-            passedJob.role = role
-            passedJob.team = team
-            passedJob.link = link
-            passedJob.notes = notes
+            job.companyName = companyName
+            job.location = location
+            job.status = status
+            job.role = role
+            job.team = team
+            job.link = link
+            job.notes = notes
             
             if let appliedDate = appliedDate {
                 let dateString = formatter.string(from: appliedDate)
-                passedJob.appliedDateString = dateString
+                job.appliedDateString = dateString
             }
             
             let lastUpdateString = formatter.string(from: lastUpdate)
-            passedJob.lastUpdateString = lastUpdateString
+            job.lastUpdateString = lastUpdateString
             
             do {
                 try context.save()
-                addJobInfoDelegate?.updateJonInfoFavorite(jobInfo: passedJob)
+                // FIX HERE TO SHOW UPDATED JOBDETAILS IN JOBDETAILSCONTROLLER AND HOMEVIEW??
+                updateJobInfoInDetailsVCDelegate?.updateJobInfo(jobInfo: job)
+//                addJobInfoDelegate?.updateJobInfo(jobInfo: job)
+                dismiss(animated: true)
                 
             } catch let error as NSError {
                 print("Could not update. \(error), \(error.userInfo)")
@@ -246,21 +254,12 @@ class AddEditViewController: UIViewController {
             do {
                 try context.save()
                 addJobInfoDelegate?.addNewJobInfo(jobInfo: jobInfo as! JobInfo)
+                dismiss(animated: true)
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
+            
         }
-        
-        
-        
-    }
-    
-    private func saveNewJob() {
-        
-    }
-    
-    private func saveUpdatedJob() {
-        
     }
 
 }
