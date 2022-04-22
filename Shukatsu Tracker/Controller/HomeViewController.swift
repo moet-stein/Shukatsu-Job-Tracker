@@ -247,8 +247,17 @@ extension HomeViewController: AddJobInfoToHomeVC {
     }
     
     func addNewJobInfo(jobInfo: JobInfo) {
-        self.jobInfos.append(jobInfo)
-        self.filteringJobs()
-        self.updateStatusBoxes()
+        DataManager.fetchJonInfos { [weak self] jobInfos in
+            guard let jobs = jobInfos else {
+                return
+            }
+            
+            self?.jobInfos = jobs
+            DispatchQueue.main.async {
+                self?.jobsCollectionView.reloadData()
+                self?.filteringJobs()
+                self?.updateStatusBoxes()
+            }
+        }
     }
 }
