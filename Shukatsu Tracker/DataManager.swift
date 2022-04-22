@@ -16,7 +16,7 @@ class DataManager {
     }()
     
     // MARK: - Create
-    static func createJobInfo(delegate: AddJobInfoToHomeVC?,
+    static func createJobInfo(delegate: EditJobInHomeVC?,
                                    companyName: String,
                                    location: String?,
                                    status: String,
@@ -53,7 +53,7 @@ class DataManager {
         
         do {
             try managedObjectContext.save()
-            delegate?.addNewJobInfo(jobInfo: jobInfo)
+            delegate?.fetchJobInfosAndReload()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

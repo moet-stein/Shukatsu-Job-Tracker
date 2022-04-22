@@ -10,7 +10,7 @@ import UIKit
 
 class JobDetailsViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    weak var addJobInfoDelegate: AddJobInfoToHomeVC?
+    weak var jobEditedHomeVCDelegate: EditJobInHomeVC?
     
     private var selectedJob: JobInfo
 
@@ -28,6 +28,7 @@ class JobDetailsViewController: UIViewController {
     private var appliedDateLabels: TitleContentLabelsView!
     private var lastUpdatedLabels: TitleContentLabelsView!
     
+    private var deleteButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +49,16 @@ class JobDetailsViewController: UIViewController {
         appliedDateLabels = contentView.appliedDateLabels
         lastUpdatedLabels = contentView.lastUpdatedLabels
         
+        deleteButton = contentView.deleteButton
+        
         setContent(job: selectedJob)
         addLinkTarget()
         addButtonsTarget()
     }
     
-    init(selectedJob: JobInfo, addJobInfoDelegate: AddJobInfoToHomeVC?) {
+    init(selectedJob: JobInfo, addJobInfoDelegate: EditJobInHomeVC?) {
         self.selectedJob = selectedJob
-        self.addJobInfoDelegate = addJobInfoDelegate
+        self.jobEditedHomeVCDelegate = addJobInfoDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -64,7 +67,7 @@ class JobDetailsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        addJobInfoDelegate?.updateJobInfo(jobInfo: selectedJob)
+        jobEditedHomeVCDelegate?.updateJobInfo(jobInfo: selectedJob)
     }
     
     private func addLinkTarget() {
@@ -75,6 +78,7 @@ class JobDetailsViewController: UIViewController {
     private func addButtonsTarget() {
         detailViewEditButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
     @objc func linkTapped() {
@@ -102,6 +106,21 @@ class JobDetailsViewController: UIViewController {
             self?.favoriteButton.isSelected.toggle()
             self?.toggleFavoriteBtn(updateInfo: true)
         }
+    }
+    
+    @objc func deleteButtonTapped() {
+        print("BUtton tapped")
+        let alertController = UIAlertController(title: "Do you want to delete this job?", message: "Select Cancel or Delete", preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: "DELETE", style: .destructive) { _ in
+            DataManager.deleteJobInfo(job: self.selectedJob)
+            self.jobEditedHomeVCDelegate?.fetchJobInfosAndReload()
+            self.dismiss(animated: true)
+        })
+        
+        alertController.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     private func setContent(job: JobInfo) {
@@ -137,7 +156,7 @@ class JobDetailsViewController: UIViewController {
             selectedJob.favorite = favoriteButton.isSelected
             do {
                try context.save()
-               addJobInfoDelegate?.updateJonInfoFavorite(jobInfo: selectedJob)
+               jobEditedHomeVCDelegate?.updateJonInfoFavorite(jobInfo: selectedJob)
             } catch {
                 print("Failed to save")
             }

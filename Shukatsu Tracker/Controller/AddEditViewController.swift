@@ -8,8 +8,8 @@
 import UIKit
 import CoreData
 
-protocol AddJobInfoToHomeVC: AnyObject {
-    func addNewJobInfo(jobInfo: JobInfo)
+protocol EditJobInHomeVC: AnyObject {
+    func fetchJobInfosAndReload()
     func updateJonInfoFavorite(jobInfo: JobInfo)
     func updateJobInfo(jobInfo: JobInfo)
 }
@@ -20,7 +20,7 @@ protocol UpdateJobInfoInDetailsVC: AnyObject {
 
 class AddEditViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    weak var addJobInfoDelegate: AddJobInfoToHomeVC?
+    weak var addJobInfoDelegate: EditJobInHomeVC?
     weak var updateJobInfoInDetailsVCDelegate: UpdateJobInfoInDetailsVC?
     
     private var fromDetailsView: Bool
@@ -52,7 +52,7 @@ class AddEditViewController: UIViewController {
     private var saveButton: UIButton!
     private var bottomSaveButton: UIButton!
     
-    init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: AddJobInfoToHomeVC?, updateJobInfoInDetailsVCDelegate: UpdateJobInfoInDetailsVC?) {
+    init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: EditJobInHomeVC?, updateJobInfoInDetailsVCDelegate: UpdateJobInfoInDetailsVC?) {
         self.fromDetailsView = fromDetailsView
         self.passedJob = passedJob
         self.addJobInfoDelegate = addJobInfoDelegate

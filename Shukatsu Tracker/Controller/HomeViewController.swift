@@ -229,7 +229,7 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
-extension HomeViewController: AddJobInfoToHomeVC {
+extension HomeViewController: EditJobInHomeVC {
     func updateJonInfoFavorite(jobInfo: JobInfo) {
         self.filteringJobs()
     }
@@ -255,7 +255,7 @@ extension HomeViewController: AddJobInfoToHomeVC {
         
     }
     
-    func addNewJobInfo(jobInfo: JobInfo) {
+    func fetchJobInfosAndReload() {
         DataManager.fetchJonInfos { [weak self] jobInfos in
             guard let jobs = jobInfos else {
                 return
