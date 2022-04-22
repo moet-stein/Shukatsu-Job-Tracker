@@ -89,7 +89,7 @@ class DataManager {
     }
     
     // MARK: - Update
-    static func updateJobInfo(delegate: UpdateJobInfoInDetailsVC?, job: JobInfo,companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
+    static func updateJobInfo(detailsVCdelegate: UpdateJobInfoInDetailsVC?, job: JobInfo,companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
         
         job.companyName = companyName
         job.location = location
@@ -112,7 +112,7 @@ class DataManager {
         
         do {
             try managedObjectContext.save()
-            delegate?.updateJobInfo(jobInfo: job)
+            detailsVCdelegate?.updateJobInfoInDetailsVC(jobInfo: job)
             
         } catch let error as NSError {
             print("Could not update. \(error), \(error.userInfo)")

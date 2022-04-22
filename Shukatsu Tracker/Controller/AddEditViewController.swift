@@ -15,12 +15,12 @@ protocol EditJobInHomeVC: AnyObject {
 }
 
 protocol UpdateJobInfoInDetailsVC: AnyObject {
-    func updateJobInfo(jobInfo: JobInfo)
+    func updateJobInfoInDetailsVC(jobInfo: JobInfo)
 }
 
 class AddEditViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    weak var addJobInfoDelegate: EditJobInHomeVC?
+    weak var editJobInHomeVCDelegate: EditJobInHomeVC?
     weak var updateJobInfoInDetailsVCDelegate: UpdateJobInfoInDetailsVC?
     
     private var fromDetailsView: Bool
@@ -55,7 +55,7 @@ class AddEditViewController: UIViewController {
     init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: EditJobInHomeVC?, updateJobInfoInDetailsVCDelegate: UpdateJobInfoInDetailsVC?) {
         self.fromDetailsView = fromDetailsView
         self.passedJob = passedJob
-        self.addJobInfoDelegate = addJobInfoDelegate
+        self.editJobInHomeVCDelegate = addJobInfoDelegate
         self.updateJobInfoInDetailsVCDelegate = updateJobInfoInDetailsVCDelegate
         
         super.init(nibName: nil, bundle: nil)
@@ -190,10 +190,10 @@ class AddEditViewController: UIViewController {
         let notes = notesField.textField.text ?? nil
 
         if let passedJob = passedJob {
-            DataManager.updateJobInfo(delegate: updateJobInfoInDetailsVCDelegate, job: passedJob, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            DataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         } else {
-            DataManager.createJobInfo(delegate: addJobInfoDelegate, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            DataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         }
     }

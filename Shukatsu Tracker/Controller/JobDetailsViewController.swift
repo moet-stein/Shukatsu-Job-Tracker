@@ -67,7 +67,7 @@ class JobDetailsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        jobEditedHomeVCDelegate?.updateJobInfo(jobInfo: selectedJob)
+        jobEditedHomeVCDelegate?.fetchJobInfosAndReload()
     }
     
     private func addLinkTarget() {
@@ -167,7 +167,7 @@ class JobDetailsViewController: UIViewController {
 }
 
 extension JobDetailsViewController: UpdateJobInfoInDetailsVC {
-    func updateJobInfo(jobInfo: JobInfo) {
+    func updateJobInfoInDetailsVC(jobInfo: JobInfo) {
         self.setContent(job: jobInfo)
     }
 }
