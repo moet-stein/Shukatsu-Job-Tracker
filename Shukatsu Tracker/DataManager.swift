@@ -39,6 +39,7 @@ class DataManager {
         jobInfo.setValue(notes, forKey: "notes")
         jobInfo.setValue(appliedDate, forKey: "appliedDate")
         jobInfo.setValue(lastUpdate, forKey: "lastUpdate")
+        jobInfo.setValue(UUID(), forKey: "id")
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd, EEE"
@@ -73,9 +74,9 @@ class DataManager {
         completion(nil)
     }
     
-    static func fetchJobInfo(usingId id: NSManagedObjectID, completion: (JobInfo?) -> Void) {
+    static func fetchJobInfo(usingId id: UUID, completion: (JobInfo?) -> Void) {
         let fetchRequest = NSFetchRequest<JobInfo>(entityName: "JobInfo")
-        fetchRequest.predicate = NSPredicate(format: "objectID == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
         do {
             let jobInfo = try managedObjectContext.fetch(fetchRequest)

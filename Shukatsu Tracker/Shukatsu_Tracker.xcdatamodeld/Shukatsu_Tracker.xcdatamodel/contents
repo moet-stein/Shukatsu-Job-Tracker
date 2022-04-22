@@ -5,6 +5,7 @@
         <attribute name="appliedDateString" optional="YES" attributeType="String"/>
         <attribute name="companyName" optional="YES" attributeType="String"/>
         <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastUpdateString" optional="YES" attributeType="String"/>
         <attribute name="link" optional="YES" attributeType="String"/>
@@ -15,6 +16,6 @@
         <attribute name="team" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="JobInfo" positionX="-197.96484375" positionY="-18" width="262.96484375" height="223"/>
+        <element name="JobInfo" positionX="-197.96484375" positionY="-18" width="262.96484375" height="238"/>
     </elements>
 </model>

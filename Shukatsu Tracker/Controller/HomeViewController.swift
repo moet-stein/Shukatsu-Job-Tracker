@@ -235,23 +235,20 @@ extension HomeViewController: EditJobInHomeVC {
     }
     
     func updateJobInfo(jobInfo: JobInfo) {
-//        DataManager.fetchJobInfo(usingId: jobInfo.objectID) { job in
-//            guard let job = job else {
-//                return
-//            }
-//
-//            if let index = self.filteredJobInfos.firstIndex(where: {$0.objectID == job.objectID}) {
-//                self.filteredJobInfos[index] = job
-////                self.filteringJobs()
-////                self.updateStatusBoxes()
-//            }
-//
-//            DispatchQueue.main.async { [weak self] in
-////                self?.jobsCollectionView.reloadItems(at: <#T##[IndexPath]#>)
-//                self?.filteringJobs()
-//                self?.updateStatusBoxes()
-//            }
-//        }
+        DataManager.fetchJobInfo(usingId: jobInfo.id) { job in
+            guard let job = job else {
+                return
+            }
+
+            if let index = self.filteredJobInfos.firstIndex(where: {$0.id == job.id}) {
+                self.filteredJobInfos[index] = job
+            }
+
+            DispatchQueue.main.async { [weak self] in
+                self?.filteringJobs()
+                self?.updateStatusBoxes()
+            }
+        }
         
     }
     
