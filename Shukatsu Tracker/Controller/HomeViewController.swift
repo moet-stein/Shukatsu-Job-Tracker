@@ -45,20 +45,16 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
-        fetchJonInfos()
-    }
-    
-    
-    private func fetchJonInfos() {
-        do {
-            jobInfos = try context.fetch(JobInfo.createFetchRequest())
-            filteredJobInfos = jobInfos
-            DispatchQueue.main.async {
-                self.jobsCollectionView.reloadData()
-                self.updateStatusBoxes()
+        DataManager.fetchJonInfos { jobs in
+            if let jobs = jobs {
+                jobInfos = jobs
+                filteredJobInfos = jobInfos
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.jobsCollectionView.reloadData()
+                    self?.updateStatusBoxes()
+                }
             }
-        } catch {
-            print("Failed")
         }
     }
     

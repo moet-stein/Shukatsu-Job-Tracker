@@ -54,7 +54,6 @@ class DataManager {
         do {
             try managedObjectContext.save()
             delegate?.addNewJobInfo(jobInfo: jobInfo)
-//            dismiss(animated: true)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
