@@ -39,6 +39,7 @@
 		6051AAFD280D6D4C002E9CF6 /* WebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AAFC280D6D4C002E9CF6 /* WebKitViewController.swift */; };
 		6051AB0B280F1943002E9CF6 /* JobInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB09280F1943002E9CF6 /* JobInfo+CoreDataClass.swift */; };
 		6051AB0C280F1943002E9CF6 /* JobInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB0A280F1943002E9CF6 /* JobInfo+CoreDataProperties.swift */; };
+		6051AB0E2812B159002E9CF6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB0D2812B159002E9CF6 /* DataManager.swift */; };
 		6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		6051AAFC280D6D4C002E9CF6 /* WebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewController.swift; sourceTree = "<group>"; };
 		6051AB09280F1943002E9CF6 /* JobInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JobInfo+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		6051AB0A280F1943002E9CF6 /* JobInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JobInfo+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		6051AB0D2812B159002E9CF6 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		89BE5B31226051AC8560A03B /* Pods-Shukatsu Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		DEC286EBCDACB6706F13477E /* Pods-Shukatsu Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.release.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +143,7 @@
 				6051046827F72E0200AB9DEC /* Assets.xcassets */,
 				6051046D27F72E0200AB9DEC /* Info.plist */,
 				6051046527F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld */,
+				6051AB0D2812B159002E9CF6 /* DataManager.swift */,
 			);
 			path = "Shukatsu Tracker";
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				605104A72803401000AB9DEC /* ProfileSettingsViewController.swift in Sources */,
 				6051048427F9DADB00AB9DEC /* circleButton.swift in Sources */,
 				6051047627F72F1900AB9DEC /* EnterPinView.swift in Sources */,
+				6051AB0E2812B159002E9CF6 /* DataManager.swift in Sources */,
 				605104A92803402900AB9DEC /* ProfileSettingsView.swift in Sources */,
 				605104A1280338BC00AB9DEC /* AddEditView.swift in Sources */,
 				6051AAFD280D6D4C002E9CF6 /* WebKitViewController.swift in Sources */,

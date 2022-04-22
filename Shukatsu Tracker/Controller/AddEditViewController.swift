@@ -199,7 +199,7 @@ class AddEditViewController: UIViewController {
         formatter.dateFormat = "yyyy/MM/dd, EEE"
         
         if let job = passedJob {
-            
+            //updateJobInfo don't forget to dismiss the view after calling the function
             job.companyName = companyName
             job.location = location
             job.status = status
@@ -228,6 +228,7 @@ class AddEditViewController: UIViewController {
             }
             
         } else {
+            //createToDoListItem don't forget to dismiss the view after calling the function
             let entity = NSEntityDescription.entity(forEntityName: "JobInfo", in: context)!
             let jobInfo = NSManagedObject(entity: entity, insertInto: context)
             
