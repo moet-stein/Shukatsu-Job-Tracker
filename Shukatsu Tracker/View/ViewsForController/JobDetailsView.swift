@@ -105,6 +105,15 @@ class JobDetailsView: UIView {
         return view
     }()
     
+    let deleteButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("DELETE", for: .normal)
+        
+        button.layer.cornerRadius = 10
+        button.setTitleColor(UIColor.systemRed, for: .normal)
+        return button
+    }()
 
     
     init(selectedJob: JobInfo) {
@@ -135,6 +144,8 @@ class JobDetailsView: UIView {
         contentVStackView.addArrangedSubview(notesLabels)
         contentVStackView.addArrangedSubview(appliedDateLabels)
         contentVStackView.addArrangedSubview(lastUpdatedLabels)
+        
+        contentView.addSubview(deleteButton)
     
         let scrollFrameGuide = scrollView.frameLayoutGuide
         let scrollContentGuide = scrollView.contentLayoutGuide
@@ -163,7 +174,8 @@ class JobDetailsView: UIView {
             contentVStackView.topAnchor.constraint(equalTo: buttonsHStackView.bottomAnchor, constant: 30),
             contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             contentVStackView.widthAnchor.constraint(equalToConstant: 320),
-            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
             
             statusLabels.heightAnchor.constraint(equalToConstant: 70),
             companyLabels.heightAnchor.constraint(equalToConstant: 70),
@@ -173,7 +185,13 @@ class JobDetailsView: UIView {
             linkLabels.heightAnchor.constraint(equalToConstant: 70),
             notesLabels.heightAnchor.constraint(equalToConstant: 70),
             appliedDateLabels.heightAnchor.constraint(equalToConstant: 70),
-            lastUpdatedLabels.heightAnchor.constraint(equalToConstant: 70)
+            lastUpdatedLabels.heightAnchor.constraint(equalToConstant: 70),
+            
+            deleteButton.topAnchor.constraint(equalTo: lastUpdatedLabels.bottomAnchor, constant: 50),
+            deleteButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            deleteButton.widthAnchor.constraint(equalToConstant: 200),
+            deleteButton.heightAnchor.constraint(equalToConstant: 50),
+            deleteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             
         ])
     }

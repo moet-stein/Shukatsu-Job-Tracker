@@ -67,6 +67,7 @@ class AddEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         contentView = AddEditView()
         view = contentView

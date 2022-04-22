@@ -235,11 +235,24 @@ extension HomeViewController: AddJobInfoToHomeVC {
     }
     
     func updateJobInfo(jobInfo: JobInfo) {
-        if let index = self.filteredJobInfos.firstIndex(where: {$0.id == jobInfo.id}) {
-            self.filteredJobInfos[index] = jobInfo
-            self.filteringJobs()
-            self.updateStatusBoxes()
-        }
+//        DataManager.fetchJobInfo(usingId: jobInfo.objectID) { job in
+//            guard let job = job else {
+//                return
+//            }
+//
+//            if let index = self.filteredJobInfos.firstIndex(where: {$0.objectID == job.objectID}) {
+//                self.filteredJobInfos[index] = job
+////                self.filteringJobs()
+////                self.updateStatusBoxes()
+//            }
+//
+//            DispatchQueue.main.async { [weak self] in
+////                self?.jobsCollectionView.reloadItems(at: <#T##[IndexPath]#>)
+//                self?.filteringJobs()
+//                self?.updateStatusBoxes()
+//            }
+//        }
+        
     }
     
     func addNewJobInfo(jobInfo: JobInfo) {

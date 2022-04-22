@@ -28,6 +28,7 @@ extension JobInfo {
     @NSManaged public var appliedDateString: String?
     @NSManaged public var lastUpdate: Date
     @NSManaged public var lastUpdateString: String
+    @NSManaged public var UUID: UUID
 
 }
 
