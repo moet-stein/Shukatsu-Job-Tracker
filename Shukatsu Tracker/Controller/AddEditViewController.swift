@@ -170,10 +170,9 @@ class AddEditViewController: UIViewController {
     @objc func saveButtonPressed(sender: UIButton) {
         let companyName = companyField.textField.text ?? ""
         if companyName.isEmpty {
-            print("emptyyy")
             return
         }
-
+        
         let appliedDate: Date?
         if appliedDateStackView.isHidden {
             appliedDate = nil
@@ -189,77 +188,12 @@ class AddEditViewController: UIViewController {
         let link = linkField.textField.text ?? nil
         let notes = notesField.textField.text ?? nil
 
-        saveJob(companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
-        
-    }
-    
-    private func saveJob(companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd, EEE"
-        
-        if let job = passedJob {
-            //updateJobInfo don't forget to dismiss the view after calling the function
-            job.companyName = companyName
-            job.location = location
-            job.status = status
-            job.role = role
-            job.team = team
-            job.link = link
-            job.notes = notes
-            
-            if let appliedDate = appliedDate {
-                let dateString = formatter.string(from: appliedDate)
-                job.appliedDateString = dateString
-            }
-            
-            let lastUpdateString = formatter.string(from: lastUpdate)
-            job.lastUpdateString = lastUpdateString
-            
-            do {
-                try context.save()
-                // FIX HERE TO SHOW UPDATED JOBDETAILS IN JOBDETAILSCONTROLLER AND HOMEVIEW??
-                updateJobInfoInDetailsVCDelegate?.updateJobInfo(jobInfo: job)
-//                addJobInfoDelegate?.updateJobInfo(jobInfo: job)
-                dismiss(animated: true)
-                
-            } catch let error as NSError {
-                print("Could not update. \(error), \(error.userInfo)")
-            }
-            
+        if let passedJob = passedJob {
+            DataManager.updateJobInfo(delegate: updateJobInfoInDetailsVCDelegate, job: passedJob, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            dismiss(animated: true)
         } else {
-            //createToDoListItem don't forget to dismiss the view after calling the function
-            let entity = NSEntityDescription.entity(forEntityName: "JobInfo", in: context)!
-            let jobInfo = NSManagedObject(entity: entity, insertInto: context)
-            
-            jobInfo.setValue(companyName, forKey: "companyName")
-            jobInfo.setValue(location, forKey: "location")
-            jobInfo.setValue(status, forKey: "status")
-            jobInfo.setValue(favorite, forKey: "favorite")
-            jobInfo.setValue(role, forKey: "role")
-            jobInfo.setValue(team, forKey: "team")
-            jobInfo.setValue(link, forKey: "link")
-            jobInfo.setValue(notes, forKey: "notes")
-            jobInfo.setValue(appliedDate, forKey: "appliedDate")
-            jobInfo.setValue(lastUpdate, forKey: "lastUpdate")
-            
-            
-            if let appliedDate = appliedDate {
-                let dateString = formatter.string(from: appliedDate)
-                jobInfo.setValue(dateString, forKey: "appliedDateString")
-            }
-            
-            let lastUpdateString = formatter.string(from: lastUpdate)
-            jobInfo.setValue(lastUpdateString, forKey: "lastUpdateString")
-            
-            do {
-                try context.save()
-                addJobInfoDelegate?.addNewJobInfo(jobInfo: jobInfo as! JobInfo)
-                dismiss(animated: true)
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
-            
+            DataManager.createJobInfo(delegate: addJobInfoDelegate, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            dismiss(animated: true)
         }
     }
 

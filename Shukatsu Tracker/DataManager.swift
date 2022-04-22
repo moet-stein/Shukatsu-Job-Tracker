@@ -16,7 +16,7 @@ class DataManager {
     }()
     
     // MARK: - Create
-    static func createToDoListItem(delegate: AddJobInfoToHomeVC,
+    static func createJobInfo(delegate: AddJobInfoToHomeVC?,
                                    companyName: String,
                                    location: String?,
                                    status: String,
@@ -53,7 +53,7 @@ class DataManager {
         
         do {
             try managedObjectContext.save()
-            delegate.addNewJobInfo(jobInfo: jobInfo)
+            delegate?.addNewJobInfo(jobInfo: jobInfo)
 //            dismiss(animated: true)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
@@ -76,7 +76,7 @@ class DataManager {
     
     static func fetchJobInfo(usingId id: NSManagedObjectID, completion: (JobInfo?) -> Void) {
         let fetchRequest = NSFetchRequest<JobInfo>(entityName: "JobInfo")
-        fetchRequest.predicate = NSPredicate(format: "objectId == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "objectID == %@", id)
         
         do {
             let jobInfo = try managedObjectContext.fetch(fetchRequest)
@@ -89,7 +89,7 @@ class DataManager {
     }
     
     // MARK: - Update
-    static func updateJobInfo(delegate: UpdateJobInfoInDetailsVC, job: JobInfo,companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
+    static func updateJobInfo(delegate: UpdateJobInfoInDetailsVC?, job: JobInfo,companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
         
         job.companyName = companyName
         job.location = location
@@ -112,7 +112,7 @@ class DataManager {
         
         do {
             try managedObjectContext.save()
-            delegate.updateJobInfo(jobInfo: job)
+            delegate?.updateJobInfo(jobInfo: job)
             
         } catch let error as NSError {
             print("Could not update. \(error), \(error.userInfo)")
