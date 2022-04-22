@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
     
     private func fetchJonInfos() {
         do {
-            jobInfos = try context.fetch(JobInfo.fetchRequest())
+            jobInfos = try context.fetch(JobInfo.createFetchRequest())
             filteredJobInfos = jobInfos
             DispatchQueue.main.async {
                 self.jobsCollectionView.reloadData()
@@ -159,7 +159,6 @@ class HomeViewController: UIViewController {
         sender.setTitleColor(.white, for: .normal)
         if sender.tag == 1 {
             viewAll = true
-            
             sender.backgroundColor = UIColor(named: "blueGrey")
             sender.tintColor = .white
             viewFavoritesButton.tintColor = UIColor(named: "viewOrange")
@@ -219,9 +218,9 @@ extension HomeViewController: UICollectionViewDataSource {
         let currentJob = filteredJobInfos[indexPath.row]
         
         cell.setupCellContent(
-            companyName: currentJob.companyName ?? "",
+            companyName: currentJob.companyName,
             location: currentJob.location ?? "none",
-            updatedDate: currentJob.lastUpdate ?? Date(),
+            updatedDate: currentJob.lastUpdate,
             status: currentJob.status ?? "open")
         
         return cell

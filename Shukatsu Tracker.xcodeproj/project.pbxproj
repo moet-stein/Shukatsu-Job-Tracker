@@ -24,7 +24,6 @@
 		6051048827FAF12800AB9DEC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048727FAF12800AB9DEC /* HomeView.swift */; };
 		6051049027FC764200AB9DEC /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048F27FC764200AB9DEC /* StatusButton.swift */; };
 		6051049227FCA10F00AB9DEC /* AllFavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */; };
-		6051049527FEEEE700AB9DEC /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049427FEEEE700AB9DEC /* Jobs.swift */; };
 		6051049727FF074300AB9DEC /* JobsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */; };
 		6051049F2803388C00AB9DEC /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049E2803388C00AB9DEC /* AddEditViewController.swift */; };
 		605104A1280338BC00AB9DEC /* AddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104A0280338BC00AB9DEC /* AddEditView.swift */; };
@@ -64,7 +63,6 @@
 		6051048727FAF12800AB9DEC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6051048F27FC764200AB9DEC /* StatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusButton.swift; sourceTree = "<group>"; };
 		6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFavoritesButton.swift; sourceTree = "<group>"; };
-		6051049427FEEEE700AB9DEC /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6051049E2803388C00AB9DEC /* AddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
 		605104A0280338BC00AB9DEC /* AddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditView.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 			children = (
 				6051AB04280F17AE002E9CF6 /* JobInfo */,
 				6051047727F7338F00AB9DEC /* Fonts */,
-				6051049327FEEEBD00AB9DEC /* Model */,
 				6051047427F72EDE00AB9DEC /* View */,
 				6051047327F72EC900AB9DEC /* Controller */,
 				6051045C27F72E0000AB9DEC /* AppDelegate.swift */,
@@ -197,14 +194,6 @@
 				6051047F27F733FD00AB9DEC /* Lato-Black.ttf */,
 			);
 			path = Lato;
-			sourceTree = "<group>";
-		};
-		6051049327FEEEBD00AB9DEC /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6051049427FEEEE700AB9DEC /* Jobs.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		605104AE28041DB200AB9DEC /* ViewsForController */ = {
@@ -355,7 +344,6 @@
 				605104A92803402900AB9DEC /* ProfileSettingsView.swift in Sources */,
 				605104A1280338BC00AB9DEC /* AddEditView.swift in Sources */,
 				6051AAFD280D6D4C002E9CF6 /* WebKitViewController.swift in Sources */,
-				6051049527FEEEE700AB9DEC /* Jobs.swift in Sources */,
 				6051AAFB280D6889002E9CF6 /* TitleLinkView.swift in Sources */,
 				6051046727F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld in Sources */,
 				6051049727FF074300AB9DEC /* JobsCollectionViewCell.swift in Sources */,
