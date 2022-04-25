@@ -44,9 +44,17 @@ class ProfileSettingsView: UIView {
     
     let editProfileCameraButton: CircleButton = {
         let button = CircleButton(buttonSize: 40, bgColor: UIColor.gray, buttonText: nil, sfSymbolName: "camera.circle")
-        
         return button
     }()
+    
+    
+    let tableView: UITableView = {
+       let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .gray
+        return tableView
+    }()
+    
     
     
     init() {
@@ -64,6 +72,7 @@ class ProfileSettingsView: UIView {
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(profileImageView)
         scrollView.addSubview(editProfileCameraButton)
+        scrollView.addSubview(tableView)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
@@ -79,7 +88,12 @@ class ProfileSettingsView: UIView {
             profileImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
             editProfileCameraButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10),
-            editProfileCameraButton.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10)
+            editProfileCameraButton.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10),
+            
+            tableView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30),
+            tableView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            tableView.widthAnchor.constraint(equalToConstant: 400),
+            tableView.heightAnchor.constraint(equalToConstant: 400)
         ])
     }
     

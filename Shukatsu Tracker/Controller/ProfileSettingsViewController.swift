@@ -16,7 +16,9 @@ class ProfileSettingsViewController: UIViewController {
         super.viewDidLoad()
 
         contentView = ProfileSettingsView()
+        
         view = contentView
+        
     }
     
     init() {
@@ -26,5 +28,6 @@ class ProfileSettingsViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 
 }
