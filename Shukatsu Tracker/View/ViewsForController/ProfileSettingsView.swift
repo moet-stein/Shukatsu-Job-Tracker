@@ -16,6 +16,15 @@ class ProfileSettingsView: UIView {
         return scrollView
     }()
     
+    private let titleLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Profile Settings"
+        label.font = UIFont(name: "Lato-Regular", size: 30)
+        label.textColor = UIColor(named: "skyBlue")
+        return label
+    }()
+    
     let profileImageView: UIImageView = {
         let uiImageView = UIImageView()
         uiImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +61,7 @@ class ProfileSettingsView: UIView {
     
     private func setUpUI() {
         addSubview(scrollView)
+        scrollView.addSubview(titleLabel)
         scrollView.addSubview(profileImageView)
         scrollView.addSubview(editProfileCameraButton)
         
@@ -60,8 +70,12 @@ class ProfileSettingsView: UIView {
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40),
+            titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40),
 
-            profileImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 60),
+            profileImageView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 60),
             profileImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
             editProfileCameraButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10),
