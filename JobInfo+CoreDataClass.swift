@@ -2,7 +2,7 @@
 //  JobInfo+CoreDataClass.swift
 //  Shukatsu Tracker
 //
-//  Created by Moe Steinmueller on 19.04.22.
+//  Created by Moe Steinmueller on 22.04.22.
 //
 //
 

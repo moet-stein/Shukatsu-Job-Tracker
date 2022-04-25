@@ -7,7 +7,7 @@
 
 import UIKit
 
-class circleButton: UIButton {
+class CircleButton: UIButton {
     var buttonSize: CGFloat
     var bgColor: UIColor
     var buttonText: String?

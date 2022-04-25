@@ -67,7 +67,6 @@ class AddEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         contentView = AddEditView()
         view = contentView
@@ -181,7 +180,7 @@ class AddEditViewController: UIViewController {
             appliedDate = appliedDatePicker.date
         }
         
-        let location = locationField.textField.text ?? nil
+        let location = locationField.textField.text ?? ""
         let status = selectedStatus.status
         let favorite = false
         let role = roleField.textField.text ?? nil

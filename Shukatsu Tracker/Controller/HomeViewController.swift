@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     private var contentView: HomeView!
     private var jobsCollectionView: UICollectionView!
     
-    private var addButton: circleButton!
+    private var addButton: CircleButton!
     
     private var profileImage: UIImageView!
     
@@ -215,7 +215,7 @@ extension HomeViewController: UICollectionViewDataSource {
         
         cell.setupCellContent(
             companyName: currentJob.companyName,
-            location: currentJob.location ?? "none",
+            location: currentJob.location,
             updatedDate: currentJob.lastUpdate,
             status: currentJob.status ?? "open")
         

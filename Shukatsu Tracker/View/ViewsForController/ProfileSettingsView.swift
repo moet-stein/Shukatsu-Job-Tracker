@@ -16,14 +16,29 @@ class ProfileSettingsView: UIView {
         return scrollView
     }()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.text = "Profile settings view"
-        label.font = UIFont(name: "Lato-Regular", size: 30)
-        return label
+    let profileImageView: UIImageView = {
+        let uiImageView = UIImageView()
+        uiImageView.translatesAutoresizingMaskIntoConstraints = false
+        uiImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        uiImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        
+        let image = UIImage(named: "azuImage")
+        uiImageView.contentMode = UIView.ContentMode.scaleAspectFill
+        uiImageView.image = image
+        
+        let radius = CGFloat(120 / 2)
+        uiImageView.layer.cornerRadius = radius
+        uiImageView.clipsToBounds = true
+        
+        return uiImageView
     }()
+    
+    let editProfileCameraButton: CircleButton = {
+        let button = CircleButton(buttonSize: 40, bgColor: UIColor.gray, buttonText: nil, sfSymbolName: "camera.circle")
+        
+        return button
+    }()
+    
     
     init() {
         super.init(frame: .zero)
@@ -37,19 +52,20 @@ class ProfileSettingsView: UIView {
     
     private func setUpUI() {
         addSubview(scrollView)
-        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(profileImageView)
+        scrollView.addSubview(editProfileCameraButton)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            profileImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 60),
+            profileImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            editProfileCameraButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10),
+            editProfileCameraButton.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10)
         ])
     }
     

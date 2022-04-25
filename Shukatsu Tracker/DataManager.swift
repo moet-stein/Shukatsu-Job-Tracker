@@ -18,7 +18,7 @@ class DataManager {
     // MARK: - Create
     static func createJobInfo(delegate: EditJobInHomeVC?,
                                    companyName: String,
-                                   location: String?,
+                                   location: String,
                                    status: String,
                                    favorite: Bool,
                                    role: String?,
@@ -89,7 +89,7 @@ class DataManager {
     }
     
     // MARK: - Update
-    static func updateJobInfo(detailsVCdelegate: UpdateJobInfoInDetailsVC?, job: JobInfo,companyName: String, location: String?, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
+    static func updateJobInfo(detailsVCdelegate: UpdateJobInfoInDetailsVC?, job: JobInfo,companyName: String, location: String, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
         
         job.companyName = companyName
         job.location = location

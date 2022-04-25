@@ -47,8 +47,8 @@ class EnterPinView: UIView {
         return textField
     }()
     
-    lazy var goButton: circleButton = {
-        let button = circleButton(
+    lazy var goButton: CircleButton = {
+        let button = CircleButton(
             buttonSize: 50,
             bgColor: UIColor(red: 0.64, green: 0.82, blue: 1.00, alpha: 1.00),
             buttonText: "GO",

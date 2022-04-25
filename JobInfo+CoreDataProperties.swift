@@ -2,7 +2,7 @@
 //  JobInfo+CoreDataProperties.swift
 //  Shukatsu Tracker
 //
-//  Created by Moe Steinmueller on 19.04.22.
+//  Created by Moe Steinmueller on 22.04.22.
 //
 //
 
@@ -17,7 +17,7 @@ extension JobInfo {
     }
 
     @NSManaged public var companyName: String
-    @NSManaged public var location: String?
+    @NSManaged public var location: String
     @NSManaged public var status: String?
     @NSManaged public var favorite: Bool
     @NSManaged public var role: String?
