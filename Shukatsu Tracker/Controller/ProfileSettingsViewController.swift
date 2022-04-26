@@ -11,23 +11,12 @@ class ProfileSettingsViewController: UIViewController {
     private var contentView: ProfileSettingsView!
     private var setttingsTableView: UITableView!
     
-    //    override func viewDidLoad() {
-    //        super.viewDidLoad()
-    //        contentView = ProfileSettingsView()
-    //        view = contentView
-    //        setttingsTableView = contentView.setttingsTableView
-    //
-    //    }
-    
     override func loadView() {
         contentView = ProfileSettingsView()
         view = contentView
         setttingsTableView = contentView.setttingsTableView
         setttingsTableView.delegate = self
         setttingsTableView.dataSource = self
-        
-        
-        
     }
     
     init() {
@@ -37,7 +26,6 @@ class ProfileSettingsViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
 }
 
@@ -83,20 +71,11 @@ extension ProfileSettingsViewController: UITableViewDataSource {
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
                 switch indexPath.row {
                 case 0: cell.showSwitch(pinIsOn: true)
-                case 1: cell.accessoryType = .none
+                case 1: cell.accessoryType = .disclosureIndicator
                 default: cell.textLabel?.text = ""
                     
                 }
             default: break
-                
-//            case 1: // section 1 Support
-//                switch (indexPath as NSIndexPath).row {
-//                case 0: cell.textLabel?.text = "PIN"
-//                case 1: cell.textLabel?.text = "Change PIN"
-//                default: cell.textLabel?.text = ""
-//
-//                }
-//            default: break
             }
         
         return cell

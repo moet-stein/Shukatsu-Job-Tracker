@@ -11,7 +11,7 @@ class SettingsTableViewCell: UITableViewCell {
     static let identifier = "SettingsTableViewCell"
     
     private let titleLabel : UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Lato-Regular", size: 17)
         return label
@@ -19,20 +19,22 @@ class SettingsTableViewCell: UITableViewCell {
     
     let setDataString: UILabel = {
         let label = UILabel()
-         label.translatesAutoresizingMaskIntoConstraints = false
-         label.font = UIFont(name: "Lato-Regular", size: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Lato-Regular", size: 15)
         label.textColor = UIColor.systemGray
-         return label
+        return label
     }()
     
-    private let uiSwitch: UISwitch = {
-       let switchButton = UISwitch()
+    let pinSwitch: UISwitch = {
+        let switchButton = UISwitch()
+        switchButton.isOn = true
+        switchButton.addTarget(self, action: #selector(switchTriggered), for: .valueChanged)
         switchButton.translatesAutoresizingMaskIntoConstraints = false
         switchButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         return switchButton
     }()
     
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpUI()
@@ -42,8 +44,9 @@ class SettingsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func setUpUI() {
-        addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -58,7 +61,7 @@ class SettingsTableViewCell: UITableViewCell {
     
     func showSetData(retrivedString: String) {
         setDataString.text = retrivedString
-        addSubview(setDataString)
+        contentView.addSubview(setDataString)
         
         NSLayoutConstraint.activate([
             setDataString.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -69,17 +72,20 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     func showSwitch(pinIsOn: Bool) {
-        addSubview(uiSwitch)
-        
+        contentView.addSubview(pinSwitch)
+
+
         NSLayoutConstraint.activate([
-            uiSwitch.topAnchor.constraint(equalTo: titleLabel.topAnchor),
-            uiSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            uiSwitch.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
+            pinSwitch.topAnchor.constraint(equalTo: topAnchor),
+            pinSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            pinSwitch.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
-        if pinIsOn {
-            uiSwitch.isOn = true 
-        }
     }
-
+    
+    @objc func switchTriggered(sender: UISwitch) {
+        print(sender.isOn)
+    }
 }
+
+
