@@ -100,5 +100,17 @@ extension ProfileSettingsViewController: UITableViewDataSource {
 }
 
 extension ProfileSettingsViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let nextVC = SetProfileNameViewController()
+            nextVC.modalPresentationStyle = .fullScreen
+            present(nextVC, animated: true)
+            print("Selected name or title cell")
+        case 1:
+            print("selected pin field")
+        default:
+            return
+        }
+    }
 }

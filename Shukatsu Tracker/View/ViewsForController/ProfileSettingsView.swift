@@ -52,7 +52,6 @@ class ProfileSettingsView: UIView {
         let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
-        tableView.layer.cornerRadius = 20
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         
         return tableView
