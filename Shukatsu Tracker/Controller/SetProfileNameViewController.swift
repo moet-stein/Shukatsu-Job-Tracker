@@ -9,77 +9,65 @@ import UIKit
 
 class SetProfileNameViewController: UIViewController {
     
-    private let textEditTableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-//        tableView.register(EditProfileViewCell.self, forCellReuseIdentifier: EditProfileViewCell.identifier)
-        return tableView
+    lazy var goBackButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("SAVE", for: .normal)
+        button.setTitleColor(UIColor.orange, for: .normal)
+        button.addTarget(self, action: #selector(goBackButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private let textFieldView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 20
+        return view
+    }()
+    
+    private let editTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Hello"
+        textField.backgroundColor = .clear
+        textField.tintColor = .systemOrange
+        return textField
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "lightOrange")
-        textEditTableView.dataSource = self
-        textEditTableView.delegate = self
-        // Do any additional setup after loading the view.
+        editTextField.delegate = self
+        setUpUI()
     }
     
 
-
-}
-
-extension SetProfileNameViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    private func setUpUI() {
+        view.addSubview(goBackButton)
+        view.addSubview(textFieldView)
+        textFieldView.addSubview(editTextField)
+        
+        NSLayoutConstraint.activate([
+            goBackButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            goBackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            textFieldView.topAnchor.constraint(equalTo: goBackButton.bottomAnchor, constant: 100),
+            textFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            textFieldView.widthAnchor.constraint(equalToConstant: 250),
+            textFieldView.heightAnchor.constraint(equalToConstant: 60),
+            
+            editTextField.topAnchor.constraint(equalTo: textFieldView.topAnchor, constant: 5),
+            editTextField.leftAnchor.constraint(equalTo: textFieldView.leftAnchor, constant: 20),
+            editTextField.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: -5)
+        ])
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier:"cell", for: indexPath)
-        return cell
+
+    @objc func goBackButtonTapped() {
+        dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 
-extension SetProfileNameViewController: UITableViewDelegate {
+extension SetProfileNameViewController: UITextFieldDelegate {
     
 }
-
-//class EditProfileViewCell: UITableViewCell {
-//    static let identifier = "EditProfileViewCell"
-//
-//    private let editableTextField: UITextField = {
-//        let textField = UITextField()
-//        textField.translatesAutoresizingMaskIntoConstraints = false
-//        textField.backgroundColor = .clear
-//        textField.tintColor = .orange
-//        return textField
-//    }()
-//
-//
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setUpUI()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    private func setUpUI() {
-//        addSubview(editableTextField)
-//
-//        NSLayoutConstraint.activate([
-//            editableTextField.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-//            editableTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-//            editableTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-//            editableTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-//        ])
-//    }
-//
-//
-////    func setupCellContent(titleString: String) {
-////        titleLabel.text = titleString
-////    }
-//
-//}

@@ -105,7 +105,7 @@ extension ProfileSettingsViewController: UITableViewDelegate {
         case 0:
             let nextVC = SetProfileNameViewController()
             nextVC.modalPresentationStyle = .fullScreen
-            present(nextVC, animated: true)
+            present(nextVC, animated: true, completion: nil)
             print("Selected name or title cell")
         case 1:
             print("selected pin field")
