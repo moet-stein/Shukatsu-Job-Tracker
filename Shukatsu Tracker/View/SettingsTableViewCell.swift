@@ -25,6 +25,13 @@ class SettingsTableViewCell: UITableViewCell {
          return label
     }()
     
+    private let uiSwitch: UISwitch = {
+       let switchButton = UISwitch()
+        switchButton.translatesAutoresizingMaskIntoConstraints = false
+        switchButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        return switchButton
+    }()
+    
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,6 +66,20 @@ class SettingsTableViewCell: UITableViewCell {
         ])
         
         accessoryType = .disclosureIndicator
+    }
+    
+    func showSwitch(pinIsOn: Bool) {
+        addSubview(uiSwitch)
+        
+        NSLayoutConstraint.activate([
+            uiSwitch.topAnchor.constraint(equalTo: titleLabel.topAnchor),
+            uiSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            uiSwitch.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
+        ])
+        
+        if pinIsOn {
+            uiSwitch.isOn = true 
+        }
     }
 
 }

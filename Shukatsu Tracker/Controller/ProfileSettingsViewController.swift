@@ -81,6 +81,12 @@ extension ProfileSettingsViewController: UITableViewDataSource {
             case 1:
                 cell.selectionStyle = .none
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
+                switch indexPath.row {
+                case 0: cell.showSwitch(pinIsOn: true)
+                case 1: cell.accessoryType = .none
+                default: cell.textLabel?.text = ""
+                    
+                }
             default: break
                 
 //            case 1: // section 1 Support
@@ -101,9 +107,10 @@ extension ProfileSettingsViewController: UITableViewDataSource {
 
 extension ProfileSettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let profileData = ["Moe", "Future iOS Engineer"]
         switch indexPath.section {
         case 0:
-            let nextVC = SetProfileNameViewController()
+            let nextVC = SetProfileNameViewController(placeholderText: profileData[indexPath.row])
             nextVC.modalPresentationStyle = .fullScreen
             present(nextVC, animated: true, completion: nil)
             print("Selected name or title cell")

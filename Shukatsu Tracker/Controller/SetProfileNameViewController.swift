@@ -8,6 +8,7 @@
 import UIKit
 
 class SetProfileNameViewController: UIViewController {
+    private var placeholderText: String
     
     lazy var goBackButton: UIButton = {
         let button = UIButton()
@@ -29,17 +30,26 @@ class SetProfileNameViewController: UIViewController {
     private let editTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Hello"
         textField.backgroundColor = .clear
         textField.tintColor = .systemOrange
         return textField
     }()
-
+    
+    init(placeholderText: String) {
+        self.placeholderText = placeholderText
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "lightOrange")
         editTextField.delegate = self
         setUpUI()
+        setUpContent()
     }
     
 
@@ -57,10 +67,14 @@ class SetProfileNameViewController: UIViewController {
             textFieldView.widthAnchor.constraint(equalToConstant: 250),
             textFieldView.heightAnchor.constraint(equalToConstant: 60),
             
-            editTextField.topAnchor.constraint(equalTo: textFieldView.topAnchor, constant: 5),
+            editTextField.topAnchor.constraint(equalTo: textFieldView.topAnchor),
             editTextField.leftAnchor.constraint(equalTo: textFieldView.leftAnchor, constant: 20),
-            editTextField.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor, constant: -5)
+            editTextField.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor)
         ])
+    }
+    
+    private func setUpContent() {
+        editTextField.text = placeholderText
     }
 
     @objc func goBackButtonTapped() {
