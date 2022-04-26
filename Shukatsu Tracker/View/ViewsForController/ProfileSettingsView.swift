@@ -12,7 +12,7 @@ class ProfileSettingsView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = UIColor(named: "bgOffwhite")
+        scrollView.backgroundColor = UIColor(named: "lightOrange")
         return scrollView
     }()
     
@@ -48,10 +48,13 @@ class ProfileSettingsView: UIView {
     }()
     
     
-    let tableView: UITableView = {
-       let tableView = UITableView()
+    let setttingsTableView: UITableView = {
+        let tableView = UITableView(frame: CGRect.zero, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .gray
+        tableView.backgroundColor = .clear
+        tableView.layer.cornerRadius = 20
+        tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
+        
         return tableView
     }()
     
@@ -72,7 +75,7 @@ class ProfileSettingsView: UIView {
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(profileImageView)
         scrollView.addSubview(editProfileCameraButton)
-        scrollView.addSubview(tableView)
+        scrollView.addSubview(setttingsTableView)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
@@ -90,10 +93,10 @@ class ProfileSettingsView: UIView {
             editProfileCameraButton.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10),
             editProfileCameraButton.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10),
             
-            tableView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30),
-            tableView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            tableView.widthAnchor.constraint(equalToConstant: 400),
-            tableView.heightAnchor.constraint(equalToConstant: 400)
+            setttingsTableView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30),
+            setttingsTableView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            setttingsTableView.widthAnchor.constraint(equalToConstant: 370),
+            setttingsTableView.heightAnchor.constraint(equalToConstant: 400)
         ])
     }
     
