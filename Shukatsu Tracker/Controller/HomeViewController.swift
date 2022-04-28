@@ -15,12 +15,17 @@ class HomeViewController: UIViewController {
     var checkedStatus = [String]()
     var viewAll = true
     
+    var profileSettings = [ProfileSettings]()
+
+    
     private var contentView: HomeView!
     private var jobsCollectionView: UICollectionView!
     
     private var addButton: CircleButton!
     
     private var profileImage: UIImageView!
+    private var greetLabel: UILabel!
+    private var titleLabel: UILabel!
     
     private var openBoxButton: StatusButton!
     private var appliedBoxButton: StatusButton!
@@ -44,6 +49,9 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
+        greetLabel = contentView.greetLabel
+        titleLabel = contentView.titleLabel
+        
         JobInfoDataManager.fetchJonInfos { jobs in
             if let jobs = jobs {
                 jobInfos = jobs
@@ -55,6 +63,21 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+        
+        ProfileSettingsDataManager.fetchProfileSettings { profiles in
+            if let profiles = profiles {
+                profileSettings = profiles
+                
+                let name = profiles[0].profileName ?? ""
+                let title = profiles[0].profileTitle ?? ""
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.greetLabel.text = "Good morning, \(name)"
+                    self?.titleLabel.text = title
+                }
+            }
+        }
+
     }
     
     private func updateStatusBoxes() {

@@ -44,18 +44,18 @@ class HomeView: UIView {
         return uiImageView
     }()
     
-    private let greetLabel: UILabel = {
+    let greetLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Good morning, Moe"
+//        label.text = "Good morning, Moe"
         label.font = UIFont(name: "Lato-Bold", size: 20)
         return label
     }()
     
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Future iOS Engineer"
+//        label.text = "Future iOS Engineer"
         label.font = UIFont(name: "Lato-Regular", size: 15)
         return label
     }()
