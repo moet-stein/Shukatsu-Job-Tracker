@@ -31,10 +31,12 @@ class EnterPinViewController: UIViewController {
             if keychain.get("ShukatsuPin") == nil {
                 let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
                 print("saveSuccessful: \(saveSuccessful)")
+                createProfile()
                 navigationController?.pushViewController(HomeViewController(), animated: true)
             } else {
                 if enteredPin == keychain.get("ShukatsuPin") {
                     print("corrent pin \(enteredPin)")
+                    createProfile()
                     navigationController?.pushViewController(HomeViewController(), animated: true)
                 } else {
                     print("wrong pin")
@@ -42,7 +44,21 @@ class EnterPinViewController: UIViewController {
             }
             pinTextField.text = ""
         }
+        
+        
 
+    }
+    
+    private func createProfile() {
+        ProfileSettingsDataManager.fetchProfileSettings { profiles in
+            if let profiles = profiles {
+                if profiles.isEmpty{
+                    ProfileSettingsDataManager.createProfileSettings(profileName: "Unknown", profileTitle: "unknown title", pinOn: true)
+                } else {
+                    print("its not empty")
+                }
+            }
+        }
     }
     
 }
