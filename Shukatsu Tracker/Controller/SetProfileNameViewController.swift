@@ -10,12 +10,21 @@ import UIKit
 class SetProfileNameViewController: UIViewController {
     private var placeholderText: String
     
-    lazy var goBackButton: UIButton = {
+    lazy var cancelButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("CANCEL", for: .normal)
+        button.setTitleColor(UIColor.red, for: .normal)
+        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var saveButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("SAVE", for: .normal)
         button.setTitleColor(UIColor.orange, for: .normal)
-        button.addTarget(self, action: #selector(goBackButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -54,15 +63,18 @@ class SetProfileNameViewController: UIViewController {
     
 
     private func setUpUI() {
-        view.addSubview(goBackButton)
+        view.addSubview(cancelButton)
+        view.addSubview(saveButton)
         view.addSubview(textFieldView)
         textFieldView.addSubview(editTextField)
         
         NSLayoutConstraint.activate([
-            goBackButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
-            goBackButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            saveButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             
-            textFieldView.topAnchor.constraint(equalTo: goBackButton.bottomAnchor, constant: 100),
+            textFieldView.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 100),
             textFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             textFieldView.widthAnchor.constraint(equalToConstant: 250),
             textFieldView.heightAnchor.constraint(equalToConstant: 60),
@@ -77,7 +89,11 @@ class SetProfileNameViewController: UIViewController {
         editTextField.text = placeholderText
     }
 
-    @objc func goBackButtonTapped() {
+    @objc func saveButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func cancelButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
 }
