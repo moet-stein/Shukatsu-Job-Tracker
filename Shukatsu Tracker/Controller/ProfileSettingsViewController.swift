@@ -39,7 +39,7 @@ extension ProfileSettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Section \(section)"
     }
@@ -57,26 +57,26 @@ extension ProfileSettingsViewController: UITableViewDataSource {
         let settingsContent1 = ["Name", "Title"]
         let settingsContent2 = ["PIN", "Change PIN"]
         
-            switch indexPath.section {
-            case 0:  // Section 0 Setup
-                cell.setupCellContent(titleString: settingsContent1[indexPath.row])
-                switch indexPath.row {
-                    case 0: cell.showSetData(retrivedString: "Moe")
-                    case 1: cell.showSetData(retrivedString: "Future iOS Engineer")
-                    default: cell.showSetData(retrivedString: "")
-                }
-            case 1:
-                cell.selectionStyle = .none
-                cell.setupCellContent(titleString: settingsContent2[indexPath.row])
-                switch indexPath.row {
-                case 0: cell.showSwitch(pinIsOn: true)
-                case 1:
-                    cell.accessoryType = .disclosureIndicator
-                default: cell.textLabel?.text = ""
-                    
-                }
-            default: break
+        switch indexPath.section {
+        case 0:  // Section 0 Setup
+            cell.setupCellContent(titleString: settingsContent1[indexPath.row])
+            switch indexPath.row {
+            case 0: cell.showSetData(retrivedString: profile?.profileName ?? "")
+            case 1: cell.showSetData(retrivedString: profile?.profileTitle ?? "")
+            default: cell.showSetData(retrivedString: "")
             }
+        case 1:
+            cell.selectionStyle = .none
+            cell.setupCellContent(titleString: settingsContent2[indexPath.row])
+            switch indexPath.row {
+            case 0: cell.showSwitch(pinIsOn: true)
+            case 1:
+                cell.accessoryType = .disclosureIndicator
+            default: cell.textLabel?.text = ""
+                
+            }
+        default: break
+        }
         
         return cell
     }
