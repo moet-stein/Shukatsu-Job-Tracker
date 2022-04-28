@@ -29,10 +29,7 @@ class ProfileSettingsViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewDidLoad() {
-        print(profile?.profileName)
-    }
+
 }
 
 extension ProfileSettingsViewController: UITableViewDataSource {
@@ -86,13 +83,19 @@ extension ProfileSettingsViewController: UITableViewDataSource {
 
 extension ProfileSettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let profileData = ["Moe", "Future iOS Engineer"]
         switch indexPath.section {
         case 0:
-            let nextVC = SetProfileNameViewController(placeholderText: profileData[indexPath.row])
+            let nextVC: SetProfileNameViewController
+            switch indexPath.row {
+            case 0:
+                nextVC = SetProfileNameViewController(placeholderText: profile?.profileName ?? "")
+            case 1:
+                nextVC = SetProfileNameViewController(placeholderText:profile?.profileTitle ?? "")
+            default:
+                return
+            }
             nextVC.modalPresentationStyle = .fullScreen
             present(nextVC, animated: true, completion: nil)
-            print("Selected name or title cell")
         case 1:
             print("selected pin field")
         default:
