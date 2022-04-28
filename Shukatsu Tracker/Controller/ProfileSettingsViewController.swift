@@ -14,6 +14,8 @@ class ProfileSettingsViewController: UIViewController, ProfileSettingsViewDelega
     private var contentView: ProfileSettingsView!
     private var settingsTableView: UITableView!
     
+    weak var homeVCDelegate: HomeVCDelegate?
+    
     
     override func loadView() {
         print("loadview")
@@ -26,7 +28,13 @@ class ProfileSettingsViewController: UIViewController, ProfileSettingsViewDelega
         fetchAndReload()
     }
     
-    init() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        homeVCDelegate?.updateProfileSettings()
+    }
+    
+    init(homeVCDelegate: HomeVCDelegate?) {
+        self.homeVCDelegate = homeVCDelegate
         super.init(nibName: nil, bundle: nil)
     }
     

@@ -11,6 +11,8 @@ protocol ProfileSettingsViewDelegate {
     func reloadTableView()
 }
 
+
+
 class SetProfileNameViewController: UIViewController {
     private var placeholderText: String
     private var profileName: Bool

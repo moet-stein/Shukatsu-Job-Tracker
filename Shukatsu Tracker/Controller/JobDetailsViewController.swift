@@ -13,7 +13,7 @@ class JobDetailsViewController: UIViewController {
         print("JobDetailsViewController deinit")
     }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    weak var jobEditedHomeVCDelegate: EditJobInHomeVC?
+    weak var jobEditedHomeVCDelegate: HomeVCDelegate?
     
     private var selectedJob: JobInfo
 
@@ -59,7 +59,7 @@ class JobDetailsViewController: UIViewController {
         addButtonsTarget()
     }
     
-    init(selectedJob: JobInfo, addJobInfoDelegate: EditJobInHomeVC?) {
+    init(selectedJob: JobInfo, addJobInfoDelegate: HomeVCDelegate?) {
         self.selectedJob = selectedJob
         self.jobEditedHomeVCDelegate = addJobInfoDelegate
         super.init(nibName: nil, bundle: nil)
@@ -169,7 +169,7 @@ class JobDetailsViewController: UIViewController {
     
 }
 
-extension JobDetailsViewController: UpdateJobInfoInDetailsVC {
+extension JobDetailsViewController: DetailsVCDelegate {
     func updateJobInfoInDetailsVC(jobInfo: JobInfo) {
         self.setContent(job: jobInfo)
     }

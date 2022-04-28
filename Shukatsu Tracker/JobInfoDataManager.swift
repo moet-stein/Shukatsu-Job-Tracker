@@ -16,7 +16,7 @@ class JobInfoDataManager {
     }()
     
     // MARK: - Create
-    static func createJobInfo(delegate: EditJobInHomeVC?,
+    static func createJobInfo(delegate: HomeVCDelegate?,
                                    companyName: String,
                                    location: String,
                                    status: String,
@@ -89,7 +89,7 @@ class JobInfoDataManager {
     }
     
     // MARK: - Update
-    static func updateJobInfo(detailsVCdelegate: UpdateJobInfoInDetailsVC?, job: JobInfo,companyName: String, location: String, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
+    static func updateJobInfo(detailsVCdelegate: DetailsVCDelegate?, job: JobInfo,companyName: String, location: String, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
         
         job.companyName = companyName
         job.location = location

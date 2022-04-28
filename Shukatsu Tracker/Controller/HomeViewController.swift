@@ -64,6 +64,11 @@ class HomeViewController: UIViewController {
             }
         }
         
+        updateProfileInfo()
+
+    }
+    
+    private func updateProfileInfo() {
         ProfileSettingsDataManager.fetchProfileSettings { profiles in
             if let profiles = profiles {
                 profileSettings = profiles[0]
@@ -77,7 +82,6 @@ class HomeViewController: UIViewController {
                 }
             }
         }
-
     }
     
     private func updateStatusBoxes() {
@@ -200,7 +204,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        present(ProfileSettingsViewController(), animated: true, completion: nil)
+        present(ProfileSettingsViewController(homeVCDelegate: self), animated: true, completion: nil)
     }
     
     private func filteringJobs() {
@@ -251,7 +255,8 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
-extension HomeViewController: EditJobInHomeVC {
+extension HomeViewController: HomeVCDelegate {
+    
     func updateJonInfoFavorite(jobInfo: JobInfo) {
         self.filteringJobs()
     }
@@ -287,5 +292,9 @@ extension HomeViewController: EditJobInHomeVC {
                 self?.updateStatusBoxes()
             }
         }
+    }
+    
+    func updateProfileSettings() {
+        self.updateProfileInfo()
     }
 }
