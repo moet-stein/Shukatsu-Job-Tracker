@@ -10,7 +10,7 @@ import UIKit
 class SettingsTableViewCell: UITableViewCell {
     static let identifier = "SettingsTableViewCell"
     
-    private let titleLabel : UILabel = {
+    let titleLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Lato-Regular", size: 17)
@@ -25,7 +25,7 @@ class SettingsTableViewCell: UITableViewCell {
         return label
     }()
     
-    let pinSwitch: UISwitch = {
+    lazy var pinSwitch: UISwitch = {
         let switchButton = UISwitch()
         switchButton.isOn = true
         switchButton.addTarget(self, action: #selector(switchTriggered), for: .valueChanged)
@@ -76,9 +76,9 @@ class SettingsTableViewCell: UITableViewCell {
 
 
         NSLayoutConstraint.activate([
-            pinSwitch.topAnchor.constraint(equalTo: topAnchor),
+            pinSwitch.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             pinSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            pinSwitch.bottomAnchor.constraint(equalTo: bottomAnchor)
+            pinSwitch.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
         ])
         
     }

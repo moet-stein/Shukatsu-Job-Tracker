@@ -9,16 +9,20 @@ import UIKit
 import WebKit
 
 class WebKitViewController: UIViewController, WKUIDelegate {
-    
-    private let webView: WKWebView = {
-       let preferences = WKWebpagePreferences()
-        preferences.allowsContentJavaScript = true
-        let configuration = WKWebViewConfiguration()
-        let webView = WKWebView(frame: .zero, configuration: configuration)
-        return webView
-    }()
-    
+    deinit {
+        print("WebKitViewController deinit")
+    }
+    var webView: WKWebView!
     private let url: URL
+
+    
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        view = webView
+    }
+    
     
     init(url: URL) {
         self.url = url
@@ -31,15 +35,10 @@ class WebKitViewController: UIViewController, WKUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        view.addSubview(webView)
-        webView.load(URLRequest(url: url))
+        let myRequest = URLRequest(url: url)
+        webView.load(myRequest)
+        
         configureButtons()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        webView.frame = view.bounds
     }
     
     private func configureButtons() {

@@ -9,6 +9,9 @@ import UIKit
 
 
 class JobDetailsViewController: UIViewController {
+    deinit {
+        print("JobDetailsViewController deinit")
+    }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var jobEditedHomeVCDelegate: EditJobInHomeVC?
     
@@ -113,7 +116,7 @@ class JobDetailsViewController: UIViewController {
         let alertController = UIAlertController(title: "Do you want to delete this job?", message: "Select Cancel or Delete", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "DELETE", style: .destructive) { _ in
-            DataManager.deleteJobInfo(job: self.selectedJob)
+            JobInfoDataManager.deleteJobInfo(job: self.selectedJob)
             self.jobEditedHomeVCDelegate?.fetchJobInfosAndReload()
             self.dismiss(animated: true)
         })

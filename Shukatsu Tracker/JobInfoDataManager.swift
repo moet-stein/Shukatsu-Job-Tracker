@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class DataManager {
+class JobInfoDataManager {
     static let managedObjectContext: NSManagedObjectContext = {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext

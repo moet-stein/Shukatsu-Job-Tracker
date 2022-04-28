@@ -33,14 +33,7 @@ extension ProfileSettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
-//        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//            let view = UIView()
-//            view.layer.cornerRadius = 10
-//            view.backgroundColor = .systemGray5
-//            return view
-//        }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Section \(section)"
     }
@@ -71,7 +64,8 @@ extension ProfileSettingsViewController: UITableViewDataSource {
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
                 switch indexPath.row {
                 case 0: cell.showSwitch(pinIsOn: true)
-                case 1: cell.accessoryType = .disclosureIndicator
+                case 1:
+                    cell.accessoryType = .disclosureIndicator
                 default: cell.textLabel?.text = ""
                     
                 }

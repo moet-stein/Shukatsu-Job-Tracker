@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class HomeViewController: UIViewController {
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var jobInfos = [JobInfo]()
     var filteredJobInfos = [JobInfo]()
@@ -45,7 +44,7 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
-        DataManager.fetchJonInfos { jobs in
+        JobInfoDataManager.fetchJonInfos { jobs in
             if let jobs = jobs {
                 jobInfos = jobs
                 filteredJobInfos = jobInfos
@@ -235,7 +234,7 @@ extension HomeViewController: EditJobInHomeVC {
     }
     
     func updateJobInfo(jobInfo: JobInfo) {
-        DataManager.fetchJobInfo(usingId: jobInfo.id) { job in
+        JobInfoDataManager.fetchJobInfo(usingId: jobInfo.id) { job in
             guard let job = job else {
                 return
             }
@@ -253,7 +252,7 @@ extension HomeViewController: EditJobInHomeVC {
     }
     
     func fetchJobInfosAndReload() {
-        DataManager.fetchJonInfos { [weak self] jobInfos in
+        JobInfoDataManager.fetchJonInfos { [weak self] jobInfos in
             guard let jobs = jobInfos else {
                 return
             }

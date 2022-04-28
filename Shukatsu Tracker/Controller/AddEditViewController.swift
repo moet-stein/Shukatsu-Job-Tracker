@@ -189,10 +189,10 @@ class AddEditViewController: UIViewController {
         let notes = notesField.textField.text ?? nil
 
         if let passedJob = passedJob {
-            DataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            JobInfoDataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         } else {
-            DataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            JobInfoDataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         }
     }
