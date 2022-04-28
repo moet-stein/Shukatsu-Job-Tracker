@@ -45,20 +45,25 @@ class ProfileSettingsDataManager {
         completion(nil)
     }
     
-//    static func fetchJobInfo(usingId id: UUID, completion: (JobInfo?) -> Void) {
-//        let fetchRequest = NSFetchRequest<JobInfo>(entityName: "JobInfo")
-//        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-//
-//        do {
-//            let jobInfo = try managedObjectContext.fetch(fetchRequest)
-//            completion(jobInfo.first)
-//        } catch {
-//            print("Could not fetch due to error: \(error.localizedDescription)")
-//        }
-//
-//        completion(nil)
-//    }
-    
+    static func fetchProfileSetting(usingString string: String, profileName: Bool, completion: (ProfileSettings?) -> Void) {
+        let fetchRequest = NSFetchRequest<ProfileSettings>(entityName: "ProfileSettings")
+        
+        if profileName {
+            fetchRequest.predicate = NSPredicate(format: "profileName == %@", string as CVarArg)
+        } else {
+            fetchRequest.predicate = NSPredicate(format: "profileTitle == %@", string as CVarArg)
+        }
+        
+        do {
+            let profileSettings = try managedObjectContext.fetch(fetchRequest)
+            completion(profileSettings.first)
+        } catch {
+            print("Could not fetch due to error: \(error.localizedDescription)")
+        }
+        
+        completion(nil)
+    }
+
     // MARK: - Update
     static func updateProfileSettings(profileSettings: ProfileSettings, profileName: String?, profileTitle: String?, pinOn: Bool?) {
         

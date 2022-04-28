@@ -9,6 +9,7 @@ import UIKit
 
 class SetProfileNameViewController: UIViewController {
     private var placeholderText: String
+    private var profileName: Bool
     
     lazy var cancelButton: UIButton = {
         let button = UIButton()
@@ -44,8 +45,9 @@ class SetProfileNameViewController: UIViewController {
         return textField
     }()
     
-    init(placeholderText: String) {
+    init(placeholderText: String, profileName: Bool) {
         self.placeholderText = placeholderText
+        self.profileName = profileName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -90,6 +92,53 @@ class SetProfileNameViewController: UIViewController {
     }
 
     @objc func saveButtonTapped() {
+        let newProfileString = editTextField.text
+        let profileNameString: String?
+        let profileTitleString: String?
+        
+        if profileName {
+            profileNameString = newProfileString
+            profileTitleString = nil
+        } else {
+            profileNameString = nil
+            profileTitleString = newProfileString
+        }
+        
+        ProfileSettingsDataManager.fetchProfileSetting(usingString: placeholderText, profileName: profileName
+        ) { profile in
+            if let profile = profile {
+                ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: profileNameString, profileTitle: profileTitleString, pinOn: nil)
+                
+                DispatchQueue.main.async {
+                    //reload static tableview
+                }
+            }
+            
+        }
+        
+//        if profileTitle {
+//            ProfileSettingsDataManager.fetchProfileSetting(usingString: placeholderText, profileName: true) { profile in
+//                if let profile = profile {
+//                    ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: newProfileString, profileTitle: nil, pinOn: nil)
+//
+//                    DispatchQueue.main.async {
+//                        //reload static tableview
+//                    }
+//                }
+//
+//            }
+//        } else {
+//            ProfileSettingsDataManager.fetchProfileSetting(usingString: placeholderText, profileName: false) { profile in
+//                if let profile = profile {
+//                    ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: newProfileString, pinOn: nil)
+//
+//                    DispatchQueue.main.async {
+//                        //reload static tableview
+//                    }
+//                }
+//            }
+//        }
+        
         dismiss(animated: true, completion: nil)
     }
     

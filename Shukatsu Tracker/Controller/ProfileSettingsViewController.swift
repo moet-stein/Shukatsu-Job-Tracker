@@ -88,9 +88,9 @@ extension ProfileSettingsViewController: UITableViewDelegate {
             let nextVC: SetProfileNameViewController
             switch indexPath.row {
             case 0:
-                nextVC = SetProfileNameViewController(placeholderText: profile?.profileName ?? "")
+                nextVC = SetProfileNameViewController(placeholderText: profile?.profileName ?? "", profileName: true)
             case 1:
-                nextVC = SetProfileNameViewController(placeholderText:profile?.profileTitle ?? "")
+                nextVC = SetProfileNameViewController(placeholderText:profile?.profileTitle ?? "", profileName: false)
             default:
                 return
             }
