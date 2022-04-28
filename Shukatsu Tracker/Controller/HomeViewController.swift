@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     var checkedStatus = [String]()
     var viewAll = true
     
-    var profileSettings = [ProfileSettings]()
+    var profileSettings = ProfileSettings()
 
     
     private var contentView: HomeView!
@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
         
         ProfileSettingsDataManager.fetchProfileSettings { profiles in
             if let profiles = profiles {
-                profileSettings = profiles
+                profileSettings = profiles[0]
                 
                 let name = profiles[0].profileName ?? ""
                 let title = profiles[0].profileTitle ?? ""
@@ -200,7 +200,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        present(ProfileSettingsViewController(), animated: true, completion: nil)
+        present(ProfileSettingsViewController(profile: profileSettings), animated: true, completion: nil)
     }
     
     private func filteringJobs() {

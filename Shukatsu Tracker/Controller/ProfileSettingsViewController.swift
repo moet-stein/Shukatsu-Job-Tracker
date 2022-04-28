@@ -8,6 +8,8 @@
 import UIKit
 
 class ProfileSettingsViewController: UIViewController {
+    private var profile: ProfileSettings?
+    
     private var contentView: ProfileSettingsView!
     private var setttingsTableView: UITableView!
     
@@ -19,7 +21,8 @@ class ProfileSettingsViewController: UIViewController {
         setttingsTableView.dataSource = self
     }
     
-    init() {
+    init(profile: ProfileSettings?) {
+        self.profile = profile
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,6 +30,9 @@ class ProfileSettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        print(profile?.profileName)
+    }
 }
 
 extension ProfileSettingsViewController: UITableViewDataSource {
