@@ -140,8 +140,7 @@
 		6051045B27F72E0000AB9DEC /* Shukatsu Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				6051AB04280F17AE002E9CF6 /* JobInfo */,
-				6051047727F7338F00AB9DEC /* Fonts */,
+				6051AB4F281AEBE7002E9CF6 /* Model */,
 				6051047427F72EDE00AB9DEC /* View */,
 				6051047327F72EC900AB9DEC /* Controller */,
 				6051045C27F72E0000AB9DEC /* AppDelegate.swift */,
@@ -227,6 +226,15 @@
 				6051AB142812F7EE002E9CF6 /* JobInfo+CoreDataProperties.swift */,
 			);
 			path = JobInfo;
+			sourceTree = "<group>";
+		};
+		6051AB4F281AEBE7002E9CF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6051AB04280F17AE002E9CF6 /* JobInfo */,
+				6051047727F7338F00AB9DEC /* Fonts */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
