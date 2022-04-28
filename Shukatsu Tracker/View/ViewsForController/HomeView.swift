@@ -171,7 +171,7 @@ class HomeView: UIView {
         statusStackView.addArrangedSubview(closedBoxButton)
         
         NSLayoutConstraint.activate([
-            greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30),
+            greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
             greetLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             greetLabel.widthAnchor.constraint(equalToConstant: 200),
             greetLabel.heightAnchor.constraint(equalToConstant: 25),

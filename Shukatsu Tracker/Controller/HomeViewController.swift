@@ -72,7 +72,7 @@ class HomeViewController: UIViewController {
                 let title = profiles[0].profileTitle ?? ""
                 
                 DispatchQueue.main.async { [weak self] in
-                    self?.greetLabel.text = "Good morning, \(name)"
+                    self?.greetLabel.text = "Hello, \(name)"
                     self?.titleLabel.text = title
                 }
             }
