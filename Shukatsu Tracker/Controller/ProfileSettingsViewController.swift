@@ -75,6 +75,12 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
     }
 }
 
+extension ProfileSettingsViewController: SettingsTableViewCellDelegate {
+    func settingsTableViewCell(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool) {
+        print("pin toggled \(isPinOn)")
+    }
+}
+
 extension ProfileSettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -101,7 +107,7 @@ extension ProfileSettingsViewController: UITableViewDataSource {
 //        }
 
         let cell = SettingsTableViewCell()
-
+        cell.delegate = self
         
         let settingsContent1 = ["Name", "Title"]
         let settingsContent2 = ["PIN", "Change PIN"]
@@ -153,8 +159,11 @@ extension ProfileSettingsViewController: UITableViewDelegate {
             present(nextVC, animated: true, completion: nil)
         case 1:
             print("selected pin field")
+
         default:
             return
         }
     }
+    
+    
 }

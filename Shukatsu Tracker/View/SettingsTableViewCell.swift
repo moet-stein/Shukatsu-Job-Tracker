@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol SettingsTableViewCellDelegate: AnyObject {
+    func settingsTableViewCell(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool)
+}
+
 class SettingsTableViewCell: UITableViewCell {
     static let identifier = "SettingsTableViewCell"
+    
+    weak var delegate: SettingsTableViewCellDelegate?
     
     
     let titleLabel : UILabel = {
@@ -83,10 +89,7 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     @objc func switchTriggered(sender: UISwitch) {
-        print(sender.isOn)
-        if sender.isOn {
-            
-        }
+        self.delegate?.settingsTableViewCell(self, isPinOn: sender.isOn)
     }
 }
 
