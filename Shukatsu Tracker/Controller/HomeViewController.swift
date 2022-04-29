@@ -9,14 +9,14 @@ import UIKit
 import CoreData
 
 class HomeViewController: UIViewController {
-
+    
     var jobInfos = [JobInfo]()
     var filteredJobInfos = [JobInfo]()
     var checkedStatus = [String]()
     var viewAll = true
     
     var profileSettings = ProfileSettings()
-
+    
     
     private var contentView: HomeView!
     private var jobsCollectionView: UICollectionView!
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController {
         setJobInfosAndStatus()
         
         updateProfileInfo()
-
+        
     }
     
     private func setJobInfosAndStatus() {
@@ -279,11 +279,11 @@ extension HomeViewController: HomeVCDelegate {
             guard let job = job else {
                 return
             }
-
+            
             if let index = self.filteredJobInfos.firstIndex(where: {$0.id == job.id}) {
                 self.filteredJobInfos[index] = job
             }
-
+            
             DispatchQueue.main.async { [weak self] in
                 self?.filteringJobs()
                 self?.updateStatusBoxes()

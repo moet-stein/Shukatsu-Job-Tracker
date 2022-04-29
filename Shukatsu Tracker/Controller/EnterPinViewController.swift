@@ -24,6 +24,8 @@ class EnterPinViewController: UIViewController {
         
         goButton = contentView.goButton
         goButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        
+        createTestJobInfo()
     }
     
     @objc func buttonPressed() {
@@ -47,6 +49,17 @@ class EnterPinViewController: UIViewController {
         
         
 
+    }
+    
+    private func createTestJobInfo() {
+        JobInfoDataManager.fetchJonInfos { jobs in
+            if let jobs = jobs {
+                
+                if jobs.isEmpty {
+                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test", location: "Berlin", status: "applied", favorite: true, role: "iOS Engineer", team: "iOS team", link: "https://www.google.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
+                }
+            }
+        }
     }
     
     private func createProfile() {
