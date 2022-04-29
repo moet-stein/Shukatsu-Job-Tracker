@@ -52,6 +52,13 @@ class HomeViewController: UIViewController {
         greetLabel = contentView.greetLabel
         titleLabel = contentView.titleLabel
         
+        setJobInfosAndStatus()
+        
+        updateProfileInfo()
+
+    }
+    
+    private func setJobInfosAndStatus() {
         JobInfoDataManager.fetchJonInfos { jobs in
             if let jobs = jobs {
                 jobInfos = jobs
@@ -63,22 +70,28 @@ class HomeViewController: UIViewController {
                 }
             }
         }
-        
-        updateProfileInfo()
-
     }
     
     private func updateProfileInfo() {
         ProfileSettingsDataManager.fetchProfileSettings { profiles in
             if let profiles = profiles {
-                profileSettings = profiles[0]
-                
-                let name = profiles[0].profileName ?? ""
-                let title = profiles[0].profileTitle ?? ""
-                
-                DispatchQueue.main.async { [weak self] in
-                    self?.greetLabel.text = "Hello, \(name)"
-                    self?.titleLabel.text = title
+                if profiles.isEmpty{
+                    ProfileSettingsDataManager.createProfileSettings(profileName: "Unknown", profileTitle: "unknown title", pinOn: true)
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        self?.greetLabel.text = "Hello, unknown"
+                        self?.titleLabel.text = "unknown title"
+                    }
+                } else {
+                    profileSettings = profiles[0]
+                    
+                    let name = profiles[0].profileName ?? ""
+                    let title = profiles[0].profileTitle ?? ""
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        self?.greetLabel.text = "Hello, \(name)"
+                        self?.titleLabel.text = title
+                    }
                 }
             }
         }

@@ -10,6 +10,7 @@ import UIKit
 class SettingsTableViewCell: UITableViewCell {
     static let identifier = "SettingsTableViewCell"
     
+    
     let titleLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,8 +74,6 @@ class SettingsTableViewCell: UITableViewCell {
     
     func showSwitch(pinIsOn: Bool) {
         contentView.addSubview(pinSwitch)
-
-
         NSLayoutConstraint.activate([
             pinSwitch.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             pinSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
@@ -85,6 +84,9 @@ class SettingsTableViewCell: UITableViewCell {
     
     @objc func switchTriggered(sender: UISwitch) {
         print(sender.isOn)
+        if sender.isOn {
+            
+        }
     }
 }
 

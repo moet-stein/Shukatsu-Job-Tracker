@@ -7,7 +7,10 @@
 
 import UIKit
 
-class ProfileSettingsViewController: UIViewController, ProfileSettingsViewDelegate {
+
+
+class ProfileSettingsViewController: UIViewController {
+    
     
     private var profile = ProfileSettings()
     
@@ -18,12 +21,12 @@ class ProfileSettingsViewController: UIViewController, ProfileSettingsViewDelega
     
     
     override func loadView() {
-        print("loadview")
         contentView = ProfileSettingsView()
         view = contentView
         settingsTableView = contentView.setttingsTableView
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
+        
         
         fetchAndReload()
     }
@@ -42,9 +45,6 @@ class ProfileSettingsViewController: UIViewController, ProfileSettingsViewDelega
         fatalError("init(coder:) has not been implemented")
     }
     
-    func reloadTableView() {
-        self.fetchAndReload()
-    }
     
     
     private func fetchAndReload() {
@@ -60,7 +60,19 @@ class ProfileSettingsViewController: UIViewController, ProfileSettingsViewDelega
             }
         }
     }
+    
+    
 
+}
+
+extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
+    func reloadTableView() {
+        self.fetchAndReload()
+    }
+    
+    func toggleChangePINTitle() {
+        print("toggleChangePINTitle")
+    }
 }
 
 extension ProfileSettingsViewController: UITableViewDataSource {
@@ -95,7 +107,7 @@ extension ProfileSettingsViewController: UITableViewDataSource {
         let settingsContent2 = ["PIN", "Change PIN"]
         
         switch indexPath.section {
-        case 0:  // Section 0 Setup
+        case 0:
             cell.setupCellContent(titleString: settingsContent1[indexPath.row])
             switch indexPath.row {
             case 0: cell.showSetData(retrivedString: profile.profileName ?? "")
@@ -104,10 +116,13 @@ extension ProfileSettingsViewController: UITableViewDataSource {
             }
         case 1:
             cell.selectionStyle = .none
-            cell.setupCellContent(titleString: settingsContent2[indexPath.row])
+            
             switch indexPath.row {
-            case 0: cell.showSwitch(pinIsOn: true)
+            case 0:
+                cell.setupCellContent(titleString: settingsContent2[indexPath.row])
+                cell.showSwitch(pinIsOn: true)
             case 1:
+                cell.setupCellContent(titleString: settingsContent2[indexPath.row])
                 cell.accessoryType = .disclosureIndicator
             default: cell.textLabel?.text = ""
                 

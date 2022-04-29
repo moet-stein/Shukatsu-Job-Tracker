@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProfileSettingsViewDelegate {
     func reloadTableView()
+    func toggleChangePINTitle()
 }
 
 
