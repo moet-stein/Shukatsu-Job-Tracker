@@ -78,10 +78,6 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
 }
 
 extension ProfileSettingsViewController: SettingsTableViewCellDelegate {
-    func toggleChangePinLabelColor(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool) {
-        print("")
-    }
-
     func settingsTableViewCell(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool) {
         // save the isPinOn true or false in CoreData
         print("pin toggled \(isPinOn)")

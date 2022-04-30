@@ -9,7 +9,6 @@ import UIKit
 
 protocol SettingsTableViewCellDelegate: AnyObject {
     func settingsTableViewCell(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool)
-    func toggleChangePinLabelColor(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool)
 }
 
 class SettingsTableViewCell: UITableViewCell {
@@ -92,14 +91,6 @@ class SettingsTableViewCell: UITableViewCell {
     @objc func switchTriggered(sender: UISwitch) {
         self.delegate?.settingsTableViewCell(self, isPinOn: sender.isOn)
     }
-    
-//    func toggleChangePinLabelColor(isPinOn: Bool) {
-//        if isPinOn {
-//            titleLabel.textColor = .black
-//        } else {
-//            titleLabel.textColor = .systemGray2
-//        }
-//    }
 }
 
 
