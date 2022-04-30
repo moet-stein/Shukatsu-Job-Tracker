@@ -34,7 +34,7 @@ class SettingsTableViewCell: UITableViewCell {
     
     lazy var pinSwitch: UISwitch = {
         let switchButton = UISwitch()
-        switchButton.isOn = true
+//        switchButton.isOn = true
         switchButton.addTarget(self, action: #selector(switchTriggered), for: .valueChanged)
         switchButton.translatesAutoresizingMaskIntoConstraints = false
         switchButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
@@ -79,6 +79,8 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     func showSwitch(pinIsOn: Bool) {
+        pinSwitch.isOn = pinIsOn
+        
         contentView.addSubview(pinSwitch)
         NSLayoutConstraint.activate([
             pinSwitch.topAnchor.constraint(equalTo: titleLabel.topAnchor),

@@ -50,7 +50,6 @@ class ProfileSettingsViewController: UIViewController {
     
     
     private func fetchAndReload() {
-        
         ProfileSettingsDataManager.fetchProfileSettings { profileData in
             if let profileData = profileData {
                 profile = profileData[0]
@@ -62,8 +61,6 @@ class ProfileSettingsViewController: UIViewController {
             }
         }
     }
-    
-    
 
 }
 
@@ -79,17 +76,15 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
 
 extension ProfileSettingsViewController: SettingsTableViewCellDelegate {
     func settingsTableViewCell(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool) {
-        // save the isPinOn true or false in CoreData
-        print("pin toggled \(isPinOn)")
-        // toggle the label
         if isPinOn {
+            ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: nil, pinOn: true)
             targetCell?.titleLabel.textColor = .black
             targetCell?.accessoryType = .disclosureIndicator
         } else {
+            ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: nil, pinOn: false)
             targetCell?.titleLabel.textColor = .systemGray3
             targetCell?.accessoryType = .none
         }
-        
     }
 }
 
@@ -137,7 +132,7 @@ extension ProfileSettingsViewController: UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
-                cell.showSwitch(pinIsOn: true)
+                cell.showSwitch(pinIsOn: profile.pinOn)
                 cell.delegate = self
             case 1:
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
