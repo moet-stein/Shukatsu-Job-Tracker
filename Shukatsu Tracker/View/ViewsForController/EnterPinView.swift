@@ -23,12 +23,11 @@ class EnterPinView: UIView {
         return view
     }()
     
-    private let wrongLabel: UILabel = {
+    let wrongLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Lato-Bold", size: 23)
         label.textColor = .white
-        label.text = "Wrong PIN"
         return label
     }()
     

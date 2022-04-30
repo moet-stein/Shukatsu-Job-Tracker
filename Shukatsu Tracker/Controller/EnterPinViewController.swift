@@ -15,6 +15,7 @@ class EnterPinViewController: UIViewController {
     private var goButton: UIButton!
     private var enterPinTitleLabel: UILabel!
     private var wrongAlertView: UIView!
+    private var wrongLabel: UILabel!
     
     let keychain = KeychainSwift()
     
@@ -31,6 +32,7 @@ class EnterPinViewController: UIViewController {
         goButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         wrongAlertView = contentView.wrongAlertView
+        wrongLabel = contentView.wrongLabel
         
         createTestJobInfo()
         setLabelText()
@@ -55,7 +57,7 @@ class EnterPinViewController: UIViewController {
                     createProfile()
                     navigationController?.pushViewController(HomeViewController(), animated: true)
                 } else {
-                    print("It's not 4 digits")
+                    showWrongPinView(text: "Enter 4 Digits")
                 }
             } else {
                 if enteredPin == keychain.get("ShukatsuPin") {
@@ -63,24 +65,7 @@ class EnterPinViewController: UIViewController {
                     createProfile()
                     navigationController?.pushViewController(HomeViewController(), animated: true)
                 } else {
-                    print("wrong pin")
-                    wrongAlertView.isHidden = false
-                    wrongAlertView.alpha = 1
-                    UIView.animate(
-                        withDuration: 0.4,
-                        delay: 0.0,
-                        options: .curveLinear,
-                        animations: {
-                            
-                            self.wrongAlertView.frame.origin.x = 100
-                            
-                        }) { (completed) in
-                            
-                        }
-                    
-                    UIView.animate(withDuration: 3) {
-                        self.wrongAlertView.alpha = 0
-                    }
+                    showWrongPinView(text: "Wrong PIN")
                 }
             }
             pinTextField.text = ""
@@ -108,6 +93,27 @@ class EnterPinViewController: UIViewController {
                     print("its not empty")
                 }
             }
+        }
+    }
+    
+    private func showWrongPinView(text: String) {
+        wrongAlertView.isHidden = false
+        wrongAlertView.alpha = 1
+        wrongLabel.text = text
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0.0,
+            options: .curveLinear,
+            animations: {
+                
+                self.wrongAlertView.frame.origin.x = 100
+                
+            }) { (completed) in
+                
+            }
+        
+        UIView.animate(withDuration: 3) {
+            self.wrongAlertView.alpha = 0
         }
     }
     
