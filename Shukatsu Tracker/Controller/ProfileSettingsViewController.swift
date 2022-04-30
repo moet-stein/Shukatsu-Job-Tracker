@@ -19,6 +19,8 @@ class ProfileSettingsViewController: UIViewController {
     
     weak var homeVCDelegate: HomeVCDelegate?
     
+    private var targetCell: SettingsTableViewCell?
+    
     
     override func loadView() {
         contentView = ProfileSettingsView()
@@ -76,8 +78,22 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
 }
 
 extension ProfileSettingsViewController: SettingsTableViewCellDelegate {
+    func toggleChangePinLabelColor(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool) {
+        print("")
+    }
+
     func settingsTableViewCell(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool) {
+        // save the isPinOn true or false in CoreData
         print("pin toggled \(isPinOn)")
+        // toggle the label
+        if isPinOn {
+            targetCell?.titleLabel.textColor = .black
+            targetCell?.accessoryType = .disclosureIndicator
+        } else {
+            targetCell?.titleLabel.textColor = .systemGray3
+            targetCell?.accessoryType = .none
+        }
+        
     }
 }
 
@@ -107,7 +123,6 @@ extension ProfileSettingsViewController: UITableViewDataSource {
 //        }
 
         let cell = SettingsTableViewCell()
-        cell.delegate = self
         
         let settingsContent1 = ["Name", "Title"]
         let settingsContent2 = ["PIN", "Change PIN"]
@@ -127,9 +142,11 @@ extension ProfileSettingsViewController: UITableViewDataSource {
             case 0:
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
                 cell.showSwitch(pinIsOn: true)
+                cell.delegate = self
             case 1:
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
                 cell.accessoryType = .disclosureIndicator
+                self.targetCell = cell
             default: cell.textLabel?.text = ""
                 
             }
