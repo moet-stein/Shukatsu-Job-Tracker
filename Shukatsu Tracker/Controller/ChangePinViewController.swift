@@ -46,14 +46,8 @@ class ChangePinViewController: UIViewController {
     }
     
     @objc func buttonPressed() {
-        //check if user is asked to type current or new pin
-        //if current,1
-        //if new pin, set the new pin, updating Shukatsu pin
         if !currentPinEntered {
-            //type current pin
             if let enteredPin = pinTextField.text {
-                //1. compare the saved pin from Keychain and the entered pin
-                //if correct change the title and let user type new pin
                 if enteredPin == keychain.get("ShukatsuPin") {
                     currentPinEntered = true
                     orangeRoundedView.backgroundColor = .systemPurple
@@ -68,7 +62,8 @@ class ChangePinViewController: UIViewController {
             if let enteredPin = pinTextField.text {
                 //update the pin
                 if enteredPin.count == 4 {
-                    print("Updated new pin")
+                    keychain.set(enteredPin, forKey: "ShukatsuPin")
+                    dismiss(animated: true)
                 } else {
                     print("4 digit needed")
                 }

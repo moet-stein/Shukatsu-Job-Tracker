@@ -45,10 +45,14 @@ class EnterPinViewController: UIViewController {
     @objc func buttonPressed() {
         if let enteredPin = pinTextField.text {
             if keychain.get("ShukatsuPin") == nil {
-                let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
-                print("saveSuccessful: \(saveSuccessful)")
-                createProfile()
-                navigationController?.pushViewController(HomeViewController(), animated: true)
+                if enteredPin.count == 4 {
+                    let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
+                    print("saveSuccessful: \(saveSuccessful)")
+                    createProfile()
+                    navigationController?.pushViewController(HomeViewController(), animated: true)
+                } else {
+                    print("It's not 4 digits")
+                }
             } else {
                 if enteredPin == keychain.get("ShukatsuPin") {
                     print("corrent pin \(enteredPin)")
