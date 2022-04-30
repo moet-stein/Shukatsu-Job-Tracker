@@ -14,6 +14,8 @@ class EnterPinViewController: UIViewController {
     private var pinTextField: UITextField!
     private var goButton: UIButton!
     private var enterPinTitleLabel: UILabel!
+    private var wrongAlertView: UIView!
+    
     let keychain = KeychainSwift()
     
     override func loadView() {
@@ -27,6 +29,8 @@ class EnterPinViewController: UIViewController {
         
         goButton = contentView.goButton
         goButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        
+        wrongAlertView = contentView.wrongAlertView
         
         createTestJobInfo()
         setLabelText()
@@ -60,6 +64,23 @@ class EnterPinViewController: UIViewController {
                     navigationController?.pushViewController(HomeViewController(), animated: true)
                 } else {
                     print("wrong pin")
+                    wrongAlertView.isHidden = false
+                    wrongAlertView.alpha = 1
+                    UIView.animate(
+                        withDuration: 0.4,
+                        delay: 0.0,
+                        options: .curveLinear,
+                        animations: {
+                            
+                            self.wrongAlertView.frame.origin.x = 100
+                            
+                        }) { (completed) in
+                            
+                        }
+                    
+                    UIView.animate(withDuration: 3) {
+                        self.wrongAlertView.alpha = 0
+                    }
                 }
             }
             pinTextField.text = ""

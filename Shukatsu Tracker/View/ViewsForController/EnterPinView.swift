@@ -10,6 +10,28 @@ import UIKit
 
 class EnterPinView: UIView {
     
+    let wrongAlertView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        view.backgroundColor = .systemRed
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 20
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.systemRed.cgColor
+        return view
+    }()
+    
+    private let wrongLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Lato-Bold", size: 23)
+        label.textColor = .white
+        label.text = "Wrong PIN"
+        return label
+    }()
+    
     let orangeRoundedView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -21,14 +43,6 @@ class EnterPinView: UIView {
     let enterPinTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-//        let keychain = KeychainSwift()
-//        label.text = {
-//            if keychain.get("ShukatsuPin") == nil {
-//                return "Set a Pin"
-//            } else {
-//                return "Enter Your Pin"
-//            }
-//        }()
         label.font = UIFont(name: "Lato-Bold", size: 25)
         label.textColor = UIColor(named: "bgOffwhite")
         return label
@@ -69,16 +83,41 @@ class EnterPinView: UIView {
     
     private func setUpUI() {
         addSubview(orangeRoundedView)
+        addSubview(wrongAlertView)
+        wrongAlertView.addSubview(wrongLabel)
         
         NSLayoutConstraint.activate([
             orangeRoundedView.centerXAnchor.constraint(equalTo: centerXAnchor),
             orangeRoundedView.centerYAnchor.constraint(equalTo: centerYAnchor),
             orangeRoundedView.widthAnchor.constraint(equalToConstant: 300),
-            orangeRoundedView.heightAnchor.constraint(equalToConstant: 200)
+            orangeRoundedView.heightAnchor.constraint(equalToConstant: 200),
+            
+            wrongAlertView.bottomAnchor.constraint(equalTo: orangeRoundedView.topAnchor, constant: -30),
+            wrongAlertView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            wrongAlertView.widthAnchor.constraint(equalToConstant: 180),
+            wrongAlertView.heightAnchor.constraint(equalToConstant: 40),
+            
+            wrongLabel.topAnchor.constraint(equalTo: wrongAlertView.topAnchor),
+            wrongLabel.leadingAnchor.constraint(equalTo: wrongAlertView.leadingAnchor, constant: 10),
+            wrongLabel.bottomAnchor.constraint(equalTo: wrongAlertView.bottomAnchor)
+            
         ])
         
         setUpInsideOrangeView()
+        
+//        UIView.animate(
+//            withDuration: 0.4,
+//            delay: 0.0,
+//            options: .curveLinear,
+//            animations: {
+//
+//                self.wrongAlertView.frame.origin.x = 100
+//
+//            }) { (completed) in
+//
+//            }
     }
+    
     
     private func setUpInsideOrangeView() {
         let vStackView: UIStackView = {
