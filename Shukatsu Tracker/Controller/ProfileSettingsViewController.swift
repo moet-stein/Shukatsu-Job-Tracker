@@ -172,7 +172,7 @@ extension ProfileSettingsViewController: UITableViewDelegate {
                 return
             case 1:
                 if profile.pinOn {
-                    print("change pin")
+                    present(ChangePinViewController(), animated: true, completion: nil)
                 } else {
                     print("cannot change pin")
                 }

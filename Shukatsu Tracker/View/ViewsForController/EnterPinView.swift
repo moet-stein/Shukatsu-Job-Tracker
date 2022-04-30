@@ -10,7 +10,7 @@ import UIKit
 
 class EnterPinView: UIView {
     
-    private let orangeRoundedView: UIView = {
+    let orangeRoundedView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "viewOrange")

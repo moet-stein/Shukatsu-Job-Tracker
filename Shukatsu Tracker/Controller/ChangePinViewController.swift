@@ -15,6 +15,7 @@ class ChangePinViewController: UIViewController {
     private var pinTextField: UITextField!
     private var goButton: UIButton!
     private var enterPinTitleLabel: UILabel!
+    private var orangeRoundedView: UIView!
     
     private var currentPinEntered:Bool = false
     
@@ -30,40 +31,48 @@ class ChangePinViewController: UIViewController {
         goButton = contentView.goButton
         goButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
+        enterPinTitleLabel = contentView.enterPinTitleLabel
+        orangeRoundedView = contentView.orangeRoundedView
+        
         setLabelText()
     }
     
     private func setLabelText() {
         if currentPinEntered {
-            enterPinTitleLabel.text = "Enter NEW PIN"
+            enterPinTitleLabel.text = "Set NEW PIN"
         } else {
             enterPinTitleLabel.text = "Enter Current PIN"
         }
-//        enterPinTitleLabel.text = {
-//            if keychain.get("ShukatsuPin") == nil {
-//                return "Set a Pin"
-//            } else {
-//                return "Enter Your Pin"
-//            }
-//        }()
     }
     
     @objc func buttonPressed() {
-        if let enteredPin = pinTextField.text {
-            if keychain.get("ShukatsuPin") == nil {
-                let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
-                print("saveSuccessful: \(saveSuccessful)")
-
-                navigationController?.pushViewController(HomeViewController(), animated: true)
-            } else {
+        //check if user is asked to type current or new pin
+        //if current,1
+        //if new pin, set the new pin, updating Shukatsu pin
+        if !currentPinEntered {
+            //type current pin
+            if let enteredPin = pinTextField.text {
+                //1. compare the saved pin from Keychain and the entered pin
+                //if correct change the title and let user type new pin
                 if enteredPin == keychain.get("ShukatsuPin") {
-                    print("corrent pin \(enteredPin)")
-                    navigationController?.pushViewController(HomeViewController(), animated: true)
+                    currentPinEntered = true
+                    orangeRoundedView.backgroundColor = .systemPurple
                 } else {
                     print("wrong pin")
                 }
+                pinTextField.text = ""
+                setLabelText()
             }
-            pinTextField.text = ""
+        } else {
+            //type new pin
+            if let enteredPin = pinTextField.text {
+                //update the pin
+                if enteredPin.count == 4 {
+                    print("Updated new pin")
+                } else {
+                    print("4 digit needed")
+                }
+            }
         }
     }
 }
