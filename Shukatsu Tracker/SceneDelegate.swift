@@ -20,9 +20,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-//        let navigationControlller = UINavigationController(rootViewController: EnterPinViewController())
-        let navigationControlller = UINavigationController(rootViewController: HomeViewController())
-        window.rootViewController = navigationControlller
+        
+        var navigationController = UINavigationController()
+        
+        ProfileSettingsDataManager.fetchProfileSettings { profile in
+            if let profile = profile {
+                if profile[0].pinOn {
+                    navigationController = UINavigationController(rootViewController: EnterPinViewController())
+                    window.rootViewController = navigationController
+                } else if !profile[0].pinOn {
+                    navigationController = UINavigationController(rootViewController: HomeViewController())
+                    window.rootViewController = navigationController
+                }
+            }
+        }
         self.window = window
     }
 
@@ -56,9 +67,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-//        let navigationControlller = UINavigationController(rootViewController: EnterPinViewController())
-        let navigationControlller = UINavigationController(rootViewController: HomeViewController())
-        window.rootViewController = navigationControlller
+        
+        var navigationController = UINavigationController()
+        
+        ProfileSettingsDataManager.fetchProfileSettings { profile in
+            if let profile = profile {
+                if profile[0].pinOn {
+                    navigationController = UINavigationController(rootViewController: EnterPinViewController())
+                    window.rootViewController = navigationController
+                } else if !profile[0].pinOn {
+                    navigationController = UINavigationController(rootViewController: HomeViewController())
+                    window.rootViewController = navigationController
+                }
+            }
+        }
+        
         self.window = window
 
         // Save changes in the application's managed object context when the application transitions to the background.
