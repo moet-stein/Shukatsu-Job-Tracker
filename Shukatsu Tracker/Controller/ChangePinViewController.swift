@@ -1,26 +1,28 @@
 //
-//  ViewController.swift
+//  ChangePinViewController.swift
 //  Shukatsu Tracker
 //
-//  Created by Moe Steinmueller on 01.04.22.
+//  Created by Moe Steinmueller on 30.04.22.
 //
 
 import UIKit
 import KeychainSwift
 import CoreData
 
-class EnterPinViewController: UIViewController {
+class ChangePinViewController: UIViewController {
+
     private var contentView: EnterPinView!
     private var pinTextField: UITextField!
     private var goButton: UIButton!
     private var enterPinTitleLabel: UILabel!
+    
+    private var currentPinEntered:Bool = false
+    
     let keychain = KeychainSwift()
     
     override func loadView() {
         contentView = EnterPinView()
         view = contentView
-        
-        enterPinTitleLabel = contentView.enterPinTitleLabel
         
         pinTextField = contentView.pinTextField
         pinTextField.delegate = self
@@ -28,18 +30,22 @@ class EnterPinViewController: UIViewController {
         goButton = contentView.goButton
         goButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
-        createTestJobInfo()
         setLabelText()
     }
     
     private func setLabelText() {
-        enterPinTitleLabel.text = {
-            if keychain.get("ShukatsuPin") == nil {
-                return "Set a Pin"
-            } else {
-                return "Enter Your Pin"
-            }
-        }()
+        if currentPinEntered {
+            enterPinTitleLabel.text = "Enter NEW PIN"
+        } else {
+            enterPinTitleLabel.text = "Enter Current PIN"
+        }
+//        enterPinTitleLabel.text = {
+//            if keychain.get("ShukatsuPin") == nil {
+//                return "Set a Pin"
+//            } else {
+//                return "Enter Your Pin"
+//            }
+//        }()
     }
     
     @objc func buttonPressed() {
@@ -47,12 +53,11 @@ class EnterPinViewController: UIViewController {
             if keychain.get("ShukatsuPin") == nil {
                 let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
                 print("saveSuccessful: \(saveSuccessful)")
-                createProfile()
+
                 navigationController?.pushViewController(HomeViewController(), animated: true)
             } else {
                 if enteredPin == keychain.get("ShukatsuPin") {
                     print("corrent pin \(enteredPin)")
-                    createProfile()
                     navigationController?.pushViewController(HomeViewController(), animated: true)
                 } else {
                     print("wrong pin")
@@ -61,34 +66,9 @@ class EnterPinViewController: UIViewController {
             pinTextField.text = ""
         }
     }
-    
-    private func createTestJobInfo() {
-        JobInfoDataManager.fetchJonInfos { jobs in
-            if let jobs = jobs {
-                
-                if jobs.isEmpty {
-                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test", location: "Berlin", status: "applied", favorite: true, role: "iOS Engineer", team: "iOS team", link: "https://www.google.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
-                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test2", location: "Berlin", status: "interview", favorite: false, role: "iOS Developer", team: "N/A", link: "https://www.apple.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
-                }
-            }
-        }
-    }
-    
-    private func createProfile() {
-        ProfileSettingsDataManager.fetchProfileSettings { profiles in
-            if let profiles = profiles {
-                if profiles.isEmpty{
-                    ProfileSettingsDataManager.createProfileSettings(profileName: "Unknown", profileTitle: "unknown title", pinOn: true)
-                } else {
-                    print("its not empty")
-                }
-            }
-        }
-    }
-    
 }
 
-extension EnterPinViewController: UITextFieldDelegate {
+extension ChangePinViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // get the current text, or use an empty string if that failed
         let currentText = textField.text ?? ""

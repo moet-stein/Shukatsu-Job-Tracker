@@ -25,14 +25,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         ProfileSettingsDataManager.fetchProfileSettings { profile in
             if let profile = profile {
-                if profile[0].pinOn {
+                if !profile.isEmpty {
+                    if profile[0].pinOn {
+                        navigationController = UINavigationController(rootViewController: EnterPinViewController())
+                    } else if !profile[0].pinOn {
+                        navigationController = UINavigationController(rootViewController: HomeViewController())
+                    }
+                } else {
                     navigationController = UINavigationController(rootViewController: EnterPinViewController())
-                    window.rootViewController = navigationController
-                } else if !profile[0].pinOn {
-                    navigationController = UINavigationController(rootViewController: HomeViewController())
-                    window.rootViewController = navigationController
                 }
             }
+            window.rootViewController = navigationController
         }
         self.window = window
     }
@@ -72,14 +75,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         ProfileSettingsDataManager.fetchProfileSettings { profile in
             if let profile = profile {
-                if profile[0].pinOn {
+                if !profile.isEmpty {
+                    if profile[0].pinOn {
+                        navigationController = UINavigationController(rootViewController: EnterPinViewController())
+                    } else if !profile[0].pinOn {
+                        navigationController = UINavigationController(rootViewController: HomeViewController())
+                    }
+                } else {
                     navigationController = UINavigationController(rootViewController: EnterPinViewController())
-                    window.rootViewController = navigationController
-                } else if !profile[0].pinOn {
-                    navigationController = UINavigationController(rootViewController: HomeViewController())
-                    window.rootViewController = navigationController
                 }
             }
+            window.rootViewController = navigationController
         }
         
         self.window = window

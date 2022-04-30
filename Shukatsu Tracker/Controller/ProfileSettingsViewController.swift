@@ -52,12 +52,13 @@ class ProfileSettingsViewController: UIViewController {
     private func fetchAndReload() {
         ProfileSettingsDataManager.fetchProfileSettings { profileData in
             if let profileData = profileData {
-                profile = profileData[0]
+                if !profileData.isEmpty {
+                    profile = profileData[0]
 
-                DispatchQueue.main.async { [weak self] in
-                    self?.settingsTableView.reloadData()
+                    DispatchQueue.main.async { [weak self] in
+                        self?.settingsTableView.reloadData()
+                    }
                 }
-            
             }
         }
     }
@@ -166,8 +167,18 @@ extension ProfileSettingsViewController: UITableViewDelegate {
             nextVC.modalPresentationStyle = .fullScreen
             present(nextVC, animated: true, completion: nil)
         case 1:
-            print("selected pin field")
-
+            switch indexPath.row {
+            case 0:
+                return
+            case 1:
+                if profile.pinOn {
+                    print("change pin")
+                } else {
+                    print("cannot change pin")
+                }
+            default:
+                return
+            }
         default:
             return
         }

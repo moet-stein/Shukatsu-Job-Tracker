@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import KeychainSwift
+//import KeychainSwift
 
 class EnterPinView: UIView {
     
@@ -18,17 +18,17 @@ class EnterPinView: UIView {
         return view
     }()
     
-    private let titleLabel: UILabel = {
+    let enterPinTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        let keychain = KeychainSwift()
-        label.text = {
-            if keychain.get("ShukatsuPin") == nil {
-                return "Set a Pin"
-            } else {
-                return "Enter Your Pin"
-            }
-        }()
+//        let keychain = KeychainSwift()
+//        label.text = {
+//            if keychain.get("ShukatsuPin") == nil {
+//                return "Set a Pin"
+//            } else {
+//                return "Enter Your Pin"
+//            }
+//        }()
         label.font = UIFont(name: "Lato-Bold", size: 25)
         label.textColor = UIColor(named: "bgOffwhite")
         return label
@@ -92,7 +92,7 @@ class EnterPinView: UIView {
         }()
         orangeRoundedView.addSubview(vStackView)
         
-        vStackView.addArrangedSubview(titleLabel)
+        vStackView.addArrangedSubview(enterPinTitleLabel)
         vStackView.addArrangedSubview(pinTextField)
         vStackView.addArrangedSubview(goButton)
         
