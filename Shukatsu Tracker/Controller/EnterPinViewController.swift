@@ -112,8 +112,11 @@ class EnterPinViewController: UIViewController {
                 
             }
         
-        UIView.animate(withDuration: 3) {
-            self.wrongAlertView.alpha = 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 0.5) {
+                self.wrongAlertView.alpha = 0
+                self.wrongAlertView.frame.origin.x = 0
+            }
         }
     }
     

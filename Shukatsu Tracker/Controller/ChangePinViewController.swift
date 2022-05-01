@@ -17,6 +17,9 @@ class ChangePinViewController: UIViewController {
     private var enterPinTitleLabel: UILabel!
     private var orangeRoundedView: UIView!
     
+    private var wrongAlertView: UIView!
+    private var wrongLabel: UILabel!
+    
     private var currentPinEntered:Bool = false
     
     let keychain = KeychainSwift()
@@ -33,6 +36,9 @@ class ChangePinViewController: UIViewController {
         
         enterPinTitleLabel = contentView.enterPinTitleLabel
         orangeRoundedView = contentView.orangeRoundedView
+        
+        wrongAlertView = contentView.wrongAlertView
+        wrongLabel = contentView.wrongLabel
         
         setLabelText()
     }
@@ -51,11 +57,12 @@ class ChangePinViewController: UIViewController {
                 if enteredPin == keychain.get("ShukatsuPin") {
                     currentPinEntered = true
                     orangeRoundedView.backgroundColor = .systemPurple
+                    setLabelText()
                 } else {
-                    print("wrong pin")
+                    showWrongPinView(text: "Wrong PIN")
                 }
                 pinTextField.text = ""
-                setLabelText()
+                
             }
         } else {
             //type new pin
@@ -65,8 +72,29 @@ class ChangePinViewController: UIViewController {
                     keychain.set(enteredPin, forKey: "ShukatsuPin")
                     dismiss(animated: true)
                 } else {
-                    print("4 digit needed")
+                    showWrongPinView(text: "Enter 4 Digits")
                 }
+            }
+            pinTextField.text = ""
+        }
+    }
+    
+    private func showWrongPinView(text: String) {
+        wrongAlertView.isHidden = false
+        wrongAlertView.alpha = 1
+        wrongLabel.text = text
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0.0,
+            options: .curveLinear,
+            animations: {
+                
+                self.wrongAlertView.frame.origin.x = 100
+                
+            })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            UIView.animate(withDuration: 0.5) {
+                self.wrongAlertView.alpha = 0
             }
         }
     }
