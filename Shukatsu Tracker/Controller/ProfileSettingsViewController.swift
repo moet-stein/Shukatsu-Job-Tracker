@@ -15,7 +15,11 @@ class ProfileSettingsViewController: UIViewController {
     private var profile = ProfileSettings()
     
     private var contentView: ProfileSettingsView!
+    private var profileImageView: UIImageView!
+    
+    private var imagePicker = UIImagePickerController()
     private var settingsTableView: UITableView!
+    private var editProfileCameraButton: CircleButton!
     
     weak var homeVCDelegate: HomeVCDelegate?
     
@@ -25,11 +29,15 @@ class ProfileSettingsViewController: UIViewController {
     override func loadView() {
         contentView = ProfileSettingsView()
         view = contentView
+
+        profileImageView = contentView.profileImageView
+        editProfileCameraButton = contentView.editProfileCameraButton
+        
         settingsTableView = contentView.setttingsTableView
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         
-        
+        addCameraBtnTarget()
         fetchAndReload()
     }
     
@@ -47,6 +55,9 @@ class ProfileSettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func addCameraBtnTarget() {
+        editProfileCameraButton.addTarget(self, action: #selector(cameraBtnTapped), for: .touchUpInside)
+    }
     
     
     private func fetchAndReload() {
@@ -60,6 +71,12 @@ class ProfileSettingsViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    @objc func cameraBtnTapped() {
+        ImagePickerManager().pickImage(self) { image in
+            print("save image \(image)")
         }
     }
 
@@ -183,6 +200,4 @@ extension ProfileSettingsViewController: UITableViewDelegate {
             return
         }
     }
-    
-    
 }
