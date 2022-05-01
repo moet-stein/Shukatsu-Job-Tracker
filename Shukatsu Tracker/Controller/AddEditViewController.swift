@@ -122,6 +122,7 @@ class AddEditViewController: UIViewController {
             locationField.textField.text = job.location
             linkField.textField.text = job.link
             notesField.textField.text = job.notes
+            appliedDatePicker.date = job.appliedDate ?? Date()
             
             switch job.status {
             case "open":
