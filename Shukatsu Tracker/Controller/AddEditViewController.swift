@@ -172,7 +172,16 @@ class AddEditViewController: UIViewController {
     
     @objc func saveButtonPressed(sender: UIButton) {
         let companyName = companyField.textField.text ?? ""
-        if companyName.isEmpty {
+        let location = locationField.textField.text ?? ""
+        
+        if companyName.isEmpty && location.isEmpty {
+            showAlert(alertText: "Company name & location fields are required")
+            return
+        } else if companyName.isEmpty {
+            showAlert(alertText: "Company name field is required")
+            return
+        } else if location.isEmpty {
+            showAlert(alertText: "Location fields is required")
             return
         }
         
@@ -183,7 +192,7 @@ class AddEditViewController: UIViewController {
             appliedDate = appliedDatePicker.date
         }
         
-        let location = locationField.textField.text ?? ""
+
         let status = selectedStatus.status
         let favorite = false
         let role = roleField.textField.text ?? nil
@@ -197,6 +206,16 @@ class AddEditViewController: UIViewController {
         } else {
             JobInfoDataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
+        }
+    }
+    
+    private func showAlert(alertText: String) {
+        let alert = UIAlertController(title: "", message: alertText, preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
+
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when){
+          alert.dismiss(animated: true, completion: nil)
         }
     }
 

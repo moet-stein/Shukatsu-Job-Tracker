@@ -156,7 +156,6 @@ class AddEditView: UIView {
         return button
     }()
     
-    
     init() {
         super.init(frame: .zero)
         
