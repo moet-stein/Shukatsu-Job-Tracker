@@ -32,6 +32,10 @@ class ProfileSettingsViewController: UIViewController {
 
         profileImageView = contentView.profileImageView
         editProfileCameraButton = contentView.editProfileCameraButton
+    
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped(tapGestureRecognizer:)))
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGestureRecognizer)
         
         settingsTableView = contentView.setttingsTableView
         settingsTableView.delegate = self
@@ -81,7 +85,15 @@ class ProfileSettingsViewController: UIViewController {
         }
     }
     
+    @objc func profileImageViewTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        openCameraOrLibrary()
+    }
+    
     @objc func cameraBtnTapped() {
+        openCameraOrLibrary()
+    }
+    
+    private func openCameraOrLibrary() {
         ImagePickerManager().pickImage(self) { [weak self] image in
             
             self?.profileImageView.image = image
@@ -92,6 +104,8 @@ class ProfileSettingsViewController: UIViewController {
         
         }
     }
+    
+    
 
 }
 
