@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>$Shukatsu Tracker camera use</string>
+	<string>Shukatsu Tracker camera use</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$Shukatsu Tracker photo use</string>
+	<string>Shukatsu Tracker photo use</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Light.ttf</string>

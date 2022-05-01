@@ -84,13 +84,18 @@ class HomeViewController: UIViewController {
                     }
                 } else {
                     profileSettings = profiles[0]
-                    
                     let name = profiles[0].profileName ?? ""
                     let title = profiles[0].profileTitle ?? ""
+                    var uiImage = UIImage(named: "azuImage")!
+                    
+                    if let image = profiles[0].profileImage {
+                        uiImage = UIImage(data: image)!
+                    }
                     
                     DispatchQueue.main.async { [weak self] in
                         self?.greetLabel.text = "Hello, \(name)"
                         self?.titleLabel.text = title
+                        self?.profileImage.image = uiImage
                     }
                 }
             }

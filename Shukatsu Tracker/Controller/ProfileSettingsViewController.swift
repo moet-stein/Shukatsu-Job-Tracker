@@ -65,9 +65,16 @@ class ProfileSettingsViewController: UIViewController {
             if let profileData = profileData {
                 if !profileData.isEmpty {
                     profile = profileData[0]
+                    
+                    var uiImage = UIImage(named: "azuImage")!
+                    
+                    if let image = profile.profileImage {
+                        uiImage = UIImage(data: image)!
+                    }
 
                     DispatchQueue.main.async { [weak self] in
                         self?.settingsTableView.reloadData()
+                        self?.profileImageView.image = uiImage
                     }
                 }
             }
@@ -75,8 +82,14 @@ class ProfileSettingsViewController: UIViewController {
     }
     
     @objc func cameraBtnTapped() {
-        ImagePickerManager().pickImage(self) { image in
-            print("save image \(image)")
+        ImagePickerManager().pickImage(self) { [weak self] image in
+            
+            self?.profileImageView.image = image
+
+            if let profile = self?.profile, let imageData = image.jpegData(compressionQuality: 1.0) {
+                ProfileSettingsDataManager.updateProfileImage(profileSettings: profile, profileImage: imageData)
+            }
+        
         }
     }
 

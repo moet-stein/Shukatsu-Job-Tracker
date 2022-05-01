@@ -89,6 +89,18 @@ class ProfileSettingsDataManager {
         
     }
     
+    static func updateProfileImage(profileSettings: ProfileSettings, profileImage: Data) {
+        
+        profileSettings.profileImage = profileImage
+
+        
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print("Could not update. \(error), \(error.userInfo)")
+        }
+    }
+    
     
     // MARK: - Delete
 //    static func deleteJobInfo(job: JobInfo) {

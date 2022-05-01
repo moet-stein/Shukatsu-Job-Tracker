@@ -17,11 +17,12 @@
     </entity>
     <entity name="ProfileSettings" representedClassName=".ProfileSettings" syncable="YES" codeGenerationType="class">
         <attribute name="pinOn" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="profileImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="profileName" attributeType="String"/>
         <attribute name="profileTitle" attributeType="String"/>
     </entity>
     <elements>
         <element name="JobInfo" positionX="-197.96484375" positionY="-18" width="262.96484375" height="238"/>
-        <element name="ProfileSettings" positionX="-99" positionY="117" width="128" height="74"/>
+        <element name="ProfileSettings" positionX="-99" positionY="117" width="128" height="89"/>
     </elements>
 </model>
