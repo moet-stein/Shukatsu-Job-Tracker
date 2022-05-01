@@ -104,10 +104,12 @@ class JobInfoDataManager {
         
         if let appliedDate = appliedDate {
             let dateString = formatter.string(from: appliedDate)
+            job.appliedDate = appliedDate
             job.appliedDateString = dateString
         }
         
         let lastUpdateString = formatter.string(from: lastUpdate)
+        job.lastUpdate = lastUpdate
         job.lastUpdateString = lastUpdateString
         
         do {
