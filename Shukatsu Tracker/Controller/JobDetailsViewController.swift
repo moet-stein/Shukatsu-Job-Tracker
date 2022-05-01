@@ -9,9 +9,6 @@ import UIKit
 
 
 class JobDetailsViewController: UIViewController {
-    deinit {
-        print("JobDetailsViewController deinit")
-    }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     weak var jobEditedHomeVCDelegate: HomeVCDelegate?
     
@@ -129,16 +126,28 @@ class JobDetailsViewController: UIViewController {
     private func setContent(job: JobInfo) {
         statusLabels.addStatusColor(status: job.status ?? "open")
         companyLabels.contentLabel.text = job.companyName
-        roleLabels.contentLabel.text = job.role ?? " - "
-        teamLabels.contentLabel.text = job.team ?? " - "
-        locationLabels.contentLabel.text = job.location
+        roleLabels.contentLabel.text = giveDashStringIfEmpty(from: job.role)
+        teamLabels.contentLabel.text = giveDashStringIfEmpty(from: job.team)
+        locationLabels.contentLabel.text = giveDashStringIfEmpty(from: job.location)
         linkLabels.addLink(link: job.link)
-        notesLabels.contentLabel.text = job.notes ?? " - "
-        appliedDateLabels.contentLabel.text = job.appliedDateString ?? " - "
-        lastUpdatedLabels.contentLabel.text = job.lastUpdateString
+        notesLabels.contentLabel.text = giveDashStringIfEmpty(from: job.notes)
+        appliedDateLabels.contentLabel.text = giveDashStringIfEmpty(from: job.appliedDateString)
+        lastUpdatedLabels.contentLabel.text = giveDashStringIfEmpty(from: job.lastUpdateString)
         favoriteButton.isSelected = job.favorite
         toggleFavoriteBtn(updateInfo: false)
         
+    }
+    
+    private func giveDashStringIfEmpty(from text: String?) -> String {
+        if let text = text {
+            if text.isEmpty {
+                return " - "
+            } else {
+                return text
+            }
+        }
+        
+        return " - "
     }
     
     private func toggleFavoriteBtn(updateInfo: Bool) {
