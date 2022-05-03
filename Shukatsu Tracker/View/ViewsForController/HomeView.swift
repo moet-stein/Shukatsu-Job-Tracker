@@ -36,6 +36,7 @@ class HomeView: UIView {
         let radius = CGFloat(60 / 2)
         uiImageView.layer.cornerRadius = radius
         uiImageView.clipsToBounds = true
+        uiImageView.contentMode = .scaleAspectFill
         
         return uiImageView
     }()
