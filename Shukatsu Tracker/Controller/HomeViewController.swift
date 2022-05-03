@@ -85,9 +85,13 @@ class HomeViewController: UIViewController {
                         self?.titleLabel.text = "unknown title"
                     }
                 } else {
-                    profileSettings = profiles[0]
-                    let name = profiles[0].profileName ?? ""
-                    let title = profiles[0].profileTitle ?? ""
+                   
+                    var name = profiles[0].profileName ?? "unknown"
+                    if name.isEmpty{ name = "unknown"}
+                    
+                    var title = profiles[0].profileTitle ?? "unknown title"
+                    if title.isEmpty { title = "unknown title"}
+                    
                     var uiImage = UIImage(named: "azuImage")!
                     
                     if let image = profiles[0].profileImage {
