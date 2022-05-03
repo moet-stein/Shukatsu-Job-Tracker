@@ -33,10 +33,6 @@ class HomeView: UIView {
         uiImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         uiImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
-        let image = UIImage(named: "azuImage")
-        uiImageView.contentMode = UIView.ContentMode.scaleAspectFill
-        uiImageView.image = image
-        
         let radius = CGFloat(60 / 2)
         uiImageView.layer.cornerRadius = radius
         uiImageView.clipsToBounds = true

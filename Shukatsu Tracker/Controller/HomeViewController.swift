@@ -118,6 +118,10 @@ class HomeViewController: UIViewController {
         jobsCollectionView = contentView.jobsCollectionView
         jobsCollectionView.dataSource = self
         jobsCollectionView.delegate = self
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+//        layout.itemSize = CGSize(width: view.frame.size.width/2.3, height: 150)
+//        layout.sectionInset = UIEdgeInsets(top: 20, left: 15, bottom: 40, right: 15)
         
         
         addButton = contentView.addButton

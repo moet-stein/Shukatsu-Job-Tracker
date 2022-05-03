@@ -31,10 +31,6 @@ class ProfileSettingsView: UIView {
         uiImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
         uiImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
-        let image = UIImage(named: "azuImage")
-        uiImageView.contentMode = UIView.ContentMode.scaleAspectFill
-        uiImageView.image = image
-        
         let radius = CGFloat(120 / 2)
         uiImageView.layer.cornerRadius = radius
         uiImageView.clipsToBounds = true
