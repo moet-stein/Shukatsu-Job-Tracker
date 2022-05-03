@@ -15,8 +15,8 @@ class NotFoundWithImageView: UIView {
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "LeagueSpartan-Bold", size: 30)
-        label.textColor = UIColor(named: "DarkGreen")
+        label.font = UIFont(name: "Lato-Bold", size: 30)
+        label.textColor = UIColor(named: "skyBlue")
         label.textAlignment = .center
         return label
     }()
@@ -57,8 +57,8 @@ class NotFoundWithImageView: UIView {
             
             noInternetImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             noInternetImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            noInternetImageView.widthAnchor.constraint(equalToConstant: 250),
-            noInternetImageView.heightAnchor.constraint(equalToConstant: 250)
+            noInternetImageView.widthAnchor.constraint(equalToConstant: 180),
+            noInternetImageView.heightAnchor.constraint(equalToConstant: 180)
         ])
     }
     

@@ -35,6 +35,8 @@ class HomeViewController: UIViewController {
     private var viewAllButton: AllFavoritesButton!
     private var viewFavoritesButton: AllFavoritesButton!
     
+    private var noJobsView: NotFoundWithImageView!
+    
     
     
     init() {
@@ -139,6 +141,8 @@ class HomeViewController: UIViewController {
         viewAllButton = contentView.viewAllButton
         viewFavoritesButton = contentView.viewFavoritesButton
         
+        noJobsView = contentView.noJobsView
+        
         addAddButtonFunction()
         addFunctionToStatusButtons()
         addFunctionsToFilterButtons()
@@ -242,6 +246,12 @@ class HomeViewController: UIViewController {
             } else {
                 filteredJobInfos = jobInfos.filter{checkedStatus.contains($0.status!)}
             }
+        }
+        
+        if filteredJobInfos.isEmpty {
+            noJobsView.isHidden = false
+        } else {
+            noJobsView.isHidden = true
         }
         jobsCollectionView.reloadData()
     }
