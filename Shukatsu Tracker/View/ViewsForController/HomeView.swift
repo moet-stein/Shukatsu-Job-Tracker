@@ -27,17 +27,8 @@ class HomeView: UIView {
     
     // MARK: - Proifile Section
     
-    let profileImage: UIImageView = {
-        let uiImageView = UIImageView()
-        uiImageView.translatesAutoresizingMaskIntoConstraints = false
-        uiImageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        uiImageView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        let radius = CGFloat(60 / 2)
-        uiImageView.layer.cornerRadius = radius
-        uiImageView.clipsToBounds = true
-        uiImageView.contentMode = .scaleAspectFill
-        
+    let profileImage: ProfileImageView = {
+        let uiImageView = ProfileImageView(size: 60)
         return uiImageView
     }()
     

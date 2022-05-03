@@ -25,16 +25,8 @@ class ProfileSettingsView: UIView {
         return label
     }()
     
-    let profileImageView: UIImageView = {
-        let uiImageView = UIImageView()
-        uiImageView.translatesAutoresizingMaskIntoConstraints = false
-        uiImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        uiImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        
-        let radius = CGFloat(120 / 2)
-        uiImageView.layer.cornerRadius = radius
-        uiImageView.clipsToBounds = true
-        
+    let profileImageView: ProfileImageView = {
+        let uiImageView = ProfileImageView(size: 120)
         return uiImageView
     }()
     
