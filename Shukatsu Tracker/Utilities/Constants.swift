@@ -23,11 +23,11 @@ enum Fonts {
 }
 
 enum Colors {
-    static let skyBlue = UIColor(named: "skyBlue")
-    static let bgOffWhite = UIColor(named: "bfOffWhite")
-    static let blueGrey = UIColor(named: "blueGrey")
-    static let lightGreen = UIColor(named: "lightGreen")
-    static let lightOrange = UIColor(named: "lightOrange")
-    static let softBrown = UIColor(named: "softBrown")
-    static let viewOrange = UIColor(named: "viewOrange")
+    static let skyBlue = UIColor(red: 0.18, green: 0.64, blue: 1.00, alpha: 1.00)
+    static let bgOffwhite = UIColor(red: 1.00, green: 0.98, blue: 0.94, alpha: 1.00)
+    static let blueGrey = UIColor(red: 0.57, green: 0.66, blue: 0.74, alpha: 1.00)
+    static let lightGreen = UIColor(red: 0.40, green: 0.76, blue: 0.55, alpha: 1.00)
+    static let lightOrange = UIColor(red: 0.98, green: 0.89, blue: 0.78, alpha: 1.00)
+    static let softBrown = UIColor(red: 0.56, green: 0.50, blue: 0.42, alpha: 1.00)
+    static let viewOrange = UIColor(red: 1.00, green: 0.53, blue: 0.37, alpha: 1.00)
 }

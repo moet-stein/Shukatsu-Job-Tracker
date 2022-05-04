@@ -14,14 +14,14 @@ class JobDetailsView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = UIColor(named: "lightOrange")
+        scrollView.backgroundColor = Colors.lightOrange
         return scrollView
     }()
     
     private let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "lightOrange")
+        view.backgroundColor = Colors.lightOrange
         return view
     }()
     // MARK: - Buttons
@@ -37,7 +37,7 @@ class JobDetailsView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .small)
         let heartSF = UIImage(systemName: "heart", withConfiguration: config)
-        button.tintColor = UIColor(named: "viewOrange")
+        button.tintColor = Colors.viewOrange
         button.setImage(heartSF, for: .normal)
         return button
     }()
@@ -45,8 +45,8 @@ class JobDetailsView: UIView {
     let detailViewEditButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit", for: .normal)
-        button.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Lato-Bold", size: 25)
+        button.setTitleColor(Colors.viewOrange, for: .normal)
+        button.titleLabel?.font = UIFont(name: Fonts.latoBold, size: 25)
         return button
     }()
     

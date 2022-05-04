@@ -124,7 +124,7 @@ class JobDetailsViewController: UIViewController {
     }
     
     private func setContent(job: JobInfo) {
-        statusLabels.addStatusColor(status: job.status ?? "open")
+        statusLabels.addStatusColor(status: JobStatus(rawValue: job.status ?? "open") ?? JobStatus.open)
         companyLabels.contentLabel.text = job.companyName
         roleLabels.contentLabel.text = giveDashStringIfEmpty(from: job.role)
         teamLabels.contentLabel.text = giveDashStringIfEmpty(from: job.team)

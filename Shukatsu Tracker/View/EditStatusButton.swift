@@ -14,13 +14,13 @@ class EditStatusButton: UIButton {
     var bgColor: UIColor {
         switch status {
         case .open:
-            return UIColor(named: "skyBlue")!
+            return Colors.skyBlue
         case .applied:
-            return UIColor(named: "lightGreen")!
+            return Colors.lightGreen
         case .interview:
-            return UIColor(named: "viewOrange")!
+            return Colors.viewOrange
         case .closed:
-            return UIColor(named: "blueGrey")!
+            return Colors.blueGrey
         }
     }
     

@@ -28,7 +28,7 @@ class EditStatusButtonView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Regular", size: 13)
+        label.font = UIFont(name: Fonts.latoRegular, size: 13)
         return label
     }()
     

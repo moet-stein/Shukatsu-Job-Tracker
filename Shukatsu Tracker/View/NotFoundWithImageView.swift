@@ -15,8 +15,8 @@ class NotFoundWithImageView: UIView {
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Lato-Bold", size: 30)
-        label.textColor = UIColor(named: "skyBlue")
+        label.font = UIFont(name: Fonts.latoBold, size: 30)
+        label.textColor = Colors.skyBlue
         label.textAlignment = .center
         return label
     }()
@@ -44,7 +44,7 @@ class NotFoundWithImageView: UIView {
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 20
-        backgroundColor = UIColor(named: "CellBgGreen")
+//        backgroundColor = UIColor(named: "CellBgGreen")
         
         addSubview(titleLabel)
         addSubview(noInternetImageView)

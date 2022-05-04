@@ -19,7 +19,7 @@ class AddEditView: UIView {
     private let contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "lightOrange")
+        view.backgroundColor = Colors.lightOrange
         return view
     }()
     
@@ -27,8 +27,8 @@ class AddEditView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("SAVE", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Lato-Bold", size: 20)
-        button.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
+        button.titleLabel?.font = UIFont(name: Fonts.latoBold, size: 20)
+        button.setTitleColor(Colors.viewOrange, for: .normal)
         return button
     }()
     
@@ -46,7 +46,7 @@ class AddEditView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont(name: "Lato-Bold", size: 27)
+        label.font = UIFont(name: Fonts.latoBold, size: 27)
         return label
     }()
     
@@ -55,7 +55,7 @@ class AddEditView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "status"
         label.textColor = .black
-        label.font = UIFont(name: "Lato-Regular", size: 20)
+        label.font = UIFont(name: Fonts.latoRegular, size: 20)
         return label
     }()
     
@@ -130,7 +130,7 @@ class AddEditView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.text = "applied date"
-        label.font = UIFont(name: "Lato-Regular", size: 20)
+        label.font = UIFont(name: Fonts.latoRegular, size: 20)
         label.textColor = .black
         return label
     }()
@@ -149,8 +149,8 @@ class AddEditView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("SAVE", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Lato-Bold", size: 20)
-        button.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
+        button.titleLabel?.font = UIFont(name: Fonts.latoBold, size: 20)
+        button.setTitleColor(Colors.viewOrange, for: .normal)
         button.backgroundColor = UIColor(white: 1, alpha: 0.6)
         button.layer.cornerRadius = 10
         return button

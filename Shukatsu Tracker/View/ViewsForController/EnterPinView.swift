@@ -26,7 +26,7 @@ class EnterPinView: UIView {
     let wrongLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Lato-Bold", size: 23)
+        label.font = UIFont(name: Fonts.latoBold, size: 23)
         label.textColor = .white
         return label
     }()
@@ -34,7 +34,7 @@ class EnterPinView: UIView {
     let orangeRoundedView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "viewOrange")
+        view.backgroundColor = Colors.viewOrange
         view.layer.cornerRadius = 20
         return view
     }()
@@ -42,8 +42,8 @@ class EnterPinView: UIView {
     let enterPinTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Lato-Bold", size: 25)
-        label.textColor = UIColor(named: "bgOffwhite")
+        label.font = UIFont(name: Fonts.latoBold, size: 25)
+        label.textColor = Colors.bgOffwhite
         return label
     }()
     
@@ -53,8 +53,8 @@ class EnterPinView: UIView {
         textField.placeholder = " 4 digit PIN"
         textField.keyboardType = .asciiCapableNumberPad
         textField.textAlignment = .center
-        textField.tintColor = UIColor(named: "viewOrange")
-        textField.backgroundColor = UIColor(named: "bgOffwhite")
+        textField.tintColor = Colors.viewOrange
+        textField.backgroundColor = Colors.bgOffwhite
         textField.layer.cornerRadius = 10
         textField.widthAnchor.constraint(equalToConstant: 200).isActive = true
         return textField
@@ -73,7 +73,7 @@ class EnterPinView: UIView {
     init() {
         super.init(frame: .zero)
         setUpUI()
-        backgroundColor = UIColor(named: "bgOffwhite")
+        backgroundColor = Colors.bgOffwhite
     }
     
     required init?(coder: NSCoder) {

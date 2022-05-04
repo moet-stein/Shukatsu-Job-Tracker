@@ -10,13 +10,13 @@ import UIKit
 class AllFavoritesButton: UIButton {
 
     var buttonText: String
-    var colorName: String
+    var color: UIColor
     var leftCorner: Bool
     var sfSymbol: String
     
-    init(buttonText: String, colorName: String, leftCorner: Bool, sfSymbol: String, frame: CGRect = .zero) {
+    init(buttonText: String, color: UIColor, leftCorner: Bool, sfSymbol: String, frame: CGRect = .zero) {
         self.buttonText = buttonText
-        self.colorName = colorName
+        self.color = color
         self.leftCorner = leftCorner
         self.sfSymbol = sfSymbol
         super.init(frame: frame)
@@ -31,12 +31,12 @@ class AllFavoritesButton: UIButton {
 
         if leftCorner {
             setTitleColor(.white, for: .normal)
-            backgroundColor = UIColor(named: colorName)
+            backgroundColor = color
             tintColor = .white
         } else {
-            setTitleColor(UIColor(named: colorName), for: .normal)
+            setTitleColor(color, for: .normal)
             backgroundColor = UIColor(named: "lightOrange")
-            tintColor = UIColor(named: colorName)
+            tintColor = color
         }
         
         let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .small)
@@ -48,12 +48,12 @@ class AllFavoritesButton: UIButton {
         
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(buttonText, for: .normal)
-        titleLabel?.font = UIFont(name: "Lato-Bold", size: 15)
+        titleLabel?.font = UIFont(name: Fonts.latoBold, size: 15)
         
         clipsToBounds = true
         layer.cornerRadius = 10
         layer.maskedCorners = leftCorner ? [.layerMinXMaxYCorner, .layerMinXMinYCorner] : [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         layer.borderWidth = 1
-        layer.borderColor = UIColor(named: colorName)?.cgColor
+        layer.borderColor = color.cgColor
     }
 }

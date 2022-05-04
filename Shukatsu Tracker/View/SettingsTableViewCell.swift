@@ -20,14 +20,14 @@ class SettingsTableViewCell: UITableViewCell {
     let titleLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Lato-Regular", size: 17)
+        label.font = UIFont(name: Fonts.latoRegular, size: 17)
         return label
     }()
     
     let setDataString: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Lato-Regular", size: 15)
+        label.font = UIFont(name: Fonts.latoRegular, size: 15)
         label.textColor = UIColor.systemGray
         return label
     }()

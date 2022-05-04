@@ -12,7 +12,7 @@ class ProfileSettingsView: UIView {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = UIColor(named: "lightOrange")
+        scrollView.backgroundColor = Colors.lightOrange
         return scrollView
     }()
     
@@ -20,8 +20,8 @@ class ProfileSettingsView: UIView {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Profile Settings"
-        label.font = UIFont(name: "Lato-Regular", size: 30)
-        label.textColor = UIColor(named: "skyBlue")
+        label.font = UIFont(name: Fonts.latoRegular, size: 30)
+        label.textColor = Colors.skyBlue
         return label
     }()
     

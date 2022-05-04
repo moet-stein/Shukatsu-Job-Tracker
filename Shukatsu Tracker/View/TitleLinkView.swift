@@ -22,8 +22,8 @@ class TitleLinkView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = UIFont(name: "Lato-Regular", size: 20)
-        label.textColor = UIColor(named: "softBrown")
+        label.font = UIFont(name: Fonts.latoRegular, size: 20)
+        label.textColor = Colors.softBrown
         return label
     }()
     
@@ -34,11 +34,11 @@ class TitleLinkView: UIView {
         textView.isEditable = false
         textView.isUserInteractionEnabled = true
         
-        textView.tintColor = UIColor(named: "softBrown")
+        textView.tintColor = Colors.softBrown
         
         textView.textContainer.maximumNumberOfLines = 2
         textView.textContainer.lineBreakMode = .byTruncatingTail
-        textView.backgroundColor = UIColor(named: "lightOrange")
+        textView.backgroundColor = Colors.lightOrange
         return textView
     }()
     
@@ -87,7 +87,7 @@ class TitleLinkView: UIView {
             attributedString.addAttribute(NSAttributedString.Key.link, value: link, range: range)
             attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: range)
             linkTextView.attributedText = attributedString
-            linkTextView.font = UIFont(name: "Lato-Regular", size: 17)
+            linkTextView.font = UIFont(name: Fonts.latoRegular, size: 17)
         } else {
             linkTextView.text = " - "
         }

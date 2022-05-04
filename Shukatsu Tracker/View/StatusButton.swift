@@ -16,7 +16,7 @@ class StatusButton: UIButton {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Bold", size: 15)
+        label.font = UIFont(name: Fonts.latoBold, size: 15)
         return label
     }()
     
@@ -24,7 +24,7 @@ class StatusButton: UIButton {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Regular", size: 22)
+        label.font = UIFont(name: Fonts.latoRegular, size: 22)
         return label
     }()
     
@@ -44,20 +44,21 @@ class StatusButton: UIButton {
         let jobStatus = status
         
         statusLabel.text = status.rawValue
+        setTitle(status.rawValue, for: .normal)
         
         switch jobStatus {
         case .open:
-            setColor(colorName: "skyBlue")
+            setColor(color: Colors.skyBlue)
         case .applied:
-            setColor(colorName: "lightGreen")
+            setColor(color: Colors.lightGreen)
         case .interview:
-            setColor(colorName: "viewOrange")
+            setColor(color: Colors.viewOrange)
         case .closed:
-            setColor(colorName: "blueGrey")
+            setColor(color: Colors.blueGrey)
         }
         
         layer.cornerRadius = 10
-        backgroundColor = UIColor(named: "lightOrange")
+        backgroundColor = Colors.lightOrange
         isSelected = false
         
         addSubview(statusLabel)
@@ -74,9 +75,9 @@ class StatusButton: UIButton {
         ])
     }
     
-    private func setColor(colorName: String) {
-        statusLabel.textColor = UIColor(named: colorName)
-        numberLabel.textColor = UIColor(named: colorName)
+    private func setColor(color: UIColor) {
+        statusLabel.textColor = color
+        numberLabel.textColor = color
         
     }
     

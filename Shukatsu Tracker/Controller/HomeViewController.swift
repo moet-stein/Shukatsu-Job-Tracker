@@ -197,7 +197,7 @@ class HomeViewController: UIViewController {
             let textColor = button.backgroundColor
             button.statusLabel.textColor = textColor
             button.numberLabel.textColor = textColor
-            button.backgroundColor = UIColor(named: "lightOrange")
+            button.backgroundColor = Colors.lightOrange
         }
         
         filteringJobs()
@@ -211,19 +211,19 @@ class HomeViewController: UIViewController {
         sender.setTitleColor(.white, for: .normal)
         if sender.tag == 1 {
             viewAll = true
-            sender.backgroundColor = UIColor(named: "blueGrey")
+            sender.backgroundColor = Colors.blueGrey
             sender.tintColor = .white
-            viewFavoritesButton.tintColor = UIColor(named: "viewOrange")
-            viewFavoritesButton.setTitleColor(UIColor(named: "viewOrange"), for: .normal)
-            viewFavoritesButton.backgroundColor = UIColor(named: "lightOrange")
+            viewFavoritesButton.tintColor = Colors.viewOrange
+            viewFavoritesButton.setTitleColor(Colors.viewOrange, for: .normal)
+            viewFavoritesButton.backgroundColor = Colors.lightOrange
             
         } else {
             viewAll = false
-            sender.backgroundColor = UIColor(named: "viewOrange")
+            sender.backgroundColor = Colors.viewOrange
             sender.tintColor = .white
-            viewAllButton.tintColor = UIColor(named: "blueGrey")
-            viewAllButton.setTitleColor(UIColor(named: "blueGrey"), for: .normal)
-            viewAllButton.backgroundColor = UIColor(named: "lightOrange")
+            viewAllButton.tintColor = Colors.blueGrey
+            viewAllButton.setTitleColor(Colors.blueGrey, for: .normal)
+            viewAllButton.backgroundColor = Colors.lightOrange
         }
         
         filteringJobs()
@@ -244,6 +244,7 @@ class HomeViewController: UIViewController {
             } else {
                 filteredJobInfos = jobInfos.filter{$0.favorite && checkedStatus.contains($0.status!)}
             }
+            print(jobInfos)
         } else {
             if checkedStatus.isEmpty {
                 filteredJobInfos = jobInfos

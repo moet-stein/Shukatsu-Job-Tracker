@@ -67,7 +67,7 @@ class SetProfileNameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "lightOrange")
+        view.backgroundColor = Colors.lightOrange
         editTextField.delegate = self
         setUpUI()
         setUpContent()

@@ -42,7 +42,7 @@ class CircleButton: UIButton {
             tintColor = .white
         }
         
-        titleLabel?.font = UIFont(name: "Lato-Regular", size: 20)
+        titleLabel?.font = UIFont(name: Fonts.latoRegular, size: 20)
         backgroundColor = bgColor
 
         widthAnchor.constraint(equalToConstant: buttonSize).isActive = true

@@ -14,7 +14,7 @@ class JobsCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 20
-        view.backgroundColor = UIColor(named: "viewOrange")
+        view.backgroundColor = Colors.viewOrange
         return view
     }()
     
@@ -29,7 +29,7 @@ class JobsCollectionViewCell: UICollectionViewCell {
     private let dateTagLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Lato-Regular", size: 13)
+        label.font = UIFont(name: Fonts.latoRegular, size: 13)
         label.textColor = .systemGray
         return label
     }()
@@ -37,16 +37,14 @@ class JobsCollectionViewCell: UICollectionViewCell {
     private let companyNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Lato-Bold", size: 20)
-//        label.textColor = UIColor(named: "DarkGreen")
+        label.font = UIFont(name: Fonts.latoBold, size: 20)
         return label
     }()
     
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Lato-Regular", size: 12)
-//        label.textColor = UIColor(named: "DarkGreen")
+        label.font = UIFont(name: Fonts.latoRegular, size: 12)
         return label
     }()
     
@@ -100,13 +98,13 @@ class JobsCollectionViewCell: UICollectionViewCell {
         roundedView.backgroundColor = {
             switch jobStatus {
             case .open:
-                return UIColor(named: "skyBlue")
+                return Colors.skyBlue
             case .applied:
-                return UIColor(named: "lightGreen")
+                return Colors.lightGreen
             case .interview:
-                return UIColor(named: "viewOrange")
+                return Colors.viewOrange
             case .closed:
-                return UIColor(named: "blueGrey")
+                return Colors.blueGrey
             }
         }()
         

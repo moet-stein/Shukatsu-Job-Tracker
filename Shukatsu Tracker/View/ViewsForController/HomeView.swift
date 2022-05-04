@@ -11,14 +11,14 @@ class HomeView: UIView {
     private let scrollView: UIScrollView = {
        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = UIColor(named: "bgOffwhite")
+        scrollView.backgroundColor = Colors.bgOffwhite
         return scrollView
     }()
     
     let addButton: CircleButton = {
         let button = CircleButton(
             buttonSize: 50,
-            bgColor: UIColor(named: "viewOrange") ?? .black,
+            bgColor: Colors.viewOrange,
             buttonText: nil,
             sfSymbolName: "plus"
         )
@@ -36,7 +36,7 @@ class HomeView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
 //        label.text = "Good morning, Moe"
-        label.font = UIFont(name: "Lato-Bold", size: 20)
+        label.font = UIFont(name: Fonts.latoBold, size: 20)
         return label
     }()
     
@@ -44,7 +44,7 @@ class HomeView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
 //        label.text = "Future iOS Engineer"
-        label.font = UIFont(name: "Lato-Regular", size: 15)
+        label.font = UIFont(name: Fonts.latoRegular, size: 15)
         return label
     }()
     
@@ -84,7 +84,7 @@ class HomeView: UIView {
     private let tilesView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "lightOrange")
+        view.backgroundColor = Colors.lightOrange
         view.layer.cornerRadius = 30
         return view
     }()
@@ -92,7 +92,7 @@ class HomeView: UIView {
     // MARK: - viewAll favoites toggle
     
     lazy var viewAllButton: AllFavoritesButton = {
-        let button = AllFavoritesButton(buttonText: "All", colorName: "blueGrey", leftCorner: true, sfSymbol: "square.grid.2x2")
+        let button = AllFavoritesButton(buttonText: "All", color: Colors.blueGrey, leftCorner: true, sfSymbol: "square.grid.2x2")
         button.isSelected = true
         button.tag = 1
         return button
@@ -100,7 +100,7 @@ class HomeView: UIView {
     
     
     lazy var viewFavoritesButton: AllFavoritesButton = {
-        let button = AllFavoritesButton(buttonText: "Favorites", colorName: "viewOrange", leftCorner: false, sfSymbol: "heart")
+        let button = AllFavoritesButton(buttonText: "Favorites", color: Colors.viewOrange, leftCorner: false, sfSymbol: "heart")
         button.isSelected = false
         button.tag = 2
         return button

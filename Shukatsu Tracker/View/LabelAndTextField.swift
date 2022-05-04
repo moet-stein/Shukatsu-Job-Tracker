@@ -23,7 +23,7 @@ class LabelAndTextField: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = UIFont(name: "Lato-Regular", size: 20)
+        label.font = UIFont(name: Fonts.latoRegular, size: 20)
         label.textColor = .black
         return label
     }()
@@ -39,7 +39,7 @@ class LabelAndTextField: UIView {
     let textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.tintColor = UIColor(named: "viewOrange")
+        textField.tintColor = Colors.viewOrange
         textField.backgroundColor = .clear
         return textField
     }()

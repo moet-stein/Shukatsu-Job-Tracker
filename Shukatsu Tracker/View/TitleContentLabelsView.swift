@@ -23,8 +23,8 @@ class TitleContentLabelsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = UIFont(name: "Lato-Regular", size: 20)
-        label.textColor = UIColor(named: "softBrown")
+        label.font = UIFont(name: Fonts.latoRegular, size: 20)
+        label.textColor = Colors.softBrown
         return label
     }()
     
@@ -70,28 +70,27 @@ class TitleContentLabelsView: UIView {
     
     private func setContent(){
         if boldText {
-            contentLabel.font = UIFont(name: "Lato-Bold", size: 26)
+            contentLabel.font = UIFont(name: Fonts.latoBold, size: 26)
         } else {
-            contentLabel.font = UIFont(name: "Lato-Light", size: 18)
+            contentLabel.font = UIFont(name: Fonts.latoLight, size: 18)
         }
         titleLabel.text = titleText
     }
     
     
-    func addStatusColor(status: String) {
-        contentLabel.setText(status, prependedBySymbolNameed: "square.fill")
+    func addStatusColor(status: JobStatus) {
+        let jobStatus = status
+        contentLabel.setText(jobStatus.rawValue, prependedBySymbolNameed: "square.fill")
         
-        switch status {
-            case "open" :
-            contentLabel.textColor = UIColor(named: "skyBlue")
-        case "applied" :
-            contentLabel.textColor = UIColor(named: "lightGreen")
-        case "interview":
-            contentLabel.textColor = UIColor(named: "viewOrange")
-        case "closed":
-            contentLabel.textColor = UIColor(named: "blueGrey")
-        default:
-            contentLabel.textColor = UIColor(named: "blueGrey")
+        switch jobStatus {
+        case .open :
+            contentLabel.textColor = Colors.skyBlue
+        case .applied :
+            contentLabel.textColor = Colors.lightGreen
+        case .interview:
+            contentLabel.textColor = Colors.viewOrange
+        case .closed:
+            contentLabel.textColor = Colors.blueGrey
         }
     }
     
