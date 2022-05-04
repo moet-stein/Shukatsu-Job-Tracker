@@ -92,21 +92,20 @@ class JobsCollectionViewCell: UICollectionViewCell {
     }
     
     
-    func setupCellContent(companyName: String, location: String, updatedDate: Date, status: String) {
+    func setupCellContent(companyName: String, location: String, updatedDate: Date, status: JobStatus) {
         companyNameLabel.text = companyName
         locationLabel.text = "📍\(location)"
         
+        let jobStatus = status
         roundedView.backgroundColor = {
-            switch status {
-            case "open":
+            switch jobStatus {
+            case .open:
                 return UIColor(named: "skyBlue")
-            case "applied":
+            case .applied:
                 return UIColor(named: "lightGreen")
-            case "interview":
+            case .interview:
                 return UIColor(named: "viewOrange")
-            case "closed":
-                return UIColor(named: "blueGrey")
-            default:
+            case .closed:
                 return UIColor(named: "blueGrey")
             }
         }()

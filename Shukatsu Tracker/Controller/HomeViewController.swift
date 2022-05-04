@@ -109,10 +109,10 @@ class HomeViewController: UIViewController {
     }
     
     private func updateStatusBoxes() {
-        openBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "open"}.count)
-        appliedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "applied"}.count)
-        interviewBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "interview"}.count)
-        closedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == "closed"}.count)
+        openBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.open.rawValue}.count)
+        appliedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.applied.rawValue}.count)
+        interviewBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.interview.rawValue}.count)
+        closedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.closed.rawValue}.count)
     }
     
     override func viewDidLoad() {
@@ -279,7 +279,7 @@ extension HomeViewController: UICollectionViewDataSource {
             companyName: currentJob.companyName,
             location: currentJob.location,
             updatedDate: currentJob.lastUpdate,
-            status: currentJob.status ?? "open")
+            status: JobStatus(rawValue: currentJob.status ?? "open") ?? JobStatus.open)
         
         return cell
     }

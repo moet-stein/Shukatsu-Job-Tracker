@@ -124,16 +124,17 @@ class AddEditViewController: UIViewController {
             notesField.textField.text = job.notes
             appliedDatePicker.date = job.appliedDate ?? Date()
             
-            switch job.status {
-            case "open":
+            let jobStatus = JobStatus(rawValue: job.status ?? "open")
+            switch jobStatus {
+            case .open:
                 selectedStatus = editOpenButton
-            case "applied":
+            case .applied:
                 selectedStatus = editAppliedButton
-            case "interview":
+            case .interview:
                 selectedStatus = editInterviewButton
-            case "closed":
+            case .closed:
                 selectedStatus = editClosedButton
-            default:
+            case .none:
                 selectedStatus = editOpenButton
             }
             selectedStatus.isSelected = true
