@@ -9,9 +9,7 @@ import UIKit
 
 class StatusButton: UIButton {
     
-    var status: String
-    var textColor: String
-    var number: Int
+    var status: JobStatus
     
     
     let statusLabel: UILabel = {
@@ -30,10 +28,8 @@ class StatusButton: UIButton {
         return label
     }()
     
-    init(status: String, textColor: String, number: Int, frame: CGRect = .zero) {
+    init(status: JobStatus, frame: CGRect = .zero) {
         self.status = status
-        self.textColor = textColor
-        self.number = number
         super.init(frame: frame)
         self.setUpUI()
     }
@@ -44,12 +40,21 @@ class StatusButton: UIButton {
     
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        setTitle(status, for: .normal)
         setTitleColor(.clear, for: .normal)
+        let jobStatus = status
         
-        statusLabel.text = status
-        statusLabel.textColor = UIColor(named: textColor)
-        numberLabel.textColor = UIColor(named: textColor)
+        statusLabel.text = status.rawValue
+        
+        switch jobStatus {
+        case .open:
+            setColor(colorName: "skyBlue")
+        case .applied:
+            setColor(colorName: "lightGreen")
+        case .interview:
+            setColor(colorName: "viewOrange")
+        case .closed:
+            setColor(colorName: "blueGrey")
+        }
         
         layer.cornerRadius = 10
         backgroundColor = UIColor(named: "lightOrange")
@@ -67,6 +72,12 @@ class StatusButton: UIButton {
             numberLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             numberLabel.widthAnchor.constraint(equalToConstant: 80)
         ])
+    }
+    
+    private func setColor(colorName: String) {
+        statusLabel.textColor = UIColor(named: colorName)
+        numberLabel.textColor = UIColor(named: colorName)
+        
     }
     
 }

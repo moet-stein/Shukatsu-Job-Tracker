@@ -47,6 +47,7 @@
 		6051AB57281ECF0A002E9CF6 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */; };
 		6051AB8328215E08002E9CF6 /* NotFoundWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */; };
 		60FF2E2C2821CC5500A45667 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF2E2B2821CC5500A45667 /* ProfileImageView.swift */; };
+		60FF2E2E282281A000A45667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF2E2D282281A000A45667 /* Constants.swift */; };
 		6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundWithImageView.swift; sourceTree = "<group>"; };
 		60FF2E2B2821CC5500A45667 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		60FF2E2D282281A000A45667 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		89BE5B31226051AC8560A03B /* Pods-Shukatsu Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		DEC286EBCDACB6706F13477E /* Pods-Shukatsu Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.release.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 				6051AB0D2812B159002E9CF6 /* JobInfoDataManager.swift */,
 				6051AB4D281A9AA5002E9CF6 /* ProfileSettingsDataManager.swift */,
 				6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */,
+				60FF2E2F282281A500A45667 /* Utilities */,
 			);
 			path = "Shukatsu Tracker";
 			sourceTree = "<group>";
@@ -247,6 +250,14 @@
 				6051047727F7338F00AB9DEC /* Fonts */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		60FF2E2F282281A500A45667 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				60FF2E2D282281A000A45667 /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +403,7 @@
 				6051AB55281D3EDF002E9CF6 /* ChangePinViewController.swift in Sources */,
 				6051AB372817E60E002E9CF6 /* SettingsTableViewCell.swift in Sources */,
 				605104A528033D0D00AB9DEC /* JobDetailsView.swift in Sources */,
+				60FF2E2E282281A000A45667 /* Constants.swift in Sources */,
 				6051049F2803388C00AB9DEC /* AddEditViewController.swift in Sources */,
 				6051048227F9D7CA00AB9DEC /* PinTextFieldBox.swift in Sources */,
 				6051045D27F72E0000AB9DEC /* AppDelegate.swift in Sources */,
