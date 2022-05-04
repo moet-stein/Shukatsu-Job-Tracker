@@ -9,24 +9,22 @@ import UIKit
 
 class EditStatusButton: UIButton {
     
-    var status: String
+    var status: JobStatus
     
     var bgColor: UIColor {
         switch status {
-        case "open":
+        case .open:
             return UIColor(named: "skyBlue")!
-        case "applied":
+        case .applied:
             return UIColor(named: "lightGreen")!
-        case "interview":
+        case .interview:
             return UIColor(named: "viewOrange")!
-        case "closed":
+        case .closed:
             return UIColor(named: "blueGrey")!
-        default:
-            return UIColor.brown
         }
     }
     
-    init(status: String, frame: CGRect = .zero) {
+    init(status: JobStatus, frame: CGRect = .zero) {
         self.status = status
         super.init(frame: frame)
         self.setUpUI()

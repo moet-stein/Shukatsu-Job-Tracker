@@ -68,23 +68,23 @@ class AddEditView: UIView {
     }()
     
     let editOpenButton: EditStatusButtonView = {
-        let button = EditStatusButtonView(status: "open")
+        let button = EditStatusButtonView(status: JobStatus.open)
         button.statusButton.isSelected = true
         return button
     }()
     
     let editAppliedButton: EditStatusButtonView = {
-        let button = EditStatusButtonView(status: "applied")
+        let button = EditStatusButtonView(status: JobStatus.applied)
         return button
     }()
     
     let editInterviewButton: EditStatusButtonView = {
-        let button = EditStatusButtonView(status: "interview")
+        let button = EditStatusButtonView(status: JobStatus.interview)
         return button
     }()
     
     let editClosedButton: EditStatusButtonView = {
-        let button = EditStatusButtonView(status: "closed")
+        let button = EditStatusButtonView(status: JobStatus.closed)
         return button
     }()
     

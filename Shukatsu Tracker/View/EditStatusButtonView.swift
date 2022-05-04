@@ -9,7 +9,7 @@ import UIKit
 
 class EditStatusButtonView: UIView {
     
-    var status: String
+    var status: JobStatus
     
     private let vStackView: UIStackView = {
         let stackView = UIStackView()
@@ -32,7 +32,7 @@ class EditStatusButtonView: UIView {
         return label
     }()
     
-    init(status: String, frame: CGRect = .zero) {
+    init(status: JobStatus, frame: CGRect = .zero) {
         self.status = status
         super.init(frame: frame)
         self.setUpUI()
@@ -61,6 +61,6 @@ class EditStatusButtonView: UIView {
     }
     
     private func setContent() {
-        statusLabel.text = status
+        statusLabel.text = status.rawValue
     }
 }

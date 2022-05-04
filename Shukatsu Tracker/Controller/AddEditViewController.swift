@@ -162,7 +162,7 @@ class AddEditViewController: UIViewController {
     }
 
     private func toggleAppliedDataStackView() {
-        if selectedStatus.status != "open" {
+        if selectedStatus.status != JobStatus.open {
             appliedDateStackView.isHidden = false
         } else {
             appliedDateStackView.isHidden = true
@@ -201,10 +201,10 @@ class AddEditViewController: UIViewController {
         let notes = notesField.textField.text ?? nil
 
         if let passedJob = passedJob {
-            JobInfoDataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            JobInfoDataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         } else {
-            JobInfoDataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            JobInfoDataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         }
     }
