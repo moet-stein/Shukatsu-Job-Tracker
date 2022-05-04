@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "shukatsuLogo.png",
+      "filename" : "shukatsuLogo (1).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "shukatsuLogo@2x.png",
+      "filename" : "shukatsuLogo (1)@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "shukatsuLogo@3x.png",
+      "filename" : "shukatsuLogo (1)@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
