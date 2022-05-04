@@ -76,6 +76,7 @@ class ProfileSettingsViewController: UIViewController {
                         uiImage = UIImage(data: image)!
                     }
 
+
                     DispatchQueue.main.async { [weak self] in
                         self?.settingsTableView.reloadData()
                         self?.profileImageView.image = uiImage
@@ -105,6 +106,18 @@ class ProfileSettingsViewController: UIViewController {
         }
     }
     
+    private func toggleChangePinCell(isPinOn: Bool, landing: Bool) {
+        if isPinOn {
+            if !landing {ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: nil, pinOn: true)}
+            targetCell?.titleLabel.textColor = .black
+            targetCell?.accessoryType = .disclosureIndicator
+        } else {
+            if !landing {ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: nil, pinOn: false)}
+            targetCell?.titleLabel.textColor = .systemGray3
+            targetCell?.accessoryType = .none
+        }
+    }
+    
     
 
 }
@@ -121,15 +134,7 @@ extension ProfileSettingsViewController: ProfileSettingsViewDelegate {
 
 extension ProfileSettingsViewController: SettingsTableViewCellDelegate {
     func settingsTableViewCell(_ settingsTableViewCell: SettingsTableViewCell, isPinOn: Bool) {
-        if isPinOn {
-            ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: nil, pinOn: true)
-            targetCell?.titleLabel.textColor = .black
-            targetCell?.accessoryType = .disclosureIndicator
-        } else {
-            ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: nil, pinOn: false)
-            targetCell?.titleLabel.textColor = .systemGray3
-            targetCell?.accessoryType = .none
-        }
+        toggleChangePinCell(isPinOn: isPinOn, landing: false)
     }
 }
 
@@ -183,6 +188,7 @@ extension ProfileSettingsViewController: UITableViewDataSource {
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
                 cell.accessoryType = .disclosureIndicator
                 self.targetCell = cell
+                self.toggleChangePinCell(isPinOn: self.profile.pinOn, landing: true)
             default: cell.textLabel?.text = ""
                 
             }
