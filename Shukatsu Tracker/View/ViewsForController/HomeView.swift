@@ -107,22 +107,30 @@ class HomeView: UIView {
     }()
     
     // MARK: - Collection View
-    lazy var jobsCollectionView: UICollectionView = {
-        
+    let jobsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 150, height: 150)
-        
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 15, bottom: 40, right: 15)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-
         collectionView.layer.cornerRadius = 20
         collectionView.backgroundColor = UIColor.clear.withAlphaComponent(0)
         collectionView.register(JobsCollectionViewCell.self, forCellWithReuseIdentifier: JobsCollectionViewCell.identifier)
         
         return collectionView
     }()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        collectionViewLayoutSetUp()
+    }
+    
+    private func collectionViewLayoutSetUp() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: frame.size.width / 2.7, height: 150)
+        
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 15, bottom: 40, right: 15)
+        jobsCollectionView.collectionViewLayout = layout
+    }
     
     let noJobsView: NotFoundWithImageView = {
         let view = NotFoundWithImageView(title: "No Jobs Saved", imageName: "noJobs")
