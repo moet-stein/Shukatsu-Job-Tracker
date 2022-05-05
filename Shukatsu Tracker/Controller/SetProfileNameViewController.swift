@@ -92,7 +92,8 @@ class SetProfileNameViewController: UIViewController {
             textFieldView.heightAnchor.constraint(equalToConstant: 60),
             
             editTextField.topAnchor.constraint(equalTo: textFieldView.topAnchor),
-            editTextField.leftAnchor.constraint(equalTo: textFieldView.leftAnchor, constant: 20),
+            editTextField.leadingAnchor.constraint(equalTo: textFieldView.leadingAnchor, constant: 20),
+            editTextField.trailingAnchor.constraint(equalTo: textFieldView.trailingAnchor, constant: -20),
             editTextField.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor)
         ])
     }
