@@ -44,7 +44,6 @@ class NotFoundWithImageView: UIView {
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 20
-//        backgroundColor = UIColor(named: "CellBgGreen")
         
         addSubview(titleLabel)
         addSubview(noInternetImageView)

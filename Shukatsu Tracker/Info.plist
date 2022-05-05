@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UIUserInterfaceStyle</key>
-	<string>light</string>
+	<string>Light</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Shukatsu Tracker camera use</string>
 	<key>NSPhotoLibraryUsageDescription</key>

@@ -34,7 +34,7 @@ class EnterPinViewController: UIViewController {
         wrongAlertView = contentView.wrongAlertView
         wrongLabel = contentView.wrongLabel
         
-        createTestJobInfo()
+//        createTestJobInfo()
         setLabelText()
     }
     
@@ -72,17 +72,17 @@ class EnterPinViewController: UIViewController {
         }
     }
     
-    private func createTestJobInfo() {
-        JobInfoDataManager.fetchJonInfos { jobs in
-            if let jobs = jobs {
-                
-                if jobs.isEmpty {
-                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test", location: "Berlin", status: "applied", favorite: true, role: "iOS Engineer", team: "iOS team", link: "https://www.google.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
-                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test2", location: "Berlin", status: "interview", favorite: false, role: "iOS Developer", team: "N/A", link: "https://www.apple.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
-                }
-            }
-        }
-    }
+//    private func createTestJobInfo() {
+//        JobInfoDataManager.fetchJonInfos { jobs in
+//            if let jobs = jobs {
+//
+//                if jobs.isEmpty {
+//                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test", location: "Berlin", status: "applied", favorite: true, role: "iOS Engineer", team: "iOS team", link: "https://www.google.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
+//                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test2", location: "Berlin", status: "interview", favorite: false, role: "iOS Developer", team: "N/A", link: "https://www.apple.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
+//                }
+//            }
+//        }
+//    }
     
     private func createProfile() {
         ProfileSettingsDataManager.fetchProfileSettings { profiles in
