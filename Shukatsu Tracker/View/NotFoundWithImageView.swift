@@ -11,12 +11,12 @@ class NotFoundWithImageView: UIView {
 
     private var title: String
     private var imageName: String
+    private var textColor: UIColor
     
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: Fonts.latoBold, size: 30)
-        label.textColor = Colors.skyBlue
         label.textAlignment = .center
         return label
     }()
@@ -28,9 +28,10 @@ class NotFoundWithImageView: UIView {
         return uiImageView
     }()
 
-    init(title: String, imageName: String) {
+    init(title: String, imageName: String, textColor: UIColor) {
         self.title = title
         self.imageName = imageName
+        self.textColor = textColor
         super.init(frame: .zero)
         
         setUpUI()
@@ -63,6 +64,7 @@ class NotFoundWithImageView: UIView {
     
     private func setUpContent() {
         titleLabel.text = title
+        titleLabel.textColor = textColor
         
         let image = UIImage(named: imageName)
         noInternetImageView.contentMode = UIView.ContentMode.scaleAspectFill

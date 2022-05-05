@@ -133,7 +133,13 @@ class HomeView: UIView {
     }
     
     let noJobsView: NotFoundWithImageView = {
-        let view = NotFoundWithImageView(title: "No Jobs Saved", imageName: "noJobs")
+        let view = NotFoundWithImageView(title: "No Jobs Saved", imageName: "noJobs", textColor: Colors.skyBlue)
+        view.isHidden = true
+        return view
+    }()
+    
+    let noFavsView: NotFoundWithImageView = {
+        let view = NotFoundWithImageView(title: "No Favorites Saved", imageName: "noFavs", textColor: Colors.viewOrange)
         view.isHidden = true
         return view
     }()
@@ -210,6 +216,7 @@ class HomeView: UIView {
         tilesView.addSubview(viewFavoritesButton)
         tilesView.addSubview(jobsCollectionView)
         tilesView.addSubview(noJobsView)
+        tilesView.addSubview(noFavsView)
         
         NSLayoutConstraint.activate([
 
@@ -225,6 +232,9 @@ class HomeView: UIView {
             
             noJobsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 50),
             noJobsView.centerXAnchor.constraint(equalTo: tilesView.centerXAnchor),
+            
+            noFavsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 50),
+            noFavsView.centerXAnchor.constraint(equalTo: tilesView.centerXAnchor),
             
             jobsCollectionView.centerXAnchor.constraint(equalTo: tilesView.centerXAnchor),
             jobsCollectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),

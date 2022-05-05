@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     private var viewFavoritesButton: AllFavoritesButton!
     
     private var noJobsView: NotFoundWithImageView!
-    
+    private var noFavsView: NotFoundWithImageView!
     
     
     init() {
@@ -143,6 +143,7 @@ class HomeViewController: UIViewController {
         viewFavoritesButton = contentView.viewFavoritesButton
         
         noJobsView = contentView.noJobsView
+        noFavsView = contentView.noFavsView
         
         addAddButtonFunction()
         addFunctionToStatusButtons()
@@ -213,7 +214,6 @@ class HomeViewController: UIViewController {
             viewFavoritesButton.tintColor = Colors.viewOrange
             viewFavoritesButton.setTitleColor(Colors.viewOrange, for: .normal)
             viewFavoritesButton.backgroundColor = Colors.lightOrange
-//            toggleNoJobsView(jobInfosEmpty: filteredJobInfos.isEmpty)
         } else {
             viewAll = false
             sender.backgroundColor = Colors.viewOrange
@@ -221,7 +221,6 @@ class HomeViewController: UIViewController {
             viewAllButton.tintColor = Colors.blueGrey
             viewAllButton.setTitleColor(Colors.blueGrey, for: .normal)
             viewAllButton.backgroundColor = Colors.lightOrange
-//            toggleNoFavsView(favsEmpty: filteredJobInfos.filter{$0.favorite}.isEmpty)
         }
         
         filteringJobs()
@@ -256,6 +255,7 @@ class HomeViewController: UIViewController {
     }
     
     private func toggleNoJobsView(jobInfosEmpty: Bool) {
+        noFavsView.isHidden = true
         if jobInfosEmpty {
             noJobsView.isHidden = false
         } else {
@@ -263,10 +263,11 @@ class HomeViewController: UIViewController {
         }
     }
     private func toggleNoFavsView(favsEmpty: Bool) {
+        noJobsView.isHidden = true
         if favsEmpty {
-            noJobsView.isHidden = false
+            noFavsView.isHidden = false
         } else {
-            noJobsView.isHidden = true
+            noFavsView.isHidden = true
         }
     }
     
