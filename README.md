@@ -2,5 +2,5 @@
 An iOS mobile app to track your job applications to be successful in your dream job hunt! 
 
 
-![shukatsuAppIconImage](https://user-images.githubusercontent.com/66197018/166938128-c5042923-1d66-4f7b-9f2e-09726626d17d.png)
+[![shukatsuAppIconImage](https://user-images.githubusercontent.com/66197018/166938128-c5042923-1d66-4f7b-9f2e-09726626d17d.png)](https://apps.apple.com/de/app/shukatsu-job-tracker/id1622574153?l=en)
 ![shukatsuReadmeImage](https://user-images.githubusercontent.com/66197018/166935561-0166fe10-5a97-44c3-9cc3-96c0180cfb29.png)
