@@ -51,8 +51,6 @@ class JobsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpUI()
-        alpha = 0
-//        isHidden = true
     }
     
     private func setUpUI() {

@@ -321,6 +321,9 @@ extension HomeViewController: UICollectionViewDelegate {
         UIView.animate(withDuration: 0.3) {
             cell?.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
         }
+        UIView.animate(withDuration: 0.1, delay: 0.3, options: [], animations: {
+            cell?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
     }
 }
 
