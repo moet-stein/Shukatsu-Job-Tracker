@@ -87,6 +87,7 @@ class ProfileSettingsViewController: UIViewController {
     }
     
     @objc func profileImageViewTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        profileImageView.handleTap(gestureRecognizer: tapGestureRecognizer)
         openCameraOrLibrary()
     }
     
