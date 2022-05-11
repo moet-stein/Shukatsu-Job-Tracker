@@ -12,6 +12,7 @@ import CoreData
 class ChangePinViewController: UIViewController {
 
     private var contentView: EnterPinView!
+    private var cancelButton: CancelButton!
     private var pinTextField: UITextField!
     private var goButton: UIButton!
     private var enterPinTitleLabel: UILabel!
@@ -28,6 +29,9 @@ class ChangePinViewController: UIViewController {
         contentView = EnterPinView()
         view = contentView
         
+        cancelButton = contentView.cancelButton
+        cancelButton.isHidden = false
+        
         pinTextField = contentView.pinTextField
         pinTextField.delegate = self
         
@@ -41,6 +45,7 @@ class ChangePinViewController: UIViewController {
         wrongLabel = contentView.wrongLabel
         
         setLabelText()
+        addCancelBtnTarget()
     }
     
     private func setLabelText() {
@@ -49,6 +54,14 @@ class ChangePinViewController: UIViewController {
         } else {
             enterPinTitleLabel.text = "Enter Current PIN"
         }
+    }
+    
+    private func addCancelBtnTarget() {
+        cancelButton.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
+    }
+    
+    @objc func cancelBtnTapped() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func buttonPressed() {

@@ -23,6 +23,12 @@ class EnterPinView: UIView {
         return view
     }()
     
+    let cancelButton: CancelButton = {
+        let button = CancelButton(buttonColor: Colors.viewOrange)
+        button.isHidden = true
+        return button
+    }()
+    
     let wrongLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -81,11 +87,15 @@ class EnterPinView: UIView {
     }
     
     private func setUpUI() {
+        addSubview(cancelButton)
         addSubview(orangeRoundedView)
         addSubview(wrongAlertView)
         wrongAlertView.addSubview(wrongLabel)
         
         NSLayoutConstraint.activate([
+            cancelButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            cancelButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            
             orangeRoundedView.centerXAnchor.constraint(equalTo: centerXAnchor),
             orangeRoundedView.centerYAnchor.constraint(equalTo: centerYAnchor),
             orangeRoundedView.widthAnchor.constraint(equalToConstant: 300),
@@ -103,18 +113,6 @@ class EnterPinView: UIView {
         ])
         
         setUpInsideOrangeView()
-        
-//        UIView.animate(
-//            withDuration: 0.4,
-//            delay: 0.0,
-//            options: .curveLinear,
-//            animations: {
-//
-//                self.wrongAlertView.frame.origin.x = 100
-//
-//            }) { (completed) in
-//
-//            }
     }
     
     
