@@ -16,6 +16,11 @@ class ProfileSettingsView: UIView {
         return scrollView
     }()
     
+    let cancelButton: CancelButton = {
+        let button = CancelButton(buttonColor: Colors.viewOrange)
+        return button
+    }()
+    
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -59,6 +64,7 @@ class ProfileSettingsView: UIView {
     
     private func setUpUI() {
         addSubview(scrollView)
+        scrollView.addSubview(cancelButton)
         scrollView.addSubview(titleLabel)
         scrollView.addSubview(profileImageView)
         scrollView.addSubview(editProfileCameraButton)
@@ -69,6 +75,9 @@ class ProfileSettingsView: UIView {
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            cancelButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10),
+            cancelButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
             
             titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40),
             titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
