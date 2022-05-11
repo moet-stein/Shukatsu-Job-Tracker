@@ -32,6 +32,11 @@ class JobDetailsView: UIView {
         return view
     }()
     
+    let cancelButton: CancelButton = {
+        let button = CancelButton(buttonColor: Colors.viewOrange)
+        return button
+    }()
+    
     let favoriteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -130,6 +135,7 @@ class JobDetailsView: UIView {
     private func setUpUI() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(cancelButton)
         contentView.addSubview(buttonsHStackView)
         buttonsHStackView.addArrangedSubview(favoriteButton)
         buttonsHStackView.addArrangedSubview(detailViewEditButton)
@@ -165,6 +171,9 @@ class JobDetailsView: UIView {
             contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
             
+            cancelButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            cancelButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            
             buttonsHStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             buttonsHStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
             buttonsHStackView.widthAnchor.constraint(equalToConstant: 130),
@@ -174,7 +183,6 @@ class JobDetailsView: UIView {
             contentVStackView.topAnchor.constraint(equalTo: buttonsHStackView.bottomAnchor, constant: 30),
             contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             contentVStackView.widthAnchor.constraint(equalToConstant: 320),
-//            contentVStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
             
             statusLabels.heightAnchor.constraint(equalToConstant: 70),
