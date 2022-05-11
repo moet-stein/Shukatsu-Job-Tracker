@@ -226,7 +226,8 @@ class HomeViewController: UIViewController {
         filteringJobs()
     }
     
-    @objc func addButtonPressed(sender: UIButton) {
+    @objc func addButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {
+        addButton.handleTap(gestureRecognizer: gestureRecognizer)
         present(AddEditViewController(fromDetailsView: false, passedJob: nil, addJobInfoDelegate: self, updateJobInfoInDetailsVCDelegate: nil), animated: true, completion: nil)
     }
     
