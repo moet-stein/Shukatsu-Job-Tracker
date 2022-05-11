@@ -38,6 +38,9 @@ class HomeViewController: UIViewController {
     private var noJobsView: NotFoundWithImageView!
     private var noFavsView: NotFoundWithImageView!
     
+    let animationDuration: Double = 1.0
+    let delayBase: Double = 0.3
+    
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -285,17 +288,27 @@ extension HomeViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JobsCollectionViewCell.identifier, for: indexPath) as? JobsCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         let currentJob = filteredJobInfos[indexPath.row]
-        
+        cell.alpha = 0
         cell.setupCellContent(
             companyName: currentJob.companyName,
             location: currentJob.location,
             updatedDate: currentJob.lastUpdate,
             status: JobStatus(rawValue: currentJob.status ?? "open") ?? JobStatus.open)
         
+        let column = Double(cell.frame.minX / cell.frame.width)
+        let row = Double(cell.frame.minY / cell.frame.height)
+
+        let distance = sqrt(pow(column, 2) + pow(row, 2))
+        let delay = sqrt(distance) * delayBase
+        UIView.animate(withDuration: animationDuration, delay: delay, options: [], animations: {
+            cell.alpha = 1.0
+        })
+        
+        
         return cell
     }
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate {
