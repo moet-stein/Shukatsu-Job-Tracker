@@ -91,7 +91,8 @@ class ProfileSettingsViewController: UIViewController {
         openCameraOrLibrary()
     }
     
-    @objc func cameraBtnTapped() {
+    @objc func cameraBtnTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        editProfileCameraButton.handleTap(gestureRecognizer: tapGestureRecognizer)
         openCameraOrLibrary()
     }
     
