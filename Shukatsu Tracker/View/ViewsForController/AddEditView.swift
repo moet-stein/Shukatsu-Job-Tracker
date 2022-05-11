@@ -32,6 +32,11 @@ class AddEditView: UIView {
         return button
     }()
     
+    private let cancelButton: CancelButton = {
+        let button = CancelButton(buttonColor: Colors.viewOrange)
+        return button
+    }()
+    
     private let outerVStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -172,6 +177,7 @@ class AddEditView: UIView {
     private func setUpUI() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
+        contentView.addSubview(cancelButton)
         contentView.addSubview(saveJobButton)
         contentView.addSubview(outerVStackView)
         outerVStackView.addArrangedSubview(titleLabel)
@@ -203,6 +209,11 @@ class AddEditView: UIView {
             
             contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
+            
+            cancelButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            cancelButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cancelButton.heightAnchor.constraint(equalToConstant: 50),
+            cancelButton.widthAnchor.constraint(equalToConstant: 50),
             
             saveJobButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             saveJobButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
