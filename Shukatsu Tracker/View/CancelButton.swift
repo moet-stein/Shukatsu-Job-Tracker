@@ -14,10 +14,8 @@ class CancelButton: UIButton {
     
     init(buttonColor: UIColor, frame: CGRect = .zero) {
         self.buttonColor = buttonColor
-        
         super.init(frame: frame)
         setUpUI()
-        addTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -27,19 +25,11 @@ class CancelButton: UIButton {
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
         
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular, scale: .large)
         let symbolImage = UIImage(systemName: "xmark.circle", withConfiguration: largeConfig)
         
         setImage(symbolImage, for: .normal)
         tintColor = buttonColor
-    }
-    
-    private func addTarget() {
-        addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-    }
-    
-    @objc func dismissView() {
-        dismissView()
     }
     
 }

@@ -32,7 +32,7 @@ class AddEditView: UIView {
         return button
     }()
     
-    private let cancelButton: CancelButton = {
+    let cancelButton: CancelButton = {
         let button = CancelButton(buttonColor: Colors.viewOrange)
         return button
     }()
