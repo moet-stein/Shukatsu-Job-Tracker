@@ -22,6 +22,7 @@ class ProfileImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -37,3 +38,5 @@ class ProfileImageView: UIImageView {
         contentMode = .scaleAspectFill
     }
 }
+
+

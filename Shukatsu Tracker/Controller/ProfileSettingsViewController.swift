@@ -15,6 +15,7 @@ class ProfileSettingsViewController: UIViewController {
     private var profile = ProfileSettings()
     
     private var contentView: ProfileSettingsView!
+    private var cancelButton: CancelButton!
     private var profileImageView: UIImageView!
     
     private var imagePicker = UIImagePickerController()
@@ -30,6 +31,7 @@ class ProfileSettingsViewController: UIViewController {
         contentView = ProfileSettingsView()
         view = contentView
 
+        cancelButton = contentView.cancelButton
         profileImageView = contentView.profileImageView
         editProfileCameraButton = contentView.editProfileCameraButton
     
@@ -41,7 +43,7 @@ class ProfileSettingsViewController: UIViewController {
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
         
-        addCameraBtnTarget()
+        addBtnsTarget()
         fetchAndReload()
     }
     
@@ -59,8 +61,9 @@ class ProfileSettingsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addCameraBtnTarget() {
+    private func addBtnsTarget() {
         editProfileCameraButton.addTarget(self, action: #selector(cameraBtnTapped), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(cancelBtnTapped), for: .touchUpInside)
     }
     
     
@@ -87,11 +90,18 @@ class ProfileSettingsViewController: UIViewController {
     }
     
     @objc func profileImageViewTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        profileImageView.handleTap(gestureRecognizer: tapGestureRecognizer)
         openCameraOrLibrary()
     }
     
-    @objc func cameraBtnTapped() {
+    @objc func cameraBtnTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        editProfileCameraButton.handleTap(gestureRecognizer: tapGestureRecognizer)
         openCameraOrLibrary()
+    }
+    
+    @objc func cancelBtnTapped(tapGestureRecognizer: UITapGestureRecognizer){
+        cancelButton.handleTap(gestureRecognizer: tapGestureRecognizer)
+        dismiss(animated: true, completion: nil)
     }
     
     private func openCameraOrLibrary() {

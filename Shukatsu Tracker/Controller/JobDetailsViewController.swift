@@ -15,6 +15,7 @@ class JobDetailsViewController: UIViewController {
     private var selectedJob: JobInfo
 
     private var contentView: JobDetailsView!
+    private var cancelButton: CancelButton!
     private var detailViewEditButton: UIButton!
     private var favoriteButton: UIButton!
     
@@ -38,6 +39,7 @@ class JobDetailsViewController: UIViewController {
         
         detailViewEditButton = contentView.detailViewEditButton
         favoriteButton = contentView.favoriteButton
+        cancelButton = contentView.cancelButton
         
         statusLabels = contentView.statusLabels
         companyLabels = contentView.companyLabels
@@ -79,6 +81,7 @@ class JobDetailsViewController: UIViewController {
         detailViewEditButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
     }
     
     @objc func linkTapped() {
@@ -109,7 +112,6 @@ class JobDetailsViewController: UIViewController {
     }
     
     @objc func deleteButtonTapped() {
-        print("BUtton tapped")
         let alertController = UIAlertController(title: "Do you want to delete this job?", message: "Select Cancel or Delete", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "DELETE", style: .destructive) { _ in
@@ -121,6 +123,11 @@ class JobDetailsViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: nil))
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func cancelButtonTapped(tapGesture: UITapGestureRecognizer) {
+        cancelButton.handleTap(gestureRecognizer: tapGesture)
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func setContent(job: JobInfo) {

@@ -38,6 +38,9 @@ class HomeViewController: UIViewController {
     private var noJobsView: NotFoundWithImageView!
     private var noFavsView: NotFoundWithImageView!
     
+    let animationDuration: Double = 1.0
+    let delayBase: Double = 0.3
+    
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -226,11 +229,13 @@ class HomeViewController: UIViewController {
         filteringJobs()
     }
     
-    @objc func addButtonPressed(sender: UIButton) {
+    @objc func addButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {
+        addButton.handleTap(gestureRecognizer: gestureRecognizer)
         present(AddEditViewController(fromDetailsView: false, passedJob: nil, addJobInfoDelegate: self, updateJobInfoInDetailsVCDelegate: nil), animated: true, completion: nil)
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        profileImage.handleTap(gestureRecognizer: tapGestureRecognizer)
         present(ProfileSettingsViewController(homeVCDelegate: self), animated: true, completion: nil)
     }
     
@@ -283,22 +288,42 @@ extension HomeViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JobsCollectionViewCell.identifier, for: indexPath) as? JobsCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         let currentJob = filteredJobInfos[indexPath.row]
-        
+        cell.alpha = 0
         cell.setupCellContent(
             companyName: currentJob.companyName,
             location: currentJob.location,
             updatedDate: currentJob.lastUpdate,
             status: JobStatus(rawValue: currentJob.status ?? "open") ?? JobStatus.open)
         
+        let column = Double(cell.frame.minX / cell.frame.width)
+        let row = Double(cell.frame.minY / cell.frame.height)
+
+        let distance = sqrt(pow(column, 2) + pow(row, 2))
+        let delay = sqrt(distance) * delayBase
+        UIView.animate(withDuration: animationDuration, delay: delay, options: [], animations: {
+            cell.alpha = 1.0
+        })
+        
+        
         return cell
     }
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         present(JobDetailsViewController(selectedJob: filteredJobInfos[indexPath.row], addJobInfoDelegate: self), animated: true, completion: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        UIView.animate(withDuration: 0.3) {
+            cell?.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        }
+        UIView.animate(withDuration: 0.1, delay: 0.3, options: [], animations: {
+            cell?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
     }
 }
 

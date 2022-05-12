@@ -52,6 +52,7 @@ class AddEditViewController: UIViewController {
     private var appliedDateStackView: UIStackView!
     
     private var saveButton: UIButton!
+    private var cancelButton: CancelButton!
     private var bottomSaveButton: UIButton!
     
     init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: HomeVCDelegate?, updateJobInfoInDetailsVCDelegate: DetailsVCDelegate?) {
@@ -90,11 +91,12 @@ class AddEditViewController: UIViewController {
         appliedDateStackView = contentView.appliedDateStackView
         
         saveButton = contentView.saveJobButton
+        cancelButton = contentView.cancelButton
         bottomSaveButton = contentView.bottomSaveButton
         
         setContent()
         addStatusBtnsTarget()
-        addSaveBtnTarget()
+        addBtnsTarget()
         
         self.dismissKeyboard()
         
@@ -107,9 +109,10 @@ class AddEditViewController: UIViewController {
         editClosedButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
     }
     
-    private func addSaveBtnTarget() {
+    private func addBtnsTarget() {
         saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         bottomSaveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: .touchUpInside)
     }
     
     
@@ -171,7 +174,8 @@ class AddEditViewController: UIViewController {
     }
 
     
-    @objc func saveButtonPressed(sender: UIButton) {
+    @objc func saveButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {
+        saveButton.handleTap(gestureRecognizer: gestureRecognizer)
         let companyName = companyField.textField.text ?? ""
         let location = locationField.textField.text ?? ""
         
@@ -208,6 +212,10 @@ class AddEditViewController: UIViewController {
             JobInfoDataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         }
+    }
+    
+    @objc func cancelButtonPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func showAlert(alertText: String) {
