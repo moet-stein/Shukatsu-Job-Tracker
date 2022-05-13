@@ -116,9 +116,7 @@ class HomeViewController: UIViewController {
         addButton = contentView.addButton
         
         profileImage = contentView.profileImage
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(tapGestureRecognizer:)))
-        profileImage.isUserInteractionEnabled = true
-        profileImage.addGestureRecognizer(tapGestureRecognizer)
+        
         
         openBoxButton = contentView.openBoxButton
         appliedBoxButton = contentView.appliedBoxButton
@@ -134,6 +132,7 @@ class HomeViewController: UIViewController {
         addAddButtonFunction()
         addFunctionToStatusButtons()
         addFunctionsToFilterButtons()
+        enableProfileSectionTappable()
     }
     
     
@@ -143,7 +142,6 @@ class HomeViewController: UIViewController {
     }
     
     private func addFunctionToStatusButtons() {
-        
         openBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         appliedBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         interviewBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
@@ -157,6 +155,12 @@ class HomeViewController: UIViewController {
     
     private func addAddButtonFunction() {
         addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
+    }
+    
+    private func enableProfileSectionTappable() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(tapGestureRecognizer:)))
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     
