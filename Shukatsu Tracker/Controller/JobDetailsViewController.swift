@@ -132,29 +132,30 @@ class JobDetailsViewController: UIViewController {
     
     private func setContent(job: JobInfo) {
         statusLabels.addStatusColor(status: JobStatus(rawValue: job.status ?? "open") ?? JobStatus.open)
-        companyLabels.contentLabel.text = job.companyName
-        roleLabels.contentLabel.text = giveDashStringIfEmpty(from: job.role)
-        teamLabels.contentLabel.text = giveDashStringIfEmpty(from: job.team)
-        locationLabels.contentLabel.text = giveDashStringIfEmpty(from: job.location)
+        showHideLabelContent(for: companyLabels, with: job.companyName)
+        showHideLabelContent(for: roleLabels, with: job.role)
+        showHideLabelContent(for: teamLabels, with: job.team)
+        showHideLabelContent(for: locationLabels, with: job.location)
+        showHideLabelContent(for: notesLabels, with: job.notes)
+        showHideLabelContent(for: appliedDateLabels, with: job.appliedDateString)
+        showHideLabelContent(for: lastUpdatedLabels, with: job.lastUpdateString)
         linkLabels.addLink(link: job.link)
-        notesLabels.contentLabel.text = giveDashStringIfEmpty(from: job.notes)
-        appliedDateLabels.contentLabel.text = giveDashStringIfEmpty(from: job.appliedDateString)
-        lastUpdatedLabels.contentLabel.text = giveDashStringIfEmpty(from: job.lastUpdateString)
         favoriteButton.isSelected = job.favorite
         toggleFavoriteBtn(updateInfo: false)
         
     }
-    
-    private func giveDashStringIfEmpty(from text: String?) -> String {
+
+    private func showHideLabelContent(for labels: TitleContentLabelsView, with text: String?) {
         if let text = text {
             if text.isEmpty {
-                return " - "
+                labels.isHidden = true
             } else {
-                return text
+                labels.isHidden = false
+                labels.contentLabel.text = text
             }
+        } else {
+            labels.isHidden = true
         }
-        
-        return " - "
     }
     
     private func toggleFavoriteBtn(updateInfo: Bool) {

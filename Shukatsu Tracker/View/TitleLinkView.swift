@@ -82,14 +82,19 @@ class TitleLinkView: UIView {
     
     func addLink(link: String?) {
         if let link = link {
-            let attributedString = NSMutableAttributedString(string: link)
-            let range = NSString(string: link).range(of: link)
-            attributedString.addAttribute(NSAttributedString.Key.link, value: link, range: range)
-            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: range)
-            linkTextView.attributedText = attributedString
-            linkTextView.font = UIFont(name: Fonts.latoRegular, size: 17)
+            if link.isEmpty {
+                isHidden = true
+            } else {
+                isHidden = false
+                let attributedString = NSMutableAttributedString(string: link)
+                let range = NSString(string: link).range(of: link)
+                attributedString.addAttribute(NSAttributedString.Key.link, value: link, range: range)
+                attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: range)
+                linkTextView.attributedText = attributedString
+                linkTextView.font = UIFont(name: Fonts.latoRegular, size: 17)
+            }
         } else {
-            linkTextView.text = " - "
+            isHidden = true
         }
     }
     
