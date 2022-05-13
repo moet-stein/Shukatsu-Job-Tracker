@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIImageView {
+public extension UIImageView {
     func handleTap(gestureRecognizer: UIGestureRecognizer) {
 
         transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
@@ -21,7 +21,7 @@ extension UIImageView {
 }
 
 
-extension UIButton {
+public extension UIButton {
     func handleTap(gestureRecognizer: UIGestureRecognizer) {
 
         transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
@@ -33,7 +33,7 @@ extension UIButton {
     }
 }
 
-extension UIViewController {
+public extension UIViewController {
     func dismissKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboardTouchOutside))
         tap.cancelsTouchesInView = false
@@ -42,5 +42,28 @@ extension UIViewController {
     
     @objc private func dismissKeyboardTouchOutside() {
         view.endEditing(true)
+    }
+}
+
+
+public extension UIView {
+    func showAnimation(_ completionBlock: @escaping () -> Void) {
+      isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.1,
+                       delay: 0,
+                       options: .curveLinear,
+                       animations: { [weak self] in
+                            self?.transform = CGAffineTransform.init(scaleX: 0.95, y: 0.95)
+        }) {  (done) in
+            UIView.animate(withDuration: 0.1,
+                           delay: 0,
+                           options: .curveLinear,
+                           animations: { [weak self] in
+                                self?.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            }) { [weak self] (_) in
+                self?.isUserInteractionEnabled = true
+                completionBlock()
+            }
+        }
     }
 }
