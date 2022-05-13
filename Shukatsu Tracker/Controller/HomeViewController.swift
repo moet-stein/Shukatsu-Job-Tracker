@@ -22,6 +22,8 @@ class HomeViewController: UIViewController {
     
     private var addButton: CircleButton!
     
+    private var profileSectionView: ProfileSectionView!
+    
     private var profileImage: UIImageView!
     private var greetLabel: UILabel!
     private var titleLabel: UILabel!
@@ -101,8 +103,10 @@ class HomeViewController: UIViewController {
         contentView = HomeView()
         view = contentView
         
-        greetLabel = contentView.greetLabel
-        titleLabel = contentView.titleLabel
+        profileSectionView = contentView.profileSectionView
+        profileImage = profileSectionView.profileImage
+        greetLabel = profileSectionView.greetLabel
+        titleLabel = profileSectionView.titleLabel
         
         setJobInfosAndStatus()
         
@@ -112,11 +116,7 @@ class HomeViewController: UIViewController {
         jobsCollectionView.dataSource = self
         jobsCollectionView.delegate = self
         
-        
         addButton = contentView.addButton
-        
-        profileImage = contentView.profileImage
-        
         
         openBoxButton = contentView.openBoxButton
         appliedBoxButton = contentView.appliedBoxButton

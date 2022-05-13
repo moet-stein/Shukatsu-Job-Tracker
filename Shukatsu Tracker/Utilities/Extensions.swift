@@ -8,31 +8,6 @@
 import Foundation
 import UIKit
 
-public extension UIView {
-    func handleTap(gestureRecognizer: UIGestureRecognizer) {
-
-        transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-//        alpha = 0.75
-        UIView.animate(withDuration: 0.3) {
-            self.transform = CGAffineTransform.identity
-//            self.alpha = 1.0
-        }
-    }
-}
-
-
-//public extension UIButton {
-//    func handleTap(gestureRecognizer: UIGestureRecognizer) {
-//
-//        transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-//        alpha = 0.75
-//        UIView.animate(withDuration: 0.5) {
-//            self.transform = CGAffineTransform.identity
-//            self.alpha = 1.0
-//        }
-//    }
-//}
-
 public extension UIViewController {
     func dismissKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboardTouchOutside))
@@ -47,6 +22,16 @@ public extension UIViewController {
 
 
 public extension UIView {
+    func handleTap(gestureRecognizer: UIGestureRecognizer) {
+
+        transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+//        alpha = 0.75
+        UIView.animate(withDuration: 0.3) {
+            self.transform = CGAffineTransform.identity
+//            self.alpha = 1.0
+        }
+    }
+    
     func showAnimation(_ completionBlock: @escaping () -> Void) {
       isUserInteractionEnabled = false
         UIView.animate(withDuration: 0.1,
