@@ -10,9 +10,7 @@ import UIKit
 
 
 class ProfileSettingsViewController: UIViewController {
-    
-    
-    private var profile = ProfileSettings()
+    private var profile: ProfileSettings
     
     private var contentView: ProfileSettingsView!
     private var cancelButton: CancelButton!
@@ -52,7 +50,8 @@ class ProfileSettingsViewController: UIViewController {
         homeVCDelegate?.updateProfileSettings()
     }
     
-    init(homeVCDelegate: HomeVCDelegate?) {
+    init(profile: ProfileSettings, homeVCDelegate: HomeVCDelegate?) {
+        self.profile = profile
         self.homeVCDelegate = homeVCDelegate
         super.init(nibName: nil, bundle: nil)
     }

@@ -227,7 +227,7 @@ class HomeViewController: UIViewController {
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         profileImage.handleTap(gestureRecognizer: tapGestureRecognizer)
-        present(ProfileSettingsViewController(homeVCDelegate: self), animated: true, completion: nil)
+        present(ProfileSettingsViewController(profile: profileSettings, homeVCDelegate: self), animated: true, completion: nil)
     }
     
     private func filteringJobs() {
