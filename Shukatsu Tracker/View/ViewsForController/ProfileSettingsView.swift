@@ -92,7 +92,8 @@ class ProfileSettingsView: UIView {
             setttingsTableView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 30),
             setttingsTableView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             setttingsTableView.widthAnchor.constraint(equalToConstant: 370),
-            setttingsTableView.heightAnchor.constraint(equalToConstant: 400)
+            setttingsTableView.heightAnchor.constraint(equalToConstant: 400),
+            setttingsTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     
