@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public extension UIImageView {
+public extension UIView {
     func handleTap(gestureRecognizer: UIGestureRecognizer) {
 
         transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
@@ -21,17 +21,17 @@ public extension UIImageView {
 }
 
 
-public extension UIButton {
-    func handleTap(gestureRecognizer: UIGestureRecognizer) {
-
-        transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        alpha = 0.75
-        UIView.animate(withDuration: 0.5) {
-            self.transform = CGAffineTransform.identity
-            self.alpha = 1.0
-        }
-    }
-}
+//public extension UIButton {
+//    func handleTap(gestureRecognizer: UIGestureRecognizer) {
+//
+//        transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+//        alpha = 0.75
+//        UIView.animate(withDuration: 0.5) {
+//            self.transform = CGAffineTransform.identity
+//            self.alpha = 1.0
+//        }
+//    }
+//}
 
 public extension UIViewController {
     func dismissKeyboard() {
