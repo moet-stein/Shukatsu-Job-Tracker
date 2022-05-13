@@ -54,6 +54,7 @@ class EnterPinViewController: UIViewController {
                 if enteredPin.count == 4 {
                     let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
                     createProfile()
+                    print(saveSuccessful)
                     navigationController?.pushViewController(HomeViewController(), animated: true)
                 } else {
                     showWrongPinView(text: "Enter 4 Digits")

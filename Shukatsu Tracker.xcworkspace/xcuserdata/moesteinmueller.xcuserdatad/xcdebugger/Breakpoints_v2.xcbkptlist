@@ -46,8 +46,8 @@
             filePath = "Shukatsu Tracker/Controller/AddEditViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "init(fromDetailsView:passedJob:addJobInfoDelegate:updateJobInfoInDetailsVCDelegate:)"
             landmarkType = "7">
          </BreakpointContent>
