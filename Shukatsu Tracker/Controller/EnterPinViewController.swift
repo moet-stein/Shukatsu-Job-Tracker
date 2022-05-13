@@ -17,7 +17,16 @@ class EnterPinViewController: UIViewController {
     private var wrongAlertView: UIView!
     private var wrongLabel: UILabel!
     
+    let defaults = UserDefaults.standard
     let keychain = KeychainSwift()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard defaults.object(forKey: "firstTime") != nil else {
+            defaults.set(false, forKey: "firstTime")
+            ProfileSettingsDataManager.createProfileSettings(profileName: "Unknown", profileTitle: "unknown title", pinOn: true)
+            return
+        }
+    }
     
     override func loadView() {
         contentView = EnterPinView()

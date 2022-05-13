@@ -15,8 +15,7 @@ class HomeViewController: UIViewController {
     var checkedStatus = [String]()
     var viewAll = true
     
-    var profileSettings = ProfileSettings()
-    
+    var profileSettings: ProfileSettings?
     
     private var contentView: HomeView!
     private var jobsCollectionView: UICollectionView!
@@ -65,32 +64,25 @@ class HomeViewController: UIViewController {
     private func updateProfileInfo() {
         ProfileSettingsDataManager.fetchProfileSettings { profiles in
             if let profiles = profiles {
-                if profiles.isEmpty{
-                    ProfileSettingsDataManager.createProfileSettings(profileName: "Unknown", profileTitle: "unknown title", pinOn: true)
-                    
-                    DispatchQueue.main.async { [weak self] in
-                        self?.greetLabel.text = "Hello, unknown"
-                        self?.titleLabel.text = "unknown title"
-                    }
-                } else {
-                   
-                    var name = profiles[0].profileName ?? "unknown"
-                    if name.isEmpty{ name = "unknown"}
-                    
-                    var title = profiles[0].profileTitle ?? "unknown title"
-                    if title.isEmpty { title = "unknown title"}
-                    
-                    var uiImage = UIImage(named: "azuImage")!
-                    
-                    if let image = profiles[0].profileImage {
-                        uiImage = UIImage(data: image)!
-                    }
-                    
-                    DispatchQueue.main.async { [weak self] in
-                        self?.greetLabel.text = "Hello, \(name)"
-                        self?.titleLabel.text = title
-                        self?.profileImage.image = uiImage
-                    }
+                let fetchedProfile = profiles[0]
+                profileSettings = fetchedProfile
+                
+                var name = fetchedProfile.profileName ?? "unknown"
+                if name.isEmpty{ name = "unknown"}
+                
+                var title = fetchedProfile.profileTitle ?? "unknown title"
+                if title.isEmpty { title = "unknown title"}
+                
+                var uiImage = UIImage(named: "azuImage")!
+                
+                if let image = fetchedProfile.profileImage {
+                    uiImage = UIImage(data: image)!
+                }
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.greetLabel.text = "Hello, \(name)"
+                    self?.titleLabel.text = title
+                    self?.profileImage.image = uiImage
                 }
             }
         }
@@ -227,7 +219,10 @@ class HomeViewController: UIViewController {
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         profileImage.handleTap(gestureRecognizer: tapGestureRecognizer)
-        present(ProfileSettingsViewController(profile: profileSettings, homeVCDelegate: self), animated: true, completion: nil)
+        if let profile = profileSettings {
+            present(ProfileSettingsViewController(profile: profile, homeVCDelegate: self), animated: true, completion: nil)
+        }
+        
     }
     
     private func filteringJobs() {
