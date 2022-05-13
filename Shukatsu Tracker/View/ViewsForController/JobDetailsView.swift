@@ -181,7 +181,7 @@ class JobDetailsView: UIView {
             favoriteButton.widthAnchor.constraint(equalToConstant: 50),
             
             contentVStackView.topAnchor.constraint(equalTo: buttonsHStackView.bottomAnchor, constant: 30),
-            contentVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            contentVStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             contentVStackView.widthAnchor.constraint(equalToConstant: 320),
             
             
