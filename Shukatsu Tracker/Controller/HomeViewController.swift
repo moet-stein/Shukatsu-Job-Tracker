@@ -175,17 +175,25 @@ class HomeViewController: UIViewController {
             checkedStatus.append(tappedCurrentTitle)
             
             let textColor = button.statusLabel.textColor
-            button.statusLabel.textColor = .white
-            button.numberLabel.textColor = .white
-            button.backgroundColor = textColor
+            
+            UIView.animate(withDuration: 0.5) {
+                button.statusLabel.textColor = .white
+                button.numberLabel.textColor = .white
+                button.backgroundColor = textColor
+            }
+            
         } else {
             if let index = checkedStatus.firstIndex(of: tappedCurrentTitle) {
                 checkedStatus.remove(at: index)
             }
             let textColor = button.backgroundColor
-            button.statusLabel.textColor = textColor
-            button.numberLabel.textColor = textColor
-            button.backgroundColor = Colors.lightOrange
+            
+            UIView.animate(withDuration: 0.5) {
+                button.statusLabel.textColor = textColor
+                button.numberLabel.textColor = textColor
+                button.backgroundColor = Colors.lightOrange
+            }
+            
         }
         
         filteringJobs()
