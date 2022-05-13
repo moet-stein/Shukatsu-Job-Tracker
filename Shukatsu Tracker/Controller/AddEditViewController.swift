@@ -198,7 +198,7 @@ class AddEditViewController: UIViewController {
 
     
     @objc func saveButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {
-        saveButton.handleTap(gestureRecognizer: gestureRecognizer)
+        saveButton.handleTapShortDuration(gestureRecognizer: gestureRecognizer)
         let companyName = companyField.textField.text ?? ""
         let location = locationField.textField.text ?? ""
         

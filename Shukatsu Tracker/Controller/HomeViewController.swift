@@ -233,12 +233,12 @@ class HomeViewController: UIViewController {
     }
     
     @objc func addButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {
-        addButton.handleTap(gestureRecognizer: gestureRecognizer)
+        addButton.handleTapShortDuration(gestureRecognizer: gestureRecognizer)
         present(AddEditViewController(fromDetailsView: false, passedJob: nil, addJobInfoDelegate: self, updateJobInfoInDetailsVCDelegate: nil), animated: true, completion: nil)
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        profileSectionView.handleTap(gestureRecognizer: tapGestureRecognizer)
+        profileSectionView.handleTapLongDuration(gestureRecognizer: tapGestureRecognizer)
         if let profile = profileSettings {
             present(ProfileSettingsViewController(profile: profile, homeVCDelegate: self), animated: true, completion: nil)
         }

@@ -89,17 +89,17 @@ class ProfileSettingsViewController: UIViewController {
     }
     
     @objc func profileImageViewTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        profileImageView.handleTap(gestureRecognizer: tapGestureRecognizer)
+        profileImageView.handleTapShortDuration(gestureRecognizer: tapGestureRecognizer)
         openCameraOrLibrary()
     }
     
     @objc func cameraBtnTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        editProfileCameraButton.handleTap(gestureRecognizer: tapGestureRecognizer)
+        editProfileCameraButton.handleTapShortDuration(gestureRecognizer: tapGestureRecognizer)
         openCameraOrLibrary()
     }
     
     @objc func cancelBtnTapped(tapGestureRecognizer: UITapGestureRecognizer){
-        cancelButton.handleTap(gestureRecognizer: tapGestureRecognizer)
+        cancelButton.handleTapShortDuration(gestureRecognizer: tapGestureRecognizer)
         dismiss(animated: true, completion: nil)
     }
     

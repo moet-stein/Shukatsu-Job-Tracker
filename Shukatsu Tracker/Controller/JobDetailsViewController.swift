@@ -126,7 +126,7 @@ class JobDetailsViewController: UIViewController {
     }
     
     @objc func cancelButtonTapped(tapGesture: UITapGestureRecognizer) {
-        cancelButton.handleTap(gestureRecognizer: tapGesture)
+        cancelButton.handleTapShortDuration(gestureRecognizer: tapGesture)
         self.dismiss(animated: true, completion: nil)
     }
     
