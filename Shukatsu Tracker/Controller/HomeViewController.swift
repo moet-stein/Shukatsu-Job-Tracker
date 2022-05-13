@@ -207,18 +207,26 @@ class HomeViewController: UIViewController {
         sender.setTitleColor(.white, for: .normal)
         if sender.tag == 1 {
             viewAll = true
-            sender.backgroundColor = Colors.blueGrey
-            sender.tintColor = .white
-            viewFavoritesButton.tintColor = Colors.viewOrange
-            viewFavoritesButton.setTitleColor(Colors.viewOrange, for: .normal)
-            viewFavoritesButton.backgroundColor = Colors.lightOrange
+            
+            UIView.animate(withDuration: 0.4) {
+                sender.backgroundColor = Colors.blueGrey
+                sender.tintColor = .white
+                self.viewFavoritesButton.tintColor = Colors.viewOrange
+                self.viewFavoritesButton.setTitleColor(Colors.viewOrange, for: .normal)
+                self.viewFavoritesButton.backgroundColor = Colors.lightOrange
+            }
+            
         } else {
             viewAll = false
-            sender.backgroundColor = Colors.viewOrange
-            sender.tintColor = .white
-            viewAllButton.tintColor = Colors.blueGrey
-            viewAllButton.setTitleColor(Colors.blueGrey, for: .normal)
-            viewAllButton.backgroundColor = Colors.lightOrange
+            
+            UIView.animate(withDuration: 0.4) {
+                sender.backgroundColor = Colors.viewOrange
+                sender.tintColor = .white
+                self.viewAllButton.tintColor = Colors.blueGrey
+                self.viewAllButton.setTitleColor(Colors.blueGrey, for: .normal)
+                self.viewAllButton.backgroundColor = Colors.lightOrange
+            }
+            
         }
         
         filteringJobs()
