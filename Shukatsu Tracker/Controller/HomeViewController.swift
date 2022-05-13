@@ -40,27 +40,11 @@ class HomeViewController: UIViewController {
     
     let animationDuration: Double = 1.0
     let delayBase: Double = 0.3
-    
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        
-        greetLabel = contentView.greetLabel
-        titleLabel = contentView.titleLabel
-        
-        setJobInfosAndStatus()
-        
-        updateProfileInfo()
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)        
     }
     
     private func setJobInfosAndStatus() {
@@ -124,6 +108,13 @@ class HomeViewController: UIViewController {
         
         contentView = HomeView()
         view = contentView
+        
+        greetLabel = contentView.greetLabel
+        titleLabel = contentView.titleLabel
+        
+        setJobInfosAndStatus()
+        
+        updateProfileInfo()
         
         jobsCollectionView = contentView.jobsCollectionView
         jobsCollectionView.dataSource = self
