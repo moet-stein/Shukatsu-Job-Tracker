@@ -23,8 +23,8 @@ class HomeViewController: UIViewController {
     private var addButton: CircleButton!
     
     private var profileSectionView: ProfileSectionView!
-    
-    private var profileImage: UIImageView!
+
+    private var profileImage: ProfileImageView!
     private var greetLabel: UILabel!
     private var titleLabel: UILabel!
     
@@ -159,8 +159,8 @@ class HomeViewController: UIViewController {
     
     private func enableProfileSectionTappable() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(tapGestureRecognizer:)))
-        profileImage.isUserInteractionEnabled = true
-        profileImage.addGestureRecognizer(tapGestureRecognizer)
+        profileSectionView.isUserInteractionEnabled = true
+        profileSectionView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     
@@ -222,7 +222,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        profileImage.handleTap(gestureRecognizer: tapGestureRecognizer)
+        profileSectionView.handleTap(gestureRecognizer: tapGestureRecognizer)
         if let profile = profileSettings {
             present(ProfileSettingsViewController(profile: profile, homeVCDelegate: self), animated: true, completion: nil)
         }

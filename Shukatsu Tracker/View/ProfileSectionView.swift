@@ -8,7 +8,6 @@
 import UIKit
 
 class ProfileSectionView: UIView {
-
     let profileImage: ProfileImageView = {
         let uiImageView = ProfileImageView(size: 60)
         return uiImageView
@@ -46,9 +45,9 @@ class ProfileSectionView: UIView {
         
         NSLayoutConstraint.activate([
             profileImage.topAnchor.constraint(equalTo: topAnchor),
-            profileImage.trailingAnchor.constraint(equalTo: leadingAnchor),
+            profileImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             
-            greetLabel.topAnchor.constraint(equalTo: topAnchor),
+            greetLabel.topAnchor.constraint(equalTo: profileImage.topAnchor),
             greetLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
             
             titleLabel.topAnchor.constraint(equalTo: greetLabel.bottomAnchor, constant: 5),

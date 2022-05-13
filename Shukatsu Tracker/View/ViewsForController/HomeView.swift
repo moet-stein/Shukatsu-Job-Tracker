@@ -34,27 +34,6 @@ class HomeView: UIView {
         return view
     }()
     
-//    let profileImage: ProfileImageView = {
-//        let uiImageView = ProfileImageView(size: 60)
-//        return uiImageView
-//    }()
-//
-//    let greetLabel: UILabel = {
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-////        label.text = "Good morning, Moe"
-//        label.font = UIFont(name: Fonts.latoBold, size: 20)
-//        return label
-//    }()
-//
-//    let titleLabel: UILabel = {
-//        let label = UILabel()
-//        label.translatesAutoresizingMaskIntoConstraints = false
-////        label.text = "Future iOS Engineer"
-//        label.font = UIFont(name: Fonts.latoRegular, size: 15)
-//        return label
-//    }()
-    
     // MARK: - Status Section
     let statusStackView: UIStackView = {
         let stackView = UIStackView()
@@ -173,9 +152,6 @@ class HomeView: UIView {
     }
     
     private func setUpUI() {
-//        scrollView.addSubview(greetLabel)
-//        scrollView.addSubview(profileImage)
-//        scrollView.addSubview(titleLabel)
         scrollView.addSubview(profileSectionView)
         scrollView.addSubview(addButton)
         scrollView.addSubview(statusStackView)
@@ -191,20 +167,9 @@ class HomeView: UIView {
             addButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -30),
             
             profileSectionView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
-            profileSectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 80),
-            profileSectionView.widthAnchor.constraint(equalToConstant: 200),
-            profileSectionView.heightAnchor.constraint(equalToConstant: 50),
-//            greetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
-//            greetLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            greetLabel.widthAnchor.constraint(equalToConstant: 200),
-//            greetLabel.heightAnchor.constraint(equalToConstant: 25),
-//            
-//            profileImage.topAnchor.constraint(equalTo: greetLabel.topAnchor),
-//            profileImage.trailingAnchor.constraint(equalTo: greetLabel.leadingAnchor, constant: -10),
-//
-//            titleLabel.topAnchor.constraint(equalTo: greetLabel.bottomAnchor, constant: 5),
-//            titleLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10),
-//            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+            profileSectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            profileSectionView.widthAnchor.constraint(equalToConstant: 220),
+            profileSectionView.heightAnchor.constraint(equalToConstant: 60),
             
             statusStackView.topAnchor.constraint(equalTo: profileSectionView.bottomAnchor, constant: 30),
             statusStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),

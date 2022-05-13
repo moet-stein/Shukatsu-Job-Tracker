@@ -11,10 +11,10 @@ class ProfileImageView: UIImageView {
 
     private var size: CGFloat
 
+
     init(size: CGFloat) {
         self.size = size
         super.init(frame: .zero)
-        
         setUpUI()
     }
     
@@ -25,7 +25,7 @@ class ProfileImageView: UIImageView {
     
     private func setUpUI() {
         translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: size),
             heightAnchor.constraint(equalToConstant: size)
