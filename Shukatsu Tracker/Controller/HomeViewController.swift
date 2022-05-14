@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class HomeViewController: UIViewController {
-    
+
     var jobInfos = [JobInfo]()
     var filteredJobInfos = [JobInfo]()
     var checkedStatus = [String]()

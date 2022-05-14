@@ -16,7 +16,7 @@ class AddEditView: UIView {
         return scrollView
     }()
     
-    private let contentView: UIView = {
+    private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Colors.lightOrange
@@ -176,10 +176,10 @@ class AddEditView: UIView {
     
     private func setUpUI() {
         addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(cancelButton)
-        contentView.addSubview(saveJobButton)
-        contentView.addSubview(outerVStackView)
+        scrollView.addSubview(containerView)
+        containerView.addSubview(cancelButton)
+        containerView.addSubview(saveJobButton)
+        containerView.addSubview(outerVStackView)
         outerVStackView.addArrangedSubview(titleLabel)
         outerVStackView.addArrangedSubview(statusLabel)
         outerVStackView.addArrangedSubview(statusHStackView)
@@ -191,38 +191,48 @@ class AddEditView: UIView {
         outerVStackView.addArrangedSubview(linkField)
         outerVStackView.addArrangedSubview(notesField)
         outerVStackView.addArrangedSubview(appliedDateStackView)
-        contentView.addSubview(bottomSaveButton)
+        containerView.addSubview(bottomSaveButton)
         
         let scrollFrameGuide = scrollView.frameLayoutGuide
         let scrollContentGuide = scrollView.contentLayoutGuide
+        
+        if UIDevice.current.userInterfaceIdiom == .pad && UIDevice.current.orientation.isLandscape {
+            NSLayoutConstraint.activate([
+                scrollView.heightAnchor.constraint(equalToConstant: 450)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+        }
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
             
-            contentView.leadingAnchor.constraint(equalTo: scrollContentGuide.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollContentGuide.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollContentGuide.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollContentGuide.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: scrollContentGuide.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: scrollContentGuide.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: scrollContentGuide.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: scrollContentGuide.bottomAnchor),
             
-            contentView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
+            containerView.leadingAnchor.constraint(equalTo: scrollFrameGuide.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: scrollFrameGuide.trailingAnchor),
             
-            cancelButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            cancelButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cancelButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
+            cancelButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             cancelButton.heightAnchor.constraint(equalToConstant: 50),
             cancelButton.widthAnchor.constraint(equalToConstant: 50),
             
-            saveJobButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            saveJobButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            saveJobButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+            saveJobButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
             saveJobButton.heightAnchor.constraint(equalToConstant: 50),
             saveJobButton.widthAnchor.constraint(equalToConstant: 100),
             
             outerVStackView.topAnchor.constraint(equalTo: saveJobButton.bottomAnchor, constant: 10),
-            outerVStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            outerVStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            outerVStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+            outerVStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             outerVStackView.bottomAnchor.constraint(equalTo: bottomSaveButton.topAnchor, constant: -50),
             
             titleLabel.heightAnchor.constraint(equalToConstant: 40),
@@ -236,10 +246,10 @@ class AddEditView: UIView {
             notesField.heightAnchor.constraint(equalToConstant: 70),
             appliedDateStackView.heightAnchor.constraint(equalToConstant: 70),
             
-            bottomSaveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            bottomSaveButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             bottomSaveButton.widthAnchor.constraint(equalToConstant: 150),
             bottomSaveButton.heightAnchor.constraint(equalToConstant: 50),
-            bottomSaveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
+            bottomSaveButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -30)
             
         ])
     }

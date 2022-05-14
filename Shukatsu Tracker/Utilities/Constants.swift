@@ -31,3 +31,9 @@ enum Colors {
     static let softBrown = UIColor(red: 0.56, green: 0.50, blue: 0.42, alpha: 1.00)
     static let viewOrange = UIColor(red: 1.00, green: 0.53, blue: 0.37, alpha: 1.00)
 }
+
+enum UIUserInterfaceIdiom : Int {
+    case unspecified
+    case phone // iPhone and iPod touch style UI
+    case pad   // iPad style UI (also includes macOS Catalyst)
+}

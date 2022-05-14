@@ -9,6 +9,7 @@ import UIKit
 
 class LabelAndTextField: UIView {
     
+    
     var labelText: String
     
     private let vStackView: UIStackView = {
@@ -50,8 +51,6 @@ class LabelAndTextField: UIView {
         super.init(frame: frame)
         self.setUpUI()
         self.setContent()
-        
-        textField.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -85,17 +84,5 @@ class LabelAndTextField: UIView {
     private func setContent(){
         titleLabel.text = labelText
     }
-    
 }
 
-
-extension LabelAndTextField: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        let arbitraryValue: Int = 5
-        if let newPosition = textField.position(from: textField.beginningOfDocument, offset: arbitraryValue) {
-            textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
-        }
-        
-    }
-}

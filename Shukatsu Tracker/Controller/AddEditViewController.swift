@@ -25,6 +25,8 @@ class AddEditViewController: UIViewController {
     weak var editJobInHomeVCDelegate: HomeVCDelegate?
     weak var updateJobInfoInDetailsVCDelegate: DetailsVCDelegate?
     
+    var currentTextField: String?
+    
     private var fromDetailsView: Bool
     private var passedJob: JobInfo?
     
@@ -34,7 +36,7 @@ class AddEditViewController: UIViewController {
     private var jobsCollectionView: UICollectionView!
     
     private var contentView: AddEditView!
-    
+
     private var titleLabel: UILabel!
     
     private var editOpenButton: EditStatusButton!
@@ -55,6 +57,19 @@ class AddEditViewController: UIViewController {
     private var cancelButton: CancelButton!
     private var bottomSaveButton: UIButton!
     
+    let adjustNum: CGFloat = {
+        switch UIDevice.current.userInterfaceIdiom {
+            case .phone:
+                return 30
+            case .pad:
+                return 10
+            default:
+            return 0
+        }
+    }()
+    
+    
+    
     init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: HomeVCDelegate?, updateJobInfoInDetailsVCDelegate: DetailsVCDelegate?) {
         self.fromDetailsView = fromDetailsView
         self.passedJob = passedJob
@@ -73,7 +88,7 @@ class AddEditViewController: UIViewController {
 
         contentView = AddEditView()
         view = contentView
-        
+
         editOpenButton = contentView.editOpenButton.statusButton
         editInterviewButton = contentView.editInterviewButton.statusButton
         editAppliedButton = contentView.editAppliedButton.statusButton
@@ -82,6 +97,7 @@ class AddEditViewController: UIViewController {
         titleLabel = contentView.titleLabel
         
         companyField = contentView.companyField
+        
         locationField = contentView.locationField
         roleField = contentView.roleField
         teamField = contentView.teamField
@@ -103,24 +119,28 @@ class AddEditViewController: UIViewController {
         addNotificationCenter()
         
     }
+
     
     private func addNotificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     @objc func keyboardWillShow(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height - 30
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y == 0{
+                    self.view.frame.origin.y -= keyboardSize.height - adjustNum
+                }
             }
         }
-
     }
 
     @objc func keyboardWillHide(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height - 30
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                if self.view.frame.origin.y != 0 {
+                    self.view.frame.origin.y += keyboardSize.height - adjustNum
+                }
             }
         }
     }
