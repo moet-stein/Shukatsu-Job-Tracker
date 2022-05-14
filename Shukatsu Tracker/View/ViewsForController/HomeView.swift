@@ -112,7 +112,12 @@ class HomeView: UIView {
     private func collectionViewLayoutSetUp() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: frame.size.width / 2.7, height: 150)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            layout.itemSize = CGSize(width: frame.size.width / 2.7, height: 150)
+        } else {
+            layout.itemSize = CGSize(width: frame.size.width / 3.5, height: 200)
+        }
+        
         
         layout.sectionInset = UIEdgeInsets(top: 20, left: 15, bottom: 40, right: 15)
         jobsCollectionView.collectionViewLayout = layout
