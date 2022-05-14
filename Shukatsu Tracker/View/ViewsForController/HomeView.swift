@@ -67,7 +67,7 @@ class HomeView: UIView {
     
     // MARK: - companyTiles section
     
-    private let tilesView: UIView = {
+    let tilesView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Colors.lightOrange
@@ -180,7 +180,7 @@ class HomeView: UIView {
             tilesView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             tilesView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             tilesView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            tilesView.heightAnchor.constraint(equalToConstant: 580),
+            tilesView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 0.75),
             tilesView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 5),
         ])
         
@@ -217,8 +217,7 @@ class HomeView: UIView {
             jobsCollectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
             jobsCollectionView.leadingAnchor.constraint(equalTo: tilesView.leadingAnchor, constant: 20),
             jobsCollectionView.trailingAnchor.constraint(equalTo: tilesView.trailingAnchor, constant: -20),
-            jobsCollectionView.heightAnchor.constraint(equalToConstant: 500),
-//            jobsCollectionView.bottomAnchor.constraint(equalTo: tilesView.bottomAnchor)
+            jobsCollectionView.heightAnchor.constraint(equalTo: tilesView.heightAnchor, multiplier: 0.75),
         ])
     }
     

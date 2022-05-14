@@ -33,6 +33,7 @@ class HomeViewController: UIViewController {
     private var interviewBoxButton: StatusButton!
     private var closedBoxButton: StatusButton!
     
+    private var tilesView: UIView!
     private var viewAllButton: AllFavoritesButton!
     private var viewFavoritesButton: AllFavoritesButton!
     
@@ -123,6 +124,7 @@ class HomeViewController: UIViewController {
         interviewBoxButton = contentView.interviewBoxButton
         closedBoxButton = contentView.closedBoxButton
         
+        tilesView = contentView.tilesView
         viewAllButton = contentView.viewAllButton
         viewFavoritesButton = contentView.viewFavoritesButton
         
@@ -133,6 +135,8 @@ class HomeViewController: UIViewController {
         addFunctionToStatusButtons()
         addFunctionsToFilterButtons()
         enableProfileSectionTappable()
+        
+//        tilesView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6).isActive = true
     }
     
     
