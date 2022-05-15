@@ -48,11 +48,6 @@
 		60BB1799282BE8E900F5544C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB1798282BE8E900F5544C /* Extensions.swift */; };
 		60BB179B282BF48E00F5544C /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB179A282BF48E00F5544C /* CancelButton.swift */; };
 		60FD4F70282EB399004B9403 /* ProfileSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD4F6F282EB399004B9403 /* ProfileSectionView.swift */; };
-		60FD4F7828315568004B9403 /* Shukatsu_GIF2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 60FD4F7328315567004B9403 /* Shukatsu_GIF2.gif */; };
-		60FD4F7928315568004B9403 /* Shukatsu_GIF3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 60FD4F7428315567004B9403 /* Shukatsu_GIF3.gif */; };
-		60FD4F7A28315568004B9403 /* Shukatsu_GIF4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 60FD4F7528315568004B9403 /* Shukatsu_GIF4.gif */; };
-		60FD4F7B28315568004B9403 /* Shukatsu_GIF0.gif in Resources */ = {isa = PBXBuildFile; fileRef = 60FD4F7628315568004B9403 /* Shukatsu_GIF0.gif */; };
-		60FD4F7C28315568004B9403 /* Shukatsu_GIF1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 60FD4F7728315568004B9403 /* Shukatsu_GIF1.gif */; };
 		60FF2E2C2821CC5500A45667 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF2E2B2821CC5500A45667 /* ProfileImageView.swift */; };
 		60FF2E2E282281A000A45667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF2E2D282281A000A45667 /* Constants.swift */; };
 		6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */; };
@@ -103,11 +98,6 @@
 		60BB1798282BE8E900F5544C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		60BB179A282BF48E00F5544C /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		60FD4F6F282EB399004B9403 /* ProfileSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionView.swift; sourceTree = "<group>"; };
-		60FD4F7328315567004B9403 /* Shukatsu_GIF2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Shukatsu_GIF2.gif; sourceTree = "<group>"; };
-		60FD4F7428315567004B9403 /* Shukatsu_GIF3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Shukatsu_GIF3.gif; sourceTree = "<group>"; };
-		60FD4F7528315568004B9403 /* Shukatsu_GIF4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Shukatsu_GIF4.gif; sourceTree = "<group>"; };
-		60FD4F7628315568004B9403 /* Shukatsu_GIF0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Shukatsu_GIF0.gif; sourceTree = "<group>"; };
-		60FD4F7728315568004B9403 /* Shukatsu_GIF1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Shukatsu_GIF1.gif; sourceTree = "<group>"; };
 		60FF2E2B2821CC5500A45667 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		60FF2E2D282281A000A45667 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		89BE5B31226051AC8560A03B /* Pods-Shukatsu Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shukatsu Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Shukatsu Tracker/Pods-Shukatsu Tracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,7 +157,7 @@
 				6051AB4F281AEBE7002E9CF6 /* Model */,
 				6051047427F72EDE00AB9DEC /* View */,
 				6051047327F72EC900AB9DEC /* Controller */,
-				60BB1797282BE72E00F5544C /* Support Files */,
+				60BB1797282BE72E00F5544C /* SupportFiles */,
 				60FF2E2F282281A500A45667 /* Utilities */,
 				6051046527F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld */,
 			);
@@ -264,28 +254,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		60BB1797282BE72E00F5544C /* Support Files */ = {
+		60BB1797282BE72E00F5544C /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
-				60FD4F7228315544004B9403 /* ReadMe GIFs */,
 				6051046827F72E0200AB9DEC /* Assets.xcassets */,
 				6051045C27F72E0000AB9DEC /* AppDelegate.swift */,
 				6051045E27F72E0000AB9DEC /* SceneDelegate.swift */,
 				6051046D27F72E0200AB9DEC /* Info.plist */,
 			);
-			path = "Support Files";
-			sourceTree = "<group>";
-		};
-		60FD4F7228315544004B9403 /* ReadMe GIFs */ = {
-			isa = PBXGroup;
-			children = (
-				60FD4F7628315568004B9403 /* Shukatsu_GIF0.gif */,
-				60FD4F7728315568004B9403 /* Shukatsu_GIF1.gif */,
-				60FD4F7328315567004B9403 /* Shukatsu_GIF2.gif */,
-				60FD4F7428315567004B9403 /* Shukatsu_GIF3.gif */,
-				60FD4F7528315568004B9403 /* Shukatsu_GIF4.gif */,
-			);
-			path = "ReadMe GIFs";
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 		60FF2E2F282281A500A45667 /* Utilities */ = {
@@ -357,17 +334,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60FD4F7A28315568004B9403 /* Shukatsu_GIF4.gif in Resources */,
 				6051047A27F733BC00AB9DEC /* Lato-Light.ttf in Resources */,
-				60FD4F7828315568004B9403 /* Shukatsu_GIF2.gif in Resources */,
 				6051047E27F733ED00AB9DEC /* Lato-Bold.ttf in Resources */,
 				6051046C27F72E0200AB9DEC /* LaunchScreen.storyboard in Resources */,
 				6051046927F72E0200AB9DEC /* Assets.xcassets in Resources */,
-				60FD4F7B28315568004B9403 /* Shukatsu_GIF0.gif in Resources */,
-				60FD4F7928315568004B9403 /* Shukatsu_GIF3.gif in Resources */,
 				6051048027F733FD00AB9DEC /* Lato-Black.ttf in Resources */,
 				6051047C27F733C400AB9DEC /* Lato-Regular.ttf in Resources */,
-				60FD4F7C28315568004B9403 /* Shukatsu_GIF1.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,7 +572,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XX56C8Q5GR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Shukatsu Tracker/Support Files/Info.plist";
+				INFOPLIST_FILE = "Shukatsu Tracker/SupportFiles/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Shukatsu Tracker camera use";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Shukatsu Tracker photo use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -633,7 +605,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XX56C8Q5GR;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Shukatsu Tracker/Support Files/Info.plist";
+				INFOPLIST_FILE = "Shukatsu Tracker/SupportFiles/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Shukatsu Tracker camera use";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Shukatsu Tracker photo use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
