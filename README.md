@@ -3,7 +3,7 @@ An iOS mobile app to track your job applications to be successful in your dream 
 
 
 <a href="https://apps.apple.com/de/app/shukatsu-job-tracker/id1622574153?l=en">
-    <img src="https://user-images.githubusercontent.com/66197018/166938128-c5042923-1d66-4f7b-9f2e-09726626d17d.png" alt="Home" width="450" height="350" >
+    <img src="https://user-images.githubusercontent.com/66197018/166938128-c5042923-1d66-4f7b-9f2e-09726626d17d.png" alt="Home" width="550" height="350" >
 </a>
 
 # How does this app look like?
