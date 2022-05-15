@@ -135,8 +135,6 @@ class HomeViewController: UIViewController {
         addFunctionToStatusButtons()
         addFunctionsToFilterButtons()
         enableProfileSectionTappable()
-        
-//        tilesView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6).isActive = true
     }
     
     
