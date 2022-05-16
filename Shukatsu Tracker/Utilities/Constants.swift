@@ -37,3 +37,9 @@ enum UIUserInterfaceIdiom : Int {
     case phone // iPhone and iPod touch style UI
     case pad   // iPad style UI (also includes macOS Catalyst)
 }
+
+enum SaveError: Error {
+    case companyNameLocationEmpty
+    case companyNameEmpty
+    case locationEmpty
+}

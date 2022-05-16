@@ -219,18 +219,35 @@ class AddEditViewController: UIViewController {
     
     @objc func saveButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {
         saveButton.handleTapShortDuration(gestureRecognizer: gestureRecognizer)
-        let companyName = companyField.textField.text ?? ""
-        let location = locationField.textField.text ?? ""
+        
+        do {
+            try saveJob()
+        } catch SaveError.companyNameLocationEmpty {
+            showAlert(alertText: "Company name & location fields are required")
+        } catch SaveError.companyNameEmpty {
+            showAlert(alertText: "Company name field is required")
+        } catch SaveError.locationEmpty {
+            showAlert(alertText: "Location fields is required")
+        } catch {
+            showAlert(alertText: "Unable to Save")
+        }
+
+    }
+    
+    private func saveJob() throws {
+        let companyName = companyField.textField.text!
+        let location = locationField.textField.text!
         
         if companyName.isEmpty && location.isEmpty {
-            showAlert(alertText: "Company name & location fields are required")
-            return
-        } else if companyName.isEmpty {
-            showAlert(alertText: "Company name field is required")
-            return
-        } else if location.isEmpty {
-            showAlert(alertText: "Location fields is required")
-            return
+            throw SaveError.companyNameLocationEmpty
+        }
+        
+        if companyName.isEmpty {
+            throw SaveError.companyNameEmpty
+        }
+        
+        if location.isEmpty {
+            throw SaveError.locationEmpty
         }
         
         let appliedDate: Date?
@@ -265,8 +282,7 @@ class AddEditViewController: UIViewController {
         let alert = UIAlertController(title: "", message: alertText, preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
 
-        let when = DispatchTime.now() + 2
-        DispatchQueue.main.asyncAfter(deadline: when){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
           alert.dismiss(animated: true, completion: nil)
         }
     }
