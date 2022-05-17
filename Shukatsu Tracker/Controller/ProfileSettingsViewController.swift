@@ -25,6 +25,12 @@ class ProfileSettingsViewController: UIViewController {
     private var targetCell: SettingsTableViewCell?
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let index = self.settingsTableView.indexPathForSelectedRow{
+            self.settingsTableView.deselectRow(at: index, animated: true)
+        }
+    }
     override func loadView() {
         contentView = ProfileSettingsView()
         view = contentView
@@ -171,9 +177,8 @@ extension ProfileSettingsViewController: UITableViewDataSource {
 //        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell else {
 //            return UITableViewCell()
 //        }
-
-        let cell = SettingsTableViewCell()
         
+        let cell = SettingsTableViewCell()
         let settingsContent1 = ["Name", "Title"]
         let settingsContent2 = ["PIN", "Change PIN"]
         
@@ -242,4 +247,5 @@ extension ProfileSettingsViewController: UITableViewDelegate {
             return
         }
     }
+
 }
