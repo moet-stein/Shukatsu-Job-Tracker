@@ -133,6 +133,67 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		602007842842C37000D739CB /* EnterPinVC */ = {
+			isa = PBXGroup;
+			children = (
+				6051047527F72F1900AB9DEC /* EnterPinView.swift */,
+			);
+			path = EnterPinVC;
+			sourceTree = "<group>";
+		};
+		602007852842C38C00D739CB /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				6051048727FAF12800AB9DEC /* HomeView.swift */,
+				6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */,
+				6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */,
+				60FD4F6F282EB399004B9403 /* ProfileSectionView.swift */,
+				6051048F27FC764200AB9DEC /* StatusButton.swift */,
+				6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		602007862842C3B800D739CB /* AddEditVC */ = {
+			isa = PBXGroup;
+			children = (
+				605104A0280338BC00AB9DEC /* AddEditView.swift */,
+				605104AC28041D9E00AB9DEC /* LabelAndTextField.swift */,
+				605104AA2804148D00AB9DEC /* EditStatusButtonView.swift */,
+				605104AF28044E9D00AB9DEC /* EditStatusButton.swift */,
+			);
+			path = AddEditVC;
+			sourceTree = "<group>";
+		};
+		602007872842C41000D739CB /* JobDetailsVC */ = {
+			isa = PBXGroup;
+			children = (
+				605104A428033D0D00AB9DEC /* JobDetailsView.swift */,
+				6051AAFA280D6889002E9CF6 /* TitleLinkView.swift */,
+				6051AAF8280C7251002E9CF6 /* TitleContentLabelsView.swift */,
+			);
+			path = JobDetailsVC;
+			sourceTree = "<group>";
+		};
+		602007882842C45900D739CB /* ProfileSettingsVC */ = {
+			isa = PBXGroup;
+			children = (
+				605104A82803402900AB9DEC /* ProfileSettingsView.swift */,
+				6051AB362817E60E002E9CF6 /* SettingsTableViewCell.swift */,
+			);
+			path = ProfileSettingsVC;
+			sourceTree = "<group>";
+		};
+		602007892842C47A00D739CB /* General */ = {
+			isa = PBXGroup;
+			children = (
+				60BB179A282BF48E00F5544C /* CancelButton.swift */,
+				6051048327F9DADB00AB9DEC /* CircleButton.swift */,
+				60FF2E2B2821CC5500A45667 /* ProfileImageView.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		6051045027F72E0000AB9DEC = {
 			isa = PBXGroup;
 			children = (
@@ -182,22 +243,13 @@
 		6051047427F72EDE00AB9DEC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				602007842842C37000D739CB /* EnterPinVC */,
+				602007852842C38C00D739CB /* HomeVC */,
+				602007862842C3B800D739CB /* AddEditVC */,
+				602007872842C41000D739CB /* JobDetailsVC */,
+				602007882842C45900D739CB /* ProfileSettingsVC */,
+				602007892842C47A00D739CB /* General */,
 				6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */,
-				605104AE28041DB200AB9DEC /* ViewsForController */,
-				60FD4F6F282EB399004B9403 /* ProfileSectionView.swift */,
-				6051048327F9DADB00AB9DEC /* CircleButton.swift */,
-				6051048F27FC764200AB9DEC /* StatusButton.swift */,
-				6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */,
-				60BB179A282BF48E00F5544C /* CancelButton.swift */,
-				6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */,
-				605104AF28044E9D00AB9DEC /* EditStatusButton.swift */,
-				605104AA2804148D00AB9DEC /* EditStatusButtonView.swift */,
-				605104AC28041D9E00AB9DEC /* LabelAndTextField.swift */,
-				6051AAF8280C7251002E9CF6 /* TitleContentLabelsView.swift */,
-				6051AAFA280D6889002E9CF6 /* TitleLinkView.swift */,
-				6051AB362817E60E002E9CF6 /* SettingsTableViewCell.swift */,
-				6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */,
-				60FF2E2B2821CC5500A45667 /* ProfileImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,18 +271,6 @@
 				6051047F27F733FD00AB9DEC /* Lato-Black.ttf */,
 			);
 			path = Lato;
-			sourceTree = "<group>";
-		};
-		605104AE28041DB200AB9DEC /* ViewsForController */ = {
-			isa = PBXGroup;
-			children = (
-				6051047527F72F1900AB9DEC /* EnterPinView.swift */,
-				6051048727FAF12800AB9DEC /* HomeView.swift */,
-				605104A0280338BC00AB9DEC /* AddEditView.swift */,
-				605104A428033D0D00AB9DEC /* JobDetailsView.swift */,
-				605104A82803402900AB9DEC /* ProfileSettingsView.swift */,
-			);
-			path = ViewsForController;
 			sourceTree = "<group>";
 		};
 		6051AB04280F17AE002E9CF6 /* JobInfo */ = {
