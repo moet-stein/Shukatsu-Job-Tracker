@@ -67,31 +67,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
 
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        window.makeKeyAndVisible()
-        
-        var navigationController = UINavigationController()
-        
-        ProfileSettingsDataManager.fetchProfileSettings { profile in
-            if let profile = profile {
-                if !profile.isEmpty {
-                    if profile[0].pinOn {
-                        navigationController = UINavigationController(rootViewController: EnterPinViewController())
-                    } else if !profile[0].pinOn {
-                        navigationController = UINavigationController(rootViewController: HomeViewController())
-                    }
-                } else {
-                    navigationController = UINavigationController(rootViewController: EnterPinViewController())
-                }
-            }
-            window.rootViewController = navigationController
-        }
-        
-        self.window = window
-
-        // Save changes in the application's managed object context when the application transitions to the background.
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        let window = UIWindow(windowScene: windowScene)
+//        window.makeKeyAndVisible()
+//        
+//        var navigationController = UINavigationController()
+//
+//        ProfileSettingsDataManager.fetchProfileSettings { profile in
+//            if let profile = profile {
+//                if !profile.isEmpty {
+//                    if profile[0].pinOn {
+//                        navigationController = UINavigationController(rootViewController: EnterPinViewController())
+//                    } else if !profile[0].pinOn {
+//                        navigationController = UINavigationController(rootViewController: HomeViewController())
+//                    }
+//                } else {
+//                    navigationController = UINavigationController(rootViewController: EnterPinViewController())
+//                }
+//            }
+//            window.rootViewController = navigationController
+//        }
+//        
+//        
+//        self.window = window
+//
+//        // Save changes in the application's managed object context when the application transitions to the background.
+//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
     
 

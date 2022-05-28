@@ -249,7 +249,6 @@
 				6051AB4D281A9AA5002E9CF6 /* ProfileSettingsDataManager.swift */,
 				6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */,
 				6051AB04280F17AE002E9CF6 /* JobInfo */,
-				6051047727F7338F00AB9DEC /* Fonts */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +256,7 @@
 		60BB1797282BE72E00F5544C /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				6051047727F7338F00AB9DEC /* Fonts */,
 				6051046827F72E0200AB9DEC /* Assets.xcassets */,
 				6051045C27F72E0000AB9DEC /* AppDelegate.swift */,
 				6051045E27F72E0000AB9DEC /* SceneDelegate.swift */,
