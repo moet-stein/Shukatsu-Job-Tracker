@@ -63,6 +63,7 @@ class EnterPinView: UIView {
         textField.backgroundColor = Colors.bgOffwhite
         textField.layer.cornerRadius = 10
         textField.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        textField.isSecureTextEntry = true
         return textField
     }()
     
