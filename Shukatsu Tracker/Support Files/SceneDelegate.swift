@@ -70,9 +70,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        guard let windowScene = (scene as? UIWindowScene) else { return }
 //        let window = UIWindow(windowScene: windowScene)
 //        window.makeKeyAndVisible()
-//        
+//
 //        var navigationController = UINavigationController()
-//        
+//
 //        ProfileSettingsDataManager.fetchProfileSettings { profile in
 //            if let profile = profile {
 //                if !profile.isEmpty {
@@ -87,7 +87,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            }
 //            window.rootViewController = navigationController
 //        }
-//        
+//
 //        self.window = window
 //
 //        // Save changes in the application's managed object context when the application transitions to the background.

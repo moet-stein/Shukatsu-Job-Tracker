@@ -52,7 +52,7 @@ class EnterPinViewController: UIViewController {
         if let enteredPin = pinTextField.text {
             if keychain.get("ShukatsuPin") == nil {
                 if enteredPin.count == 4 {
-                    let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
+                    keychain.set(enteredPin, forKey: "ShukatsuPin")
                     createProfile()
                     navigationController?.pushViewController(HomeViewController(), animated: true)
                 } else {
