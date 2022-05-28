@@ -50,7 +50,7 @@ class EnterPinViewController: UIViewController {
     private func setLabelText() {
         enterPinTitleLabel.text = {
             if keychain.get("ShukatsuPin") == nil {
-                return "Set a Pin"
+                return "Set Pin"
             } else {
                 return "Enter Your Pin"
             }
