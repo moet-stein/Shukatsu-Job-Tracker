@@ -124,7 +124,7 @@ class HomeViewController: UIViewController {
         interviewBoxButton = contentView.interviewBoxButton
         closedBoxButton = contentView.closedBoxButton
         
-        tilesView = contentView.tilesView
+        tilesView = contentView.bottomView
         viewAllButton = contentView.viewAllButton
         viewFavoritesButton = contentView.viewFavoritesButton
         

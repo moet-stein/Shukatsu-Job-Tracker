@@ -61,7 +61,7 @@ class HomeView: UIView {
     
     // MARK: - companyTiles section
     
-    let tilesView: UIView = {
+    let bottomView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Colors.lightOrange
@@ -133,15 +133,6 @@ class HomeView: UIView {
     init() {
         super.init(frame: .zero)
         backgroundColor =  Colors.bgOffwhite
-//        addSubview(scrollView)
-//
-//        NSLayoutConstraint.activate([
-//            scrollView.topAnchor.constraint(equalTo: topAnchor),
-//            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
-//        ])
-//
         setUpUI()
         setTilesViewSection()
     }
@@ -155,7 +146,7 @@ class HomeView: UIView {
         addSubview(profileSectionView)
         addSubview(addButton)
         addSubview(statusStackView)
-        addSubview(tilesView)
+        addSubview(bottomView)
 
         statusStackView.addArrangedSubview(openBoxButton)
         statusStackView.addArrangedSubview(appliedBoxButton)
@@ -175,12 +166,12 @@ class HomeView: UIView {
             statusStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             statusStackView.widthAnchor.constraint(equalToConstant: 340),
             
-            tilesView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 45),
-            tilesView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            tilesView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tilesView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tilesView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7),
-            tilesView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
+            bottomView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 45),
+            bottomView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            bottomView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7),
+            bottomView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
         ])
         
         
@@ -188,35 +179,35 @@ class HomeView: UIView {
     }
     
     private func setTilesViewSection() {
-        tilesView.addSubview(viewAllButton)
-        tilesView.addSubview(viewFavoritesButton)
-        tilesView.addSubview(jobsCollectionView)
-        tilesView.addSubview(noJobsView)
-        tilesView.addSubview(noFavsView)
+        bottomView.addSubview(viewAllButton)
+        bottomView.addSubview(viewFavoritesButton)
+        bottomView.addSubview(jobsCollectionView)
+        bottomView.addSubview(noJobsView)
+        bottomView.addSubview(noFavsView)
         
         NSLayoutConstraint.activate([
 
-            viewAllButton.topAnchor.constraint(equalTo: tilesView.topAnchor, constant: 20),
+            viewAllButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
             viewAllButton.trailingAnchor.constraint(equalTo: centerXAnchor),
             viewAllButton.widthAnchor.constraint(equalToConstant: 130),
             viewAllButton.heightAnchor.constraint(equalToConstant: 30),
             
-            viewFavoritesButton.topAnchor.constraint(equalTo: tilesView.topAnchor, constant: 20),
+            viewFavoritesButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
             viewFavoritesButton.leadingAnchor.constraint(equalTo: centerXAnchor),
             viewFavoritesButton.widthAnchor.constraint(equalToConstant: 130),
             viewFavoritesButton.heightAnchor.constraint(equalToConstant: 30),
             
             noJobsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 50),
-            noJobsView.centerXAnchor.constraint(equalTo: tilesView.centerXAnchor),
+            noJobsView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             
             noFavsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 50),
-            noFavsView.centerXAnchor.constraint(equalTo: tilesView.centerXAnchor),
+            noFavsView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             
-            jobsCollectionView.centerXAnchor.constraint(equalTo: tilesView.centerXAnchor),
+            jobsCollectionView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             jobsCollectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
-            jobsCollectionView.leadingAnchor.constraint(equalTo: tilesView.leadingAnchor, constant: 20),
-            jobsCollectionView.trailingAnchor.constraint(equalTo: tilesView.trailingAnchor, constant: -20),
-            jobsCollectionView.heightAnchor.constraint(equalTo: tilesView.heightAnchor, multiplier: 0.75),
+            jobsCollectionView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 20),
+            jobsCollectionView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -20),
+            jobsCollectionView.heightAnchor.constraint(equalTo: bottomView.heightAnchor),
         ])
     }
     
