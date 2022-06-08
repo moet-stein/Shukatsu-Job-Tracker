@@ -142,5 +142,4 @@ class EnterPinView: UIView {
         ])
         
     }
-    
 }

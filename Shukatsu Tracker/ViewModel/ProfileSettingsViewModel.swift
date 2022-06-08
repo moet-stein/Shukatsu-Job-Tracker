@@ -19,33 +19,35 @@ struct ProfileSettingsViewModel {
     init(profileSettings: ProfileSettings) {
         self.profileSettings = profileSettings
         
-        guard let name = profileSettings.profileName,
-        let title = profileSettings.profileTitle,
-        let image = profileSettings.profileImage else {
-            self.profileNameString = "Unknown"
-            self.profileNameLabelString = "Hello, unknown"
-            self.profileTitleLabelString = "unknown title"
-            self.profileImage = UIImage(named: "azuImage")!
-            self.profilePinOn = profileSettings.pinOn
-            return
-        }
-        
-        if !name.isEmpty {
-            self.profileNameString = name
-            self.profileNameLabelString = "Hello, \(name)"
+        if let name = profileSettings.profileName {
+            if !name.isEmpty {
+                self.profileNameString = name
+                self.profileNameLabelString = "Hello, \(name)"
+            } else {
+                self.profileNameString = "unknown"
+                self.profileNameLabelString = "Hello, unknown"
+            }
         } else {
             self.profileNameString = "unknown"
             self.profileNameLabelString = "Hello, unknown"
         }
         
-        if !title.isEmpty {
-            self.profileTitleLabelString = title
+        if let title = profileSettings.profileTitle {
+            if !title.isEmpty {
+                self.profileTitleLabelString = title
+            } else {
+                self.profileTitleLabelString = "unknown title"
+            }
         } else {
             self.profileTitleLabelString = "unknown title"
         }
         
-        if !image.isEmpty {
-            self.profileImage = UIImage(data: image)!
+        if let image = profileSettings.profileImage {
+            if !image.isEmpty {
+                self.profileImage = UIImage(data: image)!
+            } else {
+                self.profileImage = UIImage(named: "azuImage")!
+            }
         } else {
             self.profileImage = UIImage(named: "azuImage")!
         }

@@ -58,26 +58,31 @@ class EnterPinViewController: UIViewController {
     }
     
     @objc func buttonPressed() {
-        if let enteredPin = pinTextField.text {
-            if keychain.get("ShukatsuPin") == nil {
-                if enteredPin.count == 4 {
-                    let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
-                    createProfile()
-                    print(saveSuccessful)
-                    navigationController?.pushViewController(HomeViewController(), animated: true)
-                } else {
-                    showWrongPinView(text: "Enter 4 Digits")
-                }
-            } else {
-                if enteredPin == keychain.get("ShukatsuPin") {
-                    createProfile()
-                    navigationController?.pushViewController(HomeViewController(), animated: true)
-                } else {
-                    showWrongPinView(text: "Wrong PIN")
-                }
-            }
-            pinTextField.text = ""
+        guard let enteredPin = pinTextField.text else {
+            return
         }
+        
+        guard (keychain.get("ShukatsuPin") != nil) else {
+            if enteredPin.count == 4 {
+                let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
+                createProfile()
+                print(saveSuccessful)
+                navigationController?.pushViewController(HomeViewController(), animated: true)
+            } else {
+                showWrongPinView(text: "Enter 4 Digits")
+            }
+            return
+        }
+        
+        if enteredPin == keychain.get("ShukatsuPin") {
+            createProfile()
+            navigationController?.pushViewController(HomeViewController(), animated: true)
+        } else {
+            showWrongPinView(text: "Wrong PIN")
+        }
+        
+        pinTextField.text = ""
+
     }
     
 //    private func createTestJobInfo() {
