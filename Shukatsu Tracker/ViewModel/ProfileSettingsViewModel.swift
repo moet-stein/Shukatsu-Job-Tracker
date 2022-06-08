@@ -10,6 +10,7 @@ import UIKit
 
 struct ProfileSettingsViewModel {
     let profileSettings: ProfileSettings
+    let profileNameString: String
     let profileNameLabelString: String
     let profileTitleLabelString: String
     let profileImage: UIImage
@@ -17,19 +18,33 @@ struct ProfileSettingsViewModel {
     
     init(profileSettings: ProfileSettings) {
         self.profileSettings = profileSettings
-        if let name = profileSettings.profileName {
+        
+        guard let name = profileSettings.profileName,
+        let title = profileSettings.profileTitle,
+        let image = profileSettings.profileImage else {
+            self.profileNameString = "Unknown"
+            self.profileNameLabelString = "Hello, unknown"
+            self.profileTitleLabelString = "unknown title"
+            self.profileImage = UIImage(named: "azuImage")!
+            self.profilePinOn = profileSettings.pinOn
+            return
+        }
+        
+        if !name.isEmpty {
+            self.profileNameString = name
             self.profileNameLabelString = "Hello, \(name)"
         } else {
+            self.profileNameString = "unknown"
             self.profileNameLabelString = "Hello, unknown"
         }
         
-        if let title = profileSettings.profileTitle {
+        if !title.isEmpty {
             self.profileTitleLabelString = title
         } else {
             self.profileTitleLabelString = "unknown title"
         }
         
-        if let image = profileSettings.profileImage {
+        if !image.isEmpty {
             self.profileImage = UIImage(data: image)!
         } else {
             self.profileImage = UIImage(named: "azuImage")!

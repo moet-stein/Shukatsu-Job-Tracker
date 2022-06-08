@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     var checkedStatus = [String]()
     var viewAll = true
     
-    var profileSettings: ProfileSettings?
+    var profileSettings: ProfileSettingsViewModel?
     
     private var contentView: HomeView!
     private var jobsCollectionView: UICollectionView!
@@ -67,24 +67,24 @@ class HomeViewController: UIViewController {
         ProfileSettingsDataManager.fetchProfileSettings { profiles in
             if let profiles = profiles {
                 let fetchedProfile = profiles[0]
-                profileSettings = fetchedProfile
+                profileSettings = ProfileSettingsViewModel(profileSettings: fetchedProfile)
                 
-                var name = fetchedProfile.profileName ?? "unknown"
-                if name.isEmpty{ name = "unknown"}
-                
-                var title = fetchedProfile.profileTitle ?? "unknown title"
-                if title.isEmpty { title = "unknown title"}
-                
-                var uiImage = UIImage(named: "azuImage")!
-                
-                if let image = fetchedProfile.profileImage {
-                    uiImage = UIImage(data: image)!
-                }
-                
+//                var name = fetchedProfile.profileName ?? "unknown"
+//                if name.isEmpty{ name = "unknown"}
+//
+//                var title = fetchedProfile.profileTitle ?? "unknown title"
+//                if title.isEmpty { title = "unknown title"}
+//
+//                var uiImage = UIImage(named: "azuImage")!
+//
+//                if let image = fetchedProfile.profileImage {
+//                    uiImage = UIImage(data: image)!
+//                }
+//
                 DispatchQueue.main.async { [weak self] in
-                    self?.greetLabel.text = "Hello, \(name)"
-                    self?.titleLabel.text = title
-                    self?.profileImage.image = uiImage
+                    self?.greetLabel.text = self?.profileSettings?.profileNameLabelString
+                    self?.titleLabel.text = self?.profileSettings?.profileTitleLabelString
+                    self?.profileImage.image = self?.profileSettings?.profileImage
                 }
             }
         }

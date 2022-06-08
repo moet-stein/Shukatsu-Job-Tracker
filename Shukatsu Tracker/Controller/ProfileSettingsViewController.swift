@@ -10,7 +10,7 @@ import UIKit
 
 
 class ProfileSettingsViewController: UIViewController {
-    private var profile: ProfileSettings
+    private var profile: ProfileSettingsViewModel
     
     private var contentView: ProfileSettingsView!
     private var cancelButton: CancelButton!
@@ -56,7 +56,7 @@ class ProfileSettingsViewController: UIViewController {
         homeVCDelegate?.updateProfileSettings()
     }
     
-    init(profile: ProfileSettings, homeVCDelegate: HomeVCDelegate?) {
+    init(profile: ProfileSettingsViewModel, homeVCDelegate: HomeVCDelegate?) {
         self.profile = profile
         self.homeVCDelegate = homeVCDelegate
         super.init(nibName: nil, bundle: nil)
@@ -76,18 +76,11 @@ class ProfileSettingsViewController: UIViewController {
         ProfileSettingsDataManager.fetchProfileSettings { profileData in
             if let profileData = profileData {
                 if !profileData.isEmpty {
-                    profile = profileData[0]
+                    profile = ProfileSettingsViewModel(profileSettings: profileData[0])
                     
-                    var uiImage = UIImage(named: "azuImage")!
-                    
-                    if let image = profile.profileImage {
-                        uiImage = UIImage(data: image)!
-                    }
-
-
                     DispatchQueue.main.async { [weak self] in
                         self?.settingsTableView.reloadData()
-                        self?.profileImageView.image = uiImage
+                        self?.profileImageView.image = self?.profile.profileImage
                     }
                 }
             }
@@ -115,7 +108,7 @@ class ProfileSettingsViewController: UIViewController {
             self?.profileImageView.image = image
 
             if let profile = self?.profile, let imageData = image.jpegData(compressionQuality: 1.0) {
-                ProfileSettingsDataManager.updateProfileImage(profileSettings: profile, profileImage: imageData)
+                ProfileSettingsDataManager.updateProfileImage(profileSettings: profile.profileSettings, profileImage: imageData)
             }
         
         }
@@ -123,11 +116,11 @@ class ProfileSettingsViewController: UIViewController {
     
     private func toggleChangePinCell(isPinOn: Bool, landing: Bool) {
         if isPinOn {
-            if !landing {ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: nil, pinOn: true)}
+            if !landing {ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile.profileSettings, profileName: nil, profileTitle: nil, pinOn: true)}
             targetCell?.titleLabel.textColor = .black
             targetCell?.accessoryType = .disclosureIndicator
         } else {
-            if !landing {ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: nil, profileTitle: nil, pinOn: false)}
+            if !landing {ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile.profileSettings, profileName: nil, profileTitle: nil, pinOn: false)}
             targetCell?.titleLabel.textColor = .systemGray3
             targetCell?.accessoryType = .none
         }
@@ -186,8 +179,8 @@ extension ProfileSettingsViewController: UITableViewDataSource {
         case 0:
             cell.setupCellContent(titleString: settingsContent1[indexPath.row])
             switch indexPath.row {
-            case 0: cell.showSetData(retrivedString: profile.profileName ?? "")
-            case 1: cell.showSetData(retrivedString: profile.profileTitle ?? "")
+            case 0: cell.showSetData(retrivedString: profile.profileNameString)
+            case 1: cell.showSetData(retrivedString: profile.profileTitleLabelString)
             default: cell.showSetData(retrivedString: "")
             }
         case 1:
@@ -196,13 +189,13 @@ extension ProfileSettingsViewController: UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
-                cell.showSwitch(pinIsOn: profile.pinOn)
+                cell.showSwitch(pinIsOn: profile.profilePinOn)
                 cell.delegate = self
             case 1:
                 cell.setupCellContent(titleString: settingsContent2[indexPath.row])
                 cell.accessoryType = .disclosureIndicator
                 self.targetCell = cell
-                self.toggleChangePinCell(isPinOn: self.profile.pinOn, landing: true)
+                self.toggleChangePinCell(isPinOn: self.profile.profilePinOn, landing: true)
             default: cell.textLabel?.text = ""
                 
             }
@@ -222,9 +215,9 @@ extension ProfileSettingsViewController: UITableViewDelegate {
             let nextVC: SetProfileNameViewController
             switch indexPath.row {
             case 0:
-                nextVC = SetProfileNameViewController(placeholderText: profile.profileName ?? "", profileName: true, profileSettingsViewDelegate: self)
+                nextVC = SetProfileNameViewController(placeholderText: profile.profileNameString, profileName: true, profileSettingsViewDelegate: self, profile: profile.profileSettings)
             case 1:
-                nextVC = SetProfileNameViewController(placeholderText:profile.profileTitle ?? "", profileName: false, profileSettingsViewDelegate: self)
+                nextVC = SetProfileNameViewController(placeholderText: profile.profileTitleLabelString, profileName: false, profileSettingsViewDelegate: self, profile: profile.profileSettings)
             default:
                 return
             }
@@ -235,7 +228,7 @@ extension ProfileSettingsViewController: UITableViewDelegate {
             case 0:
                 return
             case 1:
-                if profile.pinOn {
+                if profile.profilePinOn {
                     present(ChangePinViewController(), animated: true, completion: nil)
                 } else {
                     print("cannot change pin")

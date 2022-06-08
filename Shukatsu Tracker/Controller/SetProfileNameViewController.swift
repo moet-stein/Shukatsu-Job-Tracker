@@ -15,6 +15,7 @@ protocol ProfileSettingsViewDelegate {
 
 
 class SetProfileNameViewController: UIViewController {
+    let profile: ProfileSettings
     private var placeholderText: String
     private var profileName: Bool
     
@@ -54,10 +55,11 @@ class SetProfileNameViewController: UIViewController {
         return textField
     }()
     
-    init(placeholderText: String, profileName: Bool, profileSettingsViewDelegate: ProfileSettingsViewController?) {
+    init(placeholderText: String, profileName: Bool, profileSettingsViewDelegate: ProfileSettingsViewController?, profile: ProfileSettings) {
         self.placeholderText = placeholderText
         self.profileName = profileName
         self.profileSettingsViewDelegate = profileSettingsViewDelegate
+        self.profile = profile
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -115,18 +117,13 @@ class SetProfileNameViewController: UIViewController {
             profileTitleString = newProfileString
         }
         
-        ProfileSettingsDataManager.fetchProfileSetting(usingString: placeholderText, profileName: profileName
-        ) { profile in
-            if let profile = profile {
-                ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: profileNameString, profileTitle: profileTitleString, pinOn: nil)
-                
-                DispatchQueue.main.async { [weak self] in
-                    self?.profileSettingsViewDelegate?.reloadTableView()
-                }
-            }
-            
-        }
         
+        ProfileSettingsDataManager.updateProfileSettings(profileSettings: profile, profileName: profileNameString, profileTitle: profileTitleString, pinOn: nil)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.profileSettingsViewDelegate?.reloadTableView()
+        }
+            
         dismiss(animated: true, completion: nil)
     }
     
