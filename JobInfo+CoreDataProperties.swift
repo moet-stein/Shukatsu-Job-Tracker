@@ -18,7 +18,7 @@ extension JobInfo {
 
     @NSManaged public var companyName: String
     @NSManaged public var location: String
-    @NSManaged public var status: String?
+    @NSManaged public var status: String
     @NSManaged public var favorite: Bool
     @NSManaged public var role: String?
     @NSManaged public var team: String?

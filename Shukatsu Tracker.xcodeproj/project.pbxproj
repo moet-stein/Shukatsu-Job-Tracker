@@ -45,6 +45,7 @@
 		6051AB55281D3EDF002E9CF6 /* ChangePinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB54281D3EDF002E9CF6 /* ChangePinViewController.swift */; };
 		6051AB57281ECF0A002E9CF6 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */; };
 		6051AB8328215E08002E9CF6 /* NotFoundWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */; };
+		6087D4AB2850C7E7004063B9 /* JobInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */; };
 		60BB1799282BE8E900F5544C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB1798282BE8E900F5544C /* Extensions.swift */; };
 		60BB179B282BF48E00F5544C /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB179A282BF48E00F5544C /* CancelButton.swift */; };
 		60FD4F70282EB399004B9403 /* ProfileSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FD4F6F282EB399004B9403 /* ProfileSectionView.swift */; };
@@ -95,6 +96,7 @@
 		6051AB54281D3EDF002E9CF6 /* ChangePinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePinViewController.swift; sourceTree = "<group>"; };
 		6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundWithImageView.swift; sourceTree = "<group>"; };
+		6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModel.swift; sourceTree = "<group>"; };
 		60BB1798282BE8E900F5544C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		60BB179A282BF48E00F5544C /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		60FD4F6F282EB399004B9403 /* ProfileSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionView.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				6051AB4F281AEBE7002E9CF6 /* Model */,
 				6051047427F72EDE00AB9DEC /* View */,
+				6087D4A92850C7C7004063B9 /* ViewModel */,
 				6051047327F72EC900AB9DEC /* Controller */,
 				60BB1797282BE72E00F5544C /* SupportFiles */,
 				60FF2E2F282281A500A45667 /* Utilities */,
@@ -291,6 +294,14 @@
 				6051AB04280F17AE002E9CF6 /* JobInfo */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6087D4A92850C7C7004063B9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		60BB1797282BE72E00F5544C /* SupportFiles */ = {
@@ -446,6 +457,7 @@
 				60BB179B282BF48E00F5544C /* CancelButton.swift in Sources */,
 				6051AAFD280D6D4C002E9CF6 /* WebKitViewController.swift in Sources */,
 				6051AAFB280D6889002E9CF6 /* TitleLinkView.swift in Sources */,
+				6087D4AB2850C7E7004063B9 /* JobInfoViewModel.swift in Sources */,
 				60FD4F70282EB399004B9403 /* ProfileSectionView.swift in Sources */,
 				6051046727F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld in Sources */,
 				6051049727FF074300AB9DEC /* JobsCollectionViewCell.swift in Sources */,

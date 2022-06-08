@@ -131,7 +131,7 @@ class JobDetailsViewController: UIViewController {
     }
     
     private func setContent(job: JobInfo) {
-        statusLabels.addStatusColor(status: JobStatus(rawValue: job.status ?? "open") ?? JobStatus.open)
+        statusLabels.addStatusColor(status: JobStatus(rawValue: job.status) ?? JobStatus.open)
         showHideLabelContent(for: companyLabels, with: job.companyName)
         showHideLabelContent(for: roleLabels, with: job.role)
         showHideLabelContent(for: teamLabels, with: job.team)

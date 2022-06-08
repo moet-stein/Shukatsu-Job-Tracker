@@ -252,14 +252,14 @@ class HomeViewController: UIViewController {
             if checkedStatus.isEmpty {
                 filteredJobInfos = jobInfos.filter{$0.favorite}
             } else {
-                filteredJobInfos = jobInfos.filter{$0.favorite && checkedStatus.contains($0.status!)}
+                filteredJobInfos = jobInfos.filter{$0.favorite && checkedStatus.contains($0.status)}
             }
             toggleNoFavsView(favsEmpty: filteredJobInfos.isEmpty)
         } else {
             if checkedStatus.isEmpty {
                 filteredJobInfos = jobInfos
             } else {
-                filteredJobInfos = jobInfos.filter{checkedStatus.contains($0.status!)}
+                filteredJobInfos = jobInfos.filter{checkedStatus.contains($0.status)}
             }
             
             toggleNoJobsView(jobInfosEmpty: filteredJobInfos.isEmpty)
@@ -302,7 +302,7 @@ extension HomeViewController: UICollectionViewDataSource {
             companyName: currentJob.companyName,
             location: currentJob.location,
             updatedDate: currentJob.lastUpdate,
-            status: JobStatus(rawValue: currentJob.status ?? "open") ?? JobStatus.open)
+            status: JobStatus(rawValue: currentJob.status) ?? JobStatus.open)
         
         let column = Double(cell.frame.minX / cell.frame.width)
         let row = Double(cell.frame.minY / cell.frame.height)
