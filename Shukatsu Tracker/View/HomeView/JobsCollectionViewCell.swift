@@ -10,6 +10,19 @@ import UIKit
 class JobsCollectionViewCell: UICollectionViewCell {
     static let identifier = "JobsCollectionViewCell"
     
+    var jobInfoViewModel: JobInfoViewModel! {
+        didSet {
+            companyNameLabel.text = jobInfoViewModel.companyName
+            locationLabel.text = jobInfoViewModel.locationLabelText
+
+            roundedView.backgroundColor = jobInfoViewModel.statusRoundedViewBgColor
+
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd"
+            dateTagLabel.text = "on \(dateFormatter.string(from: jobInfoViewModel.lastUpdate))"
+        }
+    }
+    
     private let roundedView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -87,30 +100,6 @@ class JobsCollectionViewCell: UICollectionViewCell {
             companyNameLabel.heightAnchor.constraint(equalToConstant: 22)
         
         ])
-    }
-    
-    
-    func setupCellContent(companyName: String, location: String, updatedDate: Date, status: JobStatus) {
-        companyNameLabel.text = companyName
-        locationLabel.text = "📍\(location)"
-        
-        let jobStatus = status
-        roundedView.backgroundColor = {
-            switch jobStatus {
-            case .open:
-                return Colors.skyBlue
-            case .applied:
-                return Colors.lightGreen
-            case .interview:
-                return Colors.viewOrange
-            case .closed:
-                return Colors.blueGrey
-            }
-        }()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        dateTagLabel.text = "on \(dateFormatter.string(from: updatedDate))"
     }
     
     required init?(coder: NSCoder) {

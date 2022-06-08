@@ -298,12 +298,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         let currentJob = filteredJobInfos[indexPath.row]
+        cell.jobInfoViewModel = currentJob
         cell.alpha = 0
-        cell.setupCellContent(
-            companyName: currentJob.companyName,
-            location: currentJob.location,
-            updatedDate: currentJob.lastUpdate,
-            status: JobStatus(rawValue: currentJob.status) ?? JobStatus.open)
         
         let column = Double(cell.frame.minX / cell.frame.width)
         let row = Double(cell.frame.minY / cell.frame.height)

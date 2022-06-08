@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 struct JobInfoViewModel {
     var jobInfo: JobInfo
     var companyName: String
     var location: String
+    var locationLabelText: String
     var status: String
+    var statusRoundedViewBgColor: UIColor
     var favorite: Bool
     var role: String?
     var team: String?
@@ -27,8 +30,28 @@ struct JobInfoViewModel {
         self.jobInfo = jobInfo
         self.companyName = jobInfo.companyName
         self.location = jobInfo.location
+        self.locationLabelText = "📍\(jobInfo.location)"
         
         self.status = jobInfo.status
+        
+        let jobStatus = JobStatus(rawValue: jobInfo.status)
+        
+        self.statusRoundedViewBgColor = {
+            switch jobStatus {
+            case .open:
+                return Colors.skyBlue
+            case .applied:
+                return Colors.lightGreen
+            case .interview:
+                return Colors.viewOrange
+            case .closed:
+                return Colors.blueGrey
+            case .none:
+                return Colors.blueGrey
+            }
+        }()
+        
+        
         
         self.favorite = jobInfo.favorite
         self.role = jobInfo.role
