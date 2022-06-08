@@ -10,14 +10,14 @@ import CoreData
 
 protocol HomeVCDelegate: AnyObject {
     func fetchJobInfosAndReload()
-    func updateJonInfoFavorite(jobInfo: JobInfo)
-    func updateJobInfo(jobInfo: JobInfo)
+    func updateJonInfoFavorite(jobInfo: JobInfoViewModel)
+    func updateJobInfo(jobInfo: JobInfoViewModel)
     
     func updateProfileSettings()
 }
 
 protocol DetailsVCDelegate: AnyObject {
-    func updateJobInfoInDetailsVC(jobInfo: JobInfo)
+    func updateJobInfoInDetailsVC(jobInfo: JobInfoViewModel)
 }
 
 class AddEditViewController: UIViewController {
@@ -28,7 +28,7 @@ class AddEditViewController: UIViewController {
     var currentTextField: String?
     
     private var fromDetailsView: Bool
-    private var passedJob: JobInfo?
+    private var passedJob: JobInfoViewModel?
     
     private var selectedStatus: EditStatusButton!
     
@@ -70,7 +70,7 @@ class AddEditViewController: UIViewController {
     
     
     
-    init(fromDetailsView: Bool, passedJob: JobInfo?, addJobInfoDelegate: HomeVCDelegate?, updateJobInfoInDetailsVCDelegate: DetailsVCDelegate?) {
+    init(fromDetailsView: Bool, passedJob: JobInfoViewModel?, addJobInfoDelegate: HomeVCDelegate?, updateJobInfoInDetailsVCDelegate: DetailsVCDelegate?) {
         self.fromDetailsView = fromDetailsView
         self.passedJob = passedJob
         self.editJobInHomeVCDelegate = addJobInfoDelegate
@@ -266,7 +266,7 @@ class AddEditViewController: UIViewController {
         let notes = notesField.textField.text ?? nil
 
         if let passedJob = passedJob {
-            JobInfoDataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            JobInfoDataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob.jobInfo, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         } else {
             JobInfoDataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())

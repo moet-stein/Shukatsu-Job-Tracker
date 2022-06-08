@@ -8,21 +8,23 @@
 import Foundation
 
 struct JobInfoViewModel {
-    let companyName: String
-    let location: String
-    let status: String
-    let favorite: Bool
-    let role: String?
-    let team: String?
-    let link: String?
-    let notes: String?
-    let appliedDate: Date?
-    let appliedDateString: String?
-    let lastUpdate: Date
-    let lastUpdateString: String
-    let id: UUID
+    var jobInfo: JobInfo
+    var companyName: String
+    var location: String
+    var status: String
+    var favorite: Bool
+    var role: String?
+    var team: String?
+    var link: String?
+    var notes: String?
+    var appliedDate: Date?
+    var appliedDateString: String?
+    var lastUpdate: Date
+    var lastUpdateString: String
+    var id: UUID
     
     init(jobInfo: JobInfo) {
+        self.jobInfo = jobInfo
         self.companyName = jobInfo.companyName
         self.location = jobInfo.location
         

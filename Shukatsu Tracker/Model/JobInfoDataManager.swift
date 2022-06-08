@@ -90,7 +90,7 @@ class JobInfoDataManager {
     
     // MARK: - Update
     static func updateJobInfo(detailsVCdelegate: DetailsVCDelegate?, job: JobInfo,companyName: String, location: String, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
-        
+
         job.companyName = companyName
         job.location = location
         job.status = status
@@ -98,6 +98,7 @@ class JobInfoDataManager {
         job.team = team
         job.link = link
         job.notes = notes
+        job.favorite = favorite
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd, EEE"
@@ -114,12 +115,21 @@ class JobInfoDataManager {
         
         do {
             try managedObjectContext.save()
-            detailsVCdelegate?.updateJobInfoInDetailsVC(jobInfo: job)
+            detailsVCdelegate?.updateJobInfoInDetailsVC(jobInfo: JobInfoViewModel(jobInfo: job))
             
         } catch let error as NSError {
             print("Could not update. \(error), \(error.userInfo)")
         }
+    }
+    
+    static func updateFavorite(job: JobInfo, favorite: Bool) {
+        job.favorite = favorite
         
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print("Could not update. \(error), \(error.userInfo)")
+        }
     }
     
     

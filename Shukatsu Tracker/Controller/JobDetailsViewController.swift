@@ -10,10 +10,11 @@ import UIKit
 
 class JobDetailsViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     weak var jobEditedHomeVCDelegate: HomeVCDelegate?
     
-    private var selectedJob: JobInfo
-
+    private var selectedJob: JobInfoViewModel
+    
     private var contentView: JobDetailsView!
     private var cancelButton: CancelButton!
     private var detailViewEditButton: UIButton!
@@ -30,10 +31,10 @@ class JobDetailsViewController: UIViewController {
     private var lastUpdatedLabels: TitleContentLabelsView!
     
     private var deleteButton: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         contentView = JobDetailsView(selectedJob: selectedJob)
         view = contentView
         
@@ -58,7 +59,7 @@ class JobDetailsViewController: UIViewController {
         addButtonsTarget()
     }
     
-    init(selectedJob: JobInfo, addJobInfoDelegate: HomeVCDelegate?) {
+    init(selectedJob: JobInfoViewModel, addJobInfoDelegate: HomeVCDelegate?) {
         self.selectedJob = selectedJob
         self.jobEditedHomeVCDelegate = addJobInfoDelegate
         super.init(nibName: nil, bundle: nil)
@@ -115,7 +116,7 @@ class JobDetailsViewController: UIViewController {
         let alertController = UIAlertController(title: "Do you want to delete this job?", message: "Select Cancel or Delete", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "DELETE", style: .destructive) { _ in
-            JobInfoDataManager.deleteJobInfo(job: self.selectedJob)
+            JobInfoDataManager.deleteJobInfo(job: self.selectedJob.jobInfo)
             self.jobEditedHomeVCDelegate?.fetchJobInfosAndReload()
             self.dismiss(animated: true)
         })
@@ -130,7 +131,7 @@ class JobDetailsViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    private func setContent(job: JobInfo) {
+    private func setContent(job: JobInfoViewModel) {
         statusLabels.addStatusColor(status: JobStatus(rawValue: job.status) ?? JobStatus.open)
         showHideLabelContent(for: companyLabels, with: job.companyName)
         showHideLabelContent(for: roleLabels, with: job.role)
@@ -144,7 +145,7 @@ class JobDetailsViewController: UIViewController {
         toggleFavoriteBtn(updateInfo: false)
         
     }
-
+    
     private func showHideLabelContent(for labels: TitleContentLabelsView, with text: String?) {
         if let text = text {
             if text.isEmpty {
@@ -164,30 +165,20 @@ class JobDetailsViewController: UIViewController {
         if favoriteButton.isSelected {
             let heartSF = UIImage(systemName: "heart.fill", withConfiguration: config)
             favoriteButton.setImage(heartSF, for: .selected)
-            print("isselected")
+            
+            JobInfoDataManager.updateFavorite(job: selectedJob.jobInfo, favorite: true)
         } else {
             let heartSF = UIImage(systemName: "heart", withConfiguration: config)
             favoriteButton.setImage(heartSF, for: .normal)
-            print("isNOTselected")
-        }
-        
-        
-        if updateInfo {
-            selectedJob.favorite = favoriteButton.isSelected
-            do {
-               try context.save()
-               jobEditedHomeVCDelegate?.updateJonInfoFavorite(jobInfo: selectedJob)
-            } catch {
-                print("Failed to save")
-            }
             
+            JobInfoDataManager.updateFavorite(job: selectedJob.jobInfo, favorite: false)
         }
     }
     
 }
 
 extension JobDetailsViewController: DetailsVCDelegate {
-    func updateJobInfoInDetailsVC(jobInfo: JobInfo) {
+    func updateJobInfoInDetailsVC(jobInfo: JobInfoViewModel) {
         self.setContent(job: jobInfo)
     }
 }

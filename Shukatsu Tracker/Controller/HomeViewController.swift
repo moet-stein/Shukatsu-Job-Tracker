@@ -10,8 +10,8 @@ import CoreData
 
 class HomeViewController: UIViewController {
 
-    var jobInfos = [JobInfo]()
-    var filteredJobInfos = [JobInfo]()
+    var jobInfos = [JobInfoViewModel]()
+    var filteredJobInfos = [JobInfoViewModel]()
     var checkedStatus = [String]()
     var viewAll = true
     
@@ -52,7 +52,8 @@ class HomeViewController: UIViewController {
     private func setJobInfosAndStatus() {
         JobInfoDataManager.fetchJonInfos { jobs in
             if let jobs = jobs {
-                jobInfos = jobs
+                let createdJobInfoVMs = jobs.map{JobInfoViewModel(jobInfo: $0)}
+                jobInfos = createdJobInfoVMs
                 filteredJobInfos = jobInfos
                 
                 DispatchQueue.main.async { [weak self] in
@@ -337,18 +338,18 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: HomeVCDelegate {
     
-    func updateJonInfoFavorite(jobInfo: JobInfo) {
+    func updateJonInfoFavorite(jobInfo: JobInfoViewModel) {
         self.filteringJobs()
     }
     
-    func updateJobInfo(jobInfo: JobInfo) {
+    func updateJobInfo(jobInfo: JobInfoViewModel) {
         JobInfoDataManager.fetchJobInfo(usingId: jobInfo.id) { job in
             guard let job = job else {
                 return
             }
             
             if let index = self.filteredJobInfos.firstIndex(where: {$0.id == job.id}) {
-                self.filteredJobInfos[index] = job
+                self.filteredJobInfos[index] = JobInfoViewModel(jobInfo: job)
             }
             
             DispatchQueue.main.async { [weak self] in
@@ -365,7 +366,7 @@ extension HomeViewController: HomeVCDelegate {
                 return
             }
             
-            self?.jobInfos = jobs
+            self?.jobInfos = jobs.map{JobInfoViewModel(jobInfo: $0)}
             DispatchQueue.main.async {
                 self?.jobsCollectionView.reloadData()
                 self?.filteringJobs()
