@@ -135,6 +135,7 @@ class HomeView: UIView {
         backgroundColor =  Colors.bgOffwhite
         setUpUI()
         setTilesViewSection()
+        
     }
 
     

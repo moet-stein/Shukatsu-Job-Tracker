@@ -22,6 +22,16 @@ public extension UIViewController {
 
 
 public extension UIView {
+    
+    func collectionViewCellTapped() {
+        UIView.animate(withDuration: 0.3) {
+            self.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+        }
+        UIView.animate(withDuration: 0.1, delay: 0.3, options: [], animations: {
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
+    }
+    
     func handleTapShortDuration(gestureRecognizer: UIGestureRecognizer) {
 
         transform = CGAffineTransform(scaleX: 0.9, y: 0.9)

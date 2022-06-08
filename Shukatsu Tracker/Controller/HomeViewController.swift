@@ -39,9 +39,7 @@ class HomeViewController: UIViewController {
     
     private var noJobsView: NotFoundWithImageView!
     private var noFavsView: NotFoundWithImageView!
-    
-    let animationDuration: Double = 1.0
-    let delayBase: Double = 0.3
+
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -292,17 +290,7 @@ extension HomeViewController: UICollectionViewDataSource {
         let currentJob = filteredJobInfos[indexPath.row]
         cell.jobInfoViewModel = currentJob
         cell.alpha = 0
-        
-        let column = Double(cell.frame.minX / cell.frame.width)
-        let row = Double(cell.frame.minY / cell.frame.height)
-
-        let distance = sqrt(pow(column, 2) + pow(row, 2))
-        let delay = sqrt(distance) * delayBase
-        UIView.animate(withDuration: animationDuration, delay: delay, options: [], animations: {
-            cell.alpha = 1.0
-        })
-        
-        
+        cell.animateCollectionView(cell: cell)
         return cell
     }
     
@@ -315,12 +303,7 @@ extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-        UIView.animate(withDuration: 0.3) {
-            cell?.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
-        }
-        UIView.animate(withDuration: 0.1, delay: 0.3, options: [], animations: {
-            cell?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        })
+        cell?.collectionViewCellTapped()
     }
 }
 

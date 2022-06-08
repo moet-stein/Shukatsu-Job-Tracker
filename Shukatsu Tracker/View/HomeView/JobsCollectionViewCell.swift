@@ -102,6 +102,21 @@ class JobsCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    func animateCollectionView(cell: UICollectionViewCell) {
+        
+        let animationDuration: Double = 1.0
+        let delayBase: Double = 0.3
+        
+        let column = Double(cell.frame.minX / cell.frame.width)
+        let row = Double(cell.frame.minY / cell.frame.height)
+
+        let distance = sqrt(pow(column, 2) + pow(row, 2))
+        let delay = sqrt(distance) * delayBase
+        UIView.animate(withDuration: animationDuration, delay: delay, options: [], animations: {
+            cell.alpha = 1.0
+        })
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
