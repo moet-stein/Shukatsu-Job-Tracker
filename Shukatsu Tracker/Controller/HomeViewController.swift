@@ -270,19 +270,11 @@ class HomeViewController: UIViewController {
     
     private func toggleNoJobsView(jobInfosEmpty: Bool) {
         noFavsView.isHidden = true
-        if jobInfosEmpty {
-            noJobsView.isHidden = false
-        } else {
-            noJobsView.isHidden = true
-        }
+        noJobsView.isHidden = !jobInfosEmpty
     }
     private func toggleNoFavsView(favsEmpty: Bool) {
         noJobsView.isHidden = true
-        if favsEmpty {
-            noFavsView.isHidden = false
-        } else {
-            noFavsView.isHidden = true
-        }
+        noFavsView.isHidden = !favsEmpty
     }
     
 }
