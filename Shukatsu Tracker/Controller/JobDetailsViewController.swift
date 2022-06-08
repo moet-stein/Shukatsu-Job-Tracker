@@ -147,15 +147,16 @@ class JobDetailsViewController: UIViewController {
     }
     
     private func showHideLabelContent(for labels: TitleContentLabelsView, with text: String?) {
-        if let text = text {
-            if text.isEmpty {
-                labels.isHidden = true
-            } else {
-                labels.isHidden = false
-                labels.contentLabel.text = text
-            }
-        } else {
+        guard let text = text else {
             labels.isHidden = true
+            return
+        }
+        
+        if text.isEmpty {
+            labels.isHidden = true
+        } else {
+            labels.isHidden = false
+            labels.contentLabel.text = text
         }
     }
     
