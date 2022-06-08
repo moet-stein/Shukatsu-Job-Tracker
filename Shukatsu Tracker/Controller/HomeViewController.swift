@@ -204,33 +204,28 @@ class HomeViewController: UIViewController {
         if !sender.isSelected {
             sender.isSelected = !sender.isSelected
         }
-        
         sender.setTitleColor(.white, for: .normal)
+        
         if sender.tag == 1 {
             viewAll = true
-            
-            UIView.animate(withDuration: 0.4) {
-                sender.backgroundColor = Colors.blueGrey
-                sender.tintColor = .white
-                self.viewFavoritesButton.tintColor = Colors.viewOrange
-                self.viewFavoritesButton.setTitleColor(Colors.viewOrange, for: .normal)
-                self.viewFavoritesButton.backgroundColor = Colors.lightOrange
-            }
-            
+            allOrFavoriteToggleColorWithAnimate(sender: sender, affectedBtn: viewFavoritesButton)
         } else {
             viewAll = false
-            
-            UIView.animate(withDuration: 0.4) {
-                sender.backgroundColor = Colors.viewOrange
-                sender.tintColor = .white
-                self.viewAllButton.tintColor = Colors.blueGrey
-                self.viewAllButton.setTitleColor(Colors.blueGrey, for: .normal)
-                self.viewAllButton.backgroundColor = Colors.lightOrange
-            }
-            
+            allOrFavoriteToggleColorWithAnimate(sender: sender, affectedBtn: viewAllButton)
         }
         
         filteringJobs()
+    }
+    
+    private func allOrFavoriteToggleColorWithAnimate(sender: UIButton, affectedBtn: AllFavoritesButton) {
+        UIView.animate(withDuration: 0.4) {
+            let tag1 : Bool = sender.tag == 1
+            sender.backgroundColor = tag1 ? Colors.blueGrey : Colors.viewOrange
+            sender.tintColor = .white
+            affectedBtn.tintColor = tag1 ? Colors.viewOrange : Colors.blueGrey
+            affectedBtn.setTitleColor(tag1 ? Colors.viewOrange : Colors.blueGrey, for: .normal)
+            affectedBtn.backgroundColor = Colors.lightOrange
+        }
     }
     
     @objc func addButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {
