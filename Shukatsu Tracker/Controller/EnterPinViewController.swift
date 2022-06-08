@@ -13,9 +13,6 @@ class EnterPinViewController: UIViewController {
     private var contentView: EnterPinView!
     private var pinTextField: UITextField!
     private var goButton: UIButton!
-    private var enterPinTitleLabel: UILabel!
-    private var wrongAlertView: UIView!
-    private var wrongLabel: UILabel!
     
     let defaults = UserDefaults.standard
     let keychain = KeychainSwift()
@@ -32,29 +29,21 @@ class EnterPinViewController: UIViewController {
         contentView = EnterPinView()
         view = contentView
         
-        enterPinTitleLabel = contentView.enterPinTitleLabel
-        
         pinTextField = contentView.pinTextField
         pinTextField.delegate = self
         
         goButton = contentView.goButton
         goButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
-        wrongAlertView = contentView.wrongAlertView
-        wrongLabel = contentView.wrongLabel
-        
-//        createTestJobInfo()
         setLabelText()
     }
     
     private func setLabelText() {
-        enterPinTitleLabel.text = {
-            if keychain.get("ShukatsuPin") == nil {
-                return "Set Pin"
-            } else {
-                return "Enter Your Pin"
-            }
-        }()
+        if keychain.get("ShukatsuPin") == nil {
+            contentView.enterPinViewSetLabel(keyChainExist: false)
+        } else {
+            contentView.enterPinViewSetLabel(keyChainExist: true)
+        }
     }
     
     @objc func buttonPressed() {
@@ -69,7 +58,7 @@ class EnterPinViewController: UIViewController {
                 print(saveSuccessful)
                 navigationController?.pushViewController(HomeViewController(), animated: true)
             } else {
-                showWrongPinView(text: "Enter 4 Digits")
+                contentView.showWrongPinView(text: "Enter 4 Digits")
             }
             return
         }
@@ -78,24 +67,12 @@ class EnterPinViewController: UIViewController {
             createProfile()
             navigationController?.pushViewController(HomeViewController(), animated: true)
         } else {
-            showWrongPinView(text: "Wrong PIN")
+            contentView.showWrongPinView(text: "Wrong PIN")
         }
         
         pinTextField.text = ""
 
     }
-    
-//    private func createTestJobInfo() {
-//        JobInfoDataManager.fetchJonInfos { jobs in
-//            if let jobs = jobs {
-//
-//                if jobs.isEmpty {
-//                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test", location: "Berlin", status: "applied", favorite: true, role: "iOS Engineer", team: "iOS team", link: "https://www.google.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
-//                    JobInfoDataManager.createJobInfo(delegate: HomeViewController(), companyName: "Test2", location: "Berlin", status: "interview", favorite: false, role: "iOS Developer", team: "N/A", link: "https://www.apple.com/", notes: "notes", appliedDate: Date(), lastUpdate: Date())
-//                }
-//            }
-//        }
-//    }
     
     private func createProfile() {
         ProfileSettingsDataManager.fetchProfileSettings { profiles in
@@ -105,30 +82,6 @@ class EnterPinViewController: UIViewController {
                 } else {
                     print("its not empty")
                 }
-            }
-        }
-    }
-    
-    private func showWrongPinView(text: String) {
-        wrongAlertView.isHidden = false
-        wrongAlertView.alpha = 1
-        wrongLabel.text = text
-        UIView.animate(
-            withDuration: 0.4,
-            delay: 0.0,
-            options: .curveLinear,
-            animations: {
-                
-                self.wrongAlertView.frame.origin.x = 100
-                
-            }) { (completed) in
-                
-            }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            UIView.animate(withDuration: 0.5) {
-                self.wrongAlertView.alpha = 0
-                self.wrongAlertView.frame.origin.x = 0
             }
         }
     }

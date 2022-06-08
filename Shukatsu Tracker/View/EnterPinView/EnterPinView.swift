@@ -142,4 +142,32 @@ class EnterPinView: UIView {
         ])
         
     }
+    
+    func enterPinViewSetLabel(keyChainExist: Bool) {
+        enterPinTitleLabel.text = keyChainExist ? "Enter Your Pin" : "Set a Pin"
+    }
+    
+    func showWrongPinView(text: String) {
+        wrongAlertView.isHidden = false
+        wrongAlertView.alpha = 1
+        wrongLabel.text = text
+        UIView.animate(
+            withDuration: 0.4,
+            delay: 0.0,
+            options: .curveLinear,
+            animations: {
+                
+                self.wrongAlertView.frame.origin.x = 100
+                
+            }) { (completed) in
+                
+            }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 0.5) {
+                self.wrongAlertView.alpha = 0
+                self.wrongAlertView.frame.origin.x = 0
+            }
+        }
+    }
 }
