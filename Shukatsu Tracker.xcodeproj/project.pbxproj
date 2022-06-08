@@ -133,15 +133,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		602007842842C37000D739CB /* EnterPinVC */ = {
+		602007842842C37000D739CB /* EnterPinView */ = {
 			isa = PBXGroup;
 			children = (
 				6051047527F72F1900AB9DEC /* EnterPinView.swift */,
 			);
-			path = EnterPinVC;
+			path = EnterPinView;
 			sourceTree = "<group>";
 		};
-		602007852842C38C00D739CB /* HomeVC */ = {
+		602007852842C38C00D739CB /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
 				6051048727FAF12800AB9DEC /* HomeView.swift */,
@@ -151,10 +151,10 @@
 				6051048F27FC764200AB9DEC /* StatusButton.swift */,
 				6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */,
 			);
-			path = HomeVC;
+			path = HomeView;
 			sourceTree = "<group>";
 		};
-		602007862842C3B800D739CB /* AddEditVC */ = {
+		602007862842C3B800D739CB /* AddEditView */ = {
 			isa = PBXGroup;
 			children = (
 				605104A0280338BC00AB9DEC /* AddEditView.swift */,
@@ -162,26 +162,26 @@
 				605104AA2804148D00AB9DEC /* EditStatusButtonView.swift */,
 				605104AF28044E9D00AB9DEC /* EditStatusButton.swift */,
 			);
-			path = AddEditVC;
+			path = AddEditView;
 			sourceTree = "<group>";
 		};
-		602007872842C41000D739CB /* JobDetailsVC */ = {
+		602007872842C41000D739CB /* JobDetailsView */ = {
 			isa = PBXGroup;
 			children = (
 				605104A428033D0D00AB9DEC /* JobDetailsView.swift */,
 				6051AAFA280D6889002E9CF6 /* TitleLinkView.swift */,
 				6051AAF8280C7251002E9CF6 /* TitleContentLabelsView.swift */,
 			);
-			path = JobDetailsVC;
+			path = JobDetailsView;
 			sourceTree = "<group>";
 		};
-		602007882842C45900D739CB /* ProfileSettingsVC */ = {
+		602007882842C45900D739CB /* ProfileSettingsView */ = {
 			isa = PBXGroup;
 			children = (
 				605104A82803402900AB9DEC /* ProfileSettingsView.swift */,
 				6051AB362817E60E002E9CF6 /* SettingsTableViewCell.swift */,
 			);
-			path = ProfileSettingsVC;
+			path = ProfileSettingsView;
 			sourceTree = "<group>";
 		};
 		602007892842C47A00D739CB /* General */ = {
@@ -243,11 +243,11 @@
 		6051047427F72EDE00AB9DEC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				602007842842C37000D739CB /* EnterPinVC */,
-				602007852842C38C00D739CB /* HomeVC */,
-				602007862842C3B800D739CB /* AddEditVC */,
-				602007872842C41000D739CB /* JobDetailsVC */,
-				602007882842C45900D739CB /* ProfileSettingsVC */,
+				602007842842C37000D739CB /* EnterPinView */,
+				602007852842C38C00D739CB /* HomeView */,
+				602007862842C3B800D739CB /* AddEditView */,
+				602007872842C41000D739CB /* JobDetailsView */,
+				602007882842C45900D739CB /* ProfileSettingsView */,
 				602007892842C47A00D739CB /* General */,
 				6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */,
 			);
