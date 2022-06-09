@@ -151,11 +151,6 @@ class HomeView: UIView {
         addSubview(addButton)
         addSubview(statusStackView)
         addSubview(bottomView)
-
-//        statusStackView.addArrangedSubview(openBoxButton)
-//        statusStackView.addArrangedSubview(appliedBoxButton)
-//        statusStackView.addArrangedSubview(interviewBoxButton)
-//        statusStackView.addArrangedSubview(closedBoxButton)
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: topAnchor, constant: 50),
@@ -202,10 +197,10 @@ class HomeView: UIView {
             viewFavoritesButton.widthAnchor.constraint(equalToConstant: 130),
             viewFavoritesButton.heightAnchor.constraint(equalToConstant: 30),
             
-            noJobsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 50),
+            noJobsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
             noJobsView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             
-            noFavsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 50),
+            noFavsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
             noFavsView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             
             jobsCollectionView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),

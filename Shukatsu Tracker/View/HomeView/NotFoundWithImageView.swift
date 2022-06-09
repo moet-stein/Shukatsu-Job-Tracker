@@ -50,15 +50,15 @@ class NotFoundWithImageView: UIView {
         addSubview(noInternetImageView)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             noInternetImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             noInternetImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            noInternetImageView.widthAnchor.constraint(equalToConstant: 180),
-            noInternetImageView.heightAnchor.constraint(equalToConstant: 180)
+            noInternetImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
+            noInternetImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)
         ])
     }
     
