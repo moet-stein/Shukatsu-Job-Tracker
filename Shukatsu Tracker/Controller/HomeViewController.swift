@@ -28,11 +28,6 @@ class HomeViewController: UIViewController {
     private var greetLabel: UILabel!
     private var titleLabel: UILabel!
     
-    private var openBoxButton: StatusButton!
-    private var appliedBoxButton: StatusButton!
-    private var interviewBoxButton: StatusButton!
-    private var closedBoxButton: StatusButton!
-    
     private var tilesView: UIView!
     private var viewAllButton: AllFavoritesButton!
     private var viewFavoritesButton: AllFavoritesButton!
@@ -57,7 +52,8 @@ class HomeViewController: UIViewController {
                 DispatchQueue.main.async { [weak self] in
                     self?.jobsCollectionView.reloadData()
                     self?.toggleNoJobsView(jobInfosEmpty: self?.jobInfos.isEmpty ?? false)
-                    self?.updateStatusBoxes()
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name("getNumberForStatus"), object: nil, userInfo: ["jobs": jobs])
                 }
             }
         }
@@ -76,13 +72,6 @@ class HomeViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    private func updateStatusBoxes() {
-        openBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.open.rawValue}.count)
-        appliedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.applied.rawValue}.count)
-        interviewBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.interview.rawValue}.count)
-        closedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.closed.rawValue}.count)
     }
 
     
@@ -106,11 +95,6 @@ class HomeViewController: UIViewController {
         jobsCollectionView.delegate = self
         
         addButton = contentView.addButton
-        
-        openBoxButton = contentView.openBoxButton
-        appliedBoxButton = contentView.appliedBoxButton
-        interviewBoxButton = contentView.interviewBoxButton
-        closedBoxButton = contentView.closedBoxButton
         
         tilesView = contentView.bottomView
         viewAllButton = contentView.viewAllButton
@@ -271,38 +255,10 @@ extension HomeViewController: HomeVCDelegate {
     func updateJonInfoFavorite(jobInfo: JobInfoViewModel) {
         self.filteringJobs()
     }
-    
-    func updateJobInfo(jobInfo: JobInfoViewModel) {
-        JobInfoDataManager.fetchJobInfo(usingId: jobInfo.id) { job in
-            guard let job = job else {
-                return
-            }
-            
-            if let index = self.filteredJobInfos.firstIndex(where: {$0.id == job.id}) {
-                self.filteredJobInfos[index] = JobInfoViewModel(jobInfo: job)
-            }
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.filteringJobs()
-                self?.updateStatusBoxes()
-            }
-        }
-        
-    }
+
     
     func fetchJobInfosAndReload() {
-        JobInfoDataManager.fetchJonInfos { [weak self] jobInfos in
-            guard let jobs = jobInfos else {
-                return
-            }
-            
-            self?.jobInfos = jobs.map{JobInfoViewModel(jobInfo: $0)}
-            DispatchQueue.main.async {
-                self?.jobsCollectionView.reloadData()
-                self?.filteringJobs()
-                self?.updateStatusBoxes()
-            }
-        }
+        self.setJobInfosAndStatus()
     }
     
     func updateProfileSettings() {

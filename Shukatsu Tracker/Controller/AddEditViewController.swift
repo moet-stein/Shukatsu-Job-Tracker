@@ -11,8 +11,6 @@ import CoreData
 protocol HomeVCDelegate: AnyObject {
     func fetchJobInfosAndReload()
     func updateJonInfoFavorite(jobInfo: JobInfoViewModel)
-    func updateJobInfo(jobInfo: JobInfoViewModel)
-    
     func updateProfileSettings()
 }
 

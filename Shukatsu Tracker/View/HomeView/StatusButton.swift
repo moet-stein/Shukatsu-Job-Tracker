@@ -34,6 +34,8 @@ class StatusButton: UIButton {
         super.init(frame: frame)
         self.setUpUI()
         addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getNumberForStatus), name: NSNotification.Name("getNumberForStatus"), object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -109,6 +111,13 @@ class StatusButton: UIButton {
         }
         
         NotificationCenter.default.post(name:         NSNotification.Name("tappedStatus"), object: nil, userInfo: ["statusName": tappedCurrentTitle, "selected": sender.isSelected])
+    }
+    
+    @objc func getNumberForStatus(notification: Notification) -> Void {
+        guard let jobs = notification.userInfo!["jobs"] else { return }
+        let number = (jobs as! [JobInfo]).filter{$0.status == self.status.rawValue}.count
+        
+        numberLabel.text = String(number)
     }
     
 }
