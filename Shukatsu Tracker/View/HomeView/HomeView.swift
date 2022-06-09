@@ -29,8 +29,11 @@ class HomeView: UIView {
     }()
     
     // MARK: - Status Section
-    let statusStackView: UIStackView = {
-        let stackView = UIStackView()
+    lazy var statusStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            openBoxButton, appliedBoxButton, interviewBoxButton, closedBoxButton
+        ])
+
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 17
@@ -149,10 +152,10 @@ class HomeView: UIView {
         addSubview(statusStackView)
         addSubview(bottomView)
 
-        statusStackView.addArrangedSubview(openBoxButton)
-        statusStackView.addArrangedSubview(appliedBoxButton)
-        statusStackView.addArrangedSubview(interviewBoxButton)
-        statusStackView.addArrangedSubview(closedBoxButton)
+//        statusStackView.addArrangedSubview(openBoxButton)
+//        statusStackView.addArrangedSubview(appliedBoxButton)
+//        statusStackView.addArrangedSubview(interviewBoxButton)
+//        statusStackView.addArrangedSubview(closedBoxButton)
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: topAnchor, constant: 50),
@@ -164,14 +167,15 @@ class HomeView: UIView {
             profileSectionView.heightAnchor.constraint(equalToConstant: 60),
             
             statusStackView.topAnchor.constraint(equalTo: profileSectionView.bottomAnchor, constant: 30),
-            statusStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            statusStackView.widthAnchor.constraint(equalToConstant: 340),
+            statusStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            statusStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            statusStackView.heightAnchor.constraint(equalToConstant: 70),
+            
             
             bottomView.topAnchor.constraint(equalTo: statusStackView.bottomAnchor, constant: 45),
             bottomView.centerXAnchor.constraint(equalTo: centerXAnchor),
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            bottomView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7),
             bottomView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 5),
         ])
         

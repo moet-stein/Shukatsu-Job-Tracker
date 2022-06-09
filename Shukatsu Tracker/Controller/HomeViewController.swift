@@ -69,18 +69,6 @@ class HomeViewController: UIViewController {
                 let fetchedProfile = profiles[0]
                 profileSettings = ProfileSettingsViewModel(profileSettings: fetchedProfile)
                 
-//                var name = fetchedProfile.profileName ?? "unknown"
-//                if name.isEmpty{ name = "unknown"}
-//
-//                var title = fetchedProfile.profileTitle ?? "unknown title"
-//                if title.isEmpty { title = "unknown title"}
-//
-//                var uiImage = UIImage(named: "azuImage")!
-//
-//                if let image = fetchedProfile.profileImage {
-//                    uiImage = UIImage(data: image)!
-//                }
-//
                 DispatchQueue.main.async { [weak self] in
                     self?.greetLabel.text = self?.profileSettings?.profileNameLabelString
                     self?.titleLabel.text = self?.profileSettings?.profileTitleLabelString
