@@ -84,6 +84,7 @@ class HomeViewController: UIViewController {
         interviewBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.interview.rawValue}.count)
         closedBoxButton.numberLabel.text = String(self.jobInfos.filter{$0.status == JobStatus.closed.rawValue}.count)
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,22 +120,16 @@ class HomeViewController: UIViewController {
         noFavsView = contentView.noFavsView
         
         addAddButtonFunction()
-        addFunctionToStatusButtons()
         addFunctionsToFilterButtons()
         enableProfileSectionTappable()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(filterStatus), name: NSNotification.Name("tappedStatus"), object: nil)
     }
     
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
-    private func addFunctionToStatusButtons() {
-        openBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
-        appliedBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
-        interviewBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
-        closedBoxButton.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
     }
     
     private func addFunctionsToFilterButtons() {
@@ -152,42 +147,20 @@ class HomeViewController: UIViewController {
         profileSectionView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    
-    @objc func statusButtonPressed(sender: UIButton) {
-        let button = sender as! StatusButton
+    @objc func filterStatus(notification: Notification) -> Void {
+        guard let statusName = notification.userInfo!["statusName"], let  selected = notification.userInfo!["selected"] else { return }
         
-        sender.isSelected = !sender.isSelected
-        
-        let tappedCurrentTitle = sender.currentTitle ?? ""
-        
-        if sender.isSelected {
-            checkedStatus.append(tappedCurrentTitle)
-            
-            let textColor = button.statusLabel.textColor
-            
-            UIView.animate(withDuration: 0.5) {
-                button.statusLabel.textColor = .white
-                button.numberLabel.textColor = .white
-                button.backgroundColor = textColor
-            }
-            
+        if selected as! Bool {
+            checkedStatus.append(statusName as! String)
         } else {
-            if let index = checkedStatus.firstIndex(of: tappedCurrentTitle) {
+            if let index = checkedStatus.firstIndex(of: statusName as! String) {
                 checkedStatus.remove(at: index)
             }
-            let textColor = button.backgroundColor
-            
-            UIView.animate(withDuration: 0.5) {
-                button.statusLabel.textColor = textColor
-                button.numberLabel.textColor = textColor
-                button.backgroundColor = Colors.lightOrange
-            }
-            
         }
         
         filteringJobs()
     }
-    
+
     @objc func allOrFavoritesButtonPressed(sender: UIButton) {
         if !sender.isSelected {
             sender.isSelected = !sender.isSelected
@@ -260,6 +233,7 @@ class HomeViewController: UIViewController {
     
 }
 
+// MARK: - CollectionView Extension
 
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -290,6 +264,8 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
+
+// MARK: - HomeViewControllerDelegate extenstion
 extension HomeViewController: HomeVCDelegate {
     
     func updateJonInfoFavorite(jobInfo: JobInfoViewModel) {

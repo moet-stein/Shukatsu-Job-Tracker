@@ -53,9 +53,9 @@ class EnterPinViewController: UIViewController {
         
         guard (keychain.get("ShukatsuPin") != nil) else {
             if enteredPin.count == 4 {
-                let saveSuccessful: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
+                let _: Bool = keychain.set(enteredPin, forKey: "ShukatsuPin")
                 createProfile()
-                print(saveSuccessful)
+
                 navigationController?.pushViewController(HomeViewController(), animated: true)
             } else {
                 contentView.showWrongPinView(text: "Enter 4 Digits")
@@ -77,10 +77,8 @@ class EnterPinViewController: UIViewController {
     private func createProfile() {
         ProfileSettingsDataManager.fetchProfileSettings { profiles in
             if let profiles = profiles {
-                if profiles.isEmpty{
+                if profiles.isEmpty {
                     ProfileSettingsDataManager.createProfileSettings(profileName: "Unknown", profileTitle: "unknown title", pinOn: true)
-                } else {
-                    print("its not empty")
                 }
             }
         }
@@ -90,21 +88,15 @@ class EnterPinViewController: UIViewController {
 
 extension EnterPinViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // get the current text, or use an empty string if that failed
         let currentText = textField.text ?? ""
         
-        // attempt to read the range they are trying to change, or exit if we can't
         guard let stringRange = Range(range, in: currentText) else { return false }
         
-        // add their new text to the existing text
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
         
-     
-        
-        // make sure the result is under 4 characters
         return updatedText.count <= 4 && allowedCharacters.isSuperset(of: characterSet)
     }
     

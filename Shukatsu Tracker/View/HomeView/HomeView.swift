@@ -153,13 +153,14 @@ class HomeView: UIView {
         addSubview(bottomView)
         
         NSLayoutConstraint.activate([
-            addButton.topAnchor.constraint(equalTo: topAnchor, constant: 50),
-            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
             profileSectionView.topAnchor.constraint(equalTo: topAnchor, constant: 50),
             profileSectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             profileSectionView.widthAnchor.constraint(equalToConstant: 220),
             profileSectionView.heightAnchor.constraint(equalToConstant: 60),
+            
+            addButton.topAnchor.constraint(equalTo: profileSectionView.topAnchor),
+            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             
             statusStackView.topAnchor.constraint(equalTo: profileSectionView.bottomAnchor, constant: 30),
             statusStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),

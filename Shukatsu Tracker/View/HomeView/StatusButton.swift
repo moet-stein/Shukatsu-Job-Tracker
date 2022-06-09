@@ -10,6 +10,7 @@ import UIKit
 class StatusButton: UIButton {
     
     var status: JobStatus
+    var buttonColor: UIColor?
     
     
     let statusLabel: UILabel = {
@@ -32,6 +33,7 @@ class StatusButton: UIButton {
         self.status = status
         super.init(frame: frame)
         self.setUpUI()
+        addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -49,12 +51,16 @@ class StatusButton: UIButton {
         switch jobStatus {
         case .open:
             setColor(color: Colors.skyBlue)
+            buttonColor = Colors.skyBlue
         case .applied:
             setColor(color: Colors.lightGreen)
+            buttonColor = Colors.lightGreen
         case .interview:
             setColor(color: Colors.viewOrange)
+            buttonColor = Colors.viewOrange
         case .closed:
             setColor(color: Colors.blueGrey)
+            buttonColor = Colors.blueGrey
         }
         
         layer.cornerRadius = 10
@@ -78,7 +84,31 @@ class StatusButton: UIButton {
     private func setColor(color: UIColor) {
         statusLabel.textColor = color
         numberLabel.textColor = color
+    }
+    
+    @objc func statusButtonPressed(sender: UIButton) {
+        let button = sender as! StatusButton
         
+        sender.isSelected = !sender.isSelected
+        
+        let tappedCurrentTitle = sender.currentTitle ?? ""
+        
+        if sender.isSelected {
+            UIView.animate(withDuration: 0.5) {
+                button.statusLabel.textColor = .white
+                button.numberLabel.textColor = .white
+                button.backgroundColor = self.buttonColor
+            }
+        } else {
+            UIView.animate(withDuration: 0.5) {
+                button.statusLabel.textColor = self.buttonColor
+                button.numberLabel.textColor = self.buttonColor
+                button.backgroundColor = Colors.lightOrange
+            }
+            
+        }
+        
+        NotificationCenter.default.post(name:         NSNotification.Name("tappedStatus"), object: nil, userInfo: ["statusName": tappedCurrentTitle, "selected": sender.isSelected])
     }
     
 }
