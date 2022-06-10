@@ -87,12 +87,20 @@ class HomeViewController: UIViewController {
                 jobInfos = createdJobInfoVMs
                 filteredJobInfos = jobInfos
                 
-                DispatchQueue.main.async { [weak self] in
-                    self?.jobsCollectionView.reloadData()
-                    self?.toggleNoJobsView(jobInfosEmpty: self?.jobInfos.isEmpty ?? false)
-                    
-                    NotificationCenter.default.post(name: NSNotification.Name("getNumberForStatus"), object: nil, userInfo: ["jobs": jobs])
+                if viewAll {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.contentView.toggleNoJobsView(jobInfosEmpty: self?.jobInfos.isEmpty ?? false)
+                        self?.jobsCollectionView.reloadData()
+                        NotificationCenter.default.post(name: NSNotification.Name("getNumberForStatus"), object: nil, userInfo: ["jobs": jobs])
+                    }
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.contentView.toggleNoFavsView(favsEmpty: self?.jobInfos.filter{$0.favorite}.isEmpty ?? false)
+                        self?.filteringJobs()
+                        self?.jobsCollectionView.reloadData()
+                    }
                 }
+               
             }
         }
     }
@@ -163,7 +171,7 @@ class HomeViewController: UIViewController {
             } else {
                 filteredJobInfos = jobInfos.filter{$0.favorite && checkedStatus.contains($0.status)}
             }
-            toggleNoFavsView(favsEmpty: filteredJobInfos.isEmpty)
+            contentView.toggleNoFavsView(favsEmpty: filteredJobInfos.isEmpty)
         } else {
             if checkedStatus.isEmpty {
                 filteredJobInfos = jobInfos
@@ -171,19 +179,19 @@ class HomeViewController: UIViewController {
                 filteredJobInfos = jobInfos.filter{checkedStatus.contains($0.status)}
             }
             
-            toggleNoJobsView(jobInfosEmpty: filteredJobInfos.isEmpty)
+            contentView.toggleNoJobsView(jobInfosEmpty: filteredJobInfos.isEmpty)
         }
         jobsCollectionView.reloadData()
     }
     
-    private func toggleNoJobsView(jobInfosEmpty: Bool) {
-        noFavsView.isHidden = true
-        noJobsView.isHidden = !jobInfosEmpty
-    }
-    private func toggleNoFavsView(favsEmpty: Bool) {
-        noJobsView.isHidden = true
-        noFavsView.isHidden = !favsEmpty
-    }
+//    private func toggleNoJobsView(jobInfosEmpty: Bool) {
+//        noFavsView.isHidden = true
+//        noJobsView.isHidden = !jobInfosEmpty
+//    }
+//    private func toggleNoFavsView(favsEmpty: Bool) {
+//        noJobsView.isHidden = true
+//        noFavsView.isHidden = !favsEmpty
+//    }
     
 }
 

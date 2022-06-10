@@ -25,7 +25,6 @@ class ProfileSettingsDataManager {
 
         do {
             try managedObjectContext.save()
-//            delegate?.fetchJobInfosAndReload()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
