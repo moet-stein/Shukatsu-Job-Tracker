@@ -23,7 +23,7 @@
 		6051048627FAF11800AB9DEC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048527FAF11800AB9DEC /* HomeViewController.swift */; };
 		6051048827FAF12800AB9DEC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048727FAF12800AB9DEC /* HomeView.swift */; };
 		6051049027FC764200AB9DEC /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051048F27FC764200AB9DEC /* StatusButton.swift */; };
-		6051049227FCA10F00AB9DEC /* AllFavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */; };
+		6051049227FCA10F00AB9DEC /* AllFavFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049127FCA10F00AB9DEC /* AllFavFilterButton.swift */; };
 		6051049727FF074300AB9DEC /* JobsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */; };
 		6051049F2803388C00AB9DEC /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051049E2803388C00AB9DEC /* AddEditViewController.swift */; };
 		605104A1280338BC00AB9DEC /* AddEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605104A0280338BC00AB9DEC /* AddEditView.swift */; };
@@ -46,6 +46,7 @@
 		6051AB55281D3EDF002E9CF6 /* ChangePinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB54281D3EDF002E9CF6 /* ChangePinViewController.swift */; };
 		6051AB57281ECF0A002E9CF6 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */; };
 		6051AB8328215E08002E9CF6 /* NotFoundWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */; };
+		6058B2EC285340FE003E1450 /* AllFavFilterSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B2EB285340FE003E1450 /* AllFavFilterSectionView.swift */; };
 		6087D4AB2850C7E7004063B9 /* JobInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */; };
 		60BB1799282BE8E900F5544C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB1798282BE8E900F5544C /* Extensions.swift */; };
 		60BB179B282BF48E00F5544C /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB179A282BF48E00F5544C /* CancelButton.swift */; };
@@ -75,7 +76,7 @@
 		6051048527FAF11800AB9DEC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6051048727FAF12800AB9DEC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6051048F27FC764200AB9DEC /* StatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusButton.swift; sourceTree = "<group>"; };
-		6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFavoritesButton.swift; sourceTree = "<group>"; };
+		6051049127FCA10F00AB9DEC /* AllFavFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFavFilterButton.swift; sourceTree = "<group>"; };
 		6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsCollectionViewCell.swift; sourceTree = "<group>"; };
 		6051049E2803388C00AB9DEC /* AddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
 		605104A0280338BC00AB9DEC /* AddEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditView.swift; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 		6051AB54281D3EDF002E9CF6 /* ChangePinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePinViewController.swift; sourceTree = "<group>"; };
 		6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundWithImageView.swift; sourceTree = "<group>"; };
+		6058B2EB285340FE003E1450 /* AllFavFilterSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFavFilterSectionView.swift; sourceTree = "<group>"; };
 		6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModel.swift; sourceTree = "<group>"; };
 		60BB1798282BE8E900F5544C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		60BB179A282BF48E00F5544C /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
@@ -150,7 +152,8 @@
 			children = (
 				6051048727FAF12800AB9DEC /* HomeView.swift */,
 				6051049627FF074300AB9DEC /* JobsCollectionViewCell.swift */,
-				6051049127FCA10F00AB9DEC /* AllFavoritesButton.swift */,
+				6051049127FCA10F00AB9DEC /* AllFavFilterButton.swift */,
+				6058B2EB285340FE003E1450 /* AllFavFilterSectionView.swift */,
 				60FD4F6F282EB399004B9403 /* ProfileSectionView.swift */,
 				6051048F27FC764200AB9DEC /* StatusButton.swift */,
 				6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */,
@@ -476,10 +479,11 @@
 				6051AB372817E60E002E9CF6 /* SettingsTableViewCell.swift in Sources */,
 				603488622850E41E000A9CAF /* ProfileSettingsViewModel.swift in Sources */,
 				605104A528033D0D00AB9DEC /* JobDetailsView.swift in Sources */,
+				6058B2EC285340FE003E1450 /* AllFavFilterSectionView.swift in Sources */,
 				60FF2E2E282281A000A45667 /* Constants.swift in Sources */,
 				6051049F2803388C00AB9DEC /* AddEditViewController.swift in Sources */,
 				6051045D27F72E0000AB9DEC /* AppDelegate.swift in Sources */,
-				6051049227FCA10F00AB9DEC /* AllFavoritesButton.swift in Sources */,
+				6051049227FCA10F00AB9DEC /* AllFavFilterButton.swift in Sources */,
 				6051AB8328215E08002E9CF6 /* NotFoundWithImageView.swift in Sources */,
 				6051049027FC764200AB9DEC /* StatusButton.swift in Sources */,
 				6051045F27F72E0000AB9DEC /* SceneDelegate.swift in Sources */,

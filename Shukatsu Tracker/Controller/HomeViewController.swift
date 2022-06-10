@@ -29,8 +29,6 @@ class HomeViewController: UIViewController {
     private var titleLabel: UILabel!
     
     private var tilesView: UIView!
-    private var viewAllButton: AllFavoritesButton!
-    private var viewFavoritesButton: AllFavoritesButton!
     
     private var noJobsView: NotFoundWithImageView!
     private var noFavsView: NotFoundWithImageView!
@@ -41,6 +39,46 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)        
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        contentView = HomeView()
+        view = contentView
+        
+        profileSectionView = contentView.profileSectionView
+        profileImage = profileSectionView.profileImage
+        greetLabel = profileSectionView.greetLabel
+        titleLabel = profileSectionView.titleLabel
+        
+        setJobInfosAndStatus()
+        
+        updateProfileInfo()
+        
+        jobsCollectionView = contentView.jobsCollectionView
+        jobsCollectionView.dataSource = self
+        jobsCollectionView.delegate = self
+        
+        addButton = contentView.addButton
+        
+        tilesView = contentView.bottomView
+        
+        noJobsView = contentView.noJobsView
+        noFavsView = contentView.noFavsView
+        
+        addAddButtonFunction()
+        enableProfileSectionTappable()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(filterStatus), name: NSNotification.Name("tappedStatus"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(allOrFavFilter), name: NSNotification.Name("tappedAllOrFav"), object: nil)
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     
     private func setJobInfosAndStatus() {
         JobInfoDataManager.fetchJonInfos { jobs in
@@ -73,53 +111,6 @@ class HomeViewController: UIViewController {
             }
         }
     }
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        contentView = HomeView()
-        view = contentView
-        
-        profileSectionView = contentView.profileSectionView
-        profileImage = profileSectionView.profileImage
-        greetLabel = profileSectionView.greetLabel
-        titleLabel = profileSectionView.titleLabel
-        
-        setJobInfosAndStatus()
-        
-        updateProfileInfo()
-        
-        jobsCollectionView = contentView.jobsCollectionView
-        jobsCollectionView.dataSource = self
-        jobsCollectionView.delegate = self
-        
-        addButton = contentView.addButton
-        
-        tilesView = contentView.bottomView
-        viewAllButton = contentView.viewAllButton
-        viewFavoritesButton = contentView.viewFavoritesButton
-        
-        noJobsView = contentView.noJobsView
-        noFavsView = contentView.noFavsView
-        
-        addAddButtonFunction()
-        addFunctionsToFilterButtons()
-        enableProfileSectionTappable()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(filterStatus), name: NSNotification.Name("tappedStatus"), object: nil)
-    }
-    
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
-    private func addFunctionsToFilterButtons() {
-        viewAllButton.addTarget(self, action: #selector(allOrFavoritesButtonPressed), for: .touchUpInside)
-        viewFavoritesButton.addTarget(self, action: #selector(allOrFavoritesButtonPressed), for: .touchUpInside)
-    }
     
     private func addAddButtonFunction() {
         addButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
@@ -144,33 +135,12 @@ class HomeViewController: UIViewController {
         
         filteringJobs()
     }
-
-    @objc func allOrFavoritesButtonPressed(sender: UIButton) {
-        if !sender.isSelected {
-            sender.isSelected = !sender.isSelected
-        }
-        sender.setTitleColor(.white, for: .normal)
-        
-        if sender.tag == 1 {
-            viewAll = true
-            allOrFavoriteToggleColorWithAnimate(sender: sender, affectedBtn: viewFavoritesButton)
-        } else {
-            viewAll = false
-            allOrFavoriteToggleColorWithAnimate(sender: sender, affectedBtn: viewAllButton)
-        }
-        
-        filteringJobs()
-    }
     
-    private func allOrFavoriteToggleColorWithAnimate(sender: UIButton, affectedBtn: AllFavoritesButton) {
-        UIView.animate(withDuration: 0.4) {
-            let tag1 : Bool = sender.tag == 1
-            sender.backgroundColor = tag1 ? Colors.blueGrey : Colors.viewOrange
-            sender.tintColor = .white
-            affectedBtn.tintColor = tag1 ? Colors.viewOrange : Colors.blueGrey
-            affectedBtn.setTitleColor(tag1 ? Colors.viewOrange : Colors.blueGrey, for: .normal)
-            affectedBtn.backgroundColor = Colors.lightOrange
-        }
+    @objc func allOrFavFilter(notification: Notification) -> Void {
+        guard let viewAllBool = notification.userInfo!["viewAll"] else { return }
+        
+        viewAll = viewAllBool as! Bool
+        filteringJobs()
     }
     
     @objc func addButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {

@@ -74,20 +74,26 @@ class HomeView: UIView {
     
     // MARK: - viewAll favoites toggle
     
-    lazy var viewAllButton: AllFavoritesButton = {
-        let button = AllFavoritesButton(buttonText: "All", color: Colors.blueGrey, leftCorner: true, sfSymbol: "square.grid.2x2")
-        button.isSelected = true
-        button.tag = 1
-        return button
+    private let allFavFilterSection: UIView = {
+        let view = AllFavFilterSectionView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
-    
-    
-    lazy var viewFavoritesButton: AllFavoritesButton = {
-        let button = AllFavoritesButton(buttonText: "Favorites", color: Colors.viewOrange, leftCorner: false, sfSymbol: "heart")
-        button.isSelected = false
-        button.tag = 2
-        return button
-    }()
+//    
+//    lazy var viewAllButton: AllFavFilterButton = {
+//        let button = AllFavFilterButton(buttonText: "All", color: Colors.blueGrey, leftCorner: true, sfSymbol: "square.grid.2x2")
+//        button.isSelected = true
+//        button.tag = 1
+//        return button
+//    }()
+//    
+//    
+//    lazy var viewFavoritesButton: AllFavFilterButton = {
+//        let button = AllFavFilterButton(buttonText: "Favorites", color: Colors.viewOrange, leftCorner: false, sfSymbol: "heart")
+//        button.isSelected = false
+//        button.tag = 2
+//        return button
+//    }()
     
     // MARK: - Collection View
     let jobsCollectionView: UICollectionView = {
@@ -180,32 +186,36 @@ class HomeView: UIView {
     }
     
     private func setTilesViewSection() {
-        bottomView.addSubview(viewAllButton)
-        bottomView.addSubview(viewFavoritesButton)
+        bottomView.addSubview(allFavFilterSection)
+//        bottomView.addSubview(viewAllButton)
+//        bottomView.addSubview(viewFavoritesButton)
         bottomView.addSubview(jobsCollectionView)
         bottomView.addSubview(noJobsView)
         bottomView.addSubview(noFavsView)
         
         NSLayoutConstraint.activate([
-
-            viewAllButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
-            viewAllButton.trailingAnchor.constraint(equalTo: centerXAnchor),
-            viewAllButton.widthAnchor.constraint(equalToConstant: 130),
-            viewAllButton.heightAnchor.constraint(equalToConstant: 30),
+            allFavFilterSection.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
+            allFavFilterSection.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
+            allFavFilterSection.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
+            allFavFilterSection.heightAnchor.constraint(equalToConstant: 30),
+//            viewAllButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
+//            viewAllButton.trailingAnchor.constraint(equalTo: centerXAnchor),
+//            viewAllButton.widthAnchor.constraint(equalToConstant: 130),
+//            viewAllButton.heightAnchor.constraint(equalToConstant: 30),
+//            
+//            viewFavoritesButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
+//            viewFavoritesButton.leadingAnchor.constraint(equalTo: centerXAnchor),
+//            viewFavoritesButton.widthAnchor.constraint(equalToConstant: 130),
+//            viewFavoritesButton.heightAnchor.constraint(equalToConstant: 30),
             
-            viewFavoritesButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 20),
-            viewFavoritesButton.leadingAnchor.constraint(equalTo: centerXAnchor),
-            viewFavoritesButton.widthAnchor.constraint(equalToConstant: 130),
-            viewFavoritesButton.heightAnchor.constraint(equalToConstant: 30),
-            
-            noJobsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
+            noJobsView.topAnchor.constraint(equalTo: allFavFilterSection.bottomAnchor, constant: 20),
             noJobsView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             
-            noFavsView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
+            noFavsView.topAnchor.constraint(equalTo: allFavFilterSection.bottomAnchor, constant: 10),
             noFavsView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             
             jobsCollectionView.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
-            jobsCollectionView.topAnchor.constraint(equalTo: viewAllButton.bottomAnchor, constant: 10),
+            jobsCollectionView.topAnchor.constraint(equalTo: allFavFilterSection.bottomAnchor, constant: 10),
             jobsCollectionView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 20),
             jobsCollectionView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -20),
             jobsCollectionView.heightAnchor.constraint(equalTo: bottomView.heightAnchor),

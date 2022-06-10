@@ -110,7 +110,7 @@ class StatusButton: UIButton {
             
         }
         
-        NotificationCenter.default.post(name:         NSNotification.Name("tappedStatus"), object: nil, userInfo: ["statusName": tappedCurrentTitle, "selected": sender.isSelected])
+        NotificationCenter.default.post(name: NSNotification.Name("tappedStatus"), object: nil, userInfo: ["statusName": tappedCurrentTitle, "selected": sender.isSelected])
     }
     
     @objc func getNumberForStatus(notification: Notification) -> Void {
