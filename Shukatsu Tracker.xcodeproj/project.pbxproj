@@ -47,6 +47,8 @@
 		6051AB57281ECF0A002E9CF6 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */; };
 		6051AB8328215E08002E9CF6 /* NotFoundWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */; };
 		6058B2EC285340FE003E1450 /* AllFavFilterSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B2EB285340FE003E1450 /* AllFavFilterSectionView.swift */; };
+		6058B2F428538482003E1450 /* ShukatsuTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B2F328538482003E1450 /* ShukatsuTrackerTests.swift */; };
+		6058B2FB285384E0003E1450 /* JobInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B2FA285384E0003E1450 /* JobInfoViewModelTests.swift */; };
 		6087D4AB2850C7E7004063B9 /* JobInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */; };
 		60BB1799282BE8E900F5544C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB1798282BE8E900F5544C /* Extensions.swift */; };
 		60BB179B282BF48E00F5544C /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB179A282BF48E00F5544C /* CancelButton.swift */; };
@@ -55,6 +57,16 @@
 		60FF2E2E282281A000A45667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FF2E2D282281A000A45667 /* Constants.swift */; };
 		6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6058B2F528538482003E1450 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6051045127F72E0000AB9DEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6051045827F72E0000AB9DEC;
+			remoteInfo = "Shukatsu Tracker";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		352A172C0383833A0649C591 /* Pods_Shukatsu_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shukatsu_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +112,9 @@
 		6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundWithImageView.swift; sourceTree = "<group>"; };
 		6058B2EB285340FE003E1450 /* AllFavFilterSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFavFilterSectionView.swift; sourceTree = "<group>"; };
+		6058B2F128538481003E1450 /* ShukatsuTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShukatsuTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6058B2F328538482003E1450 /* ShukatsuTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShukatsuTrackerTests.swift; sourceTree = "<group>"; };
+		6058B2FA285384E0003E1450 /* JobInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModelTests.swift; sourceTree = "<group>"; };
 		6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModel.swift; sourceTree = "<group>"; };
 		60BB1798282BE8E900F5544C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		60BB179A282BF48E00F5544C /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
@@ -116,6 +131,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E9CCFD8C39DD73E90C206E4 /* Pods_Shukatsu_Tracker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6058B2EE28538481003E1450 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				6051045B27F72E0000AB9DEC /* Shukatsu Tracker */,
+				6058B2F228538482003E1450 /* ShukatsuTrackerTests */,
 				6051045A27F72E0000AB9DEC /* Products */,
 				4E28C81884B3F4A76A058A4B /* Pods */,
 				2EA1569D205A9774046C8712 /* Frameworks */,
@@ -215,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				6051045927F72E0000AB9DEC /* Shukatsu Tracker.app */,
+				6058B2F128538481003E1450 /* ShukatsuTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -301,6 +325,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6058B2F228538482003E1450 /* ShukatsuTrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				6058B2F328538482003E1450 /* ShukatsuTrackerTests.swift */,
+				6058B2FA285384E0003E1450 /* JobInfoViewModelTests.swift */,
+			);
+			path = ShukatsuTrackerTests;
+			sourceTree = "<group>";
+		};
 		6087D4A92850C7C7004063B9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +386,24 @@
 			productReference = 6051045927F72E0000AB9DEC /* Shukatsu Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6058B2F028538481003E1450 /* ShukatsuTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6058B2F728538482003E1450 /* Build configuration list for PBXNativeTarget "ShukatsuTrackerTests" */;
+			buildPhases = (
+				6058B2ED28538481003E1450 /* Sources */,
+				6058B2EE28538481003E1450 /* Frameworks */,
+				6058B2EF28538481003E1450 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6058B2F628538482003E1450 /* PBXTargetDependency */,
+			);
+			name = ShukatsuTrackerTests;
+			productName = ShukatsuTrackerTests;
+			productReference = 6058B2F128538481003E1450 /* ShukatsuTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -365,6 +416,10 @@
 				TargetAttributes = {
 					6051045827F72E0000AB9DEC = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					6058B2F028538481003E1450 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 6051045827F72E0000AB9DEC;
 					};
 				};
 			};
@@ -382,6 +437,7 @@
 			projectRoot = "";
 			targets = (
 				6051045827F72E0000AB9DEC /* Shukatsu Tracker */,
+				6058B2F028538481003E1450 /* ShukatsuTrackerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -397,6 +453,13 @@
 				6051046927F72E0200AB9DEC /* Assets.xcassets in Resources */,
 				6051048027F733FD00AB9DEC /* Lato-Black.ttf in Resources */,
 				6051047C27F733C400AB9DEC /* Lato-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6058B2EF28538481003E1450 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +555,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6058B2ED28538481003E1450 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6058B2FB285384E0003E1450 /* JobInfoViewModelTests.swift in Sources */,
+				6058B2F428538482003E1450 /* ShukatsuTrackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6058B2F628538482003E1450 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6051045827F72E0000AB9DEC /* Shukatsu Tracker */;
+			targetProxy = 6058B2F528538482003E1450 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */ = {
@@ -690,6 +770,42 @@
 			};
 			name = Release;
 		};
+		6058B2F828538482003E1450 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XX56C8Q5GR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moetstein.ShukatsuTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shukatsu Tracker.app/Shukatsu Tracker";
+			};
+			name = Debug;
+		};
+		6058B2F928538482003E1450 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XX56C8Q5GR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.moetstein.ShukatsuTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shukatsu Tracker.app/Shukatsu Tracker";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -707,6 +823,15 @@
 			buildConfigurations = (
 				6051047127F72E0200AB9DEC /* Debug */,
 				6051047227F72E0200AB9DEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6058B2F728538482003E1450 /* Build configuration list for PBXNativeTarget "ShukatsuTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6058B2F828538482003E1450 /* Debug */,
+				6058B2F928538482003E1450 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
