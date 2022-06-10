@@ -271,4 +271,18 @@ class AddEditView: UIView {
         ])
     }
     
+    func setTitle(fromDetailsView: Bool) {
+        titleLabel.text = fromDetailsView ? "Edit job details" : "Add a new job"
+    }
+    
+    func setContentFromData(job: JobInfoViewModel) {
+            companyField.textField.text = job.companyName
+            roleField.textField.text = job.role
+            teamField.textField.text = job.team
+            locationField.textField.text = job.location
+            linkField.textField.text = job.link
+            notesField.textField.text = job.notes
+            appliedDatePicker.date = job.appliedDate ?? Date()
+    }
+    
 }

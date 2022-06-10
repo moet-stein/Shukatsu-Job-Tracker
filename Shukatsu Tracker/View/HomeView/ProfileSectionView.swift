@@ -54,4 +54,10 @@ class ProfileSectionView: UIView {
             titleLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10),
         ])
     }
+    
+    func setUpContent(profileSettings: ProfileSettingsViewModel?) {
+        greetLabel.text = profileSettings?.profileNameLabelString
+        titleLabel.text = profileSettings?.profileTitleLabelString
+        profileImage.image = profileSettings?.profileImage
+    }
 }

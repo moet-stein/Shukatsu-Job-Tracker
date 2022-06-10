@@ -24,7 +24,7 @@ class HomeView: UIView {
     let profileSectionView: ProfileSectionView = {
        let view = ProfileSectionView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+        view.isUserInteractionEnabled = true
         return view
     }()
     

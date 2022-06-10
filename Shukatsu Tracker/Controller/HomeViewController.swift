@@ -19,22 +19,10 @@ class HomeViewController: UIViewController {
     
     private var contentView: HomeView!
     private var jobsCollectionView: UICollectionView!
-    
     private var addButton: CircleButton!
-    
     private var profileSectionView: ProfileSectionView!
-
     private var profileImage: ProfileImageView!
-    private var greetLabel: UILabel!
-    private var titleLabel: UILabel!
-    
-    private var tilesView: UIView!
-    
-    private var noJobsView: NotFoundWithImageView!
-    private var noFavsView: NotFoundWithImageView!
 
-
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)        
@@ -48,8 +36,6 @@ class HomeViewController: UIViewController {
         
         profileSectionView = contentView.profileSectionView
         profileImage = profileSectionView.profileImage
-        greetLabel = profileSectionView.greetLabel
-        titleLabel = profileSectionView.titleLabel
         
         setJobInfosAndStatus()
         
@@ -60,11 +46,6 @@ class HomeViewController: UIViewController {
         jobsCollectionView.delegate = self
         
         addButton = contentView.addButton
-        
-        tilesView = contentView.bottomView
-        
-        noJobsView = contentView.noJobsView
-        noFavsView = contentView.noFavsView
         
         addAddButtonFunction()
         enableProfileSectionTappable()
@@ -112,9 +93,7 @@ class HomeViewController: UIViewController {
                 profileSettings = ProfileSettingsViewModel(profileSettings: fetchedProfile)
                 
                 DispatchQueue.main.async { [weak self] in
-                    self?.greetLabel.text = self?.profileSettings?.profileNameLabelString
-                    self?.titleLabel.text = self?.profileSettings?.profileTitleLabelString
-                    self?.profileImage.image = self?.profileSettings?.profileImage
+                    self?.profileSectionView.setUpContent(profileSettings: self?.profileSettings)
                 }
             }
         }
@@ -126,7 +105,6 @@ class HomeViewController: UIViewController {
     
     private func enableProfileSectionTappable() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(tapGestureRecognizer:)))
-        profileSectionView.isUserInteractionEnabled = true
         profileSectionView.addGestureRecognizer(tapGestureRecognizer)
     }
     
@@ -183,16 +161,6 @@ class HomeViewController: UIViewController {
         }
         jobsCollectionView.reloadData()
     }
-    
-//    private func toggleNoJobsView(jobInfosEmpty: Bool) {
-//        noFavsView.isHidden = true
-//        noJobsView.isHidden = !jobInfosEmpty
-//    }
-//    private func toggleNoFavsView(favsEmpty: Bool) {
-//        noJobsView.isHidden = true
-//        noFavsView.isHidden = !favsEmpty
-//    }
-    
 }
 
 // MARK: - CollectionView Extension
@@ -208,7 +176,6 @@ extension HomeViewController: UICollectionViewDataSource {
         }
         let currentJob = filteredJobInfos[indexPath.row]
         cell.jobInfoViewModel = currentJob
-        cell.alpha = 0
         cell.animateCollectionView(cell: cell)
         return cell
     }

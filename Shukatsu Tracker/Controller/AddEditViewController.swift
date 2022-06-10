@@ -158,15 +158,10 @@ class AddEditViewController: UIViewController {
     
     
     private func setContent() {
-        titleLabel.text = fromDetailsView ? "Edit job details" : "Add a new job"
+        contentView.setTitle(fromDetailsView: fromDetailsView)
+        
         if let job = passedJob {
-            companyField.textField.text = job.companyName
-            roleField.textField.text = job.role
-            teamField.textField.text = job.team
-            locationField.textField.text = job.location
-            linkField.textField.text = job.link
-            notesField.textField.text = job.notes
-            appliedDatePicker.date = job.appliedDate ?? Date()
+            contentView.setContentFromData(job: job)
             
             let jobStatus = JobStatus(rawValue: job.status)
             switch jobStatus {

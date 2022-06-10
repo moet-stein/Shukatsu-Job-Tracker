@@ -103,7 +103,7 @@ class JobsCollectionViewCell: UICollectionViewCell {
     }
     
     func animateCollectionView(cell: UICollectionViewCell) {
-        
+        cell.alpha = 0
         let animationDuration: Double = 1.0
         let delayBase: Double = 0.3
         
