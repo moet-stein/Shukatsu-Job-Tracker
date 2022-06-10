@@ -29,28 +29,28 @@ class JobInfoDataManager {
                                    lastUpdate: Date) {
         
         let jobInfo = JobInfo(context: managedObjectContext)
-        jobInfo.setValue(companyName, forKey: "companyName")
-        jobInfo.setValue(location, forKey: "location")
-        jobInfo.setValue(status, forKey: "status")
-        jobInfo.setValue(favorite, forKey: "favorite")
-        jobInfo.setValue(role, forKey: "role")
-        jobInfo.setValue(team, forKey: "team")
-        jobInfo.setValue(link, forKey: "link")
-        jobInfo.setValue(notes, forKey: "notes")
-        jobInfo.setValue(appliedDate, forKey: "appliedDate")
-        jobInfo.setValue(lastUpdate, forKey: "lastUpdate")
-        jobInfo.setValue(UUID(), forKey: "id")
+        jobInfo.companyName = companyName
+        jobInfo.location = location
+        jobInfo.status = status
+        jobInfo.favorite = favorite
+        jobInfo.role = role
+        jobInfo.team = team
+        jobInfo.link = link
+        jobInfo.notes = notes
+        jobInfo.appliedDate = appliedDate
+        jobInfo.lastUpdate = lastUpdate
+        jobInfo.id = UUID()
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd, EEE"
         
         if let appliedDate = appliedDate {
             let dateString = formatter.string(from: appliedDate)
-            jobInfo.setValue(dateString, forKey: "appliedDateString")
+            jobInfo.appliedDateString = dateString
         }
         
         let lastUpdateString = formatter.string(from: lastUpdate)
-        jobInfo.setValue(lastUpdateString, forKey: "lastUpdateString")
+        jobInfo.lastUpdateString = lastUpdateString
         
         do {
             try managedObjectContext.save()
