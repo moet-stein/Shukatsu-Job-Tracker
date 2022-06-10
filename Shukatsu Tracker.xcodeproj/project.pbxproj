@@ -246,6 +246,7 @@
 		6051045B27F72E0000AB9DEC /* Shukatsu Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				6058B305285396A1003E1450 /* Services */,
 				6051AB4F281AEBE7002E9CF6 /* Model */,
 				6051047427F72EDE00AB9DEC /* View */,
 				6087D4A92850C7C7004063B9 /* ViewModel */,
@@ -317,9 +318,6 @@
 		6051AB4F281AEBE7002E9CF6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6051AB0D2812B159002E9CF6 /* JobInfoDataManager.swift */,
-				6051AB4D281A9AA5002E9CF6 /* ProfileSettingsDataManager.swift */,
-				6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */,
 				6051AB04280F17AE002E9CF6 /* JobInfo */,
 			);
 			path = Model;
@@ -332,6 +330,16 @@
 				6058B2FA285384E0003E1450 /* JobInfoViewModelTests.swift */,
 			);
 			path = ShukatsuTrackerTests;
+			sourceTree = "<group>";
+		};
+		6058B305285396A1003E1450 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6051AB0D2812B159002E9CF6 /* JobInfoDataManager.swift */,
+				6051AB4D281A9AA5002E9CF6 /* ProfileSettingsDataManager.swift */,
+				6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		6087D4A92850C7C7004063B9 /* ViewModel */ = {
