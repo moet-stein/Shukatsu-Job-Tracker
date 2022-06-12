@@ -48,7 +48,10 @@
 		6051AB8328215E08002E9CF6 /* NotFoundWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6051AB8228215E08002E9CF6 /* NotFoundWithImageView.swift */; };
 		6058B2EC285340FE003E1450 /* AllFavFilterSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B2EB285340FE003E1450 /* AllFavFilterSectionView.swift */; };
 		6058B2F428538482003E1450 /* ShukatsuTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B2F328538482003E1450 /* ShukatsuTrackerTests.swift */; };
-		6058B2FB285384E0003E1450 /* JobInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B2FA285384E0003E1450 /* JobInfoViewModelTests.swift */; };
+		6058B2FB285384E0003E1450 /* JobInfoDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B2FA285384E0003E1450 /* JobInfoDataManagerTests.swift */; };
+		6058B30728561EBA003E1450 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B30628561EBA003E1450 /* CoreDataStack.swift */; };
+		6058B3092856209A003E1450 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B3082856209A003E1450 /* TestCoreDataStack.swift */; };
+		6058B30B28562537003E1450 /* JobInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B30A28562537003E1450 /* JobInfoViewModelTests.swift */; };
 		6087D4AB2850C7E7004063B9 /* JobInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */; };
 		60BB1799282BE8E900F5544C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB1798282BE8E900F5544C /* Extensions.swift */; };
 		60BB179B282BF48E00F5544C /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB179A282BF48E00F5544C /* CancelButton.swift */; };
@@ -114,7 +117,10 @@
 		6058B2EB285340FE003E1450 /* AllFavFilterSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFavFilterSectionView.swift; sourceTree = "<group>"; };
 		6058B2F128538481003E1450 /* ShukatsuTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShukatsuTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6058B2F328538482003E1450 /* ShukatsuTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShukatsuTrackerTests.swift; sourceTree = "<group>"; };
-		6058B2FA285384E0003E1450 /* JobInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModelTests.swift; sourceTree = "<group>"; };
+		6058B2FA285384E0003E1450 /* JobInfoDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoDataManagerTests.swift; sourceTree = "<group>"; };
+		6058B30628561EBA003E1450 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		6058B3082856209A003E1450 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
+		6058B30A28562537003E1450 /* JobInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModelTests.swift; sourceTree = "<group>"; };
 		6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModel.swift; sourceTree = "<group>"; };
 		60BB1798282BE8E900F5544C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		60BB179A282BF48E00F5544C /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
@@ -327,7 +333,9 @@
 			isa = PBXGroup;
 			children = (
 				6058B2F328538482003E1450 /* ShukatsuTrackerTests.swift */,
-				6058B2FA285384E0003E1450 /* JobInfoViewModelTests.swift */,
+				6058B2FA285384E0003E1450 /* JobInfoDataManagerTests.swift */,
+				6058B30A28562537003E1450 /* JobInfoViewModelTests.swift */,
+				6058B3082856209A003E1450 /* TestCoreDataStack.swift */,
 			);
 			path = ShukatsuTrackerTests;
 			sourceTree = "<group>";
@@ -338,6 +346,7 @@
 				6051AB0D2812B159002E9CF6 /* JobInfoDataManager.swift */,
 				6051AB4D281A9AA5002E9CF6 /* ProfileSettingsDataManager.swift */,
 				6051AB56281ECF0A002E9CF6 /* ImagePickerManager.swift */,
+				6058B30628561EBA003E1450 /* CoreDataStack.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -536,6 +545,7 @@
 				6051AAFB280D6889002E9CF6 /* TitleLinkView.swift in Sources */,
 				6087D4AB2850C7E7004063B9 /* JobInfoViewModel.swift in Sources */,
 				60FD4F70282EB399004B9403 /* ProfileSectionView.swift in Sources */,
+				6058B30728561EBA003E1450 /* CoreDataStack.swift in Sources */,
 				6051046727F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld in Sources */,
 				6051049727FF074300AB9DEC /* JobsCollectionViewCell.swift in Sources */,
 				6051AB57281ECF0A002E9CF6 /* ImagePickerManager.swift in Sources */,
@@ -567,8 +577,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6058B2FB285384E0003E1450 /* JobInfoViewModelTests.swift in Sources */,
+				6058B30B28562537003E1450 /* JobInfoViewModelTests.swift in Sources */,
+				6058B2FB285384E0003E1450 /* JobInfoDataManagerTests.swift in Sources */,
 				6058B2F428538482003E1450 /* ShukatsuTrackerTests.swift in Sources */,
+				6058B3092856209A003E1450 /* TestCoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,6 +798,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XX56C8Q5GR;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Shukatsu Tracker/SupportFiles/Info.plist";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.moetstein.ShukatsuTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -804,6 +817,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XX56C8Q5GR;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Shukatsu Tracker/SupportFiles/Info.plist";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.moetstein.ShukatsuTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

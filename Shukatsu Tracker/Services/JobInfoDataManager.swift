@@ -10,13 +10,23 @@ import CoreData
 import UIKit
 
 class JobInfoDataManager {
-    static let managedObjectContext: NSManagedObjectContext = {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }()
+    // MARK: - Properties
+    let managedObjectContext: NSManagedObjectContext
+    let coreDataStack: CoreDataStack
+
+    // MARK: - Initializers
+    public init(managedObjectContext: NSManagedObjectContext, coreDataStack: CoreDataStack) {
+      self.managedObjectContext = managedObjectContext
+      self.coreDataStack = coreDataStack
+    }
     
-    // MARK: - Create
-    static func createJobInfo(delegate: HomeVCDelegate?,
+//    static let managedObjectContext: NSManagedObjectContext = {
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        return appDelegate.persistentContainer.viewContext
+//    }()
+    
+        // MARK: - Create
+    func createJobInfo(delegate: HomeVCDelegate?,
                                    companyName: String,
                                    location: String,
                                    status: String,
@@ -63,7 +73,7 @@ class JobInfoDataManager {
     
     // MARK: - Read
     
-    static func fetchJonInfos(completion: ([JobInfo]?) -> Void) {
+    func fetchJonInfos(completion: ([JobInfo]?) -> Void) {
         do {
             let jobInfos = try managedObjectContext.fetch(JobInfo.createFetchRequest())
             completion(jobInfos)
@@ -74,7 +84,7 @@ class JobInfoDataManager {
         completion(nil)
     }
     
-    static func fetchJobInfo(usingId id: UUID, completion: (JobInfo?) -> Void) {
+    func fetchJobInfo(usingId id: UUID, completion: (JobInfo?) -> Void) {
         let fetchRequest = NSFetchRequest<JobInfo>(entityName: "JobInfo")
         fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         
@@ -89,7 +99,7 @@ class JobInfoDataManager {
     }
     
     // MARK: - Update
-    static func updateJobInfo(detailsVCdelegate: DetailsVCDelegate?, job: JobInfo,companyName: String, location: String, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
+    func updateJobInfo(detailsVCdelegate: DetailsVCDelegate?, job: JobInfo,companyName: String, location: String, status: String, favorite: Bool, role: String?, team: String?, link: String?, notes: String?, appliedDate: Date?, lastUpdate: Date) {
 
         job.companyName = companyName
         job.location = location
@@ -122,7 +132,7 @@ class JobInfoDataManager {
         }
     }
     
-    static func updateFavorite(job: JobInfo, favorite: Bool) {
+    func updateFavorite(job: JobInfo, favorite: Bool) {
         job.favorite = favorite
         
         do {
@@ -134,7 +144,7 @@ class JobInfoDataManager {
     
     
     // MARK: - Delete
-    static func deleteJobInfo(job: JobInfo) {
+    func deleteJobInfo(job: JobInfo) {
         managedObjectContext.delete(job)
         
         do {

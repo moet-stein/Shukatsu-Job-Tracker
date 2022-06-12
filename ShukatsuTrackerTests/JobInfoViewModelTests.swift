@@ -2,7 +2,7 @@
 //  JobInfoViewModelTests.swift
 //  ShukatsuTrackerTests
 //
-//  Created by Moe Steinmueller on 10.06.22.
+//  Created by Moe Steinmueller on 12.06.22.
 //
 
 import XCTest

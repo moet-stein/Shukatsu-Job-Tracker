@@ -20,6 +20,9 @@ protocol DetailsVCDelegate: AnyObject {
 
 class AddEditViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private lazy var coreDataStack = CoreDataStack()
+    private lazy var jobInfoDataManager = JobInfoDataManager(managedObjectContext: coreDataStack.mainContext,
+                                                coreDataStack: coreDataStack)
     weak var editJobInHomeVCDelegate: HomeVCDelegate?
     weak var updateJobInfoInDetailsVCDelegate: DetailsVCDelegate?
     
@@ -259,10 +262,10 @@ class AddEditViewController: UIViewController {
         let notes = notesField.textField.text ?? nil
 
         if let passedJob = passedJob {
-            JobInfoDataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob.jobInfo, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            jobInfoDataManager.updateJobInfo(detailsVCdelegate: updateJobInfoInDetailsVCDelegate, job: passedJob.jobInfo, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         } else {
-            JobInfoDataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
+            jobInfoDataManager.createJobInfo(delegate: editJobInHomeVCDelegate, companyName: companyName, location: location, status: status.rawValue, favorite: favorite, role: role, team: team, link: link, notes: notes, appliedDate: appliedDate, lastUpdate: Date())
             dismiss(animated: true)
         }
     }

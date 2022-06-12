@@ -10,7 +10,9 @@ import UIKit
 
 class JobDetailsViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    private lazy var coreDataStack = CoreDataStack()
+    private lazy var jobInfoDataManager = JobInfoDataManager(managedObjectContext: coreDataStack.mainContext,
+                                                coreDataStack: coreDataStack)
     weak var jobEditedHomeVCDelegate: HomeVCDelegate?
     
     private var selectedJob: JobInfoViewModel
@@ -116,7 +118,7 @@ class JobDetailsViewController: UIViewController {
         let alertController = UIAlertController(title: "Do you want to delete this job?", message: "Select Cancel or Delete", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "DELETE", style: .destructive) { _ in
-            JobInfoDataManager.deleteJobInfo(job: self.selectedJob.jobInfo)
+            self.jobInfoDataManager.deleteJobInfo(job: self.selectedJob.jobInfo)
             self.jobEditedHomeVCDelegate?.fetchJobInfosAndReload()
             self.dismiss(animated: true)
         })
@@ -167,12 +169,12 @@ class JobDetailsViewController: UIViewController {
             let heartSF = UIImage(systemName: "heart.fill", withConfiguration: config)
             favoriteButton.setImage(heartSF, for: .selected)
             
-            JobInfoDataManager.updateFavorite(job: selectedJob.jobInfo, favorite: true)
+            jobInfoDataManager.updateFavorite(job: selectedJob.jobInfo, favorite: true)
         } else {
             let heartSF = UIImage(systemName: "heart", withConfiguration: config)
             favoriteButton.setImage(heartSF, for: .normal)
             
-            JobInfoDataManager.updateFavorite(job: selectedJob.jobInfo, favorite: false)
+            jobInfoDataManager.updateFavorite(job: selectedJob.jobInfo, favorite: false)
         }
     }
     

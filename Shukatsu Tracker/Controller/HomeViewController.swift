@@ -9,7 +9,9 @@ import UIKit
 import CoreData
 
 class HomeViewController: UIViewController {
-
+    private lazy var coreDataStack = CoreDataStack()
+    private lazy var jobInfoDataManager = JobInfoDataManager(managedObjectContext: coreDataStack.mainContext,
+                                                coreDataStack: coreDataStack)
     var jobInfos = [JobInfoViewModel]()
     var filteredJobInfos = [JobInfoViewModel]()
     var checkedStatus = [String]()
@@ -62,7 +64,7 @@ class HomeViewController: UIViewController {
     
     
     private func setJobInfosAndStatus() {
-        JobInfoDataManager.fetchJonInfos { jobs in
+        jobInfoDataManager.fetchJonInfos { jobs in
             if let jobs = jobs {
                 let createdJobInfoVMs = jobs.map{JobInfoViewModel(jobInfo: $0)}
                 jobInfos = createdJobInfoVMs
