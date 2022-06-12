@@ -59,6 +59,7 @@ class EnterPinViewController: UIViewController {
                 navigationController?.pushViewController(HomeViewController(), animated: true)
             } else {
                 contentView.showWrongPinView(text: "Enter 4 Digits")
+                contentView.shakeTextField(textField: pinTextField)
             }
             return
         }
@@ -68,6 +69,7 @@ class EnterPinViewController: UIViewController {
             navigationController?.pushViewController(HomeViewController(), animated: true)
         } else {
             contentView.showWrongPinView(text: "Wrong PIN")
+            contentView.shakeTextField(textField: pinTextField)
         }
         
         pinTextField.text = ""

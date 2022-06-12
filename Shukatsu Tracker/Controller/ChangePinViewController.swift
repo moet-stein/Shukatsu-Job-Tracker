@@ -73,6 +73,7 @@ class ChangePinViewController: UIViewController {
                     setLabelText()
                 } else {
                     showWrongPinView(text: "Wrong PIN")
+                    contentView.shakeTextField(textField: pinTextField)
                 }
                 pinTextField.text = ""
                 
@@ -86,6 +87,7 @@ class ChangePinViewController: UIViewController {
                     dismiss(animated: true)
                 } else {
                     showWrongPinView(text: "Enter 4 Digits")
+                    contentView.shakeTextField(textField: pinTextField)
                 }
             }
             pinTextField.text = ""
