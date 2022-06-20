@@ -33,16 +33,16 @@ class JobInfoDataManagerTests: XCTestCase {
     }
     
     func testDeleteReport() {
-        let newJobInfo = jobInfoDataManager.createJobInfo(delegate: nil, companyName: "Google", location: "Berlin", status: "open", favorite: false, role: "iOS engineer", team: nil, link: nil, notes: nil, appliedDate: nil, lastUpdate: Date())
+        jobInfoDataManager.createJobInfo(delegate: nil, companyName: "Google", location: "Berlin", status: "open", favorite: false, role: "iOS engineer", team: nil, link: nil, notes: nil, appliedDate: nil, lastUpdate: Date())
 
-        var jobInfos = jobInfoDataManager.fetchJonInfos { jobs in
+        jobInfoDataManager.fetchJonInfos { jobs in
             if let jobs = jobs,  let firstJob = jobs.first {
                 XCTAssertTrue(jobs.count == 1)
                 jobInfoDataManager.deleteJobInfo(job: firstJob)
             }
         }
         
-        var emptyJobInfos = jobInfoDataManager.fetchJonInfos { jobs in
+        jobInfoDataManager.fetchJonInfos { jobs in
             if let jobs = jobs {
                 XCTAssertTrue(jobs.isEmpty)
             }
