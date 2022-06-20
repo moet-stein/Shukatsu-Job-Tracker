@@ -15,7 +15,17 @@ class EnterPinViewController: UIViewController {
     private var goButton: UIButton!
     
     let defaults = UserDefaults.standard
-    let keychain = KeychainSwift()
+    let keychain: KeychainSwift
+    
+    
+    init(keychain: KeychainSwift) {
+        self.keychain = keychain
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         guard defaults.object(forKey: "firstTime") != nil else {

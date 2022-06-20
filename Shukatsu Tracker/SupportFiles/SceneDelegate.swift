@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import KeychainSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -27,12 +28,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if let profile = profile {
                 if !profile.isEmpty {
                     if profile[0].pinOn {
-                        navigationController = UINavigationController(rootViewController: EnterPinViewController())
+                        navigationController = UINavigationController(rootViewController: EnterPinViewController(keychain: KeychainSwift()))
                     } else if !profile[0].pinOn {
                         navigationController = UINavigationController(rootViewController: HomeViewController())
                     }
                 } else {
-                    navigationController = UINavigationController(rootViewController: EnterPinViewController())
+                    navigationController = UINavigationController(rootViewController: EnterPinViewController(keychain: KeychainSwift()))
                 }
             }
             window.rootViewController = navigationController

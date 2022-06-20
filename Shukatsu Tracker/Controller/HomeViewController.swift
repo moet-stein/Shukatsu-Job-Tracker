@@ -24,6 +24,8 @@ class HomeViewController: UIViewController {
     private var addButton: CircleButton!
     private var profileSectionView: ProfileSectionView!
     private var profileImage: ProfileImageView!
+    
+    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
