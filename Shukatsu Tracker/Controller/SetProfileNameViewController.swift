@@ -21,39 +21,11 @@ class SetProfileNameViewController: UIViewController {
     
     weak var profileSettingsViewDelegate: ProfileSettingsViewController?
     
-    lazy var cancelButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("CANCEL", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var saveButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("SAVE", for: .normal)
-        button.setTitleColor(UIColor.orange, for: .normal)
-        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        return button
-    }()
-    
-    private let textFieldView: UIView = {
-       let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 20
-        return view
-    }()
-    
-    private let editTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.backgroundColor = .clear
-        textField.tintColor = .systemOrange
-        return textField
-    }()
+
+    private var contentView: SetProfileNameView!
+    private var cancelButton: UIButton!
+    private var saveButton: UIButton!
+    private var editTextField: UITextField!
     
     init(placeholderText: String, profileName: Bool, profileSettingsViewDelegate: ProfileSettingsViewController?, profile: ProfileSettings) {
         self.placeholderText = placeholderText
@@ -70,39 +42,21 @@ class SetProfileNameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.lightOrange
+        
+        contentView = SetProfileNameView()
+        view = contentView
+        cancelButton = contentView.cancelButton
+        saveButton = contentView.saveButton
+        editTextField = contentView.editTextField
         editTextField.delegate = self
-        setUpUI()
-        setUpContent()
+        
+        cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        contentView.setUpContent(placeholderText: placeholderText)
     }
     
 
-    private func setUpUI() {
-        view.addSubview(cancelButton)
-        view.addSubview(saveButton)
-        view.addSubview(textFieldView)
-        textFieldView.addSubview(editTextField)
-        
-        NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            cancelButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            saveButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            
-            textFieldView.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 100),
-            textFieldView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            textFieldView.widthAnchor.constraint(equalToConstant: 250),
-            textFieldView.heightAnchor.constraint(equalToConstant: 60),
-            
-            editTextField.topAnchor.constraint(equalTo: textFieldView.topAnchor),
-            editTextField.leadingAnchor.constraint(equalTo: textFieldView.leadingAnchor, constant: 20),
-            editTextField.trailingAnchor.constraint(equalTo: textFieldView.trailingAnchor, constant: -20),
-            editTextField.bottomAnchor.constraint(equalTo: textFieldView.bottomAnchor)
-        ])
-    }
-    
-    private func setUpContent() {
-        editTextField.text = placeholderText
-    }
+
 
     @objc func saveButtonTapped() {
         let newProfileString = editTextField.text

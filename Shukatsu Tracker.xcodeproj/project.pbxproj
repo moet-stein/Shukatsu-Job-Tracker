@@ -52,6 +52,7 @@
 		6058B30728561EBA003E1450 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B30628561EBA003E1450 /* CoreDataStack.swift */; };
 		6058B3092856209A003E1450 /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B3082856209A003E1450 /* TestCoreDataStack.swift */; };
 		6058B30B28562537003E1450 /* JobInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B30A28562537003E1450 /* JobInfoViewModelTests.swift */; };
+		6058B4132860B4FE003E1450 /* SetProfileNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6058B4122860B4FE003E1450 /* SetProfileNameView.swift */; };
 		6087D4AB2850C7E7004063B9 /* JobInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */; };
 		60BB1799282BE8E900F5544C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB1798282BE8E900F5544C /* Extensions.swift */; };
 		60BB179B282BF48E00F5544C /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BB179A282BF48E00F5544C /* CancelButton.swift */; };
@@ -121,6 +122,7 @@
 		6058B30628561EBA003E1450 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		6058B3082856209A003E1450 /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		6058B30A28562537003E1450 /* JobInfoViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModelTests.swift; sourceTree = "<group>"; };
+		6058B4122860B4FE003E1450 /* SetProfileNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileNameView.swift; sourceTree = "<group>"; };
 		6087D4AA2850C7E7004063B9 /* JobInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewModel.swift; sourceTree = "<group>"; };
 		60BB1798282BE8E900F5544C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		60BB179A282BF48E00F5544C /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				602007862842C3B800D739CB /* AddEditView */,
 				602007872842C41000D739CB /* JobDetailsView */,
 				602007882842C45900D739CB /* ProfileSettingsView */,
+				6058B4112860B4CF003E1450 /* SetProfileNameView */,
 				602007892842C47A00D739CB /* General */,
 				6051046A27F72E0200AB9DEC /* LaunchScreen.storyboard */,
 			);
@@ -349,6 +352,14 @@
 				6058B30628561EBA003E1450 /* CoreDataStack.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		6058B4112860B4CF003E1450 /* SetProfileNameView */ = {
+			isa = PBXGroup;
+			children = (
+				6058B4122860B4FE003E1450 /* SetProfileNameView.swift */,
+			);
+			path = SetProfileNameView;
 			sourceTree = "<group>";
 		};
 		6087D4A92850C7C7004063B9 /* ViewModel */ = {
@@ -547,6 +558,7 @@
 				60FD4F70282EB399004B9403 /* ProfileSectionView.swift in Sources */,
 				6058B30728561EBA003E1450 /* CoreDataStack.swift in Sources */,
 				6051046727F72E0000AB9DEC /* Shukatsu_Tracker.xcdatamodeld in Sources */,
+				6058B4132860B4FE003E1450 /* SetProfileNameView.swift in Sources */,
 				6051049727FF074300AB9DEC /* JobsCollectionViewCell.swift in Sources */,
 				6051AB57281ECF0A002E9CF6 /* ImagePickerManager.swift in Sources */,
 				6051048627FAF11800AB9DEC /* HomeViewController.swift in Sources */,
