@@ -147,6 +147,14 @@ class EnterPinView: UIView {
         enterPinTitleLabel.text = keyChainExist ? "Enter Your Pin" : "Set a Pin"
     }
     
+    func changePinViewSetLabel(currentPinEntered: Bool) {
+        if currentPinEntered {
+            enterPinTitleLabel.text = "Set NEW PIN"
+        } else {
+            enterPinTitleLabel.text = "Enter Current PIN"
+        }
+    }
+    
     func showWrongPinView(text: String) {
         wrongAlertView.isHidden = false
         wrongAlertView.alpha = 1

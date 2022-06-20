@@ -15,7 +15,6 @@ class ChangePinViewController: UIViewController {
     private var cancelButton: CancelButton!
     private var pinTextField: UITextField!
     private var goButton: UIButton!
-    private var enterPinTitleLabel: UILabel!
     private var orangeRoundedView: UIView!
     
     private var currentPinEntered:Bool = false
@@ -35,19 +34,10 @@ class ChangePinViewController: UIViewController {
         goButton = contentView.goButton
         goButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
-        enterPinTitleLabel = contentView.enterPinTitleLabel
         orangeRoundedView = contentView.orangeRoundedView
         
-        setLabelText()
+        contentView.changePinViewSetLabel(currentPinEntered: currentPinEntered)
         addCancelBtnTarget()
-    }
-    
-    private func setLabelText() {
-        if currentPinEntered {
-            enterPinTitleLabel.text = "Set NEW PIN"
-        } else {
-            enterPinTitleLabel.text = "Enter Current PIN"
-        }
     }
     
     private func addCancelBtnTarget() {
@@ -64,7 +54,7 @@ class ChangePinViewController: UIViewController {
                 if enteredPin == keychain.get("ShukatsuPin") {
                     currentPinEntered = true
                     orangeRoundedView.backgroundColor = .systemPurple
-                    setLabelText()
+                    contentView.changePinViewSetLabel(currentPinEntered: currentPinEntered)
                 } else {
                     contentView.showWrongPinView(text: "Wrong PIN")
                     contentView.shakeTextField(textField: pinTextField)
