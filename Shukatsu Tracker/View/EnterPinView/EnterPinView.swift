@@ -67,6 +67,16 @@ class EnterPinView: UIView {
         return textField
     }()
     
+    lazy var vStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [enterPinTitleLabel, pinTextField, goButton])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 15
+        return stackView
+    }()
+    
     lazy var goButton: CircleButton = {
         let button = CircleButton(
             buttonSize: 50,
@@ -113,27 +123,12 @@ class EnterPinView: UIView {
             
         ])
         
-        setUpInsideOrangeView()
+        setStackView()
     }
     
     
-    private func setUpInsideOrangeView() {
-        let vStackView: UIStackView = {
-            let stackView = UIStackView()
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            stackView.axis = .vertical
-            stackView.alignment = .center
-            stackView.distribution = .fillProportionally
-            stackView.spacing = 15
-            return stackView
-        }()
+    private func setStackView() {
         orangeRoundedView.addSubview(vStackView)
-        
-        vStackView.addArrangedSubview(enterPinTitleLabel)
-        vStackView.addArrangedSubview(pinTextField)
-        vStackView.addArrangedSubview(goButton)
-        
-        
         NSLayoutConstraint.activate([
             vStackView.centerXAnchor.constraint(equalTo: orangeRoundedView.centerXAnchor),
             vStackView.centerYAnchor.constraint(equalTo: orangeRoundedView.centerYAnchor),
