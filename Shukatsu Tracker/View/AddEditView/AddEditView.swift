@@ -37,12 +37,10 @@ class AddEditView: UIView {
         return button
     }()
     
-    private let outerVStackView: UIStackView = {
-        let stackView = UIStackView()
+    lazy var outerVStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, statusLabel, statusHStackView, companyField, roleField, teamField, locationField, linkField, notesField, appliedDateStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        //        stackView.distribution = .fillProportionally
-        //        stackView.backgroundColor = .blue
         stackView.spacing = 20
         return stackView
     }()
@@ -180,17 +178,7 @@ class AddEditView: UIView {
         containerView.addSubview(cancelButton)
         containerView.addSubview(saveJobButton)
         containerView.addSubview(outerVStackView)
-        outerVStackView.addArrangedSubview(titleLabel)
-        outerVStackView.addArrangedSubview(statusLabel)
-        outerVStackView.addArrangedSubview(statusHStackView)
         
-        outerVStackView.addArrangedSubview(companyField)
-        outerVStackView.addArrangedSubview(roleField)
-        outerVStackView.addArrangedSubview(teamField)
-        outerVStackView.addArrangedSubview(locationField)
-        outerVStackView.addArrangedSubview(linkField)
-        outerVStackView.addArrangedSubview(notesField)
-        outerVStackView.addArrangedSubview(appliedDateStackView)
         containerView.addSubview(bottomSaveButton)
         
         let scrollFrameGuide = scrollView.frameLayoutGuide

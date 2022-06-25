@@ -47,7 +47,6 @@ class EnterPinView: UIView {
     
     let enterPinTitleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: Fonts.latoBold, size: 25)
         label.textColor = Colors.bgOffwhite
         return label
@@ -55,7 +54,6 @@ class EnterPinView: UIView {
     
     let pinTextField: UITextField = {
         let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = " 4 digit PIN"
         textField.keyboardType = .asciiCapableNumberPad
         textField.textAlignment = .center
@@ -67,16 +65,6 @@ class EnterPinView: UIView {
         return textField
     }()
     
-    lazy var vStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [enterPinTitleLabel, pinTextField, goButton])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 15
-        return stackView
-    }()
-    
     lazy var goButton: CircleButton = {
         let button = CircleButton(
             buttonSize: 50,
@@ -85,6 +73,16 @@ class EnterPinView: UIView {
             sfSymbolName: nil)
         
         return button
+    }()
+    
+    lazy var vStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [enterPinTitleLabel, pinTextField, goButton])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 15
+        return stackView
     }()
     
     init() {
@@ -159,12 +157,8 @@ class EnterPinView: UIView {
             delay: 0.0,
             options: .curveLinear,
             animations: {
-                
                 self.wrongAlertView.frame.origin.x = 100
-                
-            }) { (completed) in
-                
-            }
+            })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             UIView.animate(withDuration: 0.5) {
