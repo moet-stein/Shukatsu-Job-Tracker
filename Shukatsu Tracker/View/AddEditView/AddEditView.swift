@@ -62,14 +62,14 @@ class AddEditView: UIView {
         return label
     }()
     
-    private let statusHStackView: UIStackView = {
-        let stackView = UIStackView()
+    lazy var statusHStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [editOpenButton, editAppliedButton, editInterviewButton, editClosedButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
         return stackView
     }()
-    
+
     let editOpenButton: EditStatusButtonView = {
         let button = EditStatusButtonView(status: JobStatus.open)
         button.statusButton.isSelected = true
@@ -163,7 +163,7 @@ class AddEditView: UIView {
         super.init(frame: .zero)
         
         setUpUI()
-        setStatusSection()
+//        setStatusSection()
         setAppliedDate()
     }
     
@@ -241,14 +241,7 @@ class AddEditView: UIView {
             
         ])
     }
-    
-    private func setStatusSection() {
-        statusHStackView.addArrangedSubview(editOpenButton)
-        statusHStackView.addArrangedSubview(editAppliedButton)
-        statusHStackView.addArrangedSubview(editInterviewButton)
-        statusHStackView.addArrangedSubview(editClosedButton)
-    }
-    
+
     private func setAppliedDate() {
         appliedDateStackView.addArrangedSubview(appliedDateLabel)
         appliedDateStackView.addArrangedSubview(appliedDatePicker)
