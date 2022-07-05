@@ -28,12 +28,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if let profile = profile {
                 if !profile.isEmpty {
                     if profile[0].pinOn {
-                        navigationController = UINavigationController(rootViewController: EnterPinViewController(keychain: KeychainSwift()))
+                        navigationController = UINavigationController(rootViewController: EnterPinViewController())
                     } else if !profile[0].pinOn {
                         navigationController = UINavigationController(rootViewController: HomeViewController())
                     }
                 } else {
-                    navigationController = UINavigationController(rootViewController: EnterPinViewController(keychain: KeychainSwift()))
+                    navigationController = UINavigationController(rootViewController: EnterPinViewController())
                 }
             }
             window.rootViewController = navigationController

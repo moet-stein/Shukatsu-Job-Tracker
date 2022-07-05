@@ -15,11 +15,10 @@ class EnterPinViewController: UIViewController {
     private var goButton: UIButton!
     
     let defaults = UserDefaults.standard
-    let keychain: KeychainSwift
+    let keychain = KeychainSwift()
     
     
-    init(keychain: KeychainSwift) {
-        self.keychain = keychain
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -74,7 +73,7 @@ class EnterPinViewController: UIViewController {
             return
         }
         
-        let isPinMatched = isPinMatched(enteredPin: enteredPin, keychainName: "ShukatsuPin")
+        let isPinMatched = isPinMatched(enteredPin: enteredPin, storedPin: keychain.get("ShukatsuPin")!)
         
         if isPinMatched {
             createProfile()
@@ -88,8 +87,8 @@ class EnterPinViewController: UIViewController {
 
     }
     
-    private func isPinMatched(enteredPin: String, keychainName: String) -> Bool {
-        return enteredPin == keychain.get(keychainName)
+    func isPinMatched(enteredPin: String, storedPin: String) -> Bool {
+        return enteredPin == storedPin
     }
     
     private func createProfile() {
