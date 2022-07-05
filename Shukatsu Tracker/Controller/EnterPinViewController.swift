@@ -74,7 +74,9 @@ class EnterPinViewController: UIViewController {
             return
         }
         
-        if enteredPin == keychain.get("ShukatsuPin") {
+        let isPinMatched = isPinMatched(enteredPin: enteredPin, keychainName: "ShukatsuPin")
+        
+        if isPinMatched {
             createProfile()
             navigationController?.pushViewController(HomeViewController(), animated: true)
         } else {
@@ -84,6 +86,10 @@ class EnterPinViewController: UIViewController {
         
         pinTextField.text = ""
 
+    }
+    
+    private func isPinMatched(enteredPin: String, keychainName: String) -> Bool {
+        return enteredPin == keychain.get(keychainName)
     }
     
     private func createProfile() {
