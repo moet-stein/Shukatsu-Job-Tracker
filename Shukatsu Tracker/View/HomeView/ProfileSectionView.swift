@@ -51,7 +51,7 @@ class ProfileSectionView: UIView {
             greetLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
             
             titleLabel.topAnchor.constraint(equalTo: greetLabel.bottomAnchor, constant: 5),
-            titleLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
         ])
     }
     

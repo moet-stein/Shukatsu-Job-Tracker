@@ -144,7 +144,7 @@ class HomeView: UIView {
         
         NSLayoutConstraint.activate([
             
-            profileSectionView.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            profileSectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             profileSectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             profileSectionView.widthAnchor.constraint(equalToConstant: 220),
             profileSectionView.heightAnchor.constraint(equalToConstant: 60),

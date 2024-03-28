@@ -135,7 +135,7 @@ class HomeViewController: UIViewController {
     
     @objc func addButtonPressed(sender: UIButton, gestureRecognizer: UITapGestureRecognizer) {
         addButton.handleTapShortDuration(gestureRecognizer: gestureRecognizer)
-        present(AddEditViewController(fromDetailsView: false, passedJob: nil, addJobInfoDelegate: self, updateJobInfoInDetailsVCDelegate: nil), animated: true, completion: nil)
+        showMyViewControllerInACustomizedSheet(vc: self)
     }
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -213,4 +213,17 @@ extension HomeViewController: HomeVCDelegate {
     func updateProfileSettings() {
         self.updateProfileInfo()
     }
+}
+
+
+func showMyViewControllerInACustomizedSheet(vc: UIViewController) {
+    let viewControllerToPresent = AddEditViewController(fromDetailsView: false, passedJob: nil, addJobInfoDelegate: nil, updateJobInfoInDetailsVCDelegate: nil)
+    if let sheet = viewControllerToPresent.sheetPresentationController {
+        sheet.detents = [.large()]
+        sheet.largestUndimmedDetentIdentifier = .medium
+        sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+        sheet.prefersEdgeAttachedInCompactHeight = true
+        sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+    }
+    vc.present(viewControllerToPresent, animated: true, completion: nil)
 }
